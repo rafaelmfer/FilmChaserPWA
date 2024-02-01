@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap');
+
+*{
+    margin: 0px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background-color: #111924;
+    padding:0px 0.5rem;
+}
+
+.logo{
+    margin-bottom: 4rem;
+}
+
+.Film_Chaser{
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    position: absolute;
+}
+
+.SignUp{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.SignUp_Center{
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+.SignUp_Center p{
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+ul{
+    list-style-type: none;
+    font-size: 30px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: auto;
+}
+
+.line_or{
+    position: relative;
+}
+
+.line_or::before{
+    content: "";
+    display: block;
+    width: 45%;
+    height: 2px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.line_or::after{
+    content: "";
+    display: block;
+    width: 45%;
+    height: 1px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+
+.fields, .signup_field, .button{
+    width: 100%;
+    height: 54px;
+}
+
+.fiels{
+    display: inline-block;
+}
+
+.signup_field{
+    border: 1px solid #979797;
+    padding: 0.5rem;
+    background-color: #262730;
+    color: white;
+}
+
+.my_fields{
+    display: grid;
+    gap: 1rem;
+}
+
+.button{
+    padding: 0.5rem;
+    margin-top: 3rem;
+    background-image: linear-gradient(to right, rgb(143, 3, 143) , rgb(222 134 61));
+    color:white;
+}
+
+a{
+    color: white;
+    padding-left: 0.7rem;
+}
+
+
+@media screen and (min-width: 600px) {
+
+}
