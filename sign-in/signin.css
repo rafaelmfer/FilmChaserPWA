@@ -1,0 +1,166 @@
+
+
+*{
+    margin: 0px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background-color: var(--primary-color);
+    padding:0px 0.5rem;
+}
+
+/* SITE IDENTITY AREA */
+.site-identity {
+    display: grid;
+    justify-content: center;
+    height: 10vh;
+    margin: 8% 0 2% 0;
+}
+
+.app-logo {
+    height: inherit;
+
+}
+
+.Film_Chaser{
+    padding: 1rem;
+    font-size: 24px;
+    font-weight: bold;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+
+.SignIn{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 80vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.SignIn_Center{
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+.SignIn_Center h2 {
+    font-weight: 600;
+    font-size: 39.8px;
+}
+.SignIn_Center p{
+    margin-top: 2rem;
+    margin-bottom: 1.2rem;
+    font-size: 16px;
+}
+
+ul{
+    list-style-type: none;
+    font-size: 30px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: auto;
+}
+
+.line_or{
+    position: relative;
+}
+
+.line_or::before{
+    content: "";
+    display: block;
+    width: 45%;
+    height: 1px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.line_or::after{
+    content: "";
+    display: block;
+    width: 45%;
+    height: 1px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+
+.fields, .signin_field, .button{
+    width: 100%;
+    height: 54px;
+}
+
+.fiels{
+    display: inline-block;
+}
+
+.signin_field{
+    border: 1px solid #979797;
+    padding: 0.5rem;
+    background-color: #262730;
+    color: white;
+}
+
+.signin_field::placeholder {
+    color: var(--text-color-one);
+}
+
+.my_fields{
+    display: grid;
+    gap: 1rem;
+}
+
+.button{
+    padding: 0.5rem;
+    margin-top: 3rem;
+    background-image: linear-gradient(135deg, var(--accent-color-two) , var(--accent-color-one));
+    color: var(--text-color-one);
+    text-shadow: 0.5px 0.5px 0.5px black;
+}
+
+a{
+    color: var(--text-color-one);
+    padding-left: 0.7rem;
+    text-underline-position: under;
+}
+
+
+
+@media screen and (min-width: 600px) {
+    
+    .app-logo {
+        display: none;
+    }
+
+
+    .Film_Chaser{
+        clip:auto;
+        clip-path:none;
+        height: auto;
+        overflow:unset;
+        position:unset;
+        width: auto;
+    }
+
+    .site-identity {
+        justify-content: left;
+    }
+    
+}
