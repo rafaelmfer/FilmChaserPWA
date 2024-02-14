@@ -130,7 +130,8 @@ ul{
 .button{
     padding: 0.5rem;
     margin-top: 3rem;
-    background-image: linear-gradient(135deg, var(--accent-color-two) , var(--accent-color-one));
+    background-image: var(--background-gradient);
+    /* linear-gradient(135deg, var(--accent-color-two) , var(--accent-color-one)); */
     color: var(--text-color-one);
     text-shadow: 0.5px 0.5px 0.5px black;
 }
