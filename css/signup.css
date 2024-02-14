@@ -1,36 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap");
 
-*{
+* {
     margin: 0px;
     border: 0px;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;;
+    font-family: "Roboto", sans-serif;
 }
 
-:root{
-    --primary: #0F1A20;
+:root {
+    --primary: #0f1a20;
     --secondary: #262730;
-    --textcolor_white: #FFFFFC;
+    --textcolor_white: #fffffc;
     --textField_backGround: #262730;
     --textField_border: #979797;
 }
 
-.SignUp_Center{
+.SignUp_Center {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
 }
 
-body{
-    font-family: 'Roboto', sans-serif;
+body {
+    font-family: "Roboto", sans-serif;
     color: var(--textcolor_white);
     background-color: var(--primary);
-    padding:0px 0.5rem;
+    padding: 0px 0.5rem;
     font-size: 16px;
 }
 
-
-.Film_Chaser{
+.Film_Chaser {
     top: 0.5rem;
     left: 0.5rem;
     font-size: 14px;
@@ -39,7 +38,7 @@ body{
     position: absolute;
 }
 
-.SignUp{
+.SignUp {
     display: grid;
     grid-template-columns: 1fr;
     height: 100vh;
@@ -49,13 +48,13 @@ body{
     justify-items: center;
 }
 
-.SignUp_Center{
+.SignUp_Center {
     text-align: center;
     width: 100%;
     max-width: 350px;
 }
 
-ul{
+ul {
     list-style-type: none;
     font-size: 30px;
     padding: 0px;
@@ -65,11 +64,11 @@ ul{
     margin: auto;
 }
 
-.line_or{
+.line_or {
     position: relative;
 }
 
-.line_or::before{
+.line_or::before {
     content: "";
     display: block;
     width: 45%;
@@ -80,59 +79,58 @@ ul{
     left: 0;
 }
 
-.line_or::after{
+.line_or::after {
     content: "";
     display: block;
     width: 45%;
     height: 2px;
-    background: #FFFFFF;
+    background: #ffffff;
     position: absolute;
     top: 50%;
     right: 0;
 }
 
-
-.fields, .signup_field, .button{
+.fields,
+.signup_field,
+.button {
     width: 100%;
     height: 54px;
     font-weight: 500;
 }
 
-.fields{
-    display: inline-block;    
+.fields {
+    display: inline-block;
 }
 
-input::placeholder{
+input::placeholder {
     color: var(--textcolor_white);
-    
 }
 
-.signup_field{
+.signup_field {
     border: 1px solid var(--textField_border);
     padding: 0.5rem;
     background-color: var(--textField_backGround);
     color: var(--textcolor_white);
 }
 
-.my_fields{
+.my_fields {
     display: grid;
     gap: 1rem;
 }
 
-.button{
-    background-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3);
+.button {
+    background-image: linear-gradient(270deg, #ec764f, #72465d, #2e5df3);
     color: var(--textcolor_white);
 }
 
-a{
+a {
     color: var(--textcolor_white);
     padding-left: 0.7rem;
 }
 
-input{
+input {
     border-radius: 4px;
 }
 
 @media screen and (min-width: 600px) {
-
 }
