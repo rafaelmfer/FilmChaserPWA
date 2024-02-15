@@ -1,8 +1,7 @@
-import { ACCESS_TOKEN_TMDB } from './local_properties.js'
+import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
 
 const btn_search = document.getElementById("btn_search");
 const field_search = document.getElementById("search_field")
-
 
 const options_comedy = {
     method: 'GET',

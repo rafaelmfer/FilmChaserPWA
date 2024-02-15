@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN_TMDB } from './local_properties.js'
+import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
 
 // Get the query string from the URL
 const queryString = window.location.search;
