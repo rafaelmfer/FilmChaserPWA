@@ -1,3 +1,5 @@
+import { ACCESS_TOKEN_TMDB } from './local_properties.js'
+
 // Get the query string from the URL
 const queryString = window.location.search;
 
@@ -27,7 +29,7 @@ const show_all = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: API_KEY
+      Authorization: ACCESS_TOKEN_TMDB
     }
   };
 
@@ -40,7 +42,7 @@ const show_all = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: API_KEY
+      Authorization: ACCESS_TOKEN_TMDB
     }
   };
 
