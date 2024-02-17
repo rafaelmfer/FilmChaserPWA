@@ -34,8 +34,17 @@ header{
     }
 }
 
+.notActive{
+    display: none;
+}
 
+#mainSearch{
+    display: none;
+}
 
+#mainSearch.Active{
+    display: block !important;
+}
 .section_movies:nth-of-type(1){
     margin-top: 5rem;
 }
