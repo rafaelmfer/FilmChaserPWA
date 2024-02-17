@@ -1,4 +1,5 @@
-import { ACCESS_TOKEN_TMDB } from './local_properties.js'
+// import { ACCESS_TOKEN_TMDB } from './local_properties.js'
+import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
 
 // SEARCH MOVIES FROM RATING
 // fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc', options)
