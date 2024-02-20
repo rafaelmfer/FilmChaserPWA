@@ -52,7 +52,7 @@
 
 /* MOBILE SCREEN */
 /* THEY ARE TWO MEDIA QUERIES SO FAR 450px and 700px */
-@media screen and (min-width:450px) {
+@media screen and (max-width:450px) {
     body{
         padding: 1rem 1rem;
     }
