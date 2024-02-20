@@ -13,8 +13,9 @@
     --text-color-one:#FFFFFC;
     --text-color-two:#D9D9D9;
 
-    --background-gradient: linear-gradient(270deg, var(--accent-color-one), #72465D, var(--accent-color-two));
-
+    /* --background-gradient: linear-gradient(270deg, var(--accent-color-one), #72465D, var(--accent-color-two)); */
+    --background-gradient: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3);
+    
     --font-size-h1:47.78px;
     --font-size-h2:39.81px;
     --font-size-h3:33.18px;
