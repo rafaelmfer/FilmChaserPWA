@@ -76,13 +76,15 @@ nav ul li:hover{
 nav ul li:hover .material-symbols-outlined{
     -webkit-text-fill-color: transparent; 
     -webkit-background-clip: text;
-    background-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3);
+    background-image: var(--background-gradient)
 }
 
 
-
-
-
+.mainTop{
+    margin-left: 200px;
+    background-color: var(--primary-color);
+    padding: 3rem;
+}
 
 
 
@@ -96,4 +98,96 @@ nav ul li:hover .material-symbols-outlined{
 .userNotify ul{
     list-style-type: none;
     padding-left: 0px;
+}
+
+.searchMovies{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainTop .ulMovies{
+    flex:1;
+    list-style-type: none;
+    background-color: var(--secondary-color);
+    padding-left: 0;
+    display: flex;
+    padding: 10px 30px;
+    max-width: 400px;
+    gap: 0rem;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.mainTop .ulMovies li span{
+    display: block;
+    font-size: 20px;
+}
+
+
+.mainTop .ulMovies li{
+    padding: 5px 10px;
+    transition: all 1s;
+}
+
+.mainTop .ulMovies li:hover{
+    transition: all 1s;
+    background: var(--background-gradient);
+}
+
+.ulSearch{
+    display: flex;
+    list-style-type: none;
+    padding: 5px 15px;
+    width: 100%;
+    max-width: 300px;
+    min-width: 140px;
+    align-items: center
+}
+
+.ulSearch span{
+    display: block;
+    font-size: 20px;
+}
+
+.ulSearch input{
+    padding: 4px;
+    width: 100%;
+    outline: none;
+    color: var(--text-color-one);
+    background-color: var(--secondary-color);
+}
+
+#btnSearch{
+    cursor: pointer;
+}
+
+.ulSearch div{
+    display: flex;
+    gap: 5px;
+    align-items: center;    
+    background-color: var(--secondary-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.topLinks{
+    display: flex;
+    list-style-type: none;
+    border-bottom: 2px solid var(--secondary-color)
+}
+
+.topLinks li{
+    padding: 10px 50px;
+    border-bottom: 2px solid ;
+    border-image: var(--background-gradient) 15;
+    transform: translateY(2px);
+}
+
+.divUlMovies{
+    padding-top: 0px;
+    padding-bottom: 40px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
