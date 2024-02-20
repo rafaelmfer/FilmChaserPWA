@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 // import { ACCESS_TOKEN_TMDB } from './local_properties.js'
-=======
->>>>>>> origin/develop
 import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
 
 // SEARCH MOVIES FROM RATING
