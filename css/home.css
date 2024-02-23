@@ -5,7 +5,6 @@
 }
 
 main{
-    max-width: 1400px;
     margin: auto;
 }
 
@@ -16,7 +15,6 @@ main{
 
 
 body, .div_movies {
-  background-color: black;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: white;
@@ -34,6 +32,10 @@ header{
     }
 }
 
+main{
+    padding: 3rem 0px !important;
+}
+
 .notActive{
     display: none;
 }
@@ -43,8 +45,9 @@ header{
 }
 
 #mainSearch.Active{
-    display: block !important;
+    /* display: block !important; */
 }
+
 .section_movies:nth-of-type(1){
     margin-top: 5rem;
 }
@@ -62,9 +65,8 @@ header{
 
 .movies_title_h2{    
     color: white;
-    padding: 10px 30px;    
-    letter-spacing: 0.1rem;
-    font-size: clamp(0rem, 1.3vw, 1.3rem);
+    padding: 10px 30px;   
+    font-size: var(--font-mob-small-two);
 }
 
 .movies_title_h2 span{
@@ -153,7 +155,9 @@ footer p{
 
 
 
-
+  .ul-Search{
+    display: none;
+  }
 
 
 
@@ -164,7 +168,6 @@ footer p{
 
 
   .div_image p{
-    background-color: #151515;
     color: orange;
     font-size: 14px;
     font-weight: 700;
