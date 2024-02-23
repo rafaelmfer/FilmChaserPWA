@@ -1,8 +1,11 @@
+/* FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap');
 /*   font-family: "Amiko", sans-serif;*/
 /* font-family: "Open Sans", sans-serif; */
+
+/* ICONS */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
 
 :root {
     --accent-color-one:#EC764F;
@@ -37,7 +40,6 @@
     --font-mob-body:16px;
     --font-mob-small-one:14.22px;
     --font-mob-small-two:12.64px
-
 
 }
 
