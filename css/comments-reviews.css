@@ -1,0 +1,19 @@
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    gap: 0 2rem;
+}
+
+main article {
+    margin-bottom: 3rem;
+
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+}
+
+.hidden {
+    display: none;
+}
