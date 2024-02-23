@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/desktop.css">
     <link rel="stylesheet" href="../css/comments-reviews.css">
+    <link rel="stylesheet" href="../css/card-comments.css">
 
     <script type="module" src="../js/comments-reviews.js" defer></script>
 </head>
@@ -80,16 +81,18 @@
 
         <!-- Article block to show how is the structure of the comment's card -->
         <!-- The real block is constructed by Javascript -->
-        <article>
+        <article class="film-chaser card-comments hidden">
             <div class="film-chaser comment-header">
-                <img src="../resources/imgs/logo.png" alt="" width="50" height="50">
-                <div class="film-chaser js-comment-meta">
-                    <h3 class="film-chaser js-comment-person-name">Person Name</h3>
-                    <p class="film-chaser js-comment-date">date</p>
+                <div class="film-chaser comment-meta-info">
+                    <img src="../resources/imgs/logo.png" alt="" width="50" height="50">
+                    <div class="film-chaser js-comment-name-date">
+                        <h3 class="film-chaser js-comment-person-name">Person Name</h3>
+                        <p class="film-chaser js-comment-date">date</p>
+                    </div>
                 </div>
                 <a href="">icon 3dots delete</a>
             </div>
-            <div>stars component</div>
+            <div class="film-chaser js-comment-rating">stars component</div>
             <p class="film-chaser js-comment-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est numquam quam aspernatur fugit provident debitis, nisi ad quos exercitationem ab corrupti amet deleniti. Error repellendus dicta assumenda sequi, corrupti accusamus.</p>
             <div class="film-chaser comment-actions">
                 <div>

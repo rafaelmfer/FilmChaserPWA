@@ -14,10 +14,6 @@ main article {
     grid-row: span 4;
 }
 
-.comment-header {
-    display: flex;
-}
-
-.comment-actions {
-    display: flex;
+.hidden {
+    display: none;
 }
