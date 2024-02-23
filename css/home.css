@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+a{
+    text-decoration: none;
+    color: var(--text-color-one)
+}
+
 main{
     margin: auto;
 }
@@ -37,7 +42,7 @@ main{
 }
 
 .notActive{
-    display: none;
+    /* display: none; */
 }
 
 #mainSearch{
@@ -45,7 +50,7 @@ main{
 }
 
 #mainSearch.Active{
-    /* display: block !important; */
+    display: block !important;
 }
 
 .section_movies:nth-of-type(1){
