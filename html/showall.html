@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/desktop.css">
+    <link rel="stylesheet" href="../css/search.css">
+
+    <script type="module" src="../js/showall.js" defer></script>
+
+
+</head>
+<body>
+    
+
+    <header>
+        <div class="logoTitle">
+            <img src="../resources/imgs/logo.png" class="logo" alt="" srcset="">
+            <h5>FilmChaser</h5>
+        </div>
+
+        <nav>
+            <ul>
+                <li>
+                    <span class="material-symbols-outlined">home</span>
+                    Home
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">saved_search</span>
+                    Discover
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">list_alt</span>
+                    My List
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">settings</span>
+                    Settings
+                </li>
+            </ul>
+        </nav>
+
+        <div class="userNotify">
+            <ul>
+                <li>
+                    <span class="material-symbols-outlined">notifications</span>
+                    Notification
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">notifications</span>
+                    Name
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+    <section class="mainTop">
+        <div class="divUlMovies">
+            <ul class="topLinks">
+                <li>link 1</li>
+                <li>link 2</li>
+            </ul>
+        </div>
+
+        <div class="searchMovies">
+            <ul class="ulMovies">
+                <li><a href="showall.html?search=all">All</a></li>
+                <li><a href="showall.html?search=movie">Movies</a></li>
+                <li><a href="showall.html?search=tv">TV</a></li>
+                <li style="
+                    padding: 0;
+                    border: 1px solid white;
+                    /* max-height: fit-content; */
+                    height: 20px">
+                </li>
+                <li>icon</li>
+                <li><span class="material-symbols-outlined">filter_alt</span></li>
+            </ul>
+
+            <ul class="ulSearch">
+                <div>
+                    <li><span id="btnSearch" class="material-symbols-outlined">search</span></li>
+                    <li style="
+                    width: 100%;
+                "><input type="text" id="search_field" class="searchField"></li>
+                </div>
+            </ul>
+        </div>
+
+    </section>
+
+
+
+
+    <main id="mainDiscover" >
+
+      <h2 class="Results"> discover Results: </h2>
+      <div class="div-grid-detail">
+
+          <!-- ALL PHOTO WILL BE ADDED HERE -->
+
+      </div>
+
+    </main>
+
+
+    <main id="mainSearch">
+
+
+      <div class="div-grid-detail">
+
+          <!-- ALL PHOTO WILL BE ADDED HERE -->
+
+      </div>
+
+
+  </main>
+
+    <footer>
+        <h1>footer</h1>
+    </footer>
+
+
+</body>
+</html>

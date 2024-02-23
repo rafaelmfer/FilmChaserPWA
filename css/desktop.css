@@ -182,3 +182,84 @@ nav ul li:hover .material-symbols-outlined {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+.mainTop .ulMovies a {
+    color: var(--text-color-one);
+    text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+    header {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .logoTitle {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .mainTop {
+        margin-left: 0px;
+        padding: 0;
+    }
+
+    .mainTop .ulMovies {
+        max-width: 100%;
+    }
+
+    header .userNotify {
+        display: none;
+    }
+
+    .searchMovies {
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
+
+    .mainTop .ulMovies {
+        padding: 10px;
+    }
+
+    .ulSearch {
+        max-width: 100%;
+    }
+
+    .divUlMovies {
+        padding-bottom: 1rem;
+    }
+
+    main {
+        margin-left: 0px;
+        margin-bottom: 87px;
+    }
+
+    nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: black;
+        width: 100%;
+        z-index: 3;
+    }
+
+    nav ul {
+        flex-direction: row;
+        margin: 1rem;
+        justify-content: space-between;
+    }
+
+    nav ul li:hover {
+        background-color: transparent;
+    }
+
+    nav ul li {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    footer {
+        display: none;
+    }
+}
