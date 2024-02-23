@@ -1,112 +1,104 @@
-
-
-body{
+body {
     color: var(--text-color-one);
     font-family: "Open Sans", sans-serif;
     list-style-type: none;
 }
 
-header{
+header {
     background-color: var(--primary-color);
-    width:200px;
+    width: 200px;
     height: 100vh;
-    position:fixed;
+    position: fixed;
     left: 0;
     top: 0;
     padding: 40px 20px;
     border-right: 1px solid #353535;
 }
 
-main{
+main {
     margin-left: 200px;
     background-color: var(--primary-color);
     padding: 3rem;
 }
 
-footer{
+footer {
     height: 70px;
     background-color: lightblue;
     margin-left: 200px;
 }
 
-iframe{
+iframe {
     width: 100%;
     height: 100%;
 }
 
-h5{
+h5 {
     font-size: var(--font-mob-size-h5);
 }
 
-.logo{
+.logo {
     width: 23px;
 }
 
-.logoTitle{
+.logoTitle {
     display: grid;
     align-items: center;
     grid-template-columns: auto auto;
 }
 
-nav ul{
+nav ul {
     display: flex;
     flex-direction: column;
     padding: 0px;
     margin-top: 5rem;
 }
 
-
 .userNotify ul li,
-nav ul li{
+nav ul li {
     display: flex;
-    column-gap:  16px;
+    column-gap: 16px;
     transition: all 1s;
     padding: 6px;
     color: var(--tertiary-color);
 }
 
-
-nav ul li:hover{
+nav ul li:hover {
     cursor: pointer;
-    background-color: #ffffff4a;    
+    background-color: #ffffff4a;
     color: var(--text-color-one);
 }
 
-
-nav ul li:hover .material-symbols-outlined{
-    -webkit-text-fill-color: transparent; 
+nav ul li:hover .material-symbols-outlined {
+    -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    background-image: var(--background-gradient)
+    background-clip: text;
+    background-image: var(--background-gradient);
 }
 
-
-.mainTop{
+.mainTop {
     margin-left: 200px;
     background-color: var(--primary-color);
     padding: 3rem;
 }
 
-
-
-
-.userNotify{
+.userNotify {
     position: fixed;
     bottom: 2rem;
     left: 20px;
 }
 
-.userNotify ul{
+.userNotify ul {
     list-style-type: none;
     padding-left: 0px;
 }
 
-.searchMovies{
+.searchMovies {
     display: flex;
     justify-content: space-between;
 }
 
-.mainTop .ulMovies{
-    flex:1;
+.mainTop .ulMovies {
+    flex: 1;
     list-style-type: none;
     background-color: var(--secondary-color);
     padding-left: 0;
@@ -119,38 +111,37 @@ nav ul li:hover .material-symbols-outlined{
     justify-content: space-between;
 }
 
-.mainTop .ulMovies li span{
+.mainTop .ulMovies li span {
     display: block;
     font-size: 20px;
 }
 
-
-.mainTop .ulMovies li{
+.mainTop .ulMovies li {
     padding: 5px 10px;
     transition: all 1s;
 }
 
-.mainTop .ulMovies li:hover{
+.mainTop .ulMovies li:hover {
     transition: all 1s;
     background: var(--background-gradient);
 }
 
-.ulSearch{
+.ulSearch {
     display: flex;
     list-style-type: none;
     padding: 5px 15px;
     width: 100%;
     max-width: 300px;
     min-width: 140px;
-    align-items: center
+    align-items: center;
 }
 
-.ulSearch span{
+.ulSearch span {
     display: block;
     font-size: 20px;
 }
 
-.ulSearch input{
+.ulSearch input {
     padding: 4px;
     width: 100%;
     outline: none;
@@ -158,34 +149,34 @@ nav ul li:hover .material-symbols-outlined{
     background-color: var(--secondary-color);
 }
 
-#btnSearch{
+#btnSearch {
     cursor: pointer;
 }
 
-.ulSearch div{
+.ulSearch div {
     display: flex;
     gap: 5px;
-    align-items: center;    
+    align-items: center;
     background-color: var(--secondary-color);
     padding: 5px 15px;
     border-radius: 20px;
     width: 100%;
 }
 
-.topLinks{
+.topLinks {
     display: flex;
     list-style-type: none;
-    border-bottom: 2px solid var(--secondary-color)
+    border-bottom: 2px solid var(--secondary-color);
 }
 
-.topLinks li{
+.topLinks li {
     padding: 10px 50px;
-    border-bottom: 2px solid ;
+    border-bottom: 2px solid;
     border-image: var(--background-gradient) 15;
     transform: translateY(2px);
 }
 
-.divUlMovies{
+.divUlMovies {
     padding-top: 0px;
     padding-bottom: 40px;
     padding-left: 0px;
