@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Detail</title>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/details-movie.css">
+    <script type="module" src="../js/details-movie.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <!-- CHANGE logoTitle -->
+        <div class="site-identety logoTitle">
+            <img src="../resources/imgs/logo.png" class="logo" alt="film chaser logo" srcset="">
+            <h1 class="film-chaser"><a href="home.html">FilmChaser</a></h1>
+        </div>
+
+        <nav class="nav-bar nav--main">
+            <ul>
+                <li><a href="home.html"><span class="material-symbols-outlined"> home</span>
+                    Home</a></li>
+                <li><a href="#"><span class="material-symbols-outlined">saved_search</span>Discover</a></li>
+                <li><a href="#"><span class="material-symbols-outlined">list_alt</span>My List</a></li>
+                <li><a href="#"><span class="material-symbols-outlined">settings</span>Settings</a></li>
+    
+            </ul>
+        </nav>
+
+        <!-- REMOVE userNotify after -->
+        <nav class="nav-bar nav--notify-user userNotify">
+            <ul>
+                <li><a href="#"><span class="material-symbols-outlined">notifications</span>Notification</a></li>
+                <!-- TODO it has to be updated with the user picture -->
+                <li><a href="#" class="user-name"><span class="material-symbols-outlined">notifications</span>User Name</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main id="mainDiscover">
+
+        <div class="movie-header">
+            <div class="top-buttonr">
+                <a href="home.html"><span class="material-symbols-outlined">
+                    navigate_before
+                    </span></a>
+            </div>
+    
+            <h1 class="movie--title">Movie Title</h1>
+            <div class="movie--general-info js-movie--general-info"></div>
+    
+            <div class="buttons-share">
+                <span class="material-symbols-outlined">
+                    share
+                </span>
+                <span class="material-symbols-outlined">
+                    heart_plus
+                </span>
+            </div>
+        </div>
+
+    <div class="main-subsection">
+            <h2>About</h2>
+            <div class="movie-details">
+                <div class="information-container">
+    
+                    <div class="section--where-to-watch">
+                        <h3>Where to watch</h3>
+                        <div class="subscribed">
+                            <h4>Subscribed</h3>
+                        </div>
+    
+                        <div class="not-subscribed js-not-subscribed">
+                            <h4>Not subscribed</h3>
+                        </div>
+                    </div>
+                    <div class="section--movie-info">
+                        <h3>Movie info</h3>
+                        <div class="section--movie-info-details"> </div>
+                    </div>
+    
+                    <div class="section--comments">
+                        <p>Comments <span class="movie-comments js-movie-comments"> </span><a href="#"><span class="material-symbols-outlined">keyboard_arrow_right</span></a>
+                        </p>
+                        <!-- TODO add path to comments -->
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section-pictures">
+                <div class="section-cast">
+                    <h3>Cast</h3>
+                    <div class="movie-cast-pictures gallery"></div>
+                </div>
+    
+                <div class="section-related">
+                    <h3>Related Series</h3>
+                    <div class="movie-related-pictures gallery"></div>
+                </div>
+    
+                <div class="section-also">
+                    <h3>People also watched</h3>
+                    <div class="movie-also-pictures gallery"></div>
+                </div>
+            </div>
+    </div>
+    </main>
+
+    <footer>
+        <div>footer</div>
+    </footer>
+
+
+   
+</body>
+</html>
