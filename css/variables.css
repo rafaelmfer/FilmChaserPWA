@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap");
-
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap");
-/*   font-family: "Amiko", sans-serif;*/
+
+/* font-family: "Amiko", sans-serif; */
 /* font-family: "Open Sans", sans-serif; */
 
 :root {
@@ -49,14 +49,89 @@
     border: 0px;
     box-sizing: border-box;
 }
+
 /* body {
 
 } */
+
+h1 {
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-size-h3);
+}
+
+h4 {
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-size-h4);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+h5 {
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-size-h5);
+}
+
+h6 {
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-size-h6);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.small-one {
+    font-family: "Open Sans", sans-serif;
+    font-size: var(--font-small-one);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 
 /* MOBILE SCREEN */
 /* THEY ARE TWO MEDIA QUERIES SO FAR 450px and 700px */
 @media screen and (max-width: 450px) {
     body {
         padding: 1rem 1rem;
+    }
+
+    h1 {
+        font-family: "Amiko", sans-serif;
+        font-size: var(--font-mob-size-h1);
+    }
+
+    h2 {
+        font-family: "Amiko", sans-serif;
+        font-size: var(--font-mob-size-h2);
+    }
+
+    h3 {
+        font-family: "Amiko", sans-serif;
+        font-size: var(--font-mob-size-h3);
+    }
+
+    h4 {
+        font-family: "Amiko", sans-serif;
+        font-size: var(--font-mob-size-h4);
+    }
+
+    h5 {
+        font-family: "Amiko", sans-serif;
+        font-size: var(--font-mob-size-h5);
+    }
+
+    h6 {
+        font-family: "Amiko", sans-serif;
+        font-size: var(--font-mob-size-h6);
     }
 }
