@@ -1,0 +1,27 @@
+.hidden {
+    display: none;
+}
+
+/* img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+} */
+
+main {
+    padding: 0 3rem 2rem 3rem;
+}
+
+main section {
+    margin-bottom: 32px;
+}
+
+main section h4 {
+    margin-bottom: 24px;
+}
+
+main section #watching-cards-container,
+main section #havent-started-cards-container {
+    display: flex;
+    gap: 20px;
+}

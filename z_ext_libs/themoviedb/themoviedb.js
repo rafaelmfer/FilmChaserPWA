@@ -395,6 +395,12 @@ theMovieDb.authentication = {
     window.open("https://www.themoviedb.org/authenticate/" + options.token + "?redirect_to=" + options.redirect_to);
 
   },
+  askPermissionsWithoutRedirect: function(options) {
+    'use strict';
+
+    window.open("https://www.themoviedb.org/authenticate/" + options.token);
+
+  },
   validateUser: function(options, success, error) {
     'use strict';
 

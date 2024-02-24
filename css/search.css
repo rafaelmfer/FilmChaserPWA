@@ -1,0 +1,27 @@
+
+.div-grid-detail{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);;
+    gap: 4rem 1.5rem;
+    
+}
+
+
+main img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.Results{
+    padding: 2rem 0rem;
+}
+
+
+@media screen and (max-width: 500px) {
+    .div-grid-detail{
+        grid-template-columns: repeat(1, 1fr);;
+        
+    }
+
+}
