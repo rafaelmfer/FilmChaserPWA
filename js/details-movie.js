@@ -1,16 +1,17 @@
 'use strict';
 import { ACCESS_TOKEN_TMDB } from '../local_properties.js';
+
+import { urlInfo } from './common.js';
+var movieId = urlInfo("id");
+
+import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
+
 // TODO import inicia function
 
-const movieHeader = document.querySelector(".movie-header");
-const movieTitle = document.querySelector(".movie--title");
+const movieHeader = document.querySelector(".js-movie-header");
+const movieTitle = document.querySelector(".js-movie--title");
 const movieGralInfo = document.querySelector(".js-movie--general-info");
-const movieInfoDetails = document.querySelector(".section--movie-info-details");
-
-
-// TODO get the ID from the home page selection or url
-const movieId = "8392"; //Totoro movie
-//"157336"; //Interestellar
+const movieInfoDetails = document.querySelector(".js-section--movie-info-details");
 
 const options = {
     method: 'GET',
@@ -32,47 +33,38 @@ const base_url = "https://image.tmdb.org/t/p/";
 
 // This is the horizontal size, and needs to be use with the backdrop_path
 const file_size ="w1000_and_h450_multi_faces"; 
-const movie_url = 'https://api.themoviedb.org/3/movie/' + movieId + '?language=en-US';
 
-fetch(movie_url, options)
-    .then(response => response.json())
-    .then(response => {
-        movie_info_write(response);  
-    })
-    .catch(err => console.error(err));
+theMovieDb.movies.getById({"id":movieId }, successCB_movie, errorCB);
 
-function movie_info_write (movie){    
-        
-    let image_path = base_url + file_size + movie.backdrop_path;
+function successCB_movie (data) {
+    const image_path = base_url + file_size + JSON.parse(data).backdrop_path;
 
     movieHeader.style.backgroundImage = `url(${image_path})`;
     movieHeader.style.backgroundSize = "cover";
-        
-    movieTitle.innerHTML = movie.title;
+
+
+    movieTitle.innerHTML = JSON.parse(data).title;
     const movieYear = document.createElement("p");
-    movieYear.innerHTML = movie.release_date.slice(0,4);
+    movieYear.innerHTML = JSON.parse(data).release_date.slice(0,4);
     movieGralInfo.appendChild(movieYear);
 
     const movieInfoDetails_child = document.createElement("div");
     const movieYear_second = document.createElement("p");
-    movieYear_second.innerHTML = movie.release_date.slice(0,4);
+    movieYear_second.innerHTML = JSON.parse(data).release_date.slice(0,4);
     movieInfoDetails_child.appendChild(movieYear_second);
     movieInfoDetails.appendChild(movieInfoDetails_child);
 
     const movie_categories = document.createElement("p");
     let category = "";
-    for (let i in movie.genres){
-        category = category + movie.genres[i].name + ", ";   
+    for (let i in JSON.parse(data).genres){
+        category = category + JSON.parse(data).genres[i].name + ", ";   
     }
     movie_categories.innerHTML = category.substring(0,category.length-2);
     movieInfoDetails_child.appendChild(movie_categories);
-    
-    
-
 
     const movie_duration = document.createElement("p");
-    const hours = Math.floor(movie.runtime / 60);
-    const minutes = 86 % 60;
+    const hours = Math.floor(JSON.parse(data).runtime / 60);
+    const minutes = JSON.parse(data).runtime % 60;
     movie_duration.innerHTML = `${hours}h ${minutes}m`;
     movieGralInfo.appendChild(movie_duration);
 
@@ -80,8 +72,8 @@ function movie_info_write (movie){
     const movie_vote_average = document.createElement("p");
     const movie_vote_stars = document.createElement("p");
 
-    let vote_average = movie.vote_average * 5 / 10 ;
-    movie_vote_average.innerHTML = vote_average.toFixed(2) + "/5 (" + movie.vote_count + ")";
+    let vote_average = JSON.parse(data).vote_average * 5 / 10 ;
+    movie_vote_average.innerHTML = vote_average.toFixed(2) + "/5 (" + JSON.parse(data).vote_count + ")";
 
     let star = "";
     let i = 1;
@@ -93,15 +85,14 @@ function movie_info_write (movie){
         }
         i++;
     }
-
     movie_vote_stars.innerHTML = star ;
-    
+
     movieInfoDetails_votes.appendChild(movie_vote_stars);
     movieInfoDetails_votes.appendChild(movie_vote_average);
     movieInfoDetails.appendChild(movieInfoDetails_votes);
 
     const movie_paragraph = document.createElement("p");
-    movie_paragraph.innerHTML = movie.overview;       
+    movie_paragraph.innerHTML = JSON.parse(data).overview;       
     movieInfoDetails.appendChild(movie_paragraph);
 
     const movie_duration_second = document.createElement("p");
@@ -110,31 +101,31 @@ function movie_info_write (movie){
     movieInfoDetails.appendChild(movie_duration_second);
 }
 
-
 // SECTION: HERO IMAGE -> call to get the certification  
-const movie_release_url = 'https://api.themoviedb.org/3/movie/' + movieId + '/release_dates';
-fetch(movie_release_url, options)
-    .then(response => response.json())
-    .then(response => {
-        movie_info_certification(response.results);
-        })
-    .catch(err => console.error(err));
+theMovieDb.movies.getReleases({"id":movieId}, successCB_release, errorCB);
 
-function movie_info_certification(results){
-
-    for (let i in results){
-        if (results[i].iso_3166_1 === 'CA' || results[i].iso_3166_1 === 'US'){
-            console.log(results[i]);
-            // TODO filter with the profile info. 
-            const movie_certification = document.createElement("p");
-            movie_certification.innerHTML = results[i].release_dates[3].certification;
-            movieGralInfo.appendChild(movie_certification);
-        }            
-    }
-}
-
+function successCB_release (data) {
+    const movie_certification = document.createElement("p");
+    for (let i in JSON.parse(data).results){
+        // TODO filter with the profile info. 
+        
+        if (JSON.parse(data).results[i].iso_3166_1 === 'CA' || JSON.parse(data).results[i].iso_3166_1 === 'US'){
+            
+            for (let j in  JSON.parse(data).results[i].release_dates){
+                
+                if ( JSON.parse(data).results[i].release_dates[j].certification != null) {
+                    movie_certification.innerHTML = JSON.parse(data).results[i].release_dates[j].certification;
+                    movieGralInfo.appendChild(movie_certification);
+                    break;               
+                }
+                j++;
+            }
+    }}       
+};
+    
 // SECTION: STREAMING SERVICES
 const movieStreaming_not = document.querySelector(".js-not-subscribed");
+
 const movie_url_providers = 'https://api.themoviedb.org/3/movie/' + movieId + '/watch/providers';
 
 fetch(movie_url_providers, options)
@@ -146,17 +137,26 @@ fetch(movie_url_providers, options)
 
 function movie_info_providers(providers){
     // TODO the country initials could be taken from the profile info.
-    // But I don't know how to rename an object key
-    // let country = 'CA';
-    // only choose the streaming
-    let country_base_url = providers.CA.link;
-    
-    for (let i in providers.CA.rent)  {
+    if (providers.CA != null){
+        if (providers.CA.flatrate != undefined) {
+            iterate_movie_provider (providers.CA.flatrate);
+        } else if (providers.CA.rent != undefined) {
+            iterate_movie_provider (providers.CA.rent);
+        } else if (providers.CA.buy != undefined) {
+            iterate_movie_provider (providers.CA.buy)
+        }
+    } else {
+        console.log ("There is not providers for this country");
+    }
+}
+
+function iterate_movie_provider (array){
+    for (let i in array)  {
         const logo_streaming = document.createElement("img");
         logo_streaming.classList.add("js-streaming-logo");
 
-        logo_streaming.src = base_url + 'w92' + providers.CA.rent[i].logo_path;
-        logo_streaming.alt = providers.CA.rent[i].provider_name;
+        logo_streaming.src = base_url + 'w92' + array[i].logo_path;
+        logo_streaming.alt = array[i].provider_name;
 
         movieStreaming_not.appendChild(logo_streaming);
     }
@@ -164,105 +164,100 @@ function movie_info_providers(providers){
 
 // SECTION: COMMENTS /  REVIEWS
 const movie_comments = document.querySelector(".js-movie-comments");
-const movie_review_url = 'https://api.themoviedb.org/3/movie/' + movieId + '/reviews?language=en-US'
-fetch(movie_review_url, options)
-    .then(response => response.json())
-    .then(response => {
-       movie_comments.innerHTML = response.total_results ;
-    })
-    .catch(err => console.error(err));
+theMovieDb.movies.getReviews({"id":movieId }, successCB_Reviews, errorCB)
 
-// SECTION: MOVIE CAST PICTURES
-const movieCast = document.querySelector(".movie-cast-pictures");
-const movie_url_credits = 'https://api.themoviedb.org/3/movie/' + movieId + '/credits?language=en-US';
+function successCB_Reviews (data) {
+    // TODO Fix the structure to include the hyperlink
+    movie_comments.innerHTML = JSON.parse(data).total_results;
 
-fetch(movie_url_credits, options)
-    .then(response => response.json())
-    .then(response => {
-        movie_info_cast(response); 
-    })
-    .catch(err => console.error(err));
-
-function movie_info_cast (movie) {
-    let cast = movie.cast;
-    let i = 0;
-
-    for (let artist of cast) {
-        // console.log(artist.name, artist.id, artist.profile_path);
-        if (i < 4) {
-            const artist_figure = document.createElement("figure");
-            const artist_picture = document.createElement("img");
-            const artist_name = document.createElement("figcaption");
-
-            if (artist.profile_path != null) {
-                artist_picture.src = base_url + 'w154' + artist.profile_path;
-                artist_picture.alt = 'Picture of the actor/actress';
-            } else {
-                // TODO change the placeholder image
-                artist_picture.src = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg';  
-                artist_picture.alt = 'no image provide for the artist';
-            }
-            
-            artist_name.innerHTML = artist.name;
-            
-            artist_figure.appendChild(artist_picture);       
-            artist_figure.appendChild(artist_name);
-            movieCast.appendChild(artist_figure);
-            i++;
-        }
-    }
 }
 
+// SECTION: MOVIE CAST PICTURES
+const movieCast = document.querySelector(".js-movie-cast-pictures");
+
+theMovieDb.movies.getCredits({"id":movieId }, successCB_Cast, errorCB);
+
+function successCB_Cast (data) {
+    let i = 0;
+    JSON.parse(data).cast.forEach(function (artist) { 
+        
+        if (i < 4) {
+            const hyperlink = document.createElement("a");
+            const figure = document.createElement("figure");
+            const picture = document.createElement("img");
+            const name = document.createElement("figcaption");
+
+            if (artist.profile_path != null) {
+                picture.src = base_url + 'w154' + artist.profile_path;
+                picture.alt = 'Picture of the actor/actress';
+            } else {
+                // TODO change the placeholder image
+                picture.src = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg';  
+                picture.alt = 'no image provide for the artist';
+                picture.style.width = "154px";                
+            }
+            
+            name.innerHTML = artist.name;
+            
+            figure.appendChild(picture);       
+            figure.appendChild(name);
+            hyperlink.appendChild(figure);
+            movieCast.appendChild(hyperlink);
+            i++;
+        }
+    });
+}
 
 // SECTION: SIMILAR MOVIES / RELATED MOVIES
-const movie_related = document.querySelector(".movie-related-pictures");
+const movie_related = document.querySelector(".js-movie-related-pictures");
 
-const movie_url_similar = 'https://api.themoviedb.org/3/movie/' + movieId + '/similar?language=en-US&page=1';
-fetch(movie_url_similar, options)
-    .then(response => response.json())
-    .then(response => {
-        let i =0;
-        for (let similar of response.results) {
-            if (i < 4) {
-                const similar_figure = document.createElement("figure");
-                const similar_poster = document.createElement("img");
-                const similar_title = document.createElement("figcaption");
+theMovieDb.movies.getSimilarMovies({"id":movieId }, successCB_Similar, errorCB)
 
-                similar_poster.src = base_url + 'w154' + similar.poster_path;
-                similar_title.innerHTML = similar.title;
-
-                similar_figure.appendChild(similar_poster);       
-                similar_figure.appendChild(similar_title);
-                movie_related.appendChild(similar_figure);
-                i++;
-            }
-        }
-    })
-    .catch(err => console.error(err));
+function successCB_Similar(data) {
+    let i = 0;
+    JSON.parse(data).results.forEach(function (movie) {        
+        if (i < 4) {
+            let hyperlink = createFigureHyperlink (movie, "single_movie.html?id=");
+            movie_related.appendChild(hyperlink);
+            i++;
+        } 
+    });
+}
 
 // SECTION: RECOMMENDATIONS / PEOPLE ALSO WATCHED
-const movie_recommended = document.querySelector(".movie-also-pictures");
-// TAKE them from trending
-const movie_url_recommended = 'https://api.themoviedb.org/3/movie/' + movieId + '/recommendations?language=en-US&page=1';
+const movie_recommended = document.querySelector(".js-movie-also-pictures");
+theMovieDb.movies.getPopular({}, successCB_Popular, errorCB);
 
-fetch(movie_url_recommended, options)
-    .then(response => response.json())
-    .then(response => {
-        let i =0;
-        for (let recommend of response.results) {
-            if (i < 4) {
-                const recommend_figure = document.createElement("figure");
-                const recommend_poster = document.createElement("img");
-                const recommend_title = document.createElement("figcaption");
+function successCB_Popular(data) {
+    let i = 0;
+    JSON.parse(data).results.forEach(function (movie) {        
+        if (i < 4) {
+            let hyperlink = createFigureHyperlink (movie, "single_movie.html?id=");
+            movie_recommended.appendChild(hyperlink);
+            i++;
+        } 
+    });
+}
 
-                recommend_poster.src = base_url + 'w154' + recommend.poster_path;
-                recommend_title.innerHTML = recommend.title;
+function createFigureHyperlink (object, path){
+    const hyperlink = document.createElement("a");
+    const figure = document.createElement("figure");
+    const poster = document.createElement("img");
+    const title = document.createElement("figcaption");
 
-                recommend_figure.appendChild(recommend_poster);       
-                recommend_figure.appendChild(recommend_title);
-                movie_recommended.appendChild(recommend_figure);
-                i++;
-            }
-        }
-    })
-    .catch(err => console.error(err));
+    // TODO: Place holder poster
+    poster.src = base_url + 'w154' + object.poster_path;
+    title.innerHTML = object.title;
+
+    hyperlink.setAttribute("href",path + object.id);
+
+    figure.appendChild(poster);       
+    figure.appendChild(title);
+    hyperlink.appendChild(figure);
+    return hyperlink;
+}
+
+// ----------------------------------------------------------
+function errorCB(data) {
+    console.log("Error callback: " + data);
+}

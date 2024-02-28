@@ -74,10 +74,7 @@ nav ul li:hover{
 }
 
 nav ul li:hover .material-symbols-outlined{
-    /* background: linear-gradient(to right, #f32170, 
-    #ff6b08, #cf23cf, #eedd44);  */
     -webkit-text-fill-color: transparent; 
-    /* CHANGE the background-clip property for a proper one */
     background-clip: inherit; 
     -webkit-background-clip: text;
     background-image: var(--background-gradient)
@@ -199,7 +196,12 @@ a {
     gap: 1rem;
     padding: 0.5rem 0;
 }
-
+.section--comments p{
+    font-size: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 .section-pictures {
     display: flex;
     flex-direction: column;
@@ -213,8 +215,36 @@ a {
     gap:.5rem;
 }
 
+/* CARROUSEL */
+.carrousel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.carrousel .btn-arrow {
+    background-color: transparent;
+    color: var(--text-color-one);
+    transition: all .3s ease-in-out;
+}
+
+.js-movie-related-pictures figure {
+    position: relative;
+    height: 100%;
+}
+
+.js-movie-related-pictures figcaption{
+    /* Same width as the posters */
+    width: 154px; 
+    position:absolute;
+    bottom: 0;
+    background-color: var(--primary-color);
+}
+
 img {
-max-width:100%;
-height:auto;
-display:block;
+    max-width:100%;
+    height:auto;
+    display:block;
 }
