@@ -16,12 +16,12 @@
         <!-- CHANGE logoTitle -->
         <div class="site-identety logoTitle">
             <img src="../resources/imgs/logo.png" class="logo" alt="film chaser logo" srcset="">
-            <h1 class="film-chaser"><a href="home.html">FilmChaser</a></h1>
+            <h1 class="film-chaser"><a href="./home.html">FilmChaser</a></h1>
         </div>
 
         <nav class="nav-bar nav--main">
             <ul>
-                <li><a href="home.html"><span class="material-symbols-outlined"> home</span>
+                <li><a href="./home.html"><span class="material-symbols-outlined"> home</span>
                     Home</a></li>
                 <li><a href="#"><span class="material-symbols-outlined">saved_search</span>Discover</a></li>
                 <li><a href="#"><span class="material-symbols-outlined">list_alt</span>My List</a></li>
@@ -43,14 +43,14 @@
 
     <main id="mainDiscover">
 
-        <div class="movie-header">
+        <div class="movie-header js-movie-header">
             <div class="top-buttonr">
                 <a href="home.html"><span class="material-symbols-outlined">
                     navigate_before
                     </span></a>
             </div>
     
-            <h1 class="movie--title">Movie Title</h1>
+            <h1 class="movie--title js-movie--title">Movie Title</h1>
             <div class="movie--general-info js-movie--general-info"></div>
     
             <div class="buttons-share">
@@ -80,11 +80,11 @@
                     </div>
                     <div class="section--movie-info">
                         <h3>Movie info</h3>
-                        <div class="section--movie-info-details"> </div>
+                        <div class="section--movie-info-details js-section--movie-info-details"> </div>
                     </div>
     
                     <div class="section--comments">
-                        <p>Comments <span class="movie-comments js-movie-comments"> </span><a href="#"><span class="material-symbols-outlined">keyboard_arrow_right</span></a>
+                        <p>Comments: <span class="movie-comments js-movie-comments"> </span><a href="#"><span class="material-symbols-outlined">keyboard_arrow_right</span></a>
                         </p>
                         <!-- TODO add path to comments -->
                     </div>
@@ -94,17 +94,22 @@
             <div class="section-pictures">
                 <div class="section-cast">
                     <h3>Cast</h3>
-                    <div class="movie-cast-pictures gallery"></div>
+                    <div class="movie-cast-pictures js-movie-cast-pictures gallery"></div>
                 </div>
     
                 <div class="section-related">
-                    <h3>Related Series</h3>
-                    <div class="movie-related-pictures gallery"></div>
+                    <h3>Related Movies</h3>
+                    <div class="carrousel js-carrousel"> 
+                        <button class="btn-arrow btn-arrow--left"><span class="material-symbols-outlined"> navigate_before </span></button>
+                        <div class="movie-related-pictures  js-movie-related-pictures gallery"></div>
+
+                        <button class="btn-arrow btn-arrow--right"> <span class="material-symbols-outlined"> navigate_next </span> </button>    
+                    </div>
                 </div>
     
                 <div class="section-also">
                     <h3>People also watched</h3>
-                    <div class="movie-also-pictures gallery"></div>
+                    <div class="movie-also-pictures js-movie-also-pictures gallery"></div>
                 </div>
             </div>
     </div>

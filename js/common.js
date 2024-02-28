@@ -18,10 +18,13 @@ export async function fetchData(url, options = {}) {
 }
 
 
+// Function to get information from the URL
 
-
-
-
+export function urlInfo(parameter) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get(parameter);
+}
 
 //**********************SEARCH--->MOVIE********************************** */
 const options = {
