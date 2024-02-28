@@ -1,0 +1,64 @@
+
+*{
+    margin: 0px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+}
+
+header img{
+    width: 2rem;
+    height:2rem;
+}
+
+
+li{
+    list-style: none; 
+}
+
+h1{
+    margin-bottom: 1rem;
+}
+
+
+.nav-primary{
+
+    padding: 0;
+    margin-bottom: 3rem;
+}
+
+
+.nav-secondary{
+    padding: 0;
+}
+
+.country-list{                                          margin-top: 3rem;
+}
+
+#country-list {
+    max-height: 200px; 
+    overflow-y: scroll;
+    border: 1px solid #ccc; 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.scrollable-list {
+    overflow-y: auto;
+}
+
+.country-option {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+#selected-country-option {
+    margin-bottom: 10px;
+}
+
+#selected-country {
+    font-weight: bold;
+}
