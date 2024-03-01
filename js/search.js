@@ -7,6 +7,9 @@ const btnSearch = document.getElementById("btnSearch")
 const mainDiscover = document.querySelector("#mainDiscover")
 const mainSearch   = document.querySelector("#mainSearch")
 const search_field = document.querySelector("#search_field")
+const mainDiscover2 = document.querySelector("#mainDiscover2")
+
+
 
 
 
@@ -17,6 +20,7 @@ btnSearch.addEventListener("click",()=>{
 
     mainDiscover.classList.add("notActive")
     mainSearch.classList.add("Active")
+    mainDiscover2.classList.remove("notActive")
 
     inicia(search_field.value, 1)
         .then(e=>e.json())
@@ -27,6 +31,9 @@ btnSearch.addEventListener("click",()=>{
         .catch(err => console.error(err));
 
 });
+
+let aname = fetch
+let an
 
 
 
@@ -74,7 +81,7 @@ export function showResult(res){
 
 
 //**********************SEARCH--->MOVIE********************************** */
-const options = {
+export const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',

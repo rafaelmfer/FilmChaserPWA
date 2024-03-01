@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="../css/search.css">
 
     <script type="module" src="../js/showall.js" defer></script>
-
+  
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />   
+    <script type="module" src="../js/home_api_movies.js"  defer></script>
 
 </head>
 <body>
@@ -98,7 +103,262 @@
 
 
 
-    <main id="mainDiscover" >
+
+
+    <main id="mainDiscover">
+        
+        <!-- TRENDING -->
+    <section class="section_movies">
+        <div class="div_movies">
+            <div class="movies_title_h2">
+                
+          
+                <h2>Trending <span><a href="showall.html?search=all">See More ></a></span></h2>
+            </div>
+            <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="trending_img1"></div></div>
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="trending_img2"></div></div>
+                <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="trending_img3"></div></div>
+                <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="trending_img4"></div></div>
+                <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="trending_img5"></div></div>
+                <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="trending_img6"></div></div>
+                <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="trending_img7"></div></div>
+                <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="trending_img8"></div></div>
+                <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="trending_img9"></div></div>
+                </div>
+        
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+        </div>
+    </section>
+
+
+
+
+
+
+<!-- RECOMMENDATION -->
+<section class="section_movies">
+    <div class="div_movies">
+        <div class="movies_title_h2">
+            <h2>Recommendation</h2>
+        </div>
+        <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+            <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+              <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="recommendation_img1"></div></div>
+              <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="recommendation_img2"></div></div>
+              <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                <div class="recommendation_img3"></div></div>
+              <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                <div class="recommendation_img4"></div></div>
+              <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                <div class="recommendation_img5"></div></div>
+              <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                <div class="recommendation_img6"></div></div>
+              <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                <div class="recommendation_img7"></div></div>
+              <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                <div class="recommendation_img8"></div></div>
+              <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                <div class="recommendation_img9"></div></div>
+            </div>
+      
+          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+    </div>
+</section>
+
+
+
+
+
+
+    <!-- UPCOMING -->
+  <section class="section_movies">
+      <div class="div_movies">
+          <div class="movies_title_h2">
+              <h2>Upcoming <span><a href="showall.html?search=upcomming">See More ></a></span></h2>
+          </div>
+          <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+              <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="upcoming_img1"></div></div>
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="upcoming_img2"></div></div>
+                <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="upcoming_img3"></div></div>
+                <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="upcoming_img4"></div></div>
+                <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="upcoming_img5"></div></div>
+                <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="upcoming_img6"></div></div>
+                <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="upcoming_img7"></div></div>
+                <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="upcoming_img8"></div></div>
+                <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="upcoming_img9"></div></div>
+              </div>
+        
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+      </div>
+  </section>
+
+
+
+
+  
+  <!-- COMEDY -->
+  <section class="section_movies">
+      <div class="div_movies">
+          <div class="movies_title_h2">
+              <h2>Comedy <span><a href="showall.html?search=comedy">See More ></a></span></h2>
+          </div>
+          <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+              <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="img1"></div></div>
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="img2"></div></div>
+                <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="img3"></div></div>
+                <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="img4"></div></div>
+                <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="img5"></div></div>
+                <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="img6"></div></div>
+                <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="img7"></div></div>
+                <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="img8"></div></div>
+                <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="img9"></div></div>
+              </div>
+        
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+      </div>
+  </section>
+
+
+
+
+
+
+   <!-- HORROR -->
+   <section class="section_movies">
+      <div class="div_movies">
+          <div class="movies_title_h2">
+              <h2>Horror <span><a href="showall.html?search=horror">See More ></a></span></h2>
+          </div>
+          <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+              <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="horror_img1"></div></div>
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="horror_img2"></div></div>
+                <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="horror_img3"></div></div>
+                <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="horror_img4"></div></div>
+                <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="horror_img5"></div></div>
+                <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="horror_img6"></div></div>
+                <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="horror_img7"></div></div>
+                <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="horror_img8"></div></div>
+                <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="horror_img9"></div></div>
+              </div>
+        
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+      </div>
+  </section>
+
+
+
+
+
+  <!-- ACTION -->
+  <section class="section_movies">
+      <div class="div_movies">
+          <div class="movies_title_h2">
+              <h2>Action <span><a href="showall.html?search=action">See More ></a></span></h2>
+          </div>
+          <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+              <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="action_img1"></div></div>
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="action_img2"></div></div>
+                <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="action_img3"></div></div>
+                <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="action_img4"></div></div>
+                <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="action_img5"></div></div>
+                <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="action_img6"></div></div>
+                <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="action_img7"></div></div>
+                <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="action_img8"></div></div>
+                <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="action_img9"></div></div>
+              </div>
+        
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+      </div>
+  </section>
+
+
+
+
+  <!-- ANIMATION -->
+  <section class="section_movies">
+      <div class="div_movies">
+          <div class="movies_title_h2">
+              <h2>Animation <span><a href="showall.html?search=animation">See More ></a></span></h2>
+          </div>
+          <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+              <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="documentary_img1"></div></div>
+                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="documentary_img2"></div></div>
+                <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="documentary_img3"></div></div>
+                <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="documentary_img4"></div></div>
+                <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="documentary_img5"></div></div>
+                <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="documentary_img6"></div></div>
+                <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="documentary_img7"></div></div>
+                <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="documentary_img8"></div></div>
+                <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                  <div class="documentary_img9"></div></div>
+              </div>
+        
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+      </div>
+  </section>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+    <main id="mainDiscover2" class="notActive">
+        
 
       <h2 class="Results"> discover Results: </h2>
       <div class="div-grid-detail">
@@ -120,11 +380,45 @@
       </div>
 
 
+
+
+
+
+
+
+
+
+      
+
   </main>
 
     <footer>
         <h1>footer</h1>
     </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+
+        let tela = window.innerWidth;
+        let n = 5;
+
+
+        if(tela < 500){
+          n = 2;
+        }
+
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: n,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            });
+
+    </script>
 
 
 </body>
