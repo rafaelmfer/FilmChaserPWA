@@ -11,7 +11,7 @@ navigateToPage();
 window.addEventListener("hashchange", navigateToPage);
 
 function navigateToPage(event) {
-    const pageId = location.hash ? location.hash : "watchlist";
+    const pageId = location.hash ? location.hash : "#watchlist";
     for (let page of allPages) {
         if (pageId === "#" + page.id) {
             page.style.display = "block";

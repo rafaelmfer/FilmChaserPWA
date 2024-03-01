@@ -99,7 +99,7 @@ function exibir_movies(movies, my_array){
 
 
         const paragraph = document.createElement("p")
-        paragraph.innerHTML = element.title;
+        paragraph.innerHTML = element.title || element.name;
 
         if(index == 1){           
           addAllResult(movie_image, paragraph, element.id, div_image, index-1, my_array);  
