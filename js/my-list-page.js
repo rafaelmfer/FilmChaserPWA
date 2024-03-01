@@ -1,7 +1,30 @@
 "use strict";
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
-import { ACCOUNT_ID, SESSION_ID } from '../local_properties.js'
+import { ACCOUNT_ID, SESSION_ID } from "../local_properties.js";
+
+// related to SPA ============================================================
+const allPages = document.querySelectorAll("div.page");
+navigateToPage();
+
+//init handler for hash navigation
+window.addEventListener("hashchange", navigateToPage);
+
+function navigateToPage(event) {
+    const pageId = location.hash ? location.hash : "watchlist";
+    for (let page of allPages) {
+        if (pageId === "#" + page.id) {
+            page.style.display = "block";
+        } else {
+            page.style.display = "none";
+        }
+    }
+    return;
+}
+
+// ============================================================================
+let arrayTvShows = [];
+let arrayMovies = [];
 
 theMovieDb.account.getTvShowsWatchlist(
     { id: ACCOUNT_ID, session_id: SESSION_ID },
@@ -20,11 +43,18 @@ function errorCB(data) {
 
 // Watching - only series that you already saw at least one episode
 function successSeriesWatchList(data) {
-    // console.log("Result successSeriesWatchList: ", JSON.parse(data));
     console.log("Result successSeriesWatchList: ", JSON.parse(data));
 
     JSON.parse(data).results.forEach(function (series) {
-        createMovieSeriesCard(series, "watching-cards-container");
+        createMovieSeriesCard(series, ".watching-cards-container");
+    });
+
+    let upcomingArray = arrayTvShows.filter(function(series) {
+        return new Date() - new Date(series.release_date) < 0;
+    });
+
+    upcomingArray.forEach(function (movie) {
+        createMovieSeriesCard(movie, ".upcoming-container");
     });
 }
 
@@ -33,8 +63,19 @@ function successMoviesWatchList(data) {
     console.log("Result successMoviesWatchList: ", JSON.parse(data));
 
     JSON.parse(data).results.forEach(function (movie) {
-        createMovieSeriesCard(movie, "havent-started-cards-container");
+        createMovieSeriesCard(movie, ".havent-started-cards-container");
     });
+    
+    arrayMovies = JSON.parse(data).results
+
+    let upcomingArray = arrayMovies.filter(function(movie) {
+        return new Date() - new Date(movie.release_date) < 0;
+    });
+
+    upcomingArray.forEach(function (movie) {
+        createMovieSeriesCard(movie, ".upcoming-container");
+    });
+
 }
 
 function createMovieSeriesCard(item, locationId) {
@@ -108,6 +149,37 @@ function createMovieSeriesCard(item, locationId) {
     watchNowBtn.appendChild(watchNowText);
 
     // Add the movie card to the page
-    var container = document.getElementById(locationId);
+    var container = document.querySelector(locationId);
     container.appendChild(article);
 }
+
+
+// MODEL ARRAY THAT IT WILL BE DELETED AFTER
+var mockupJson = {
+    "completed": [
+        {
+            "id": 1668,
+            "name": "Series",
+            "media_type": "tv",
+            "release_date": "2023-12-07",
+            "vote_average": 8.42342,
+            "overview": "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
+            "poster_path": "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg"
+        },
+        {
+            "id": 1669,
+            "title": "Movie",
+            "media_type": "movie",
+            "release_date": "2023-12-07",
+            "vote_average": 8.42342,
+            "overview": "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
+            "poster_path": "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg"
+        }
+    ]
+}
+
+console.log(mockupJson);
+
+mockupJson.completed.forEach(function(item) {
+    createMovieSeriesCard(item, ".completed-container")
+})

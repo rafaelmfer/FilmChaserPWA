@@ -2,6 +2,13 @@
     display: none;
 }
 
+a {
+    color: white;
+
+    text-decoration: none;
+}
+
+
 /* img {
     max-width: 100%;
     height: auto;
@@ -20,8 +27,16 @@ main section h4 {
     margin-bottom: 24px;
 }
 
-main section #watching-cards-container,
-main section #havent-started-cards-container {
+main section .watching-cards-container,
+main section .havent-started-cards-container {
     display: flex;
     gap: 20px;
 }
+
+main .upcoming-container, 
+main .completed-container { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 360px);
+    gap: 20px
+}
+
