@@ -41,20 +41,6 @@ main{
     padding: 3rem 0px !important;
 }
 
-
-
-.notActive{
-    display: none !important;
-}
-
-#mainSearch{
-    display: none;
-}
-
-#mainSearch.Active{
-    display: block !important;
-}
-
 .section_movies:nth-of-type(1){
     margin-top: 5rem;
 }
