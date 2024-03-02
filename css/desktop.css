@@ -57,8 +57,14 @@ nav ul {
 nav ul li {
     display: flex;
     column-gap: 16px;
-    transition: all 1s;
     padding: 6px;
+    transition: all 1s;
+
+}
+
+nav ul li a {
+    display: flex;
+    column-gap: 16px;
     color: var(--tertiary-color);
 }
 
