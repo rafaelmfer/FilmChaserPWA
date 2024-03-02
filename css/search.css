@@ -1,4 +1,16 @@
 
+.notActive{
+    display: none !important;
+}
+
+#mainSearch{
+    display: none;
+}
+
+#mainSearch.Active{
+    display: block !important;
+}
+
 .div-grid-detail{
     display: grid;
     grid-template-columns: repeat(4, 1fr);;

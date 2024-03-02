@@ -154,7 +154,7 @@ function search_page(page){
         
         const search = field_search.value;
     
-        window.open("search.html?search="+search,"_self")
+        window.open("discover.html?search="+search,"_self")
     })
     
 
