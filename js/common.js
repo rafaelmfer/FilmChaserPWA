@@ -77,6 +77,7 @@ export async function allMovies(user_search, page){
         fetching = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
     }else{
 
+
         fetching = 'https://api.themoviedb.org/3/trending/'+user_search+'/day?language=en-US';
     }
     console.log(fetching)
