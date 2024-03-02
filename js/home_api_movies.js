@@ -1,4 +1,6 @@
 import { ACCESS_TOKEN_TMDB } from '../../local_properties.js'
+import { myMovieArray, myMovieTvArray, myTvArray } from '../js/recommendation.js'
+
 
 const btn_search = document.getElementById("btn_search");
 const field_search = document.getElementById("search_field")
@@ -14,17 +16,17 @@ const field_search = document.getElementById("search_field")
 
 
 
-
-
-
 // ACTION 16=ANIMATION
 async function animation(){
-  try{
+  try{                                                                                                                 
+
+  
     //TRY TO USE PROMISE ALL. 
     let response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=16', options)
     let movies = await response.json();
     let querySelected = ".documentary_img";
     createQuery(movies, querySelected);
+
 
     response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=28', options)
     movies = await response.json();
@@ -55,17 +57,54 @@ async function animation(){
     createQuery(movies, querySelected);
 
 
-    response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
-    movies = await response.json();
+
+
+    console.log(myMovieTvArray)
+    console.log(myMovieArray)
+
+    //procurar a funcao onde pega os ALL
+    console.log(myTvArray)
+
+    let sortedTvMovies = getRandomNumber(myMovieTvArray)
+
+    console.log(sortedTvMovies)
+
+    // response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+    // movies = await response.json();
     querySelected = ".recommendation_img";
-    createQuery(movies, querySelected);
+    console.log(movies);
+    createQuery(sortedTvMovies, querySelected);
+    // createQuery(movies, querySelected);
+
 
   }catch(e){
     console.log(e);
   }
 }
 
+//Get movie and array and sort into new array
+function getRandomNumber(myMovieTv){
 
+  let sortedArray = [];
+  let check = [];
+  let i = 0;
+  
+  while(i < 10){
+    let n = Math.floor(Math.random() * 10)
+  
+    if(check.includes(n)){
+      console.log("Number already existed"+n)
+    }else{
+      sortedArray.push(myMovieTv[n])
+      check.push(n);
+      i++;
+    }
+
+
+  }
+
+  return {results: sortedArray};
+}
 
 
 
@@ -128,8 +167,10 @@ function exibir_movies(movies, my_array){
         if(index == 9){
           addAllResult(movie_image, paragraph, element.id, div_image, index-1, my_array);  
         }
-    });       
+        
+    }
     
+    );       
 }
 
 

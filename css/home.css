@@ -41,8 +41,10 @@ main{
     padding: 3rem 0px !important;
 }
 
+
+
 .notActive{
-    /* display: none; */
+    display: none !important;
 }
 
 #mainSearch{
