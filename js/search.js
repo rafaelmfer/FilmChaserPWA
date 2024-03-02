@@ -15,7 +15,6 @@ const mainDiscover2 = document.querySelector("#mainDiscover2")
 
 
 
-
 btnSearch.addEventListener("click",()=>{
 
     mainDiscover.classList.add("notActive")
