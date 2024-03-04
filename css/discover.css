@@ -1,0 +1,28 @@
+
+
+.div_image{
+    padding: 0.5rem;
+}
+
+
+.mainDiscover.notActive{
+    display: none;
+}
+
+
+
+
+
+
+
+/************************* FRIENDS *******************************/
+.main-Friends{
+    display: none;
+    flex-direction: column;
+    gap: 2rem
+}
+
+.main-Friends.active{
+    display: flex;
+}
+

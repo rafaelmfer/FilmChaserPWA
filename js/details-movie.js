@@ -6,6 +6,8 @@ var movieId = urlInfo("id");
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
+import { options } from './common.js';
+
 // TODO import inicia function
 
 const movieHeader = document.querySelector(".js-movie-header");
@@ -13,13 +15,6 @@ const movieTitle = document.querySelector(".js-movie--title");
 const movieGralInfo = document.querySelector(".js-movie--general-info");
 const movieInfoDetails = document.querySelector(".js-section--movie-info-details");
 
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB,
-    }
-  };
   
 
 // SECTION: HERO IMAGE 

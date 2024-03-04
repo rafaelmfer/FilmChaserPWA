@@ -1,60 +1,73 @@
-import { allMovies} from '../js/common.js'
+import { options, allMovies} from '../js/common.js'
 import { showResult } from '../js/search.js'
-import {  myMovieTvArray, myMovieArray, myTvArray } from '../js/recommendation.js'
+import { myMovieTvArray, myMovieArray, myTvArray } from '../js/recommendation.js'
 
-
+let mainFriends = document.getElementById("main-Friends")
+let mainDiscover = document.getElementById("mainDiscover")
+let mainDiscover2 = document.getElementById("mainDiscover2")
 let filterMovies = document.getElementById("filterMovies")
 let filterTv     = document.getElementById("filterTv")
+let filterAll     = document.getElementById("filterAll")
 let search_field = document.getElementById("search_field")
 
 
-
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTA0NDM0NmI0NmFlYzc2OTQ3YjdiMTJjMjJmMDM3YiIsInN1YiI6IjY1YTFiOWIyOWFlNjEzMDEyZWI3NzQ5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xhyB4idFFjVhxXuovbo9sMLpO-4mqhTcPy_C04WIIsg'
-    }
-  };
-  
+  //ACTIVE SCREEN MAIN-DISCOVER2
+export function activeScreen(){
+    mainFriends.classList.remove("active")
+    mainDiscover2.classList.remove("notActive")
+    mainDiscover.classList.add("notActive")
+}
 
 
-filterAll.addEventListener("click",(e)=>{
-    if(search_field.value != ""){
-        fetch('https://api.themoviedb.org/3/search/multi?query='+search_field.value+'&include_adult=false&language=en-US&page=1', options)
-        .then(response => response.json())
-        .then(response =>{ showResult(response); })
-        .catch(err => console.error(err));
- 
-    }else{
-        noFilter("all");
-    }
-})
+function executeFetch(movieTv,searchValue){
+    console.log(searchValue)
+    console.log(movieTv)
+    fetch('https://api.themoviedb.org/3/search/'+movieTv+'?query='+search_field.value+'&include_adult=false&language=en-US&page=1', options)
+    .then(response => response.json())
+    .then(response =>{ showResult(response); })
+    .catch(err => console.error(err));
+}
 
 
-filterMovies.addEventListener("click",(e)=>{
-    if(search_field.value != ""){
-        fetch('https://api.themoviedb.org/3/search/movie?query='+search_field.value+'&include_adult=false&language=en-US&page=1', options)
-        .then(response => response.json())
-        .then(response =>{ showResult(response); })
-        .catch(err => console.error(err));
-    }else{
-        noFilter("movie");
-    }
-})
+if(filterAll){
+    filterAll.addEventListener("click",(e)=>{
+        //ACTIVE SCREEN MAIN-DISCOVER2
+        activeScreen();
+        
+        if(search_field.value != ""){
+            executeFetch("multi",search_field.value);
+    
+        }else{
+            noFilter("all");
+        }
+    })
+}
 
-filterTv.addEventListener("click",(e)=>{
-    if(search_field.value != ""){
-        fetch('https://api.themoviedb.org/3/search/tv?query='+search_field.value+'&include_adult=false&language=en-US&page=1', options)
-        .then(response => response.json())
-        .then(response =>{ showResult(response); })
-        .catch(err => console.error(err));
-    }else{
-        noFilter("tv");
-    }
-})
+if(filterMovies){
+    filterMovies.addEventListener("click",(e)=>{
+        //ACTIVE SCREEN MAIN-DISCOVER2
+        activeScreen();
 
+        if(search_field.value != ""){
+            executeFetch("movie",search_field.value);
+        }else{
+            noFilter("movie");
+        }
+    })
+}
 
+if(filterTv){
+    filterTv.addEventListener("click",(e)=>{
+        //ACTIVE SCREEN MAIN-DISCOVER2
+        activeScreen();
+
+        if(search_field.value != ""){
+            executeFetch("tv",search_field.value);
+        }else{
+            noFilter("tv");
+        }
+    })
+}
 
 
 // Get the query string from the URL
@@ -66,7 +79,7 @@ const urlParams = new URLSearchParams(queryString);
 // Get the value of a specific parameter
 const user_search = urlParams.get('search') != null? urlParams.get('search') : "all";
 
-console.log(user_search); // shirt
+
 
 
 
@@ -80,9 +93,8 @@ console.log(user_search); // shirt
 
             let myMovies = allMovies(search,1);
 
-            console.log(myMovies);
+
             if(search=="tv" || search=="movie" || search=="recommendation"){
-                console.log("============recommendation")
                 for(let x=0; x<10; x++){
                     if(search=="tv"){
                         resultArray.push(myTvArray[x]);
@@ -102,18 +114,18 @@ console.log(user_search); // shirt
 
             myMovies
             .then((e)=>{  console.log(e); return e.json(); })
-            .then((e)=>{ 
-                console.log(e.results);
+            .then((e)=>{                
+                console.log(e)
                 showResult({results: e.results});
             })
-            console.log(resultArray)
-            console.log(resultArray);
-            showResult({results: resultArray});
+
+            if(resultArray > 0){
+                showResult({results: resultArray});
+            }
             },1500)
         // })
 
     }
-console.log(user_search);
 
 
 async function startPage(){

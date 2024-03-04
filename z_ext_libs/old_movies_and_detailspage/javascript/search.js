@@ -1,5 +1,6 @@
 // import { ACCESS_TOKEN_TMDB } from './local_properties.js'
 import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
+import { options } from '../../../js/common.js';
 
 // SEARCH MOVIES FROM RATING
 // fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc', options)
@@ -26,19 +27,6 @@ const urlParams = new URLSearchParams(queryString);
 const user_search = urlParams.get('search');
 console.log(user_search); // shirt
 
-
-
-
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB
-    }
-  };
-
-
-  
 
 
   //**********************SEARCH--->MOVIE********************************** */
