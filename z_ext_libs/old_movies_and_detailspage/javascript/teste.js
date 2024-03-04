@@ -1,12 +1,6 @@
 import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
+import { options } from '../../../js/common.js';
 
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB
-    }
-  };
   
   function create_div(i){
     // const create_div=(i)=>{

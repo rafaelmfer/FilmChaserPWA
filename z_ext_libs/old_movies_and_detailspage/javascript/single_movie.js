@@ -1,4 +1,5 @@
 import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
+import { options } from '../../../js/common.js';
 
 // Get the query string from the URL
 const queryString = window.location.search;
@@ -23,16 +24,6 @@ watchedMovie.addEventListener("click",()=>{
     checkboxResult.innerHTML= "false";
   }
 })
-
-
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB
-    }
-  };
-  
 
 
 

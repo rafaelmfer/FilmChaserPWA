@@ -1,4 +1,5 @@
 import { ACCESS_TOKEN_TMDB } from '../../../local_properties.js'
+import { options } from '../../../js/common.js';
 
 // Get the query string from the URL
 const queryString = window.location.search;
@@ -25,28 +26,6 @@ const results = document.querySelector(".results")
 
 
 
-const show_all = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB
-    }
-  };
-
-
-
-
-
-
-  const options_trending = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB
-    }
-  };
-
-
 
 
   
@@ -58,7 +37,7 @@ const show_all = {
 
     if(id_search=="recommendation"){
         result_text.innerHTML = "Recomendation";    
-        fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page='+page, options_trending)
+        fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page='+page, options)
             .then(response => response.json())
             .then(response =>{
 
@@ -70,7 +49,7 @@ const show_all = {
 
     }else if(id_search=="upcoming"){
         result_text.innerHTML = "UpComing";    
-        fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page='+page, options_trending)
+        fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page='+page, options)
         .then(response => response.json())
         .then(response =>{ 
 
@@ -83,7 +62,7 @@ const show_all = {
     }else if(id_search=="trending"){
 
           result_text.innerHTML = "Trending";          
-          fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US&page='+page, options_trending)
+          fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US&page='+page, options)
             .then(response => response.json())
             .then(response =>{
 
@@ -100,7 +79,7 @@ const show_all = {
             result_text.innerHTML = genre_search;
 
             // fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&with_genres=80', options_comedy)
-            fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page='+page+'&sort_by=popularity.desc&with_genres='+id_search, show_all)
+            fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page='+page+'&sort_by=popularity.desc&with_genres='+id_search, options)
             .then(response => response.json())
             .then(response =>{
 

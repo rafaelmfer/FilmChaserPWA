@@ -1,20 +1,9 @@
-import { ACCESS_TOKEN_TMDB } from '../../local_properties.js'
 import { myMovieArray, myMovieTvArray, myTvArray } from '../js/recommendation.js'
+import { options } from './common.js';
+import { inicialize_Home_Carousel, inicialize_discover_Carousel } from './initialize-carousel.js';
 
-
-const btn_search = document.getElementById("btn_search");
-const field_search = document.getElementById("search_field")
-
-
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB
-    }
-  };
-
-
+inicialize_Home_Carousel();
+inicialize_discover_Carousel();
 
 // ACTION 16=ANIMATION
 async function animation(){
@@ -55,9 +44,6 @@ async function animation(){
     movies = await response.json();
     querySelected = ".upcoming_img";
     createQuery(movies, querySelected);
-
-
-
 
     console.log(myMovieTvArray)
     console.log(myMovieArray)

@@ -1,25 +1,16 @@
 import { ACCESS_TOKEN_TMDB } from '../local_properties.js'
 import { inicia } from '../js/common.js'
-
+import { activeScreen } from './showall.js'
 
 const btnSearch = document.getElementById("btnSearch")
-
-const mainDiscover = document.querySelector("#mainDiscover")
-const mainSearch   = document.querySelector("#mainSearch")
+// const mainSearch   = document.querySelector("#mainSearch")
 const search_field = document.querySelector("#search_field")
-const mainDiscover2 = document.querySelector("#mainDiscover2")
-
-
-
-
-
-
+let mainFriends = document.getElementById("main-Friends")
+let mainDiscover = document.getElementById("mainDiscover")
+let mainDiscover2 = document.getElementById("mainDiscover2")
 
 btnSearch.addEventListener("click",()=>{
-
-    mainDiscover.classList.add("notActive")
-    mainSearch.classList.add("Active")
-    mainDiscover2.classList.remove("notActive")
+    activeScreen();
 
     inicia(search_field.value, 1)
         .then(e=>e.json())
@@ -31,44 +22,41 @@ btnSearch.addEventListener("click",()=>{
 
 });
 
-let aname = fetch
-let an
-
 
 
 export function showResult(res){
     let result_array = res.results;
     let detail = document.querySelector(".div-grid-detail")
 
-    detail.innerHTML = "";
+    if(detail){
+        detail.innerHTML = "";
 
-    console.log(result_array);
+        console.log(result_array);
 
-    result_array.forEach((element, index)=>{
-        let link = document.createElement("a")
-        let div = document.createElement("div")
-        let img = document.createElement("img")
-        let h4  = document.createElement("h4")
+        result_array.forEach((element, index)=>{
+            let link = document.createElement("a")
+            let div = document.createElement("div")
+            let img = document.createElement("img")
+            let h4  = document.createElement("h4")
 
+            let Image = element.poster_path ? "https://image.tmdb.org/t/p/original"+element.poster_path:"../resources/imgs/logo.png";
 
+            img.setAttribute("src",Image);
+        
+            h4.innerHTML = element.name != undefined? element.name:element.title;
 
-        let Image = element.poster_path ? "https://image.tmdb.org/t/p/original"+element.poster_path:"../resources/imgs/logo.png";
+            div.setAttribute("class","movie-detail")
+            div.appendChild(img)
+            div.appendChild(h4);
+            link.setAttribute("href","single_movie.html?id="+element.id)
+            link.appendChild(div)
 
-        img.setAttribute("src",Image);
-    
-        h4.innerHTML = element.name != undefined? element.name:element.title;
+            detail.appendChild(link)
 
-        div.setAttribute("class","movie-detail")
-        div.appendChild(img)
-        div.appendChild(h4);
-    
-        link.setAttribute("href","id="+element.id)
-        link.appendChild(div)
+        });
 
-        detail.appendChild(link)
+    }
 
- 
-    });
 
 }
 
