@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap');
+
+*{
+    margin: 0px;
+    border: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;;
+}
+
+:root{
+    --primary: #0F1A20;
+    --secondary: #262730;
+    --textcolor_white: #FFFFFC;
+    --textField_backGround: #262730;
+    --textField_border: #979797;
+}
+
+.SignUp_Center{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+body{
+    color: var(--textcolor_white);
+    background-color: var(--primary);
+    padding:0px 0.5rem;
+    font-size: 16px;
+}
+
+form{
+    width: 100%;
+}
+
+.Film_Chaser{
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    position: absolute;
+}
+
+.SignUp{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.SignUp_Center{
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    margin: auto;
+}
+
+ul{
+    list-style-type: none;
+    font-size: 30px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: auto;
+}
+
+.line_or{
+    position: relative;
+}
+
+.line_or::before{
+    content: "";
+    display: block;
+    width: 45%;
+    height: 2px;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+.line_or::after{
+    content: "";
+    display: block;
+    width: 45%;
+    height: 2px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
+
+.fields, .signup_field, .button{
+    width: 100%;
+    height: 54px;
+    font-weight: 500;
+}
+
+.fields{
+    display: inline-block;    
+}
+
+input::placeholder{
+    color: var(--textcolor_white);
+    
+}
+
+.signup_field{
+    border: 1px solid var(--textField_border);
+    padding: 0.5rem;
+    background-color: var(--textField_backGround);
+    color: var(--textcolor_white);
+}
+
+.my_fields{
+    display: grid;
+    gap: 1rem;
+}
+
+.button{
+    background-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3);
+    color: var(--textcolor_white);
+}
+
+a{
+    color: var(--textcolor_white);
+    padding-left: 0.7rem;
+}
+
+input{
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 500px) {
+    .SignUp_Center {
+        padding: 0px 10px;
+        max-width: 100% !important;
+        
+    }
+
+}
