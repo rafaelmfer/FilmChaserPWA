@@ -7,7 +7,15 @@
     background-color: var(--secondary-color);
 }
 
-.card-movie-series img {
+.card-movie-series a {
+    display: inline-block;
+}
+
+.card-movie-series a img {
+    vertical-align: bottom;
+
+    border-radius: 4px;
+
     flex-shrink: 0;
 }
 
@@ -42,6 +50,12 @@
 
 .card-movie-series .movie-series-info .synopsis {
     margin-top: 8px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-movie-series .movie-series-info .watch-now {

@@ -1,6 +1,6 @@
-body{
+body {
     color: var(--text-color-one);
-      /* font-family: "Amiko", sans-serif; */
+    /* font-family: "Amiko", sans-serif; */
     font-family: "Open Sans", sans-serif;
     list-style-type: none;
 }
@@ -12,24 +12,24 @@ li {
     list-style: none;
 }
 
-header{
+header {
     background-color: var(--primary-color);
-    width:200px;
+    width: 200px;
     height: 100vh;
-    position:fixed;
+    position: fixed;
     left: 0;
     top: 0;
     padding: 40px 20px;
     border-right: 1px solid #353535;
 }
 
-main{
+main {
     margin-left: 200px;
     background-color: var(--primary-color);
     padding: 3rem;
 }
 
-footer{
+footer {
     height: 70px;
     border: 1px solid white;
     margin-left: 200px;
@@ -40,17 +40,17 @@ footer{
     font-size: var(--font-mob-size-h5);
 }
 
-.logo{
+.logo {
     width: 23px;
 }
 
-.logoTitle{
+.logoTitle {
     display: grid;
     align-items: center;
     grid-template-columns: auto auto;
 }
 
-nav ul{
+nav ul {
     display: flex;
     flex-direction: column;
     padding: 0px;
@@ -58,54 +58,54 @@ nav ul{
 }
 
 .userNotify ul li a,
-nav ul li a{
+nav ul li a {
     display: flex;
     align-items: center;
-    column-gap:  16px;
+    column-gap: 16px;
     transition: all 1s;
     padding: 6px;
     color: var(--tertiary-color);
 }
 
-nav ul li:hover{
+nav ul li:hover {
     cursor: pointer;
-    background-color: #ffffff4a;    
+    background-color: #ffffff4a;
     color: var(--text-color-one);
 }
 
-nav ul li:hover .material-symbols-outlined{
-    -webkit-text-fill-color: transparent; 
-    background-clip: inherit; 
+nav ul li:hover .material-symbols-outlined {
+    -webkit-text-fill-color: transparent;
+    background-clip: inherit;
     -webkit-background-clip: text;
-    background-image: var(--background-gradient)
+    background-image: var(--background-gradient);
 }
 
-.mainTop{
+.mainTop {
     margin-left: 200px;
     background-color: var(--primary-color);
     padding: 3rem;
 }
 
-.userNotify{
+.userNotify {
     position: fixed;
     bottom: 2rem;
     left: 20px;
 }
 
-.userNotify ul{
+.userNotify ul {
     list-style-type: none;
     padding-left: 0px;
 }
 
-.topLinks{
+.topLinks {
     display: flex;
     list-style-type: none;
-    border-bottom: 2px solid var(--secondary-color)
+    border-bottom: 2px solid var(--secondary-color);
 }
 
-.topLinks li{
+.topLinks li {
     padding: 10px 50px;
-    border-bottom: 2px solid ;
+    border-bottom: 2px solid;
     border-image: var(--background-gradient) 15;
     transform: translateY(2px);
 }
@@ -116,8 +116,12 @@ a {
     text-decoration: none;
     color: white;
 }
-.material-symbols-outline {
-    font-size: 16px !important;
+
+a:hover .material-symbols-outlined {
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: var(--background-gradient);
 }
 
 /* MAIN SECTION */
@@ -138,7 +142,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap:0.5rem;
+    gap: 0.5rem;
 }
 
 .movie-header > .js-movie--general-info {
@@ -155,7 +159,7 @@ a {
 }
 .main-subsection h2 {
     grid-column: 1 / -1;
-    border-bottom: 2px solid ;
+    border-bottom: 2px solid;
     border-image: var(--background-gradient) 15;
 }
 .information-container {
@@ -179,7 +183,7 @@ a {
     display: flex;
     flex-flow: row wrap;
 }
-.section--where-to-watch .js-not-subscribed h4{
+.section--where-to-watch .js-not-subscribed h4 {
     flex-basis: 100%;
 }
 
@@ -189,14 +193,13 @@ a {
     width: 56px;
 }
 
-
 .section--movie-info-details div {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     padding: 0.5rem 0;
 }
-.section--comments p{
+.section--comments p {
     font-size: var(--font-body);
     display: flex;
     align-items: center;
@@ -212,7 +215,7 @@ a {
 .section-pictures .gallery {
     display: flex;
     flex-flow: row nowrap;
-    gap:.5rem;
+    gap: 0.5rem;
 }
 
 /* CARROUSEL */
@@ -221,13 +224,12 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .carrousel .btn-arrow {
     background-color: transparent;
     color: var(--text-color-one);
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .js-movie-related-pictures figure {
@@ -235,16 +237,16 @@ a {
     height: 100%;
 }
 
-.js-movie-related-pictures figcaption{
+.js-movie-related-pictures figcaption {
     /* Same width as the posters */
-    width: 154px; 
-    position:absolute;
+    width: 154px;
+    position: absolute;
     bottom: 0;
     background-color: var(--primary-color);
 }
 
 img {
-    max-width:100%;
-    height:auto;
-    display:block;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }

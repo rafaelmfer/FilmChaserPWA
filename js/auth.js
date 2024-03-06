@@ -7,7 +7,8 @@ import {
     FacebookAuthProvider,
     signInWithPopup,
     OAuthProvider,
-    signOut
+    signOut,
+    onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
 
 // Authentication reference
@@ -84,6 +85,21 @@ async function logout() {
         });
 }
 
+async function checkSession() {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Logged
+                console.log(user);
+                resolve(user);
+            } else {
+                // Not logged
+                resolve(null);
+            }
+        });
+    });
+}
+
 export {
     createAccountEmailAndPassword,
     loginWithEmailAndPassword,
@@ -91,4 +107,5 @@ export {
     loginWithFacebook,
     loginWithApple,
     logout,
+    checkSession,
 };
