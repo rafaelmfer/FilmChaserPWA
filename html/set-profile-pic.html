@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/set-profile-pic.css">
+    <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+    <script src="../js/set-profile-pic.js" defer></script>
+</head>
+<body>
+
+    <div class="SignUp show-Logo">
+        <p class="Film_Chaser">FilmChaser</p>
+
+        <form action="#">
+            <div class="SignUp_Center">
+            
+                <div class="my_fields">
+                    <h2>Set Up Profile Picture</h2>    
+                    <p>You can change it anytime</p>
+                </div>
+
+                <div class="user-image">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="my_fields">
+                    <label for="myfile" class="button myfile_label"><p>Upload a Picture</p></label>
+                    <input type="file" id="myfile" class="myfile" name="myfile" accept="image/*">
+                    <input type="button" class="btn_skip" value="Skip" id="user-pic-upload">
+                </div>
+                
+            </div>
+        </form>
+    </div>
+
+
+    <div class="SignUp show-Picture">
+        <p class="Film_Chaser">FilmChaser</p>
+
+        <form action="#">
+            <div class="SignUp_Center">
+            
+                <div class="my_fields">
+                    <h2>Setting Profile Picture</h2>    
+                    <p>You can change it anytime</p>
+                </div>
+
+                <div class="user-image">
+                    <img id="user-photo" src="" alt="" srcset="">
+                </div>
+                <div class="my_fields">
+                    <input type="button" class="button" value="Save Profile">
+                    <input type="button" class="btn_skip" value="Skip">
+                </div>
+                
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
