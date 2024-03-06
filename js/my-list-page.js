@@ -3,6 +3,13 @@
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 import { ACCOUNT_ID, SESSION_ID } from "../local_properties.js";
 
+import { checkSession } from "./auth.js";
+import {
+    getInfoDb,
+    getAllDocsInSubcollection,
+    getDocsByQuery,
+} from "./firestore.js";
+
 // related to SPA ============================================================
 const allPages = document.querySelectorAll("div.page");
 navigateToPage();
@@ -23,73 +30,116 @@ function navigateToPage(event) {
 }
 
 // ============================================================================
-let arrayTvShows = [];
-let arrayMovies = [];
+const user = await checkSession();
+let documentId = user.uid;
+// let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+let documentDbPath = `users/${documentId}`;
+let watchlistPath = `users/${documentId}/watchlist`;
+let documentDb = await getInfoDb(`${watchlistPath}/1668`);
+console.log(documentDb);
 
-theMovieDb.account.getTvShowsWatchlist(
-    { id: ACCOUNT_ID, session_id: SESSION_ID },
-    successSeriesWatchList,
-    errorCB
-);
-theMovieDb.account.getMovieWatchlist(
-    { id: ACCOUNT_ID, session_id: SESSION_ID },
-    successMoviesWatchList,
-    errorCB
-);
+let watchlistArray = await getAllDocsInSubcollection(watchlistPath, {});
+// console.log(watchlistTest);
+// let watchlistArray = [];
 
-function errorCB(data) {
-    console.log("Error callback: " + data);
-}
+let upcomingArray = watchlistArray.filter(function (item) {
+    if (
+        new Date() - new Date(item.release_date) < 0 ||
+        item.first_air_date === "" ||
+        item.in_production == true
+    ) {
+        return item;
+    }
+});
 
+// Come up with the way to find if the user already started to watch the series
+let alreadyWatching = watchlistArray.filter(function (item) {
+    if (
+        item.seasons !== undefined &&
+        checkIfEpisodeIsWatched(item.seasons) == true
+    ) {
+        return item;
+    }
+});
+
+let haventStarted = watchlistArray.filter(function (item) {
+    if (
+        (new Date() - new Date(item.release_date) > 0 ||
+            item.first_air_date === "" ||
+            item.in_production == true) &&
+        item.media_type === "movie"
+    ) {
+        return item;
+    }
+});
+
+// WATCHLIST PAGE ==============================================================
 // Watching - only series that you already saw at least one episode
-function successSeriesWatchList(data) {
-    console.log("Result successSeriesWatchList: ", JSON.parse(data));
-
-    JSON.parse(data).results.forEach(function (series) {
-        createMovieSeriesCard(series, ".watching-cards-container");
-    });
-
-    let upcomingArray = arrayTvShows.filter(function(series) {
-        return new Date() - new Date(series.release_date) < 0;
-    });
-
-    upcomingArray.forEach(function (movie) {
-        createMovieSeriesCard(movie, ".upcoming-container");
-    });
-}
+alreadyWatching.forEach(function (series) {
+    createMovieSeriesCard(series, ".watching-cards-container");
+});
 
 // Haven't Watched - series that you didnt see any episode and movies
-function successMoviesWatchList(data) {
-    console.log("Result successMoviesWatchList: ", JSON.parse(data));
+haventStarted.forEach(function (movie) {
+    createMovieSeriesCard(movie, ".havent-started-cards-container");
+});
 
-    JSON.parse(data).results.forEach(function (movie) {
-        createMovieSeriesCard(movie, ".havent-started-cards-container");
-    });
-    
-    arrayMovies = JSON.parse(data).results
+// UPCOMING PAGE ================================================================
+upcomingArray.forEach(function (item) {
+    createMovieSeriesCard(item, ".upcoming-container");
+});
 
-    let upcomingArray = arrayMovies.filter(function(movie) {
-        return new Date() - new Date(movie.release_date) < 0;
-    });
+// COMPLETED PAGE ===============================================================
+let watchlistCompletedArray = await getDocsByQuery(
+    watchlistPath,
+    "completed",
+    "==",
+    true,
+    {}
+);
+watchlistCompletedArray.forEach(function (item) {
+    createMovieSeriesCard(item, ".completed-container");
+});
 
-    upcomingArray.forEach(function (movie) {
-        createMovieSeriesCard(movie, ".upcoming-container");
-    });
-
+// GENERAL FUNCTIONS ================================================================
+// Function that check if there is any episode in array of episodes that are watched
+function checkIfEpisodeIsWatched(json) {
+    for (let i = 0; i < json.length; i++) {
+        console.log(`Season ${i + 1}`);
+        const season = json[i];
+        for (let j = 0; j < season.episodes.length; j++) {
+            console.log(
+                ` Episode ${season.episodes[j].episode_number}: ${
+                    season.episodes[j].watched ? "Yes" : "No"
+                }`
+            );
+            if (season.episodes[j].watched === true) return true;
+        }
+    }
+    return false;
 }
 
+// Function that writes the HTML code
 function createMovieSeriesCard(item, locationId) {
+    if (item.media_type == "tv") {
+        var path = "single_series.html?id=";
+    } else {
+        var path = "single_movie.html?id=";
+    }
     // Create the <article> element
     var article = document.createElement("article");
     article.classList.add("film-chaser", "card-movie-series");
 
     // Add the movie image
+    var hyperlinkImg = document.createElement("a");
+    hyperlinkImg.setAttribute("href", path + item.id);
     var img = document.createElement("img");
     img.src = "http://image.tmdb.org/t/p/w154" + item.poster_path;
     img.alt = item.original_name;
     img.width = 154;
     img.height = 231;
-    article.appendChild(img);
+    hyperlinkImg.appendChild(img);
+    article.appendChild(hyperlinkImg);
 
     // Create a <div> for the movie information
     var infoDiv = document.createElement("div");
@@ -97,10 +147,13 @@ function createMovieSeriesCard(item, locationId) {
     article.appendChild(infoDiv);
 
     // Add the movie title
+    var hyperlinkTitle = document.createElement("a");
+    hyperlinkTitle.setAttribute("href", path + item.id);
     var title = document.createElement("h6");
     title.classList.add("film-chaser", "movie-series-title");
     title.textContent = item.title || item.name;
-    infoDiv.appendChild(title);
+    hyperlinkTitle.appendChild(title);
+    infoDiv.appendChild(hyperlinkTitle);
 
     // Create a <div> for the year, rating, and duration of the movie
     var yearRateTimeDiv = document.createElement("div");
@@ -153,33 +206,4 @@ function createMovieSeriesCard(item, locationId) {
     container.appendChild(article);
 }
 
-
-// MODEL ARRAY THAT IT WILL BE DELETED AFTER
-var mockupJson = {
-    "completed": [
-        {
-            "id": 1668,
-            "name": "Series",
-            "media_type": "tv",
-            "release_date": "2023-12-07",
-            "vote_average": 8.42342,
-            "overview": "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-            "poster_path": "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg"
-        },
-        {
-            "id": 1669,
-            "title": "Movie",
-            "media_type": "movie",
-            "release_date": "2023-12-07",
-            "vote_average": 8.42342,
-            "overview": "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-            "poster_path": "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg"
-        }
-    ]
-}
-
-console.log(mockupJson);
-
-mockupJson.completed.forEach(function(item) {
-    createMovieSeriesCard(item, ".completed-container")
-})
+// Function that handles the search bar functionality
