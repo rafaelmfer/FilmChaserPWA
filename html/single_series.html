@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Series Detail</title>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/details-series.css">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>   
+    <script type="module" src="../js/home_api_movies.js"  defer></script>
+    <script type="module" src="../js/details-series.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <!-- CHANGE logoTitle -->
+        <div class="site-identety logoTitle">
+            <img src="../resources/imgs/logo.png" class="logo" alt="film chaser logo" srcset="">
+            <h1 class="film-chaser"><a href="./home.html">FilmChaser</a></h1>
+        </div>
+
+        <nav class="nav-bar nav--main">
+            <ul>
+                <li><a href="./home.html"><span class="material-symbols-outlined"> home</span>
+                    Home</a></li>
+                <li><a href="#"><span class="material-symbols-outlined">saved_search</span>Discover</a></li>
+                <li><a href="#"><span class="material-symbols-outlined">list_alt</span>My List</a></li>
+                <li><a href="#"><span class="material-symbols-outlined">settings</span>Settings</a></li>
+    
+            </ul>
+        </nav>
+
+        <!-- REMOVE userNotify after -->
+        <nav class="nav-bar nav--notify-user userNotify">
+            <ul>
+                <li><a href="#"><span class="material-symbols-outlined">notifications</span>Notification</a></li>
+                <!-- TODO it has to be updated with the user picture -->
+                <li><a href="#" class="user-name"><span class="material-symbols-outlined">notifications</span>User Name</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main id="mainDiscover">
+
+        <div class="movie-header js-movie-header">
+            <div class="top-buttonr">
+                <a href="home.html"><span class="material-symbols-outlined"> navigate_before</span></a>
+            </div>
+    
+            <h1 class="media--title js-media--title">TV Serie Title</h1>
+            <div class="movie--general-info js-movie--general-info"></div>
+    
+            <div class="buttons-actions">
+
+                <button class="button-action btn-share">
+                    <span class="material-symbols-outlined">share</span>
+                    <span class="btn-text">Share</span>
+                </button>
+
+                <button class="button-action btn-heart">
+                    <span class="material-symbols-outlined">heart_plus</span>
+                    <span class="btn-text">WatchList</span>
+                </button>
+
+                <button class="button-action btn-check">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span class="btn-text">Completed</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="section-tabs js-section-tabs">
+        <h2><a href="#page1">About</a></h2>
+        <h2><a href="#page2">Episodes</a></h2>
+        </div>
+        <div class="main-subsection--about page" id="page1">
+            <div class="movie-details">
+                <div class="information-container">
+    
+                    <div class="section--where-to-watch">
+                        <h3>Where to watch</h3>
+                        <div class="subscribed">
+                            <h4>Subscribed</h3>
+                        </div>
+    
+                        <div class="not-subscribed js-not-subscribed">
+                            <h4>Not subscribed</h3>
+                        </div>
+                    </div>
+                    <div class="section--movie-info">
+                        <h3>TV Show info</h3>
+                        <div class="section--movie-info-details js-section--movie-info-details"> </div>
+                    </div>
+    
+                    <div class="section--comments">
+                        <p>Comments: <span class="movie-comments js-movie-comments"> </span><a href="#"><span class="material-symbols-outlined">keyboard_arrow_right</span></a>
+                        </p>
+                        <!-- TODO add path to comments -->
+                    </div>
+                </div>
+            </div>
+    
+            <div class="section-pictures">
+                <div class="section-cast">
+                    <h3>Cast</h3>
+<!-- ASI ESTABA ANTES
+                    <div class="movie-media-pictures js-media-cast-pictures gallery swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden"> -->
+                    <!-- The swiper is inside the gallery created trhough js -->
+                    <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+                    <!-- <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden"> -->
+                            <div class="swiper-wrapper media-cast-pictures js-media-cast-pictures" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                            
+                                <!-- <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
+
+                                    <div class="documentary_img1"></div>
+                                </div> -->
+                            
+                            </div>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+
+                    </div>
+                </div>
+    
+                <div class="section-related">
+                    <h3>Related Series</h3>
+                
+                        <div class="movie-related-pictures  js-movie-related-pictures gallery"></div>   
+                    
+                </div>
+    
+                <div class="section-also">
+                    <h3>People also watched</h3>
+                    <div class="movie-also-pictures js-movie-also-pictures gallery"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main-subsection--episodes page" id="page2">
+            <div class="section-tracking">
+                <h2>Continue tracking</h2>
+            </div>
+            <div class="section-all-episodes">
+                <h2>All episodes</h2>
+
+                
+                <form action="#">
+                    <div class="accordion">
+                        <div class="selectAll">
+                            <label for="season1"> Season 1 </label>
+                            <div><span class="quantity">0</span><span class="numberOfEpisodes"></span>
+                            <input type="checkbox" id="season1" name="season1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                    </div>
+                </form>
+
+                <!-- <div class="accordion">
+                    <label for="season2"> Season 2 <span class="material-symbols-outlined">
+                        expand_more</span></label>
+                    <input type="checkbox" id="season2" name="season2">
+                </div>   
+
+                <div class="panel">
+                </div> -->
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div>footer</div>
+    </footer>
+
+
+    <!-- Swiper carrousel -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+
+        let tela = window.innerWidth;
+        let n = 5;
+
+
+        if(tela < 500){
+          n = 2;
+        }
+
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: n,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            });
+
+    </script>
+   
+</body>
+</html>
