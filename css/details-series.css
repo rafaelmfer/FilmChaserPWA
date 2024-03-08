@@ -1,0 +1,366 @@
+body{
+    color: var(--text-color-one);
+      /* font-family: "Amiko", sans-serif; */
+    font-family: "Open Sans", sans-serif;
+    list-style-type: none;
+}
+
+button {
+    cursor: pointer;
+}
+/* TODO: Do the same structure in single_movie */
+.buttons-actions {
+    display: flex;
+    flex-direction: row;
+    gap:2rem;
+
+}
+.button-action {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    align-items: center;
+    color:var(--text-color-one);
+}
+li {
+    list-style: none;
+}
+
+header{
+    background-color: var(--primary-color);
+    width:200px;
+    height: 100vh;
+    position:fixed;
+    left: 0;
+    top: 0;
+    padding: 40px 20px;
+    border-right: 1px solid #353535;
+}
+
+main{
+    margin-left: 200px;
+    background-color: var(--primary-color);
+    padding: 3rem;
+}
+
+footer{
+    height: 70px;
+    border: 1px solid white;
+    margin-left: 200px;
+    text-align: center;
+}
+
+.film-chaser {
+    font-size: var(--font-mob-size-h5);
+}
+
+.logo{
+    width: 23px;
+}
+
+.logoTitle{
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin-top: 5rem;
+}
+
+.userNotify ul li a,
+nav ul li a{
+    display: flex;
+    align-items: center;
+    column-gap:  16px;
+    transition: all 1s;
+    padding: 6px;
+    color: var(--tertiary-color);
+}
+
+nav ul li:hover{
+    cursor: pointer;
+    background-color: #ffffff4a;    
+    color: var(--text-color-one);
+}
+
+nav ul li:hover .material-symbols-outlined{
+    -webkit-text-fill-color: transparent; 
+    background-clip: inherit; 
+    -webkit-background-clip: text;
+    background-image: var(--background-gradient)
+}
+
+.mainTop{
+    margin-left: 200px;
+    background-color: var(--primary-color);
+    padding: 3rem;
+}
+
+.userNotify{
+    position: fixed;
+    bottom: 2rem;
+    left: 20px;
+}
+
+.userNotify ul{
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.topLinks{
+    display: flex;
+    list-style-type: none;
+    border-bottom: 2px solid var(--secondary-color)
+}
+
+.topLinks li{
+    padding: 10px 50px;
+    border-bottom: 2px solid ;
+    border-image: var(--background-gradient) 15;
+    transform: translateY(2px);
+}
+
+/* ----------------------------- */
+/* MY CHANGES */
+a {
+    text-decoration: none;
+    color: white;
+}
+.material-symbols-outline {
+    font-size: 16px !important;
+}
+
+/* MAIN SECTION */
+#mainDiscover {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 40vh auto 2fr;
+    /* This padding is being overuled by home.css */
+    padding: 0;
+    gap: 2rem;
+}
+
+/* HERO IMAGE */
+.movie-header {
+    grid-column: 1 / -1;
+    background-color: var(--tertiary-color);
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap:0.5rem;
+
+    padding:2rem;
+}
+
+.movie-header > .js-movie--general-info {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* MAIN SUBSECTION */
+.main-subsection {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    grid-template-rows: auto auto;
+}
+.section-tabs {
+    grid-column: 1 / -1;
+    border-bottom: 2px solid ;
+    border-image: var(--background-gradient) 15;
+    display: flex;
+    gap: 10%;
+}
+.main-subsection--about {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+} 
+
+.information-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.section--where-to-watch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+}
+
+.section--where-to-watch h3 {
+    grid-column: 1 / -1;
+}
+
+.section--where-to-watch .js-not-subscribed {
+    display: flex;
+    flex-flow: row wrap;
+}
+.section--where-to-watch .js-not-subscribed h4{
+    flex-basis: 100%;
+}
+
+.section--where-to-watch .js-streaming-logo {
+    border-radius: 10px;
+    height: 56px;
+    width: 56px;
+}
+
+
+.section--movie-info-details div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0.5rem 0;
+}
+.section--comments p{
+    font-size: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.section-pictures {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.section-pictures .gallery {
+    display: flex;
+    flex-flow: row nowrap;
+    gap:.5rem;
+}
+
+/* CARROUSEL */
+.carrousel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.carrousel .btn-arrow {
+    background-color: transparent;
+    color: var(--text-color-one);
+    transition: all .3s ease-in-out;
+}
+
+/* .js-movie-related-pictures figure {
+    position: relative;
+    height: 100%;
+}
+
+.js-movie-related-pictures figcaption{
+    width: 154px; 
+    position:absolute;
+    bottom: 0;
+    background-color: var(--primary-color);
+} */
+
+.section-pictures figure {
+    position: relative;
+    height: 100%;
+}
+
+.section-pictures figcaption{
+    /* Same width as the posters */
+    width: 100%; 
+    position:absolute;
+    bottom: 0;
+    padding: 1rem 2% 0.5rem 2%;
+    background: linear-gradient(transparent, black 30% );
+    font-size: var (--font-small-two);
+}
+
+
+img {
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+
+/* EPISODES SECTION */
+.main-subsection--episodes {
+    grid-column: 1 / -1;
+}
+
+/* ACCORDION */
+
+.accordion {
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+  }
+  
+  .active, .accordion:hover {
+    background-color: var(--tertiary-color);
+  }
+  
+  .accordion:after {
+    /* content: "\e5cf"; */
+    color: var(--text-color-one);
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  /* .active:after {
+    content: "\e5ce";
+  } */
+  
+  .panel {
+    padding: 0 18px;
+    background-color: transparent;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  
+  .episodeCard {
+    display: flex;
+    gap: 1rem;
+
+    align-items: center;
+    margin: 1rem 0;
+  } 
+
+  .inputField {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 100%;
+  }
+
+
+  .episodeCard img {
+    max-height: 100%;
+    width: 154px;
+    object-position: cover;
+  }
+  
+
+  /* FORM FIELDS */
+  .selectAll {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
