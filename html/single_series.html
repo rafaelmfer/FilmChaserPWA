@@ -27,7 +27,7 @@
             <ul>
                 <li><a href="./home.html"><span class="material-symbols-outlined"> home</span>
                     Home</a></li>
-                <li><a href="#"><span class="material-symbols-outlined">saved_search</span>Discover</a></li>
+                <li><a href="./discover.html"><span class="material-symbols-outlined">saved_search</span>Discover</a></li>
                 <li><a href="#"><span class="material-symbols-outlined">list_alt</span>My List</a></li>
                 <li><a href="#"><span class="material-symbols-outlined">settings</span>Settings</a></li>
     
@@ -55,9 +55,18 @@
             <h1 class="media--title js-media--title">TV Serie Title</h1>
             <div class="movie--general-info js-movie--general-info"></div>
     
-            <div class="buttons-actions">
+            <div class="buttons-actions buttons-share">
 
-                <button class="button-action btn-share">
+                <a href="" id="js-share">
+                    <img class="material-symbols-outlined" src="../resources/icons/icons-default/default-share.svg" alt="image">
+                </a>
+                <a href="" id="js-add-watchlist">
+                    <img class="material-symbols-outlined" src="../resources/icons/icons-default/default-heart.svg" alt="image">
+                </a>
+                <a href="" id="js-completed">
+                    <img class="material-symbols-outlined" src="../resources/icons/icons-default/default-completed.svg" alt="image">
+                </a>
+                <!-- <button class="button-action btn-share">
                     <span class="material-symbols-outlined">share</span>
                     <span class="btn-text">Share</span>
                 </button>
@@ -70,7 +79,7 @@
                 <button class="button-action btn-check">
                     <span class="material-symbols-outlined">check_circle</span>
                     <span class="btn-text">Completed</span>
-                </button>
+                </button> -->
             </div>
         </div>
 
@@ -143,32 +152,28 @@
             <div class="section-tracking">
                 <h2>Continue tracking</h2>
             </div>
-            <div class="section-all-episodes">
+            <div class="section-all-seasons">
                 <h2>All episodes</h2>
 
                 
-                <form action="#">
-                    <div class="accordion">
+                <!-- <div class="season1"> -->
+                    <!-- <div class="accordion">
                         <div class="selectAll">
-                            <label for="season1"> Season 1 </label>
+                            <p>Season 1</p>
+                            <div><span class="quantity">0</span>
+                                <span class="numberOfEpisodes"></span>
+                                <div class="checkbox" id="season1-box"></div>
+                            </div> -->
+
+                            <!-- <label for="season1"> Season 1 </label>
                             <div><span class="quantity">0</span><span class="numberOfEpisodes"></span>
                             <input type="checkbox" id="season1" name="season1">
-                            </div>
-                        </div>
+                            </div> -->
+                        <!-- </div>
                     </div>
                     <div class="panel">
-                    </div>
-                </form>
-
-                <!-- <div class="accordion">
-                    <label for="season2"> Season 2 <span class="material-symbols-outlined">
-                        expand_more</span></label>
-                    <input type="checkbox" id="season2" name="season2">
-                </div>   
-
-                <div class="panel">
-                </div> -->
-
+                    </div> -->
+                <!-- </div> -->
             </div>
         </div>
 

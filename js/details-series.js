@@ -2,15 +2,18 @@
 import { ACCESS_TOKEN_TMDB } from '../local_properties.js';
 
 import { urlInfo } from './common.js';
-var seriesId = urlInfo("id");
+
+import { checkSession } from "./auth.js";
+import {
+    saveTvShowInDb2,
+    updateInfoDb,
+    deleteInfoDb,
+    listenToDocumentChanges,
+} from "./firestore.js";
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
-const movieHeader = document.querySelector(".js-movie-header");
-const mediaTitle = document.querySelector(".js-media--title");
-const movieGralInfo = document.querySelector(".js-movie--general-info");
-const movieInfoDetails = document.querySelector(".js-section--movie-info-details");
-
+// RAFA I LEFT THE ACCESS_TOKEN_TMDB 'CAUSE ON MY CASE IT WAS TELLING ME THAT "options" in the FETCH WASN'T DEFINED. I know that it's inside common.js, so I leave it for now. 
 const options = {
     method: 'GET',
     headers: {
@@ -19,10 +22,16 @@ const options = {
     }
   };
   
+  var seriesId = urlInfo("id");
+  let seriesDetails = {};
+  const movieHeader = document.querySelector(".js-movie-header");
+  const mediaTitle = document.querySelector(".js-media--title");
+  const movieGralInfo = document.querySelector(".js-movie--general-info");
+  const movieInfoDetails = document.querySelector(".js-section--movie-info-details");  
 
-// SECTION: HERO IMAGE 
+// SECTION: HERO IMAGE ==================================
 
-// BUILDING THE PATH TO THE IMAGE POSTER
+// PATH TO THE IMAGE POSTER
 const base_url = "https://image.tmdb.org/t/p/";
 
 // POSTER SIZES
@@ -31,18 +40,16 @@ const base_url = "https://image.tmdb.org/t/p/";
 
 // This is the horizontal size, and needs to be use with the backdrop_path
 const file_size ="w1000_and_h450_multi_faces"; 
+let number_of_seasons = 0;
 
 theMovieDb.tv.getById({"id":seriesId }, successCB_series, errorCB);
 
 function successCB_series (data) {
+    seriesDetails = JSON.parse(data);
+    console.log("SERIE DETAILS", seriesDetails);
+
     const image_path = base_url + file_size + JSON.parse(data).backdrop_path;
     
-    // INFO THAT NEEDS TO BE STORE GLOBALLY
-    // ###########
-    const number_of_seasons = JSON.parse(data).number_of_seasons;
-    const in_production = JSON.parse(data).in_production; //This is a boolean
-    
-
     movieHeader.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.95)),url(${image_path})`;
     movieHeader.style.backgroundSize = "cover";
 
@@ -109,9 +116,81 @@ function successCB_series (data) {
         episode_duration_second.innerHTML =`<span class="material-symbols-outlined">timer</span> ${JSON.parse(data).episode_run_time[0]}m`;
         movieInfoDetails.appendChild(episode_duration_second);
     }
-
-
 }
+
+// SECTION BUTTONS (Watchlist, Completed)
+const user = await checkSession();
+let documentId = user.uid;
+// let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+
+const watchlistPathInFirebase = `users/${documentId}/watchlist`;
+
+const btWatchlist = document.getElementById("js-add-watchlist");
+const btCompleted = document.getElementById("js-completed");
+
+const watchlistImg = btWatchlist.querySelector("img");
+const completedImg = btCompleted.querySelector("img");
+
+let itemAdded = {};
+
+const unsub = listenToDocumentChanges(
+    watchlistPathInFirebase,
+    seriesId,
+    handleDocumentChanges,
+    {}
+);
+
+function handleDocumentChanges(data) {
+    console.log("Documento atualizado:", data);
+    // Faça o que você precisa com os dados atualizados do documento aqui
+    itemAdded = data;
+
+    watchlistImg.src = itemAdded
+        ? "../resources/icons/icons-active/active-heart.svg"
+        : "../resources/icons/icons-default/default-heart.svg";
+
+    completedImg.src = itemAdded
+        ? itemAdded.completed
+            ? "../resources/icons/icons-active/active-completed.svg"
+            : "../resources/icons/icons-default/default-completed.svg"
+        : "../resources/icons/icons-default/default-completed.svg";
+}
+
+btWatchlist.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    if (itemAdded && itemAdded.id === Number(seriesId)) {
+        await deleteInfoDb(`${watchlistPathInFirebase}/${seriesId}`);
+    } else {
+        await saveTvShowInDb2(
+            watchlistPathInFirebase,
+            seriesId,
+            seriesDetails,
+            false
+        );
+    }
+});
+
+btCompleted.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    if (itemAdded && itemAdded.id === Number(seriesId)) {
+        const updatedCompletedState =
+            itemAdded.completed === true ? false : true;
+        await updateInfoDb(`${watchlistPathInFirebase}/${seriesId}`, {
+            completed: updatedCompletedState,
+        });
+    } else {
+        await saveTvShowInDb2(
+            watchlistPathInFirebase,
+            seriesId,
+            seriesDetails,
+            true
+        );
+    }
+});
+
+
 
 //Call to get the certification  
 theMovieDb.tv.getContentRatings({"id":seriesId }, successCB_rating, errorCB)
@@ -285,9 +364,7 @@ function errorCB(data) {
 }
 
 
-
-
-// SPA
+// SPA ======================================
 const allPages = document.querySelectorAll('div.page');
 allPages[0].style.display = 'grid';
 
@@ -307,50 +384,120 @@ navigateToPage();
 //init handler for hash navigation
 window.addEventListener('hashchange', navigateToPage);
 
-// ##########################################################
-// SECTION: EPISODES
+// SECTION: EPISODES =================================
+const AllSeasons = document.querySelector('.section-all-seasons')
 
-// ACCORDION
-var acc = document.getElementsByClassName("accordion");
-var i;
+// CREATING THE ACCORDION
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
+theMovieDb.tv.getById({"id":seriesId }, successCB_numSeasons, errorCB);
+
+function successCB_numSeasons (data) {
+    
+    number_of_seasons = JSON.parse(data).number_of_seasons;
+
+    for (let j=1; j <= number_of_seasons; j++){
+        CreateAccordion(j);
+    
+        // SERIE SELECIONADA
+        theMovieDb.tvSeasons.getById({"id":seriesId, "season_number": j}, successCB_season, errorCB)
+        // theMovieDb.tvSeasons.getById({"id":"1668", "season_number": j}, successCB_season, errorCB);
+    
+        const allBox = document.getElementById(`season${j}-box`);
+        allBox.addEventListener('click', () =>AllEpisodesSelected(j));
+    }
+
+    function successCB_season (data){
+        createEpisodesCard(JSON.parse(data));
+    
+        const numberOfEpisodes = document.querySelector(`.season${JSON.parse(data).season_number} .numberOfEpisodes`);
+        numberOfEpisodes.innerText = ` / ${JSON.parse(data).episodes.length}`;
+    }
+
+    // ACCORDION =============================================
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
-  });
+    });
+}
 }
 
+async function CreateAccordion (season){
+    const seasonDiv = document.createElement("div");
+    seasonDiv.classList.add(`season${season}`);
 
-const  allSelect = document.querySelector("form .selectAll input");
-const quantity = document.querySelector(".quantity");
-const numberOfEpisodes = document.querySelector(".numberOfEpisodes");
+    const accordion = document.createElement("div");
+    accordion.classList.add("accordion");
 
-document.addEventListener("DOMContentLoaded", function (){
+    const selectAll = document.createElement("div");
+    selectAll.classList.add("selectAll");
 
-    // ESTO ESTABA AFUERA
-    theMovieDb.tvSeasons.getById({"id":seriesId, "season_number": 1}, successCB_season, errorCB)
+    const seasonTitle = document.createElement("p");
+    seasonTitle.classList.add("heading6");
+    seasonTitle.innerText = `Season ${season}`;
+
+    const quantityContainer = document.createElement("div");
+        const quantity = document.createElement("span");
+        quantity.classList.add("quantity");
+        quantityContainer.appendChild(quantity);
+        
+        const numberOfEpisodes = document.createElement("span");
+        numberOfEpisodes.classList.add("numberOfEpisodes");
+        quantityContainer.appendChild(numberOfEpisodes);
+
+        const checkbox = document.createElement("div");
+        checkbox.classList.add("checkbox");
+        checkbox.setAttribute("id",`season${season}-box`);
+        quantityContainer.appendChild(checkbox);
+
+        const panel = document.createElement("div");
+        panel.classList.add("panel");
+
+    selectAll.appendChild(seasonTitle);
+    selectAll.appendChild(quantityContainer);
+    accordion.appendChild(selectAll);
+    seasonDiv.appendChild(accordion);
+    seasonDiv.appendChild(panel);
+    AllSeasons.appendChild(seasonDiv); 
+
+}
     
-
-    const panels = document.getElementsByClassName("panel");
-
-    function successCB_season (data){
-        createEpisodesCard(JSON.parse(data));
-        console.log("SEASON INFO:",JSON.parse(data));
-        numberOfEpisodes.innerText = ` / ${JSON.parse(data).episodes.length}`;
-    }
-    function createEpisodesCard (object){
-    
-        for (i = 0; i < object.episodes.length; i++) {
+async function createEpisodesCard (object){
+        const panel = document.querySelector(`.season${object.season_number} .panel`);
+        
+        for (let i = 0; i < object.episodes.length; i++) {
             
             const card = document.createElement("div");
             card.classList.add("episodeCard");
-            card.addEventListener("click", episodeCounter);
+             
+            card.addEventListener("click", (event)=>{
+                
+                const divAll = document.querySelector(`.season${object.season_number} .selectAll`); 
+                const cards = document.querySelectorAll(`.season${object.season_number} .episodeCard`); 
+                const quantity = document.querySelector(`.season${object.season_number} .quantity`);
+
+                
+                event.currentTarget.classList.toggle("checked");
+            
+                var watched = document.querySelectorAll(`.season${object.season_number} div.checked`);
+                quantity.innerHTML = `${watched.length}`;
+            
+                if (watched.length === cards.length){
+                    divAll.classList.add("Allchecked");
+                } else {
+                    divAll.classList.remove("Allchecked");
+                }  
+            });
+            // I've to do it inside an arrow function to correctly target the element. 
+            // episodeCounter(object.season_number));
 
             const poster = document.createElement("img"),
                   innerDiv = document.createElement("div");
@@ -360,14 +507,8 @@ document.addEventListener("DOMContentLoaded", function (){
             const episodeNumber = object.episodes[i].episode_number;
             label.setAttribute("for",'episode' + episodeNumber);
     
-            const input = document.createElement("input");
-            // CREATED TO TRY TO BLOCK input eventlistener behaviour
-            input.addEventListener("click", (e)=>{
-                e.preventDefault();
-            })
-            input.setAttribute("type","checkbox");
-            input.setAttribute("id",'episode' + episodeNumber);
-            input.setAttribute("name",`season${object.season_number}`);
+            const box = document.createElement("div");
+            box.setAttribute("class","checkbox");
             
             poster.src = object.episodes[i].still_path ? base_url + 'w154' + object.episodes[i].still_path : base_url + 'w154' + object.poster_path;
             
@@ -376,35 +517,30 @@ document.addEventListener("DOMContentLoaded", function (){
             
             card.appendChild(poster);       
             innerDiv.appendChild(label);
-            innerDiv.appendChild(input);
+            innerDiv.appendChild(box);
             card.appendChild(innerDiv);
-            panels[0].appendChild(card);  
+            panel.appendChild(card);  
             
         }
-    }
-});
+}
 
 
-allSelect.addEventListener('click', (event)=>{
-    console.log("ALL SELECTED CLASS:",event.target);
+async function AllEpisodesSelected (seasonNum){
+    const quantity = document.querySelector(`.season${seasonNum} .quantity`);
+    const divAll = document.querySelector(`.season${seasonNum} .selectAll`);
     
-    const episodes = document.querySelectorAll("episodeCard");
-    for (let episode in episodes){
-        episode.toggle("checked");
-        episode.childNodes[1].lastElementChild.toggleAttribute("checked");
-        var watched = document.querySelectorAll("div.checked");
-        quantity.innerHTML = `${watched.length}` ;
+    divAll.classList.toggle("Allchecked");
+
+    const episodes = document.querySelectorAll(`.season${seasonNum} .episodeCard`);
+    if (divAll.classList.contains("Allchecked") ) {
+        for (let episode of episodes){
+            episode.classList.add("checked");
+        }
+    } else {
+        for (let episode of episodes){
+            episode.classList.remove("checked");
+        }
     }
-    
-
-})
-
-function episodeCounter (event){
-    this.classList.toggle("checked");
-    this.childNodes[1].lastElementChild.toggleAttribute("checked");
-
-
-    var watched = document.querySelectorAll("div.checked");
+    var watched = document.querySelectorAll(`.season${seasonNum} div.checked`);
     quantity.innerHTML = `${watched.length}` ;
-    
 }
