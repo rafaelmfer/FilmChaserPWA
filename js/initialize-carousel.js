@@ -4,15 +4,9 @@
         let n = 5;
 
         if (tela < 500) {
-            n = 2;
+            n = 1;
         }
 
-        
-
-
-        if (tela < 500) {
-            n = 2;
-        }
 
 
     //INITIALIZE CAROUSEL FROM HOME HTML

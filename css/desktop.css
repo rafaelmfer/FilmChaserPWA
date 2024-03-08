@@ -206,6 +206,10 @@ nav ul li:hover .material-symbols-outlined {
         height: auto;
     }
 
+    main {
+        padding: 0px;
+    }
+
     .logoTitle {
         justify-content: center;
         gap: 1rem;

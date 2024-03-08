@@ -104,9 +104,6 @@ h6 {
 /* MOBILE SCREEN */
 /* THEY ARE TWO MEDIA QUERIES SO FAR 450px and 700px */
 @media screen and (max-width: 450px) {
-    body {
-        padding: 1rem 1rem;
-    }
 
     h1 {
         font-family: "Amiko", sans-serif;
