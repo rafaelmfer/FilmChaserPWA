@@ -136,9 +136,7 @@ console.log(seriesDetails);
 const movieHeader = document.querySelector(".js-movie-header");
 const movieTitle = document.querySelector(".js-movie--title");
 const movieGralInfo = document.querySelector(".js-movie--general-info");
-const movieInfoDetails = document.querySelector(
-    ".js-section--movie-info-details"
-);
+const movieInfoDetails = document.querySelector(".js-section--movie-info-details");
 
 // SECTION: HERO IMAGE
 

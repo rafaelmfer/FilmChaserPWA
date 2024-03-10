@@ -27,7 +27,7 @@ export function urlInfo(parameter) {
 
 //**********************SEARCH--->MOVIE********************************** */
 export const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
         accept: "application/json",
         Authorization: ACCESS_TOKEN_TMDB,
