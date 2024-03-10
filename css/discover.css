@@ -1,28 +1,24 @@
+.mainTop .divUlMovies .topLinks #active-shows-movies:hover,
+.mainTop .divUlMovies .topLinks #active-friends:hover {
+    cursor: pointer;
 
+}
 
-.div_image{
+.div_image {
     padding: 0.5rem;
 }
 
-
-.mainDiscover.notActive{
+.mainDiscover.notActive {
     display: none;
 }
-
-
-
-
-
-
 
 /************************* FRIENDS *******************************/
-.main-Friends{
+.main-Friends {
     display: none;
     flex-direction: column;
-    gap: 2rem
+    gap: 2rem;
 }
 
-.main-Friends.active{
+.main-Friends.active {
     display: flex;
 }
-

@@ -355,7 +355,25 @@ img {
     object-position: cover;
   }
   
+  /* CHECKBOX */
+  .checkbox {
+    background-image: url("../resources/icons/icons-default/default-checkbox.svg");
+    width: 24px;
+    height: 24px;
+  }
 
+  .checked .checkbox {
+    background-image: url("../resources/icons/icons-active/active-checkbox.svg");
+    width: 24px;
+    height: 24px;
+  }
+
+  .Allchecked .checkbox{
+    background-image: url("../resources/icons/icons-active/active-checkbox.svg");
+    width: 24px;
+    height: 24px;
+
+  }
   /* FORM FIELDS */
   .selectAll {
     display: flex;
