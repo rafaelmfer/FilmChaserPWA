@@ -5,6 +5,8 @@ import {
     getDocsByQuery,
 } from "./firestore.js";
 
+import { getDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
+
 let mainFriends = document.getElementById("main-Friends");
 let mainDiscover = document.getElementById("mainDiscover");
 let mainDiscover2 = document.getElementById("mainDiscover2");
@@ -12,111 +14,119 @@ let mainDiscover2 = document.getElementById("mainDiscover2");
 let activeShowsMovies = document.querySelector("#active-shows-movies");
 let activeFriends = document.querySelector("#active-friends");
 
-
-/******************************************************* */
-const user = "";
-async function checkSe(){
-    user = await checkSession();
-    user = "abc";
-    console.log(user)
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@")
-    console.log("-------------------------------")
-}
-
-/******************************************************* */
-
-
-
-
-
-
-
 activeFriends.addEventListener("click", () => {
     mainFriends.classList.add("active");
     mainDiscover.classList.add("notActive");
     mainDiscover2.classList.add("notActive");
+    document.getElementById("test").classList.add("hidden");
 });
 
 activeShowsMovies.addEventListener("click", () => {
     mainFriends.classList.remove("active");
     mainDiscover.classList.remove("notActive");
     mainDiscover2.classList.add("notActive");
+    document.getElementById("test").classList.remove("hidden");
 });
 
-//need delete after getting the data from FIREBASE
-let myObj = [
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-    {
-        id: 1669,
-        title: "Movie",
-        media_type: "movie",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-        poster_path: "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-    },
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-    {
-        id: 1669,
-        title: "Movie",
-        media_type: "movie",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-        poster_path: "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-    },
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-    {
-        id: 1669,
-        title: "Movie",
-        media_type: "movie",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-        poster_path: "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-    },
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-];
 
+const user = await checkSession();
+let documentId = user.uid;
+let documentDbPath = `users/${documentId}`;
+
+let documentDb = await getInfoDb(documentDbPath);
+console.log(documentDb.friends);
+
+processFriends();
+
+async function processFriends() {
+    for (const friendRef of documentDb.friends) {
+        const friendFirestore = await getDoc(friendRef.reference);
+        const friendDoc = friendFirestore.data();
+
+        let watchlistPath = `${friendRef.reference.path}/watchlist`;
+        let watchlistArray = await getAllDocsInSubcollection(watchlistPath, {});
+
+        let notCompleted = watchlistArray.filter(function (item) {
+            if (item.completed !== true) {
+                return item;
+            }
+        });
+
+        createSectionWithFilms(friendDoc.name, notCompleted);
+    }
+}
+
+function createSectionWithFilms(name, films) {
+    // Criação da seção
+    var section = document.createElement('section');
+    section.classList.add('example');
+
+    // Criação do cabeçalho da seção
+    var headerDiv = document.createElement('div');
+    headerDiv.classList.add('section-header');
+
+    var nameHeader = document.createElement('h2');
+    nameHeader.textContent = `${name}'s Watchlist`;
+
+    var viewProfileDiv = document.createElement('div');
+    viewProfileDiv.classList.add('view-profile');
+
+    var viewProfileText = document.createElement('p');
+    viewProfileText.textContent = 'View Profile';
+
+    var arrowsImg = document.createElement('img');
+    arrowsImg.classList.add('arrows');
+    arrowsImg.src = '../resources/icons/icons-default/default-arrow-right.svg';
+    arrowsImg.alt = 'image';
+
+    viewProfileDiv.appendChild(viewProfileText);
+    viewProfileDiv.appendChild(arrowsImg);
+
+    headerDiv.appendChild(nameHeader);
+    headerDiv.appendChild(viewProfileDiv);
+
+    // Criação do conteúdo da seção
+    var contentDiv = document.createElement('div');
+    contentDiv.classList.add('section-content');
+
+    // Adicionando filmes
+    films.forEach(function(film) {
+        var filmDiv = document.createElement('div');
+        filmDiv.classList.add('film-serie');
+
+        var link = document.createElement('a');
+        if (film.media_type == "movie") {
+            link.setAttribute("href", "single_movie.html?id=" + film.id);
+        } else {
+            link.setAttribute("href", "single_series.html?id=" + film.id);
+        }
+
+        var img = document.createElement('img');
+        img.classList.add('movie-series-placeholder');
+        img.src = "http://image.tmdb.org/t/p/w154" + film.poster_path;
+        // img.alt = film.alt;
+        // img.width = film.width;
+        // img.height = film.height;
+
+        var p = document.createElement('p');
+        p.textContent = film.name || film.title;
+
+        link.appendChild(img);
+        link.appendChild(p);
+
+        filmDiv.appendChild(link);
+
+        contentDiv.appendChild(filmDiv);
+    });
+
+    // Adicionando cabeçalho e conteúdo à seção
+    section.appendChild(headerDiv);
+    section.appendChild(contentDiv);
+
+    // Adicionando a seção ao elemento com id "main-Friends"
+    var mainFriends = document.getElementById('main-Friends');
+    mainFriends.appendChild(section);
+}
 
 for(let x=0; x<2; x++){
     let res = [...myObj];
@@ -142,7 +152,7 @@ async function createCarousel(friend) {
 
     // Create h2 element
     var h2 = document.createElement("h2");
-    h2.textContent = "User Name ";
+    h2.textContent = amigo.name;
 
     // Create span element
     var span = document.createElement("span");

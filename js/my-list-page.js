@@ -33,62 +33,72 @@ function navigateToPage(event) {
 const user = await checkSession();
 let documentId = user.uid;
 // let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
-// let shogoId = " j7hBgo46ATgnYVdRRGTAA9hyBmB2";
 let documentDbPath = `users/${documentId}`;
 let watchlistPath = `users/${documentId}/watchlist`;
-let documentDb = await getInfoDb(`${watchlistPath}/1668`);
-console.log(documentDb);
+let watchlistArray = await getDocsByQuery(
+    watchlistPath,
+    "completed",
+    "==",
+    false,
+    {}
+);
 
-let watchlistArray = await getAllDocsInSubcollection(watchlistPath, {});
-// console.log(watchlistTest);
-// let watchlistArray = [];
+var alreadyReleased = [];
+let upcomingArray = [];
 
-let upcomingArray = watchlistArray.filter(function (item) {
+watchlistArray.forEach(function (item) {
     if (
         new Date() - new Date(item.release_date) < 0 ||
         item.first_air_date === "" ||
         item.in_production == true
     ) {
-        return item;
+        upcomingArray.push(item);
+    } else {
+        alreadyReleased.push(item);
     }
 });
 
-// Come up with the way to find if the user already started to watch the series
-let alreadyWatching = watchlistArray.filter(function (item) {
-    if (
-        item.seasons !== undefined &&
-        checkIfEpisodeIsWatched(item.seasons) == true
-    ) {
-        return item;
-    }
-});
+let alreadyWatching = [];
+let haventStarted = [];
 
-let haventStarted = watchlistArray.filter(function (item) {
-    if (
-        (new Date() - new Date(item.release_date) > 0 ||
-            item.first_air_date === "" ||
-            item.in_production == true) &&
-        item.media_type === "movie"
-    ) {
-        return item;
+alreadyReleased.forEach(async function (item) {
+    if (item.media_type === "tv") {
+        let seasonsPath = `users/${documentId}/watchlist/${item.id}/seasons`;
+        let seasonsArray = await getAllDocsInSubcollection(seasonsPath, {});
+        if (
+            seasonsArray !== undefined &&
+            seasonsArray !== null &&
+            seasonsArray.length !== 0
+        ) {
+            alreadyWatching.push(item);
+        } else {
+            haventStarted.push(item);
+        }
+    } else {
+        haventStarted.push(item);
     }
 });
 
 // WATCHLIST PAGE ==============================================================
 // Watching - only series that you already saw at least one episode
-alreadyWatching.forEach(function (series) {
-    createMovieSeriesCard(series, ".watching-cards-container");
-});
+setTimeout(() => {
+    console.log(alreadyWatching);
+    console.log(haventStarted);
 
-// Haven't Watched - series that you didnt see any episode and movies
-haventStarted.forEach(function (movie) {
-    createMovieSeriesCard(movie, ".havent-started-cards-container");
-});
+    alreadyWatching.forEach(function (series) {
+        createMovieSeriesCard(series, ".watching-cards-container");
+    });
 
-// UPCOMING PAGE ================================================================
-upcomingArray.forEach(function (item) {
-    createMovieSeriesCard(item, ".upcoming-container");
-});
+    // Haven't Watched - series that you didnt see any episode and movies
+    haventStarted.forEach(function (movie) {
+        createMovieSeriesCard(movie, ".havent-started-cards-container");
+    });
+
+    // UPCOMING PAGE ================================================================
+    upcomingArray.forEach(function (item) {
+        createMovieSeriesCard(item, ".upcoming-container");
+    });
+}, "1000");
 
 // COMPLETED PAGE ===============================================================
 let watchlistCompletedArray = await getDocsByQuery(

@@ -1,4 +1,5 @@
 import { updateInfoDb } from '../js/firestore.js';
+import { checkSession } from "./auth.js";
 
 const streamingServices = [...document.getElementsByClassName("streamingCheckboxes")]
 const btn_next = document.querySelector("#streaming_services");
@@ -15,7 +16,6 @@ btn_next.addEventListener("click", async () => {
     console.log(streamings);
 
     streamings.forEach((x, i) => {
-        // console.log(streamings[i].checked)
         if (streamings[i].checked) {
             streamingsArray.push(streamings[i].id);
             console.log(streamings[i].id)
@@ -23,10 +23,10 @@ btn_next.addEventListener("click", async () => {
 
     })
 
-    let id = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+    const user = await checkSession();
+    let documentId = user.uid;
 
-
-    await updateInfoDb(`users/${id}`,
+    await updateInfoDb(`users/${documentId}`,
         {
             interests: {
                 genres: streamingsArray,

@@ -1,0 +1,31 @@
+.example {
+    display: block;
+}
+
+.example .section-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.example .view-profile {
+    display: flex;
+    align-items: center;
+}
+
+.example .view-profile .arrows {
+    height: 24px;
+    width: 24px;
+}
+
+.example .section-content {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+}
+
+.example .section-content .movie-series-placeholder {
+    border-radius: 4px;
+    background-color: black;
+    height: 231px;
+    width: 154px;
+}

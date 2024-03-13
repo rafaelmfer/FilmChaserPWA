@@ -4,6 +4,14 @@
 
 }
 
+.mainTop .searchMovies .ulMovies {
+    display: flex;
+}
+
+.mainTop .searchMovies .ulMovies.hidden {
+    display: none;
+}
+
 .div_image {
     padding: 0.5rem;
 }
@@ -21,4 +29,8 @@
 
 .main-Friends.active {
     display: flex;
+}
+
+.main-Friends .hidden {
+    display: none;
 }

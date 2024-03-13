@@ -11,6 +11,7 @@ import {
     onSnapshot,
     query,
     where,
+    arrayUnion,
 } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
 
 // Firestore reference
@@ -498,6 +499,29 @@ async function updateInfoDb(location, object) {
     }
 }
 
+/**
+ * Update a Map inside Firestore
+ * @param {string} location - The location of the document containing the map you want to update.
+ * @param {string} key - The key of the map you want to update.
+ * @param {string[]} values - An array of values to update or add to the map.
+ *
+ * updateMapInDb(`users/${documentId}`, 'interests.actors', ['Teste1', 'Teste2']);
+ * This would update the 'actors' array inside the 'interests' map in the specified document.
+ */
+async function updateMapInDb(location, key, values) {
+    const docRef = doc(firestore, location);
+    
+    try {
+        // Use Firestore's update method to update the specified key within the map
+        await updateDoc(docRef, {
+            [key]: arrayUnion(...values)
+        });
+        console.log("Map updated in Firestore.");
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 // FUNCTION WORK IN PROGRESS - DONT REMOVE YET
 // /**
 //  * Update a Document in Firestore
@@ -551,5 +575,6 @@ export {
     findDocumentInSubcollection,
     listenToDocumentChanges,
     updateInfoDb,
+    updateMapInDb,
     deleteInfoDb,
 };

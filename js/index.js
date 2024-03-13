@@ -5,8 +5,8 @@ async function test() {
     try {
         let result = await loginWithGoogle();
 
-        let array = ["users", result.user.uid];
-        saveInfoDb(array, result.user);
+        let location = `users`;
+        saveInfoDb(location, result.user.uid, result.user);
     } catch (error) {
         console.log(error);
     }
