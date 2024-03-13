@@ -1,6 +1,6 @@
 import { options } from "./common.js";
-import { updateInfoDb } from '../js/firestore.js';
-
+import { updateMapInDb } from '../js/firestore.js';
+import { checkSession } from "./auth.js";
 
 
 let StreamingOptions = document.querySelector(".StreamingOptions")
@@ -341,16 +341,13 @@ function adding_director_array(){
 
 async function add_actors_db(){
 
-    let id = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+    const user = await checkSession();
+    let documentId = user.uid;
     
     if(streamingDirectors.length>0){
-        await updateInfoDb(`users/${id}`, 
-        {
-            interests: {directors : streamingDirectors}        
-        });
+        await updateMapInDb(`users/${documentId}`, 'interests.directors', [...streamingDirectors]);
     }
 
-    // console.log(streamingsArray)
     window.location.replace("home.html");
 }
 
