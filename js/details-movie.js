@@ -4,8 +4,6 @@ import { urlInfo, options } from "./common.js";
 import { checkSession } from "./auth.js";
 import {
     saveMovieInDb,
-    saveTvShowInDb,
-    saveTvShowInDb2,
     updateInfoDb,
     deleteInfoDb,
     listenToDocumentChanges,
@@ -14,124 +12,6 @@ import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 var movieId = urlInfo("id");
 let movieDetails = {};
-// TODO import inicia function
-
-let seriesDetails = {
-    adult: false,
-    backdrop_path: "/8U42J8z7ZqnrzfljJTDul9JfDNH.jpg",
-    episode_run_time: [22],
-    first_air_date: "2017-09-25",
-    homepage: "http://www.cbs.com/shows/young-sheldon/",
-    id: 71728,
-    in_production: true,
-    languages: ["en"],
-    last_air_date: "2024-02-29",
-    name: "Young Sheldon",
-    number_of_episodes: 141,
-    number_of_seasons: 7,
-    origin_country: ["US"],
-    original_language: "en",
-    original_name: "Young Sheldon",
-    overview:
-        "The early life of child genius Sheldon Cooper, later seen in The Big Bang Theory.",
-    popularity: 770.604,
-    poster_path: "/tKwjkqTSq5fJdSxIk4yOh61tOKD.jpg",
-    seasons: [
-        {
-            air_date: "2017-05-27",
-            episode_count: 3,
-            id: 177893,
-            name: "Specials",
-            overview: "",
-            poster_path: "/oeKzhbF1sPKieHe5ZviNo0AajYl.jpg",
-            season_number: 0,
-            vote_average: 0,
-        },
-        {
-            air_date: "2017-09-25",
-            episode_count: 22,
-            id: 88399,
-            name: "Season 1",
-            overview: "",
-            poster_path: "/rRVeKYBGm2PjVtsPdzFY5OGReJc.jpg",
-            season_number: 1,
-            vote_average: 6.9,
-        },
-        {
-            air_date: "2018-09-24",
-            episode_count: 22,
-            id: 108333,
-            name: "Season 2",
-            overview: "",
-            poster_path: "/huYP7tDwpjRcmsTjsADO2WmmZ7P.jpg",
-            season_number: 2,
-            vote_average: 7.1,
-        },
-        {
-            air_date: "2019-09-26",
-            episode_count: 21,
-            id: 129338,
-            name: "Season 3",
-            overview: "",
-            poster_path: "/iI9dpn3K5hvKdJgy9AelhkqVraX.jpg",
-            season_number: 3,
-            vote_average: 6.5,
-        },
-        {
-            air_date: "2020-11-05",
-            episode_count: 18,
-            id: 165705,
-            name: "Season 4",
-            overview: "",
-            poster_path: "/epQNlTqhGCM6vdXM4sE3Nn0enJR.jpg",
-            season_number: 4,
-            vote_average: 7,
-        },
-        {
-            air_date: "2021-10-07",
-            episode_count: 22,
-            id: 202005,
-            name: "Season 5",
-            overview: "",
-            poster_path: "/5Gf83qYgLY8Qivn7jpv5nxxZPu6.jpg",
-            season_number: 5,
-            vote_average: 6.9,
-        },
-        {
-            air_date: "2022-09-29",
-            episode_count: 22,
-            id: 298442,
-            name: "Season 6",
-            overview: "",
-            poster_path: "/MpdROQ5XxQqOMKhJlLUf7PTxIC.jpg",
-            season_number: 6,
-            vote_average: 7.4,
-        },
-        {
-            air_date: "2024-02-15",
-            episode_count: 14,
-            id: 365600,
-            name: "Season 7",
-            overview: "",
-            poster_path: "/xhFmVtH5x1yu4XqFWRmtc4NYVRG.jpg",
-            season_number: 7,
-            vote_average: 7.1,
-        },
-    ],
-    spoken_languages: [
-        {
-            english_name: "English",
-            iso_639_1: "en",
-            name: "English",
-        },
-    ],
-    status: "Returning Series",
-    tagline: "It all started with a big bang...or rather, in East Texas.",
-    type: "Scripted",
-    vote_average: 8.054,
-    vote_count: 2249,
-};
-console.log(seriesDetails);
 
 const movieHeader = document.querySelector(".js-movie-header");
 const movieTitle = document.querySelector(".js-movie--title");
@@ -296,20 +176,6 @@ btWatchlist.addEventListener("click", async function (event) {
             watchlistPathInFirebase,
             movieId,
             movieDetails,
-            false
-        );
-
-        // await saveTvShowInDb(
-        //     watchlistPathInFirebase,
-        //     "71728",
-        //     seriesDetails,
-        //     false
-        // );
-
-        await saveTvShowInDb2(
-            watchlistPathInFirebase,
-            "71728",
-            seriesDetails,
             false
         );
     }

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/desktop.css">
     <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="../css/discover.css">
+    <link rel="stylesheet" href="../css/card-friends-watchlist.css">
 
     <script type="module" src="../js/showall.js" defer></script>
 
@@ -81,7 +82,7 @@
         </div>
 
         <div class="searchMovies">
-            <ul class="ulMovies">
+            <ul id="test" class="ulMovies">
                 <li><a href="#" class="filterMovies" id="filterAll">All</a></li>
                 <li><a href="#" class="filterMovies" id="filterMovies">Movies</a></li>
                 <li><a href="#" class="filterMovies" id="filterTv">TV</a></li>
@@ -115,7 +116,7 @@
                 <div class="movies_title_h2">
 
 
-                    <h2>Trending <span><a href="discover.html?search=all">See More ></a></span></h2>
+                    <h2>Trending</h2>
                 </div>
                 <div class="swiper mySwiper discover-swiper-1 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
@@ -211,7 +212,7 @@
         <section class="section_movies">
             <div class="div_movies">
                 <div class="movies_title_h2">
-                    <h2>Upcoming <span><a href="discover.html?search=upcomming">See More ></a></span></h2>
+                    <h2>Upcoming</h2>
                 </div>
                 <div class="swiper mySwiper discover-swiper-3 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
@@ -258,7 +259,7 @@
         <section class="section_movies">
             <div class="div_movies">
                 <div class="movies_title_h2">
-                    <h2>Comedy <span><a href="discover.html?search=comedy">See More ></a></span></h2>
+                    <h2>Comedy </h2>
                 </div>
                 <div class="swiper mySwiper discover-swiper-4 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
@@ -306,7 +307,7 @@
         <section class="section_movies">
             <div class="div_movies">
                 <div class="movies_title_h2">
-                    <h2>Horror <span><a href="discover.html?search=horror">See More ></a></span></h2>
+                    <h2>Horror</h2>
                 </div>
                 <div class="swiper mySwiper discover-swiper-5 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
@@ -353,7 +354,7 @@
         <section class="section_movies">
             <div class="div_movies">
                 <div class="movies_title_h2">
-                    <h2>Action <span><a href="discover.html?search=action">See More ></a></span></h2>
+                    <h2>Action</h2>
                 </div>
                 <div class="swiper mySwiper discover-swiper-6 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
@@ -399,7 +400,7 @@
         <section class="section_movies">
             <div class="div_movies">
                 <div class="movies_title_h2">
-                    <h2>Animation <span><a href="discover.html?search=animation">See More ></a></span></h2>
+                    <h2>Animation</h2>
                 </div>
                 <div class="swiper mySwiper discover-swiper-7 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
@@ -443,6 +444,69 @@
     </main>
 
     <main id="main-Friends" class="main-Friends">
+
+        <!-- Friend 1 example model -->
+        <section class="example hidden">
+            <div class="section-header">
+                <h2>name person</h2>
+                <div class="view-profile">
+                    <p>View Profile</p>
+                    <img class="arrows" src="../resources/icons/icons-default/default-arrow-right.svg" alt="image" width="24" height="24">
+                </div>
+            </div>
+            <!-- Esse div "section-content" poderá ter vários div "film-serie", dependerá do tamanho do array de filmes que receber  -->
+            <div class="section-content">
+                <div class="film-serie">
+                    <a>
+                        <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                        <p>Blablabla</p>
+                    </a>
+                </div>
+                <div class="film-serie">
+                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                    <p>Blablabla</p>
+                </div>
+                <div class="film-serie">
+                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                    <p>Blablabla</p>
+                </div>
+                <div class="film-serie">
+                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                    <p>Blablabla</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="example hidden">
+            <div class="section-header">
+                <h2>name person</h2>
+                <div class="view-profile">
+                    <p>View Profile</p>
+                    <img class="arrows" src="../resources/icons/icons-default/default-arrow-right.svg" alt="image" width="24" height="24">
+                </div>
+            </div>
+            <!-- Esse div "section-content" poderá ter vários div "film-serie", dependerá do tamanho do array de filmes que receber  -->
+            <div class="section-content">
+                <div class="film-serie">
+                    <a>
+                        <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                        <p>Blablabla</p>
+                    </a>
+                </div>
+                <div class="film-serie">
+                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                    <p>Blablabla</p>
+                </div>
+                <div class="film-serie">
+                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                    <p>Blablabla</p>
+                </div>
+                <div class="film-serie">
+                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="" width="154" height="231">
+                    <p>Blablabla</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <main id="mainDiscover2" class="notActive">
