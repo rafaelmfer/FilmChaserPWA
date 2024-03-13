@@ -28,81 +28,6 @@ activeShowsMovies.addEventListener("click", () => {
     document.getElementById("test").classList.remove("hidden");
 });
 
-//need delete after getting the data from FIREBASE
-let myObj = [
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-    {
-        id: 1669,
-        title: "Movie",
-        media_type: "movie",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-        poster_path: "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-    },
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-    {
-        id: 1669,
-        title: "Movie",
-        media_type: "movie",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-        poster_path: "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-    },
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-    {
-        id: 1669,
-        title: "Movie",
-        media_type: "movie",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
-        poster_path: "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-    },
-    {
-        id: 1668,
-        name: "Series",
-        media_type: "tv",
-        release_date: "2023-12-07",
-        vote_average: 8.42342,
-        overview:
-            "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life.",
-        poster_path: "/2koX1xLkpTQM4IZebYvKysFW1Nh.jpg",
-    },
-];
-
-let res = [...myObj];
 
 const user = await checkSession();
 let documentId = user.uid;
@@ -203,8 +128,16 @@ function createSectionWithFilms(name, films) {
     mainFriends.appendChild(section);
 }
 
+for(let x=0; x<2; x++){
+    let res = [...myObj];
+    createCarousel(res);
+}
+
 //CREATE FRIENDS CAROUSEL
-function createCarousel(friend) {
+async function createCarousel(friend) {
+    await checkSe()
+    console.log("=========================")
+    console.log(user)
     // Create section element
     var section = document.createElement("section");
     section.className = "section_movies";

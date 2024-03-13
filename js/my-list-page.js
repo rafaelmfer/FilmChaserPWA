@@ -33,6 +33,7 @@ function navigateToPage(event) {
 const user = await checkSession();
 let documentId = user.uid;
 // let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+let documentDbPath = `users/${documentId}`;
 let watchlistPath = `users/${documentId}/watchlist`;
 let watchlistArray = await getDocsByQuery(
     watchlistPath,
