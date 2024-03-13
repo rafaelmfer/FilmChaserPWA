@@ -12,6 +12,25 @@ let mainDiscover2 = document.getElementById("mainDiscover2");
 let activeShowsMovies = document.querySelector("#active-shows-movies");
 let activeFriends = document.querySelector("#active-friends");
 
+
+/******************************************************* */
+const user = "";
+async function checkSe(){
+    user = await checkSession();
+    user = "abc";
+    console.log(user)
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@")
+    console.log("-------------------------------")
+}
+
+/******************************************************* */
+
+
+
+
+
+
+
 activeFriends.addEventListener("click", () => {
     mainFriends.classList.add("active");
     mainDiscover.classList.add("notActive");
@@ -98,12 +117,17 @@ let myObj = [
     },
 ];
 
-let res = [...myObj];
 
-createCarousel(res);
+for(let x=0; x<2; x++){
+    let res = [...myObj];
+    createCarousel(res);
+}
 
 //CREATE FRIENDS CAROUSEL
-function createCarousel(friend) {
+async function createCarousel(friend) {
+    await checkSe()
+    console.log("=========================")
+    console.log(user)
     // Create section element
     var section = document.createElement("section");
     section.className = "section_movies";
