@@ -1,0 +1,71 @@
+.component-carousel {
+    /* Total width of the carousel */
+    width: 100%;
+    /* Hides items that exceed the container's width */
+    overflow: hidden;
+    position: relative;
+}
+
+.component-carousel .carousel-container {
+    display: flex;
+}
+
+.component-carousel .carousel-container .carousel-items {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.component-carousel .prev-button,
+.component-carousel .next-button {
+    height: 100%;
+    padding: 8px 16px;
+    border: none;
+
+    /* Positions the buttons absolutely relative to the container */
+    position: absolute;
+    /* Vertically aligns in the center */
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-color: var(--primary-color-90alpha);
+    color: #fff;
+
+    cursor: pointer;
+
+    /* Places the buttons above the items */
+    z-index: 1;
+}
+
+/* Aligns the previous button to the left */
+.component-carousel .prev-button {
+    left: 0;
+}
+
+/* Aligns the next button to the right */
+.component-carousel .next-button {
+    right: 0;
+}
+
+/* Hides the buttons when they are not needed */
+.component-carousel .prev-button.hide,
+.component-carousel .next-button.hide {
+    display: none;
+}
+
+.component-carousel .prev-button img,
+.component-carousel .next-button img {
+    height: 24px;
+    width: 24px;
+}
+
+/* STYLING THE CAROUSEL'S ITEM ========================================= */
+/* FOR MORE SPECIFIC STYLING CREATE ANOTHER CLASS IN YOUR ITEM AND CREATE OTHER STYLE
+USING THE {.component-carousel .carousel-container .carousel-items .item.yourNewClass} */
+.component-carousel .carousel-container .carousel-items .item {
+    /* Width of each item */
+    width: 154px;
+    /* Height of each item */
+    height: 225px;
+    /* Spacing between items */
+    margin-right: 8px;
+}
