@@ -1,29 +1,29 @@
-.example {
+.component-friends-watchlist {
     display: block;
 }
 
-.example .section-header {
+.component-friends-watchlist .section-header {
     display: flex;
     justify-content: space-between;
 }
 
-.example .view-profile {
+.component-friends-watchlist .view-profile {
     display: flex;
     align-items: center;
 }
 
-.example .view-profile .arrows {
+.component-friends-watchlist .view-profile .arrows {
     height: 24px;
     width: 24px;
 }
 
-.example .section-content {
+/* .component-friends-watchlist .section-content {
     display: flex;
     flex-flow: row nowrap;
     gap: 1rem;
-}
+} */
 
-.example .section-content .movie-series-placeholder {
+.component-friends-watchlist .section-content .movie-series-placeholder {
     border-radius: 4px;
     background-color: black;
     height: 231px;
