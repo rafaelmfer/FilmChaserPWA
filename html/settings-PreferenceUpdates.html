@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings-Interests Updates</title>
+    <title>Settings-Preference Updates</title>
 
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/desktop.css">
@@ -84,7 +84,7 @@
 
                     <li><a href=""><i class="fa-solid fa-lock"></i>Account Privacy<i class="fa-solid fa-chevron-right"></i></a></li>
 
-                    <li><a href="#"><i class="fa-solid fa-arrows-rotate"></i>Interests Updates<i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li><a href="#"><i class="fa-solid fa-arrows-rotate"></i>Preference Updates<i class="fa-solid fa-chevron-right"></i></a></li>
                 </ul>
             </nav>
         </div>
@@ -95,86 +95,48 @@
             <div class="genres-container">
 
                 <h3>Genres</h3>
-                <i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for a show, movie, actor..."><br>
+                <i id="searchButtonGenres" class="fa-solid fa-magnifying-glass"></i>
+                <input id="search-by-genres" type="text" placeholder="Search for a show, movie, actor..."><br>
 
-                <div class="catogory-tags-container">
-                    <div class="catogory-tag">
-                        <p>Comedy</p><i class="fa-solid fa-circle-xmark"></i></a>
-
-                    </div>
-                    <div class="catogory-tag">
-                        <p>Horror</p><i class="fa-solid fa-circle-xmark"></i></a>
-
-                    </div>
-                    <div class="catogory-tag">
-                        <p>Romance</p><i class="fa-solid fa-circle-xmark"></i></a>
-
-                    </div>
+                <div class="genres-tags-container">
+                    <!-- <div class="genres-tag">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <p class="genres-name">Comedy</p>
+                    </div> -->
                 </div>
-
-                <button>Reset</button>
-                <button>Save</button>
-
             </div>
 
-            <div class="actors-container">
+            <div class="actors-container" id="actors-container">
                 <h3>Actors</h3>
-                <i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for a show, movie, actor..."><br>
+                
+                <i class="fa-solid fa-magnifying-glass" id="searchButtonActor"></i>
+                    
+                <input id="search-by-actor" type="text" name="actorName" placeholder="Search for a show, movie, actor..."><br>
 
                 <div class="actors-images-container">
 
-                    <div class="actor-image">
+                    <!-- <div class="actor-image">
+                        <i class="fa-solid fa-circle-xmark"></i>
                         <img src="" alt="">
-                        <i class="fa-solid fa-circle-xmark"></i></a>
-                        <p>Actor's name</p>
-                    </div>
+                        <p class="actor-name">Actor's name</p>
+                    </div> -->
 
-                    <div class="actor-image">
-                        <img src="" alt="">
-                        <i class="fa-solid fa-circle-xmark"></i></a>
-
-                        <p>Actor's name</p>
-                    </div>
-
-                    <div class="actor-image">
-                        <img src="" alt="">
-                        <i class="fa-solid fa-circle-xmark"></i></a>
-                        <p>Actor's name</p>
-                    </div>
                 </div>
 
-                <button>Reset</button>
-                <button>Save</button>
             </div>
 
             <div class="directors-container">
                 <h3>Directors</h3>
-                <i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for a show, movie, actor..."><br>
+                <i class="fa-solid fa-magnifying-glass" id="searchButtonDirector"></i><input id="search-by-director" type="text" placeholder="Search for a show, movie, actor..."><br>
 
                 <div class="directors-images-container">
-
-                    <div class="director-image">
+                    <!-- <div class="director-image">
                         <img src="" alt="">
-                        <i class="fa-solid fa-circle-xmark"></i></a>
+                        <i class="fa-solid fa-circle-xmark"></i>
                         <p>Director's name</p>
-                    </div>
-
-                    <div class="director-image">
-                        <img src="" alt="">
-                        <i class="fa-solid fa-circle-xmark"></i></a>
-
-                        <p>Director's name</p>
-                    </div>
-
-                    <div class="director-image">
-                        <img src="" alt="">
-                        <i class="fa-solid fa-circle-xmark"></i></a>
-                        <p>Director's name</p>
-                    </div>
+                    </div> -->
                 </div>
 
-                <button>Reset</button>
-                <button>Save</button>
             </div>
 
 
