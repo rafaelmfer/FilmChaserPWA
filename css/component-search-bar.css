@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap');
+
+body{
+    background-color: black;
+}
+
+.searchBarDiv{
+    display: flex;
+    width: 360px;
+
+    padding: 4px;
+    align-items: center;
+    gap: 4px;
+
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    padding: 10px
+}
+
+img{
+    display: flex;
+    width: 24px;
+    height: 24px;
+    padding: 3px 4px 4px 3px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+
+.searchInput{
+    width: 250px;
+    height: auto;
+
+    background-color: var(--secondary-color);
+    color: var(--tertiary-color);
+
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+input::placeholder{
+    color: var(--tertiary-color);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
