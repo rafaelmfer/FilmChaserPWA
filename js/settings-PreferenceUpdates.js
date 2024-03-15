@@ -1,35 +1,6 @@
+import { ACCESS_TOKEN_TMDB } from "../local_properties.js";
 
 // ==search by category: genres==
-
-
-//make all results of genres in an array to search (both tv and movie)
-
-
-// async function searchByGenres() {
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       accept: "application/json",
-//       Authorization:
-//         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YjYyNTczMzY3NDljMGMwNzQzNzk1ZTJlNzc4ZjQ0YyIsInN1YiI6IjY1YWRkMGY4ODQ4ZWI5MDBhYzliZGY0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oXQTRhi24Wbk2PTziiI1e59SOEOS23lPq1S_o7nAMjE",
-//     },
-//   };
-
-//   let searchApi = await fetch(
-//     "https://api.themoviedb.org/3/search/person?query="+
-//     inputGenres.value +
-//     "&include_adult=false&language=en-US&page=1",
-//     options
-//   )
-//     .then((response) => response.json())
-//     .then((response) => {
-//       console.log(response);
-//       return response;
-//     })
-//     .catch((err) => console.error(err));
-
-//   return searchApi;
-// }
 
 const searchButtongenres = document.querySelector("#searchButtonGenres");
 const inputGenres= document.getElementById("search-by-genres")
@@ -128,7 +99,8 @@ async function searchByActor() {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YjYyNTczMzY3NDljMGMwNzQzNzk1ZTJlNzc4ZjQ0YyIsInN1YiI6IjY1YWRkMGY4ODQ4ZWI5MDBhYzliZGY0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oXQTRhi24Wbk2PTziiI1e59SOEOS23lPq1S_o7nAMjE",
+        ACCESS_TOKEN_TMDB,
+        
     },
   };
 
@@ -219,7 +191,7 @@ async function searchByDirector() {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YjYyNTczMzY3NDljMGMwNzQzNzk1ZTJlNzc4ZjQ0YyIsInN1YiI6IjY1YWRkMGY4ODQ4ZWI5MDBhYzliZGY0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oXQTRhi24Wbk2PTziiI1e59SOEOS23lPq1S_o7nAMjE",
+       ACCESS_TOKEN_TMDB,
     },
   };
 
