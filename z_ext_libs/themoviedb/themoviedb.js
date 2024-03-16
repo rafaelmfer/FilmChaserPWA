@@ -16,12 +16,13 @@ theMovieDb.common = {
   images_uri: "http://image.tmdb.org/t/p/",
   timeout: 5000,
   language: "en-US",
+  include_adult: false,
   generateQuery: function(options) {
     'use strict';
     var myOptions, query, option;
 
     myOptions = options || {};
-    query = "?api_key=" + theMovieDb.common.api_key + "&language=" + theMovieDb.common.language;
+    query = "?api_key=" + theMovieDb.common.api_key + "&language=" + theMovieDb.common.language + "&include_adult="+ theMovieDb.common.include_adult;
 
     if (Object.keys(myOptions).length > 0) {
       for (option in myOptions) {
@@ -89,6 +90,7 @@ theMovieDb.common = {
       if (xhr.readyState === 4) {
         if (xhr.status === status) {
           success(xhr.responseText);
+          console.log(options.url);
         } else {
           error(xhr.responseText);
         }
@@ -616,6 +618,20 @@ theMovieDb.credits = {
 };
 
 theMovieDb.discover = {
+  getMoviesTvShowsTrendingDay: function(options, success, error) {
+    'use strict';
+
+    theMovieDb.common.validateRequired(arguments, 3, "", "", true);
+
+    theMovieDb.common.validateCallbacks(success, error);
+
+    theMovieDb.common.client({
+        url: "trending/all/day" + theMovieDb.common.generateQuery(options)
+      },
+      success,
+      error
+    );
+  },
   getMovies: function(options, success, error) {
     'use strict';
 

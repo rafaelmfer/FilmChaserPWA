@@ -1,6 +1,7 @@
 import { checkSession } from "./auth.js";
 import { getInfoDb, getDocsByQuery } from "./firestore.js";
 import { createCarousel, initializeCarousel } from "./common.js";
+import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 let mainFriends = document.getElementById("main-Friends");
 let mainDiscover = document.getElementById("mainDiscover");
@@ -50,19 +51,20 @@ async function processFriends() {
 function createSectionWithFilms(name, films) {
     // Creating the section
     var section = document.createElement("section");
-    section.classList.add("component-friends-watchlist");
+    section.classList.add("component-carousel-with-profile");
 
     // Creating the section header
     var headerDiv = document.createElement("div");
     headerDiv.classList.add("section-header");
 
-    var nameHeader = document.createElement("h2");
+    var nameHeader = document.createElement("h4");
     nameHeader.textContent = `${name}'s Watchlist`;
 
     var viewProfileDiv = document.createElement("div");
     viewProfileDiv.classList.add("view-profile");
 
     var viewProfileText = document.createElement("p");
+    viewProfileText.classList.add("small-one");
     viewProfileText.textContent = "View Profile";
 
     var arrowsImg = document.createElement("img");
@@ -101,6 +103,7 @@ function createCarouselItem(film) {
     filmDiv.classList.add("item");
 
     var link = document.createElement("a");
+    link.classList.add("link-item-container");
     if (film.media_type == "movie") {
         link.setAttribute("href", "single_movie.html?id=" + film.id);
     } else {
@@ -109,10 +112,11 @@ function createCarouselItem(film) {
 
     var img = document.createElement("img");
     img.classList.add("movie-series-placeholder");
-    img.src = "http://image.tmdb.org/t/p/w154" + film.poster_path;
+    img.src = theMovieDb.common.images_uri + "w154" + film.poster_path;
     img.alt = film.name || film.title;
 
     var p = document.createElement("p");
+    p.classList.add("small-one");
     p.textContent = film.name || film.title;
 
     link.appendChild(img);

@@ -7,46 +7,40 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/home_old.css">
     <link rel="stylesheet" href="../css/desktop.css">
-    <link rel="stylesheet" href="../css/search.css">
-    <link rel="stylesheet" href="../css/discover.css">
-    <link rel="stylesheet" href="../css/component-carousel-title.css">
-    <link rel="stylesheet" href="../css/component-carousel.css">
 
-    <script type="module" src="../js/showall.js" defer></script>
-
-    <script type="module" src="../js/friends.js" defer></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script type="module" src="../js/home_api_movies.js" defer></script>
-
 </head>
 
 <body>
 
-
     <header>
         <div class="logoTitle">
             <img src="../resources/imgs/logo.png" class="logo" alt="" srcset="">
-            <h5>FilmChaser</h5>
+            <a href="#">
+                <h5>FilmChaser</h5>
+            </a>
         </div>
 
         <nav>
             <ul>
                 <li>
-                    <a href="home.html">
+                    <a href="#">
                         <span class="material-symbols-outlined">home</span>
                         Home
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="discover.html">
                         <span class="material-symbols-outlined">saved_search</span>
                         Discover
                     </a>
                 </li>
                 <li>
-                    <a href="my-list-page.html">
+                    <a href="my-list-page.html#watchlist">
                         <span class="material-symbols-outlined">list_alt</span>
                         My List
                     </a>
@@ -74,20 +68,14 @@
         </div>
     </header>
 
+
     <section class="mainTop">
-        <div class="divUlMovies">
-            <ul class="topLinks">
-                <li id="active-shows-movies">Shows & Movies</li>
-                <li id="active-friends">Friends</li>
-            </ul>
-        </div>
 
         <div class="searchMovies">
-            <ul id="test" class="ulMovies">
-                <li><a href="#" class="filterMovies" id="filterAll">All</a></li>
-                <li><a href="#" class="filterMovies" id="filterMovies">Movies</a></li>
-                <li><a href="#" class="filterMovies" id="filterTv">TV</a></li>
-
+            <ul class="ulMovies">
+                <li><a href="discover.html?search=all">All</a></li>
+                <li><a href="discover.html?search=movie">Movies</a></li>
+                <li><a href="discover.html?search=tv">TV</a></li>
                 <li style="
                     padding: 0;
                     border: 1px solid white;
@@ -98,7 +86,7 @@
                 <li><span class="material-symbols-outlined">filter_alt</span></li>
             </ul>
 
-            <ul class="ulSearch">
+            <ul class="ul-Search">
                 <div>
                     <li><span id="btnSearch" class="material-symbols-outlined">search</span></li>
                     <li style="
@@ -110,7 +98,10 @@
 
     </section>
 
-    <main id="mainDiscover" class="mainDiscover">
+
+
+    <main id="mainDiscover">
+
         <!-- TRENDING -->
         <section class="section_movies">
             <div class="div_movies">
@@ -119,7 +110,7 @@
 
                     <h2>Trending</h2>
                 </div>
-                <div class="swiper mySwiper discover-swiper-1 swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper mySwiper swiper-home-1 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
                         <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
                             <div class="trending_img1"></div>
@@ -161,46 +152,34 @@
 
 
 
-        <!-- RECOMMENDATION -->
-        <section class="section_movies">
-            <div class="div_movies">
-                <div class="movies_title_h2">
-                    <h2>Recommendation</h2>
+    <!-- RECOMMENDATION -->
+    <section class="section_movies">
+        <div class="div_movies">
+            <div class="movies_title_h2">
+                <h2>Recommendation</h2>
+            </div>
+            <div class="swiper mySwiper swiper-home-2 swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+                  <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;"><div class="recommendation_img1"></div></div>
+                  <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;"><div class="recommendation_img2"></div></div>
+                  <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="recommendation_img3"></div></div>
+                  <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="recommendation_img4"></div></div>
+                  <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="recommendation_img5"></div></div>
+                  <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="recommendation_img6"></div></div>
+                  <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="recommendation_img7"></div></div>
+                  <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="recommendation_img8"></div></div>
+                  <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
+                    <div class="recommendation_img9"></div>
+                  </div>
                 </div>
-                <div class="swiper mySwiper discover-swiper-2 swiper-initialized swiper-horizontal swiper-backface-hidden">
-                    <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
-                        <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img1"></div>
-                        </div>
-                        <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img2"></div>
-                        </div>
-                        <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img3"></div>
-                        </div>
-                        <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img4"></div>
-                        </div>
-                        <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img5"></div>
-                        </div>
-                        <div class="swiper-slide" role="group" aria-label="6 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img6"></div>
-                        </div>
-                        <div class="swiper-slide" role="group" aria-label="7 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img7"></div>
-                        </div>
-                        <div class="swiper-slide" role="group" aria-label="8 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img8"></div>
-                        </div>
-                        <div class="swiper-slide" role="group" aria-label="9 / 9" style="width: 380.333px; margin-right: 30px;">
-                            <div class="recommendation_img9"></div>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </section>
 
@@ -215,7 +194,7 @@
                 <div class="movies_title_h2">
                     <h2>Upcoming</h2>
                 </div>
-                <div class="swiper mySwiper discover-swiper-3 swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper mySwiper swiper-home-3 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
                         <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
                             <div class="upcoming_img1"></div>
@@ -260,9 +239,9 @@
         <section class="section_movies">
             <div class="div_movies">
                 <div class="movies_title_h2">
-                    <h2>Comedy </h2>
+                    <h2>Comedy</h2>
                 </div>
-                <div class="swiper mySwiper discover-swiper-4 swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper mySwiper swiper-home-4 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
                         <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
                             <div class="img1"></div>
@@ -310,7 +289,7 @@
                 <div class="movies_title_h2">
                     <h2>Horror</h2>
                 </div>
-                <div class="swiper mySwiper discover-swiper-5 swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper mySwiper swiper-home-5 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
                         <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
                             <div class="horror_img1"></div>
@@ -357,7 +336,7 @@
                 <div class="movies_title_h2">
                     <h2>Action</h2>
                 </div>
-                <div class="swiper mySwiper discover-swiper-6 swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper mySwiper swiper-home-6 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
                         <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
                             <div class="action_img1"></div>
@@ -403,7 +382,7 @@
                 <div class="movies_title_h2">
                     <h2>Animation</h2>
                 </div>
-                <div class="swiper mySwiper discover-swiper-7 swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper mySwiper swiper-home-7 swiper-initialized swiper-horizontal swiper-backface-hidden">
                     <div class="swiper-wrapper" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
                         <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 380.333px; margin-right: 30px;">
                             <div class="documentary_img1"></div>
@@ -440,118 +419,20 @@
             </div>
         </section>
 
-
-
     </main>
 
-    <main id="main-Friends" class="main-Friends">
 
-        <!-- Friend 1 example section block model  -->
-        <!-- The real block is constructed by Javascript -->
-        <section class="film-chaser component-carousel-with-profile hidden">
-            <div class="section-header">
-                <h4>name person</h4>
-                <div class="view-profile">
-                    <p>View Profile</p>
-                    <img class="arrows" src="../resources/icons/icons-default/default-arrow-right.svg" alt="arrow-right">
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="component-carousel">
-                    <div class="carousel-container">
-                        <div class="carousel-items">
-                            <!-- Carousel Items -->
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                            <div class="item"><a>
-                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
-                                    <p>Blablabla</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="prev-button"><img src="../resources/icons/icons-default/default-arrow-left.svg"></button>
-                    <button class="next-button"><img src="../resources/icons/icons-default/default-arrow-right.svg"></button>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <main id="mainDiscover2" class="notActive">
-        <h2 class="Results"> discover Results: </h2>
-        <div class="div-grid-detail">
-            <!-- ALL PHOTO WILL BE ADDED HERE -->
-        </div>
-    </main>
 
-    <main id="mainSearch">
-        <div class="div-grid-detail">
-            <!-- ALL PHOTO WILL BE ADDED HERE -->
-        </div>
-    </main>
 
+
+    <!------------------ FOOTER ---------------------->
     <footer>
         <h1>footer</h1>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 </body>
 
 </html>

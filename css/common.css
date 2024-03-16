@@ -1,0 +1,49 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 284px calc(100vw - 284px);
+    grid-template-rows: 116px 80px auto;
+
+    color: var(--text-color-one);
+    background-color: var(--primary-color);
+}
+
+body header.header-desktop {
+    grid-column: 1/2;
+    grid-row: 1/-1;
+
+    border-right: 1px solid var(--text-color-one);
+}
+
+section.tab-layout {
+    height: 72px;
+    margin-left: 72px;
+    margin-right: 72px;
+    margin-bottom: 44px;
+    
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+section.filter-and-search {
+    margin-left: 72px;
+    margin-right: 72px;
+    height: 56px;
+    margin-bottom: 24px;
+
+    display: flex;
+    align-items: center;
+}
+
+main {
+    margin-left: 72px;
+
+    grid-column: 2/3;
+}

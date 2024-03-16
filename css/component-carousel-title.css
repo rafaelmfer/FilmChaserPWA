@@ -1,0 +1,30 @@
+.component-carousel-with-profile {
+    display: block;
+}
+
+.component-carousel-with-profile .section-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.component-carousel-with-profile .view-profile {
+    display: flex;
+    align-items: center;
+}
+
+.component-carousel-with-profile .view-profile .arrows {
+    height: 24px;
+    width: 24px;
+}
+
+
+/* Carousel Without Button to See Profile */
+.component-carousel-no-profile {
+    display: block;
+}
+
+.component-carousel-no-profile .section-header {
+    display: block;
+    margin-bottom: 16px;
+}
