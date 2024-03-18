@@ -14,6 +14,20 @@
     <div class="SignUp show-Logo">
         <p class="Film_Chaser">FilmChaser</p>
 
+        <div class="take-picture-box">
+            <div class="rounded-image">                
+                <video id="video" class="video" width="240" height="240" autoplay=""></video>
+                <canvas id="canvas" class="canvas" width="240" height="240"></canvas>
+            </div>  
+
+            <div class="button-picture-box">
+                <button id="start">Start Camera</button>
+                <button id="snap">Snap</button>
+            </div>
+        </div>
+
+
+
         <form action="#">
             <div class="SignUp_Center">
             
@@ -25,14 +39,30 @@
                 <div class="user-image">
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <div class="my_fields">
-                    <label for="myfile" class="button myfile_label"><p>Upload a Picture</p></label>
+                <div class="my_fields my_fields_not_active">
+                    <!-- <label for="myfile" class="button myfile_label"><p>Upload a Picture</p></label> -->
                     <input type="file" id="myfile" class="myfile" name="myfile" accept="image/*">
+                    <input type="button" class="button upload_photo" value="Upload a Picture" id="user-upload-pic">
                     <input type="button" class="btn_skip" value="Skip" id="user-pic-upload">
-                </div>
-                
+
+                    
+                </div>                
             </div>
+            <div class="off-screen ">
+
+            </div>
+            <div class="box-chose-photo">
+                <div class="box-photo">
+                    <ul>
+                        <li><a href="#" id="btn-take-photo">Take Photo</a></li>
+                        <li><label for="myfile">Choose Photo</label></li>
+                    </ul>  
+                    <p><a href="#" id="btn-cancel">Cancel</a></p>
+                </div>
+            </div>
+
         </form>
+
     </div>
 
 
@@ -54,10 +84,18 @@
                     <input type="button" id="btn-save-profile" class="button" value="Save Profile">
                     <input type="button" class="btn_skip" value="Skip">
                 </div>
+
+
                 
             </div>
+
+
+
         </form>
     </div>
+
+
+
 
 </body>
 </html>
