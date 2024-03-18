@@ -1,6 +1,5 @@
 "use strict";
 
-import { ACCOUNT_ID, SESSION_ID } from "../local_properties.js";
 import { checkSession } from "./auth.js";
 import { createCarousel, initializeCarousel } from "./common.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";

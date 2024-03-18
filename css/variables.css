@@ -21,6 +21,8 @@
 
     --divider-color-one: rgba(255, 255, 255, 0.12);
 
+    --background-selected: #283237;
+
     /* --background-gradient: linear-gradient(270deg, var(--accent-color-one), #72465D, var(--accent-color-two)); */
     --background-gradient: linear-gradient(270deg, #ec764f, #72465d, #2e5df3);
 
@@ -89,6 +91,9 @@ h4 {
 h5 {
     font-family: "Amiko", sans-serif;
     font-size: var(--font-size-h5);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 h6 {
@@ -107,10 +112,17 @@ h6 {
     line-height: normal;
 }
 
+.small-two {
+    font-family: "Open Sans", sans-serif;
+    font-size: var(--font-small-two);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 /* MOBILE SCREEN */
 /* THEY ARE TWO MEDIA QUERIES SO FAR 450px and 700px */
 @media screen and (max-width: 450px) {
-
     h1 {
         font-family: "Amiko", sans-serif;
         font-size: var(--font-mob-size-h1);
@@ -139,5 +151,15 @@ h6 {
     h6 {
         font-family: "Amiko", sans-serif;
         font-size: var(--font-mob-size-h6);
+    }
+
+    .small-one {
+        font-family: "Open Sans", sans-serif;
+        font-size: var(--font-mob-small-one);
+    }
+    
+    .small-two {
+        font-family: "Open Sans", sans-serif;
+        font-size: var(--font-mob-small-two);
     }
 }

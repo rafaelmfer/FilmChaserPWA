@@ -8,6 +8,8 @@ section.tab-layout {
 
 section.filter-and-search {
     margin-top: 36px;
+    grid-row: 1/2;
+    grid-column: 2/3;
 }
 
 .hidden {
