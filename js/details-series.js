@@ -1,7 +1,7 @@
 'use strict';
 import { ACCESS_TOKEN_TMDB } from '../local_properties.js';
 
-import { urlInfo } from './common.js';
+import { urlInfo,createCarousel, initializeCarousel } from './common.js';
 
 import { checkSession } from "./auth.js";
 import {
@@ -34,10 +34,6 @@ const options = {
 // PATH TO THE IMAGE POSTER
 const base_url = "https://image.tmdb.org/t/p/";
 
-// POSTER SIZES
-// These are the available poster sizes.
-// const poster_sizes = ["w92", "w154", "w185","w342","w500","w780","original"];
-
 // This is the horizontal size, and needs to be use with the backdrop_path
 const file_size ="w1000_and_h450_multi_faces"; 
 let number_of_seasons = 0;
@@ -46,7 +42,6 @@ theMovieDb.tv.getById({"id":seriesId }, successCB_series, errorCB);
 
 function successCB_series (data) {
     seriesDetails = JSON.parse(data);
-    console.log("SERIE DETAILS", seriesDetails);
 
     const image_path = base_url + file_size + JSON.parse(data).backdrop_path;
     
@@ -328,6 +323,8 @@ const tv_recommended = document.querySelector(".js-movie-also-pictures");
 theMovieDb.tv.getRecommendations({"id":seriesId }, successCB_Popular, errorCB)
 
 function successCB_Popular(data) {
+
+    // REVISAR COMO HACERLO ACA!!!
     let i = 0;
     JSON.parse(data).results.forEach(function (media) {        
         if (i < 4) {
@@ -359,6 +356,7 @@ function createFigureHyperlink (object, path){
 }
 
 // ----------------------------------------------------------
+
 function errorCB(data) {
     console.log("Error callback: " + data);
 }
@@ -384,6 +382,92 @@ navigateToPage();
 //init handler for hash navigation
 window.addEventListener('hashchange', navigateToPage);
 
+// CARROUSELS ================================================
+// Last season that the user watched
+const uSeasonNum = 1;
+theMovieDb.tvSeasons.getById({"id":seriesId, "season_number": uSeasonNum}, successCB_tracking, errorCB);
+
+
+function successCB_tracking (data){
+    // Creating the section
+    var section = document.createElement("section");
+    section.classList.add("section-content--external-wrapper");
+
+    // Creating the content of the section
+    var contentDiv = document.createElement("div");
+    contentDiv.classList.add("section-content");
+    
+    // Creating the carousel
+    var carousel = createCarousel(JSON.parse(data).episodes, createEpisodesCard2);
+    // console.log(JSON.parse(data).season_number);
+    contentDiv.appendChild(carousel.container);
+    contentDiv.classList.add(`season${JSON.parse(data).season_number}`)
+
+    section.appendChild(contentDiv);
+
+    // Adding the section to the main element
+    var sectionTracking = document.querySelector(".section-tracking");
+    sectionTracking.appendChild(section);
+
+    // Initialize carousel
+    initializeCarousel(carousel);
+}
+
+ function createEpisodesCard2 (object){
+        
+        const card = document.createElement("div");
+        card.classList.add("item");
+         
+        card.addEventListener("click", ()=>{
+            const sisterCard = document.querySelector(`.season${object.season_number} .episodeCard.episode${object.episode_number}`);
+            const cards = document.querySelectorAll(`.season${object.season_number} .item`);
+            const divAll = document.querySelector(`.season${object.season_number} .selectAll`);
+
+            const quantity = document.querySelector(`.season${object.season_number} .quantity`); 
+            card.classList.toggle("checked");
+            sisterCard.classList.toggle("checked");  
+
+            var watched = document.querySelectorAll(`.section-all-seasons .season${object.season_number} div.checked`);
+            quantity.innerHTML = `${watched.length}`;
+        
+            if (watched.length === cards.length){
+                 divAll.classList.add("Allchecked");
+             } else {
+                 divAll.classList.remove("Allchecked");
+            }  
+        });
+    
+        const poster = document.createElement("img"),
+              innerDiv = document.createElement("div");
+        innerDiv.classList.add("inputField");
+
+        const label = document.createElement("label");
+        const episodeNumber = object.episode_number;
+        
+        card.classList.add(`episode${object.episode_number}`);
+    
+        label.setAttribute("for",'episode' + episodeNumber);
+
+        const box = document.createElement("div");
+        box.setAttribute("class","checkbox");
+        
+        poster.src = object.still_path ? base_url + 'w92' + object.still_path : base_url + 'w92' + object.poster_path;
+        
+
+        label.innerHTML = `<p>S${object.season_number} | E${object.episode_number}</p> <p>${object.name.substr(0, 14)}...</p> `;
+
+        
+        card.appendChild(poster);       
+        innerDiv.appendChild(label);
+        innerDiv.appendChild(box);
+        card.appendChild(innerDiv);
+        
+        return card;
+    }
+
+
+
+
 // SECTION: EPISODES =================================
 const AllSeasons = document.querySelector('.section-all-seasons')
 
@@ -399,11 +483,13 @@ function successCB_numSeasons (data) {
         CreateAccordion(j);
     
         // SERIE SELECIONADA
-        theMovieDb.tvSeasons.getById({"id":seriesId, "season_number": j}, successCB_season, errorCB)
-        // theMovieDb.tvSeasons.getById({"id":"1668", "season_number": j}, successCB_season, errorCB);
+        theMovieDb.tvSeasons.getById({"id":seriesId, "season_number": j}, successCB_season, errorCB);
     
         const allBox = document.getElementById(`season${j}-box`);
-        allBox.addEventListener('click', () =>AllEpisodesSelected(j));
+        allBox.addEventListener('click', (e) =>{
+            e.stopPropagation();
+            AllEpisodesSelected(j)
+        });
     }
 
     function successCB_season (data){
@@ -472,11 +558,12 @@ async function CreateAccordion (season){
     
 async function createEpisodesCard (object){
         const panel = document.querySelector(`.season${object.season_number} .panel`);
-        
+    
         for (let i = 0; i < object.episodes.length; i++) {
             
             const card = document.createElement("div");
             card.classList.add("episodeCard");
+            card.classList.add(`episode${i+1}`);
              
             card.addEventListener("click", (event)=>{
                 
@@ -486,8 +573,18 @@ async function createEpisodesCard (object){
 
                 
                 event.currentTarget.classList.toggle("checked");
-            
-                var watched = document.querySelectorAll(`.season${object.season_number} div.checked`);
+
+                // CARD ON SECTION TRACKING:
+                const section = document.querySelector('.section-tracking .section-content');
+                
+                if (section.classList.contains(`season${object.season_number}`)) {
+                    const sisterCard = document.querySelector(`.section-tracking .season${object.season_number} .episode${object.episodes[i].episode_number}`);
+                    sisterCard.classList.toggle("checked");
+                }
+                
+
+
+                var watched = document.querySelectorAll(`.section-all-seasons .season${object.season_number} div.checked`);
                 quantity.innerHTML = `${watched.length}`;
             
                 if (watched.length === cards.length){
@@ -496,6 +593,7 @@ async function createEpisodesCard (object){
                     divAll.classList.remove("Allchecked");
                 }  
             });
+
             // I've to do it inside an arrow function to correctly target the element. 
             // episodeCounter(object.season_number));
 
@@ -525,22 +623,38 @@ async function createEpisodesCard (object){
 }
 
 
-async function AllEpisodesSelected (seasonNum){
+function AllEpisodesSelected (seasonNum){
     const quantity = document.querySelector(`.season${seasonNum} .quantity`);
     const divAll = document.querySelector(`.season${seasonNum} .selectAll`);
     
     divAll.classList.toggle("Allchecked");
 
     const episodes = document.querySelectorAll(`.season${seasonNum} .episodeCard`);
+    const clones = document.querySelectorAll(`.season${seasonNum} .item`);
+
     if (divAll.classList.contains("Allchecked") ) {
+        if(clones != null){
+            for (let clone of clones){
+                clone.classList.add("checked");
+            }
+        }
         for (let episode of episodes){
             episode.classList.add("checked");
         }
     } else {
+        if(clones != null){
+            for (let clone of clones){
+                clone.classList.remove("checked");
+            }
+        }
         for (let episode of episodes){
             episode.classList.remove("checked");
         }
     }
-    var watched = document.querySelectorAll(`.season${seasonNum} div.checked`);
+    var watched = document.querySelectorAll(`.section-all-seasons .season${seasonNum} div.checked`);
+    
     quantity.innerHTML = `${watched.length}` ;
 }
+
+
+
