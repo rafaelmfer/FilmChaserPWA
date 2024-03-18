@@ -1,10 +1,16 @@
+
+import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 import { options, allMovies } from "../js/common.js";
-import { showResult } from "../js/search.js";
+import { showResultall,showResult } from "../js/search.js";
+
 import {
     myMovieTvArray,
     myMovieArray,
     myTvArray,
 } from "../js/recommendation.js";
+
+
+let arrayMovies = [];
 
 let mainFriends = document.getElementById("main-Friends");
 let mainDiscover = document.getElementById("mainDiscover");
@@ -22,8 +28,7 @@ export function activeScreen() {
 }
 
 function executeFetch(movieTv, searchValue) {
-    console.log(searchValue);
-    console.log(movieTv);
+    arrayMovies = [];
     fetch(
         "https://api.themoviedb.org/3/search/" +
             movieTv +
@@ -34,48 +39,112 @@ function executeFetch(movieTv, searchValue) {
     )
         .then((response) => response.json())
         .then((response) => {
+            console.log(response)
             showResult(response);
         })
         .catch((err) => console.error(err));
 }
 
 if (filterAll) {
-    filterAll.addEventListener("click", (e) => {
-        //ACTIVE SCREEN MAIN-DISCOVER2
-        activeScreen();
-
-        if (search_field.value != "") {
-            executeFetch("multi", search_field.value);
-        } else {
-            noFilter("all");
-        }
-    });
+    filterAll.addEventListener("click",()=>{
+                //ACTIVE SCREEN MAIN-DISCOVER2
+                arrayMovies = []
+                activeScreen();
+                if (search_field.value != "") {
+                    // executeFetch("tv", search_field.value);
+                                //GETTING RESULT FROM MOVIES
+                                theMovieDb.search.getMulti({ query: search_field.value }, successCB, errorCB)
+                                function successCB(data){
+                                    arrayMovies.push(...JSON.parse(data).results);
+                        
+                                    console.log("clicado All === "+search_field.value)
+                                    activeScreen();
+        
+                                    console.log(arrayMovies)
+                        
+                                    showResultall(arrayMovies);                        
+                                }                                        
+                            
+                                function errorCB(data) {
+                                    console.log("Error callback: " + data);
+                                }   
+                    
+                } else {
+                    noFilter("movie");
+                }
+    })
 }
 
 if (filterMovies) {
     filterMovies.addEventListener("click", (e) => {
-        //ACTIVE SCREEN MAIN-DISCOVER2
-        activeScreen();
 
-        if (search_field.value != "") {
-            executeFetch("movie", search_field.value);
-        } else {
-            noFilter("movie");
-        }
+                //ACTIVE SCREEN MAIN-DISCOVER2
+                arrayMovies = []
+                activeScreen();
+                console.log("botao filter movie clicado")
+                if (search_field.value != "") {
+                    // executeFetch("tv", search_field.value);
+                                //GETTING RESULT FROM MOVIES
+                                theMovieDb.search.getMovie({ query: search_field.value }, successCB, errorCB)
+          
+                                function successCB(data){
+                                    arrayMovies.push(...JSON.parse(data).results);
+                        
+                                    console.log("clicado movie === "+search_field.value)
+                                    activeScreen();
+        
+                                    console.log(arrayMovies)
+                        
+                                    showResult("movie",arrayMovies);
+                        
+                                }                                        
+                            
+                                function errorCB(data) {
+                                    console.log("Error callback: " + data);
+                                }   
+                    
+                } else {
+                    noFilter("movie");
+                }
+
+
     });
 }
 
 if (filterTv) {
     filterTv.addEventListener("click", (e) => {
         //ACTIVE SCREEN MAIN-DISCOVER2
+        arrayMovies = []
         activeScreen();
-
+        console.log("botao filter tv clicado")
         if (search_field.value != "") {
-            executeFetch("tv", search_field.value);
+            // executeFetch("tv", search_field.value);
+                        //GETTING RESULT FROM MOVIES
+                        theMovieDb.search.getTv({ query: search_field.value }, successCB, errorCB)
+  
+                        function successCB(data){
+                            arrayMovies.push(...JSON.parse(data).results);
+                
+                            console.log("clicado tv === "+search_field.value)
+                            activeScreen();
+
+                            console.log(arrayMovies)
+                
+                            showResult("tv",arrayMovies);
+                
+                        }                                        
+                    
+                        function errorCB(data) {
+                            console.log("Error callback: " + data);
+                        }   
+            
         } else {
             noFilter("tv");
         }
     });
+
+
+
 }
 
 // Get the query string from the URL
@@ -122,13 +191,13 @@ function noFilter(search) {
             })
             .then((e) => {
                 console.log(e);
-                showResult({ results: e.results });
+                showResult("",e.results);
             });
 
         if (resultArray > 0) {
-            showResult({ results: resultArray });
+            showResult("".e.results);
         }
-    }, 1500);
+    }, 2500);
 }
 
 async function startPage() {
