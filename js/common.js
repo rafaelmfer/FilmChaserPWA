@@ -57,7 +57,7 @@ export function createCarousel(films, createItemFunction) {
     // Creating the carousel items container
     var carouselItems = document.createElement("div");
     carouselItems.classList.add("carousel-items");
-
+    
     // Adding films to the carousel
     films.forEach(function (film) {
         var filmDiv = createItemFunction(film);
@@ -107,6 +107,7 @@ export function initializeCarousel(carousel) {
     // Function to update carousel visibility
     function updateCarousel() {
         var containerWidth = carousel.container.offsetWidth;
+        console.log("ANCHO DEL ELEMENTO", containerWidth);
         var numVisibleItems = Math.floor(
             containerWidth / (itemWidth + itemMargin)
         );
@@ -154,6 +155,7 @@ export function initializeCarousel(carousel) {
     });
 
     // Initialize carousel
+    
     updateCarousel();
 }
 

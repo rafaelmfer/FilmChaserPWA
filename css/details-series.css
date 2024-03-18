@@ -294,6 +294,32 @@ img {
     grid-column: 1 / -1;
 }
 
+/* CAROUSEL */
+
+.item img {
+    width: 66px;
+    height: 67px;
+    flex-shrink: 0;
+
+    border-radius: 5px 0px 0px 5px;
+    object-fit: cover;
+}    
+
+.item .inputField {
+    font-size: var(--font-body);
+}
+
+.component-carousel .carousel-container .carousel-items .item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 304px;
+    height: 66px;
+    padding-right: 16px;
+    margin-right: 8px;
+    border-radius: 5px;
+    background: var(--secondary-color);
+}
 /* ACCORDION */
 
 .accordion {
@@ -320,9 +346,6 @@ img {
     margin-left: 5px;
   }
   
-  /* .active:after {
-    content: "\e5ce";
-  } */
   
   .panel {
     padding: 0 18px;
@@ -381,4 +404,5 @@ img {
     justify-content: space-between;
     align-items: center;
   }
+
 
