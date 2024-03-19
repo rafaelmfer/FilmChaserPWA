@@ -24,7 +24,7 @@
     --background-selected: #283237;
 
     /* --background-gradient: linear-gradient(270deg, var(--accent-color-one), #72465D, var(--accent-color-two)); */
-    --background-gradient: linear-gradient(270deg, #ec764f, #72465d, #2e5df3);
+    --background-gradient: linear-gradient(281deg, #ec764f -16.78%, #72465d 46.56%, #2e5df3 143.11%);
 
     --font-size-h1: 47.78px;
     --font-size-h2: 39.81px;
