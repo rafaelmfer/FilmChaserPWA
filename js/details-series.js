@@ -1,7 +1,11 @@
 'use strict';
-import { ACCESS_TOKEN_TMDB } from '../local_properties.js';
 
-import { urlInfo,createCarousel, initializeCarousel } from './common.js';
+import { urlInfo,
+        createCarousel,
+        initializeCarousel,
+        initializeCarousel_episodes,
+        options, 
+} from './common.js';
 
 import { checkSession } from "./auth.js";
 import {
@@ -13,15 +17,6 @@ import {
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
-// RAFA I LEFT THE ACCESS_TOKEN_TMDB 'CAUSE ON MY CASE IT WAS TELLING ME THAT "options" in the FETCH WASN'T DEFINED. I know that it's inside common.js, so I leave it for now. 
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: ACCESS_TOKEN_TMDB,
-    }
-  };
-  
   var seriesId = urlInfo("id");
   let seriesDetails = {};
   const movieHeader = document.querySelector(".js-movie-header");
@@ -55,12 +50,12 @@ function successCB_series (data) {
     movieGralInfo.appendChild(mediaType);
 
     const mediaYear = document.createElement("p");
-    mediaYear.innerHTML = JSON.parse(data).seasons[0].air_date.slice(0,4);
+    mediaYear.innerHTML = JSON.parse(data).first_air_date.slice(0,4);
     movieGralInfo.appendChild(mediaYear);
 
     const movieInfoDetails_child = document.createElement("div");
     const mediaYear_second = document.createElement("p");
-    mediaYear_second.innerHTML = JSON.parse(data).seasons[0].air_date.slice(0,4);
+    mediaYear_second.innerHTML = JSON.parse(data).first_air_date.slice(0,4);
     movieInfoDetails_child.appendChild(mediaYear_second);
     movieInfoDetails.appendChild(movieInfoDetails_child);
 
@@ -250,110 +245,129 @@ function successCB_Reviews (data) {
 
 }
 
-// SECTION: MOVIE CAST PICTURES
-const mediaCast = document.querySelector(".js-media-cast-pictures");
-theMovieDb.tv.getCredits({"id":seriesId}, successCB_Cast, errorCB)
-
-function successCB_Cast (data) {
-    let i = 0;
-    JSON.parse(data).cast.forEach(function (artist) { 
-        
-        if (i <= 4) {
-            const divSwiper = document.createElement("div");
-
-            divSwiper.classList.add ="swiper-slide";
-
-            divSwiper.setAttribute("role","group");
-            divSwiper.setAttribute("aria-labe",`${i+1} / 9`);
-            // divSwiper.style.width = "380.333px";
-            divSwiper.style.marginRight = "30px";
-
-            if (i == 0){    
-                divSwiper.classList.add = "swiper-slide-active" ;
-            } else if (i == 1){
-                divSwiper.classList.add = "swiper-slide-next" ;
-            }
-
-
-            const hyperlink = document.createElement("a");
-            const figure = document.createElement("figure");
-            const picture = document.createElement("img");
-            const name = document.createElement("figcaption");
-
-            if (artist.profile_path != null) {
-                picture.src = base_url + 'w154' + artist.profile_path;
-                picture.alt = 'Picture of the actor/actress';
-            } else {
-                // TODO change the placeholder image
-                picture.src = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg';  
-                picture.alt = 'no image provide for the artist';
-                picture.style.width = "154px";                
-            }
-            
-            name.innerHTML = artist.name;
-            
-            figure.appendChild(picture);       
-            figure.appendChild(name);
-            hyperlink.appendChild(figure);
-            divSwiper.appendChild(hyperlink);
-            mediaCast.appendChild(divSwiper);
-            i++;
-        }
-    });
+// =====================================
+function display() {
+    theMovieDb.tv.getCredits({"id":seriesId}, data => successCB_Cast(data,theMovieDb.tv.getSimilar({"id":seriesId }, data => successCB_Similar2(data, theMovieDb.tv.getRecommendations({"id":seriesId }, data => successCB_Popular(data), errorCB)), errorCB) ), errorCB);
 }
 
-// SECTION: SIMILAR MOVIES / RELATED MOVIES
-const movie_related = document.querySelector(".js-movie-related-pictures");
-theMovieDb.tv.getSimilar({"id":seriesId }, successCB_Similar, errorCB);
+display ();
 
+// SECTION: SERIE CAST PICTURES
+const mediaCast = document.querySelector(".js-media-cast-pictures");
+// theMovieDb.tv.getCredits({"id":seriesId}, successCB_Cast, errorCB);
+
+function successCB_Cast (data,xx) {
+    console.log("CAST", JSON.parse(data).cast);
+    createSectionWithFilms("Cast", JSON.parse(data).cast); 
+    xx;   
+}
+
+
+
+// theMovieDb.tv.getSimilar({"id":seriesId }, successCB_Similar, errorCB);
 
 function successCB_Similar(data) {
-    let i = 0;
-    JSON.parse(data).results.forEach(function (media) {        
-        if (i < 4) {
-            let hyperlink = createFigureHyperlink (media, "single_series.html?id=");
-            movie_related.appendChild(hyperlink);
-            i++;
-        } 
-    });
+    console.log("RELATED",JSON.parse(data).results);
+    createSectionWithFilms("Related series", JSON.parse(data).results);
+}
+
+function successCB_Similar2(data, xx) {
+    console.log("RELATED",JSON.parse(data).results);
+    createSectionWithFilms("Related series", JSON.parse(data).results);
+    xx;
 }
 
 // SECTION: RECOMMENDATIONS / PEOPLE ALSO WATCHED
-const tv_recommended = document.querySelector(".js-movie-also-pictures");
-theMovieDb.tv.getRecommendations({"id":seriesId }, successCB_Popular, errorCB)
+// theMovieDb.tv.getRecommendations({"id":seriesId }, successCB_Popular, errorCB);
 
 function successCB_Popular(data) {
-
-    // REVISAR COMO HACERLO ACA!!!
-    let i = 0;
-    JSON.parse(data).results.forEach(function (media) {        
-        if (i < 4) {
-            let hyperlink = createFigureHyperlink (media, "single_series.html?id=");
-
-            tv_recommended.appendChild(hyperlink);
-            i++;
-        } 
-    });
+    console.log("People also watched", JSON.parse(data).results);
+    createSectionWithFilms("People also watched", JSON.parse(data).results);
 }
 
-function createFigureHyperlink (object, path){
+// FUNCTION OF THE CAROUSEL
+const sectionPictures = document.querySelector(".section-pictures");
+function createSectionWithFilms(name, films) {
+    // return new Promise ((resolve, reject) => {
+        // Creating the section
+    var section = document.createElement("section");
+    section.classList.add("component-carousel-no-profile");
+
+    // Creating the section header
+    var headerDiv = document.createElement("div");
+    headerDiv.classList.add("section-header");
+
+    var nameHeader = document.createElement("h4");
+    nameHeader.textContent = name;
+
+    headerDiv.appendChild(nameHeader);
+
+    // Creating the content of the section
+    var contentDiv = document.createElement("div");
+    contentDiv.classList.add("section-content");
+
+    // Creating the carousel
+    var carousel = createCarousel(films, createCarouselItem);   
+    contentDiv.appendChild(carousel.container);
+
+    // Adding header and content to the section
+    section.appendChild(headerDiv);
+    section.appendChild(contentDiv);
+
+    // Adding the section to the main element
+    // var mainFriends = document.querySelector(".home-carousel");
+    sectionPictures.appendChild(section);
+
+    // Initialize carousel
+    initializeCarousel(carousel);
+
+    // resolve();
+    // });
     
-    const hyperlink = document.createElement("a");
-    const figure = document.createElement("figure");
-    const poster = document.createElement("img");
-    const title = document.createElement("figcaption");
-
-    // TODO: Place holder poster
-    poster.src = base_url + 'w154' + object.poster_path;
-    title.innerHTML = object.name;
-
-    hyperlink.setAttribute("href",path + object.id);
-
-    figure.appendChild(poster);       
-    figure.appendChild(title);
-    hyperlink.appendChild(figure);
-    return hyperlink;
 }
+
+function createCarouselItem(film) {
+    
+    // Promise to tell the program to wait til all carousel items are created
+    // return new Promise ((resolve,reject) => { 
+        var filmDiv = document.createElement("div");
+        filmDiv.classList.add("item");
+
+        var link = document.createElement("a");
+        link.classList.add("link-item-container");
+        if (film.media_type == "movie") {
+            link.setAttribute("href", "single_movie.html?id=" + film.id);
+        } else if (film.media_type == "tv" || (film.media_type == null & film.first_air_date != null)){
+            link.setAttribute("href", "single_series.html?id=" + film.id);
+        } else {
+         link.setAttribute("href", "#");
+        }
+
+        var img = document.createElement("img");
+        img.classList.add("movie-series-placeholder");
+        if (film.poster_path != undefined) {
+            img.src = theMovieDb.common.images_uri + "w154" + film.poster_path  
+        } else if (film.profile_path != undefined) {
+            img.src = theMovieDb.common.images_uri + "w154" + film.profile_path;
+        } else if (film.profile_path == undefined ) {
+            img.src = "../resources/imgs/Placeholder/Placeholder_actor(1).png"
+        }
+
+        img.alt = film.name || film.title;
+
+        var p = document.createElement("p");
+        p.classList.add("small-one");
+        p.textContent = film.name || film.title;
+
+        link.appendChild(img);
+        link.appendChild(p);
+
+        filmDiv.appendChild(link);
+        return filmDiv;
+    //     resolve (filmDiv);
+    // });
+}
+
 
 // ----------------------------------------------------------
 
@@ -410,7 +424,7 @@ function successCB_tracking (data){
     sectionTracking.appendChild(section);
 
     // Initialize carousel
-    initializeCarousel(carousel);
+    initializeCarousel_episodes(carousel);
 }
 
  function createEpisodesCard2 (object){
@@ -531,6 +545,7 @@ async function CreateAccordion (season){
     seasonTitle.innerText = `Season ${season}`;
 
     const quantityContainer = document.createElement("div");
+        quantityContainer.classList.add("checkbox-container");
         const quantity = document.createElement("span");
         quantity.classList.add("quantity");
         quantityContainer.appendChild(quantity);
@@ -655,6 +670,5 @@ function AllEpisodesSelected (seasonNum){
     
     quantity.innerHTML = `${watched.length}` ;
 }
-
 
 
