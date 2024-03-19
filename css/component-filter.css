@@ -1,0 +1,109 @@
+body{
+background-color: black;
+}
+
+.filter-container{
+    width: 340px;
+    height: 53px;
+    border-radius: 4px;
+    background: var(--secondary-color);
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+}
+
+.filter-container-left{
+    width: 266px;
+    height: 22px;
+    border-right: solid 1px var(--tertiary-color);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 88px);
+    justify-items: center;
+    align-content: center;
+}
+
+.filter-container-left .filter-category p{
+    color: var(--tertiary-color);
+
+    font-family: "Open Sans";
+    font-size: 14.22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.filter-platform .filter-platform-icons{
+    height: 21px;
+}
+
+.filter-category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.filter-category.all.active{
+    width: 40px;
+    height: 30px;
+    border-radius: 2px;
+    background-image: var(--background-gradient); 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-category.all p.active{
+    color: var(--text-color-one);
+}
+
+.filter-category.movies.active{
+    width: 65px;
+    height: 30px;
+    border-radius: 2px;
+    background-image: var(--background-gradient); 
+    color: var(--text-color-one);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-category.movies p.active{
+    color: var(--text-color-one);
+}
+
+.filter-category.tv.active{
+    width: 37px;
+    height: 30px;
+    border-radius: 2px;
+    background-image: var(--background-gradient); 
+    color: var(--text-color-one);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-category.tv p.active{
+    color: var(--text-color-one);
+}
+
+
+.filter-container-right{
+    justify-self: center;
+}
+
+.filter-platform.active{
+    border: 1px solid var(--text-color-one);
+    border-radius: 2px;
+    height: 30px;
+    padding: 0 3px;
+
+    display: flex;
+    align-items: center;
+}
+
