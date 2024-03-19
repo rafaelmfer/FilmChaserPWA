@@ -1,0 +1,56 @@
+/* the black color is just for showing layout */
+body{
+    background-color: black;
+}
+
+.tab-container{
+    display: flex;
+}
+
+a.watchList,
+a.upcoming,
+a.completed
+{
+    text-decoration: none;
+}
+
+.watchList .tab-underline,
+.upcoming .tab-underline,
+.completed .tab-underline,
+.tab-underline-blank-space
+{
+    width: 230px;
+    height: 53.538px;
+
+    background-color:var(--divider-color-one);
+}
+
+.watchList .tab-underline.active,
+.upcoming .tab-underline.active,
+.completed .tab-underline.active
+ {
+    background-image: var(--background-gradient);
+}
+
+.watchList .tab-underline .tab,
+.upcoming .tab-underline .tab,
+.completed .tab-underline .tab
+{
+    width: 230px;
+    height: 50.72px;
+    /* underline height: 53.538-50.72= 2.818px */
+
+    background: var(--primary-color);
+    color: var(--tertiary-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* the black color is just for showing layout */
+.tab-underline-blank-space .blank-space{
+    width: 230px;
+    height: 50.72px;
+    background-color: black;
+}
