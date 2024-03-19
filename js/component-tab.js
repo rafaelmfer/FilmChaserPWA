@@ -31,3 +31,4 @@ completed.addEventListener("click", (e) => {
     upcoming.querySelector(".tab-underline").classList.remove("active");
   } catch (error) {}
 });
+
