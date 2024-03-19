@@ -6,7 +6,10 @@ async function test() {
         let result = await loginWithGoogle();
 
         let location = `users`;
-        saveInfoDb(location, result.user.uid, result.user);
+        saveInfoDb(location, result.user.uid, { 
+            name: result.user.displayName,
+            email: result.user.email
+        });
     } catch (error) {
         console.log(error);
     }
