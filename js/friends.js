@@ -23,7 +23,8 @@ activeShowsMovies.addEventListener("click", () => {
 });
 
 const user = await checkSession();
-let documentId = user.uid;
+// let documentId = user.uid;
+let documentId = "H0qU7XzWHYftZVP9NW9BmAbAQbH2";
 let documentDbPath = `users/${documentId}`;
 
 let documentDb = await getInfoDb(documentDbPath);
