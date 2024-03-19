@@ -1,0 +1,42 @@
+/* the black color is just for showing layout */
+body{
+    background-color: black;
+}
+
+.container{
+    display: flex;
+}
+
+.tab{
+    width: 230px;
+    height: 50.72px;
+    background: var(--primary-color);
+    color: var(--tertiary-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* the black color is just for showing layout */
+.blank-space{
+    width: 230px;
+    height: 50.72px;
+    background-color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+.tab-underline{
+    width: 230px;
+    height: 53.538px;
+
+    background-color:var(--divider-color-one);
+}
+
+.tab-underline.active{
+    background-image: var(--background-gradient);
+}
+
