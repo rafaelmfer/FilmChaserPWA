@@ -16,6 +16,7 @@ let mainFriends = document.getElementById("main-Friends");
 let mainDiscover = document.getElementById("mainDiscover");
 let mainDiscover2 = document.getElementById("mainDiscover2");
 let filterMovies = document.getElementById("filterMovies");
+let mainFilmChaser = document.getElementById("main-film-chaser")
 let filterTv = document.getElementById("filterTv");
 let filterAll = document.getElementById("filterAll");
 let search_field = document.getElementById("search_field");
@@ -25,6 +26,7 @@ export function activeScreen() {
     mainFriends.classList.remove("active");
     mainDiscover2.classList.remove("notActive");
     mainDiscover.classList.add("notActive");
+    mainFilmChaser.classList.add("notActive")
 }
 
 function executeFetch(movieTv, searchValue) {

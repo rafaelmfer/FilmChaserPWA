@@ -25,8 +25,8 @@
     /* Positions the buttons absolutely relative to the container */
     position: absolute;
     /* Vertically aligns in the center */
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    /* transform: translateY(-50%); */
 
     background-color: var(--primary-color-90alpha);
     color: #fff;

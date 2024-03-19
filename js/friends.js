@@ -6,20 +6,25 @@ import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 let mainFriends = document.getElementById("main-Friends");
 let mainDiscover = document.getElementById("mainDiscover");
 let mainDiscover2 = document.getElementById("mainDiscover2");
+let mainFilmChaser = document.getElementById("main-film-chaser");
 
 let activeShowsMovies = document.querySelector("#active-shows-movies");
 let activeFriends = document.querySelector("#active-friends");
+let sectionMovies = document.querySelector(".section_movies")
 
 activeFriends.addEventListener("click", () => {
     mainFriends.classList.add("active");
     mainDiscover.classList.add("notActive");
     mainDiscover2.classList.add("notActive");
+    mainFilmChaser.classList.add("notActive");
 });
 
 activeShowsMovies.addEventListener("click", () => {
     mainFriends.classList.remove("active");
-    mainDiscover.classList.remove("notActive");
+    mainDiscover.classList.add("notActive");
     mainDiscover2.classList.add("notActive");
+    mainFilmChaser.classList.remove("notActive")
+    console.log("clicado show ")
 });
 
 const user = await checkSession();

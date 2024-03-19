@@ -20,6 +20,19 @@
     display: none;
 }
 
+.main-Friends{
+    display: none;
+}
+
+.film-chaser.home-carousel{
+    display: block ;
+}
+
+.film-chaser.home-carousel.noActive{
+    display: block !important;
+}
+
+
 /************************* FRIENDS *******************************/
 .main-Friends {
     display: none;
