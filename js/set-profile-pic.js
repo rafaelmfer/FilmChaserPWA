@@ -43,6 +43,7 @@ btn_take_photo.addEventListener("click",(e)=>{
 btn_cancel.addEventListener("click",()=>{
     off_screen.classList.remove("active")
     box_chose_photo.classList.remove("active")
+    take_picture_box.style.top = "-100%";
 })
 
 
