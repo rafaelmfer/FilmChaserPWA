@@ -1,7 +1,6 @@
 .component-search-bar {
-    min-width: 288px;
+    width: 340px;
     padding: 0 8px;
-
 
     display: flex;
     gap: 4px;
@@ -20,7 +19,7 @@
 
 .component-search-bar .search-input {
     width: 100%;
-    padding-right: 16px;
+    margin-right: 16px;
 
     background-color: var(--secondary-color);
     color: var(--text-color-one);
@@ -33,4 +32,23 @@
 
 .component-search-bar .search-input:focus {
     outline: none;
+}
+
+.component-search-bar .search-input:-webkit-autofill,
+.component-search-bar .search-input:-webkit-autofill:hover, 
+.component-search-bar .search-input:-webkit-autofill:focus, 
+.component-search-bar .search-input:-webkit-autofill:active{
+    caret-color: var(--text-color-one);
+    -webkit-text-fill-color: var(--text-color-one) !important;
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-color) inset !important;
+}
+
+input:-webkit-autofill {
+    caret-color: white;
+  }
+
+@media screen and (min-width: 450px) {
+    .component-search-bar {
+      min-width: 320px;
+    }
 }

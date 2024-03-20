@@ -12,10 +12,20 @@ section.filter-and-search {
     grid-column: 2/3;
 }
 
+main.home-carousel {
+    margin-top: 24px;
+}
+
 section.filter-and-search .component-search-bar {
     display: none;
 }
 
 .hidden {
     display: none;
+}
+
+@media screen and (min-width: 450px) {
+    main.home-carousel {
+        margin-top: 0;
+    }
 }

@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <!-- Common CSS -->
@@ -25,6 +24,7 @@
 
     <!-- Screen Javascript -->
     <script type="module" src="../js/my-list-page.js" defer></script>
+    <title>MyList</title>
 </head>
 
 <body>
@@ -80,7 +80,7 @@
                     <li class="nav-links">
                         <a href="">
                             <img src="../resources/imgs/profile/profile2.png" alt="home">
-                            <h5>Zara Everett</h5>
+                            <h5 id="userName">Profile</h5>
                         </a>
                     </li>
                 </ul>
@@ -90,21 +90,21 @@
 
     <section class="film-chaser tab-layout">
         <div class="component-tab-container">
-            <a class="watchList" href="#watchlist">
+            <a class="firstTab" href="#watchlist">
                 <div class="tab-underline active">
                     <div class="tab button-text">
                         <p>WatchList</p>
                     </div>
                 </div>
             </a>
-            <a class="upcoming" href="#upcoming">
+            <a class="secondTab" href="#upcoming">
                 <div class="tab-underline">
                     <div class="tab button-text">
                         <p>Upcoming</p>
                     </div>
                 </div>
             </a>
-            <a class="completed" href="#completed">
+            <a class="thirdTab" href="#completed">
                 <div class="tab-underline">
                     <div class="tab button-text">
                         <p>Completed</p>
@@ -117,15 +117,9 @@
     <section class="film-chaser filter-and-search">
         <div class="component-filter">
             <div class="component-filter--left">
-                <div class="filter-category all active">
-                    <p class="all-p active">All</p>
-                </div>
-                <div class="filter-category movies">
-                    <p class="movies-p">Movies</p>
-                </div>
-                <div class="filter-category tv">
-                    <p class="tv-p">TV</p>
-                </div>
+                <p class="all-p active">All</p>
+                <p class="movies-p">Movies</p>
+                <p class="tv-p">TV</p>
             </div>
             <div class="component-filter--right">
                 <div class="filter-platform">

@@ -12,16 +12,8 @@ a {
     text-decoration: none;
 }
 
-section.filter-and-search .filter {
-    min-width: 280px;
-    height: 56px;
-    margin-top: 24px;
-
-    background-color: var(--secondary-color);
-}
-
 section.filter-and-search .component-search-bar {
-    margin: 0 16px;
+    margin: 0 auto;
     margin-top: 20px;
 }
 
@@ -72,15 +64,6 @@ main .completed-container {
 }
 
 @media screen and (min-width: 450px) {
-    section.filter-and-search .filter {
-        min-width: 280px;
-        height: 56px;
-        margin-top: 0px;
-    
-        
-        background-color: var(--secondary-color);
-    }
-
     section.filter-and-search .component-search-bar {
         margin-top: unset;
         margin-left: 42px;

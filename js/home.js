@@ -26,6 +26,8 @@ let arrayThriller = [];
 let arrayReality = [];
 let arrayWar = [];
 
+const user = await checkSession();
+document.getElementById("userName").innerHTML = user.displayName;
 
 // Function to call with delay and pair functions
 function callWithDelayAndPairs(func1, func2, delay) {

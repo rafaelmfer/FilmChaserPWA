@@ -1,22 +1,17 @@
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 import { options, allMovies } from "../js/common.js";
-import { showResultall,showResult } from "../js/search.js";
+import { showResultall, showResult } from "../js/search.js";
 
-import {
-    myMovieTvArray,
-    myMovieArray,
-    myTvArray,
-} from "../js/recommendation.js";
 
 
 let arrayMovies = [];
 
 let mainFriends = document.getElementById("main-Friends");
-let mainDiscover = document.getElementById("mainDiscover");
 let mainDiscover2 = document.getElementById("mainDiscover2");
 let filterMovies = document.getElementById("filterMovies");
 let mainFilmChaser = document.getElementById("main-film-chaser")
+
 let filterTv = document.getElementById("filterTv");
 let filterAll = document.getElementById("filterAll");
 let search_field = document.getElementById("search_field");
@@ -25,27 +20,26 @@ let search_field = document.getElementById("search_field");
 export function activeScreen() {
     mainFriends.classList.remove("active");
     mainDiscover2.classList.remove("notActive");
-    mainDiscover.classList.add("notActive");
     mainFilmChaser.classList.add("notActive")
 }
 
-function executeFetch(movieTv, searchValue) {
-    arrayMovies = [];
-    fetch(
-        "https://api.themoviedb.org/3/search/" +
-            movieTv +
-            "?query=" +
-            search_field.value +
-            "&include_adult=false&language=en-US&page=1",
-        options
-    )
-        .then((response) => response.json())
-        .then((response) => {
-            console.log(response)
-            showResult(response);
-        })
-        .catch((err) => console.error(err));
-}
+// function executeFetch(movieTv, searchValue) {
+//     arrayMovies = [];
+//     fetch(
+//         "https://api.themoviedb.org/3/search/" +
+//             movieTv +
+//             "?query=" +
+//             search_field.value +
+//             "&include_adult=false&language=en-US&page=1",
+//         options
+//     )
+//         .then((response) => response.json())
+//         .then((response) => {
+//             console.log(response)
+//             showResult(response);
+//         })
+//         .catch((err) => console.error(err));
+// }
 
 if (filterAll) {
     filterAll.addEventListener("click",()=>{

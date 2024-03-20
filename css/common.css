@@ -52,6 +52,7 @@ main {
     }
     
     main {
+        margin: 0;
         margin-left: 72px;
     
         grid-column: 2/3;
