@@ -1,14 +1,14 @@
 body{
     color: var(--text-color-one);
-      /* font-family: "Amiko", sans-serif; */
     font-family: "Open Sans", sans-serif;
-    list-style-type: none;
+
+    grid-template-rows: 116px auto;
 }
 
 button {
     cursor: pointer;
 }
-/* TODO: Do the same structure in single_movie */
+
 .buttons-actions {
     display: flex;
     flex-direction: row;
@@ -22,11 +22,11 @@ button {
     align-items: center;
     color:var(--text-color-one);
 }
-li {
+/* li {
     list-style: none;
-}
+} */
 
-header{
+/*header{
     background-color: var(--primary-color);
     width:200px;
     height: 100vh;
@@ -38,17 +38,10 @@ header{
 }
 
 main{
-    margin-left: 200px;
     background-color: var(--primary-color);
     padding: 3rem;
 }
 
-footer{
-    height: 70px;
-    border: 1px solid white;
-    margin-left: 200px;
-    text-align: center;
-}
 
 .film-chaser {
     font-size: var(--font-mob-size-h5);
@@ -122,7 +115,7 @@ nav ul li:hover .material-symbols-outlined{
     border-bottom: 2px solid ;
     border-image: var(--background-gradient) 15;
     transform: translateY(2px);
-}
+} */
 
 /* ----------------------------- */
 /* MY CHANGES */
@@ -136,12 +129,15 @@ a {
 
 /* MAIN SECTION */
 #mainDiscover {
+    grid-column: 2 / 3;
+    grid-row: 1 / -1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 40vh auto 2fr;
     /* This padding is being overuled by home.css */
     padding: 0;
     gap: 2rem;
+    
 }
 
 /* HERO IMAGE */
@@ -372,7 +368,7 @@ section.section-content--external-wrapper {
     transition: 0.4s;
   }
   
-  .active, .accordion:hover {
+   .main-subsection--episodes .active, .accordion:hover {
     background-color: var(--tertiary-color);
     height: 72px;
   }

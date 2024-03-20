@@ -40,8 +40,7 @@ function successCB_series (data) {
 
     const image_path = base_url + file_size + JSON.parse(data).backdrop_path;
     
-    movieHeader.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.95)),url(${image_path})`;
-    movieHeader.style.backgroundSize = "cover";
+    movieHeader.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 3.57%, rgba(0, 0, 0, 0.52) 30.06%, #000 100%), url(${image_path})`;
 
     mediaTitle.innerHTML = JSON.parse(data).name;
 
@@ -253,12 +252,13 @@ function display() {
 display ();
 
 // SECTION: SERIE CAST PICTURES
-const mediaCast = document.querySelector(".js-media-cast-pictures");
 // theMovieDb.tv.getCredits({"id":seriesId}, successCB_Cast, errorCB);
 
 function successCB_Cast (data,xx) {
-    console.log("CAST", JSON.parse(data).cast);
-    createSectionWithFilms("Cast", JSON.parse(data).cast); 
+    if (JSON.parse(data).cast.length > 0){
+        createSectionWithFilms("Cast", JSON.parse(data).cast); 
+    }
+  
     xx;   
 }
 
@@ -267,13 +267,16 @@ function successCB_Cast (data,xx) {
 // theMovieDb.tv.getSimilar({"id":seriesId }, successCB_Similar, errorCB);
 
 function successCB_Similar(data) {
-    console.log("RELATED",JSON.parse(data).results);
-    createSectionWithFilms("Related series", JSON.parse(data).results);
+    if (JSON.parse(data).results.length >0){
+        createSectionWithFilms("Related Series", JSON.parse(data).results);
+    }
 }
 
 function successCB_Similar2(data, xx) {
-    console.log("RELATED",JSON.parse(data).results);
-    createSectionWithFilms("Related series", JSON.parse(data).results);
+    if (JSON.parse(data).results.length >0){
+        createSectionWithFilms("Related Series", JSON.parse(data).results);
+    }
+    
     xx;
 }
 
@@ -281,15 +284,15 @@ function successCB_Similar2(data, xx) {
 // theMovieDb.tv.getRecommendations({"id":seriesId }, successCB_Popular, errorCB);
 
 function successCB_Popular(data) {
-    console.log("People also watched", JSON.parse(data).results);
-    createSectionWithFilms("People also watched", JSON.parse(data).results);
+    if (JSON.parse(data).results.length > 0) {
+        createSectionWithFilms("People Also Watched", JSON.parse(data).results);
+    }    
 }
 
-// FUNCTION OF THE CAROUSEL
+// FUNCTIONS OF THE CAROUSEL
 const sectionPictures = document.querySelector(".section-pictures");
 function createSectionWithFilms(name, films) {
-    // return new Promise ((resolve, reject) => {
-        // Creating the section
+    // Creating the section
     var section = document.createElement("section");
     section.classList.add("component-carousel-no-profile");
 
@@ -315,21 +318,15 @@ function createSectionWithFilms(name, films) {
     section.appendChild(contentDiv);
 
     // Adding the section to the main element
-    // var mainFriends = document.querySelector(".home-carousel");
     sectionPictures.appendChild(section);
 
     // Initialize carousel
     initializeCarousel(carousel);
-
-    // resolve();
-    // });
     
 }
 
 function createCarouselItem(film) {
     
-    // Promise to tell the program to wait til all carousel items are created
-    // return new Promise ((resolve,reject) => { 
         var filmDiv = document.createElement("div");
         filmDiv.classList.add("item");
 
@@ -364,8 +361,6 @@ function createCarouselItem(film) {
 
         filmDiv.appendChild(link);
         return filmDiv;
-    //     resolve (filmDiv);
-    // });
 }
 
 
@@ -378,6 +373,7 @@ function errorCB(data) {
 
 // SPA ======================================
 const allPages = document.querySelectorAll('div.page');
+
 allPages[0].style.display = 'grid';
 
 function navigateToPage() {
@@ -413,7 +409,6 @@ function successCB_tracking (data){
     
     // Creating the carousel
     var carousel = createCarousel(JSON.parse(data).episodes, createEpisodesCard2);
-    // console.log(JSON.parse(data).season_number);
     contentDiv.appendChild(carousel.container);
     contentDiv.classList.add(`season${JSON.parse(data).season_number}`)
 

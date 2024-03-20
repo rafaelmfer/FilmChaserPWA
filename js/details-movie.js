@@ -1,6 +1,10 @@
 "use strict";
 
-import { urlInfo, options } from "./common.js";
+import { urlInfo,
+    createCarousel,
+    initializeCarousel,
+    options, 
+} from './common.js';
 import { checkSession } from "./auth.js";
 import {
     saveMovieInDb,
@@ -8,7 +12,10 @@ import {
     deleteInfoDb,
     listenToDocumentChanges,
 } from "./firestore.js";
+
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
+
+
 
 var movieId = urlInfo("id");
 let movieDetails = {};
@@ -34,10 +41,10 @@ theMovieDb.movies.getById({ id: movieId }, successCB_movie, errorCB);
 
 function successCB_movie(data) {
     movieDetails = JSON.parse(data);
+    
     const image_path = base_url + file_size + movieDetails.backdrop_path;
 
-    movieHeader.style.backgroundImage = `url(${image_path})`;
-    movieHeader.style.backgroundSize = "cover";
+    movieHeader.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 3.57%, rgba(0, 0, 0, 0.52) 30.06%, #000 100%), url(${image_path})`;
 
     movieTitle.innerHTML = movieDetails.title;
     const movieYear = document.createElement("p");
@@ -130,7 +137,10 @@ function successCB_release(data) {
 
 // SECTION BUTTONS (Watchlist, Completed)
 const user = await checkSession();
+document.getElementById("userName").innerHTML = user.displayName;
+
 let documentId = user.uid;
+
 // let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
 
 const watchlistPathInFirebase = `users/${documentId}/watchlist`;
@@ -156,14 +166,14 @@ function handleDocumentChanges(data) {
     itemAdded = data;
 
     watchlistImg.src = itemAdded
-        ? "../resources/icons/active-heart.svg"
-        : "../resources/icons/default-heart.svg";
+        ? "../resources/icons/icons-active/active-heart.svg"
+        : "../resources/icons/icons-default/default-heart.svg";
 
     completedImg.src = itemAdded
         ? itemAdded.completed
-            ? "../resources/icons/active-heart.svg"
-            : "../resources/icons/default-heart.svg"
-        : "../resources/icons/default-heart.svg";
+            ? "../resources/icons/icons-active/active-completed.svg"
+            : "../resources/icons/icons-default/default-completed.svg" 
+        : "../resources/icons/icons-default/default-completed.svg";
 }
 
 btWatchlist.addEventListener("click", async function (event) {
@@ -248,98 +258,115 @@ function successCB_Reviews(data) {
     // TODO Fix the structure to include the hyperlink
     movie_comments.innerHTML = JSON.parse(data).total_results;
 }
+// CAROUSEL ==================
 
+function callInOrder(func1,delay){
+    setTimeout(()=>{
+        func1();
+    },delay);
+}
 // SECTION: MOVIE CAST PICTURES
-const movieCast = document.querySelector(".js-movie-cast-pictures");
-
-theMovieDb.movies.getCredits({ id: movieId }, successCB_Cast, errorCB);
 
 function successCB_Cast(data) {
-    let i = 0;
-    JSON.parse(data).cast.forEach(function (artist) {
-        if (i < 4) {
-            const hyperlink = document.createElement("a");
-            const figure = document.createElement("figure");
-            const picture = document.createElement("img");
-            const name = document.createElement("figcaption");
-
-            if (artist.profile_path != null) {
-                picture.src = base_url + "w154" + artist.profile_path;
-                picture.alt = "Picture of the actor/actress";
-            } else {
-                // TODO change the placeholder image
-                picture.src =
-                    "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg";
-                picture.alt = "no image provide for the artist";
-                picture.style.width = "154px";
-            }
-
-            name.innerHTML = artist.name;
-
-            figure.appendChild(picture);
-            figure.appendChild(name);
-            hyperlink.appendChild(figure);
-            movieCast.appendChild(hyperlink);
-            i++;
-        }
-    });
+    if (JSON.parse(data).cast.length > 0){
+        createSectionWithFilms("Cast", JSON.parse(data).cast); 
+    }
 }
 
 // SECTION: SIMILAR MOVIES / RELATED MOVIES
-const movie_related = document.querySelector(".js-movie-related-pictures");
-
-theMovieDb.movies.getSimilarMovies({ id: movieId }, successCB_Similar, errorCB);
 
 function successCB_Similar(data) {
-    let i = 0;
-    JSON.parse(data).results.forEach(function (movie) {
-        if (i < 4) {
-            let hyperlink = createFigureHyperlink(
-                movie,
-                "single_movie.html?id="
-            );
-            movie_related.appendChild(hyperlink);
-            i++;
-        }
-    });
+    if (JSON.parse(data).results.length > 0) {
+        createSectionWithFilms("Related Movies", JSON.parse(data).results);
+    }
+ 
 }
 
 // SECTION: RECOMMENDATIONS / PEOPLE ALSO WATCHED
-const movie_recommended = document.querySelector(".js-movie-also-pictures");
-theMovieDb.movies.getPopular({}, successCB_Popular, errorCB);
 
 function successCB_Popular(data) {
-    let i = 0;
-    JSON.parse(data).results.forEach(function (movie) {
-        if (i < 4) {
-            let hyperlink = createFigureHyperlink(
-                movie,
-                "single_movie.html?id="
-            );
-            movie_recommended.appendChild(hyperlink);
-            i++;
+    if (JSON.parse(data).results.length > 0){
+        createSectionWithFilms("People Also Watched", JSON.parse(data).results);
+    }
+}
+// callInOrder(()=>theMovieDb.movies.getCredits({ id: movieId }, successCB_Cast, errorCB),
+//             ()=>theMovieDb.movies.getSimilarMovies({ id: movieId }, successCB_Similar, errorCB),
+//             ()=>theMovieDb.movies.getPopular({}, successCB_Popular, errorCB));
+callInOrder(()=>theMovieDb.movies.getCredits({ id: movieId }, successCB_Cast, errorCB),100);
+callInOrder(()=>theMovieDb.movies.getSimilarMovies({ id: movieId }, successCB_Similar, errorCB), 200);
+callInOrder(()=>theMovieDb.movies.getPopular({}, successCB_Popular, errorCB), 400);
+
+// FUNCTIONS OF THE CAROUSEL
+const sectionPictures = document.querySelector(".section-pictures");
+function createSectionWithFilms(name, films) {
+    // Creating the section
+    var section = document.createElement("section");
+    section.classList.add("component-carousel-no-profile");
+
+    // Creating the section header
+    var headerDiv = document.createElement("div");
+    headerDiv.classList.add("section-header");
+
+    var nameHeader = document.createElement("h4");
+    nameHeader.textContent = name;
+
+    headerDiv.appendChild(nameHeader);
+
+    // Creating the content of the section
+    var contentDiv = document.createElement("div");
+    contentDiv.classList.add("section-content");
+
+    // Creating the carousel
+    var carousel = createCarousel(films, createCarouselItem);   
+    contentDiv.appendChild(carousel.container);
+
+    // Adding header and content to the section
+    section.appendChild(headerDiv);
+    section.appendChild(contentDiv);
+
+    // Adding the section to the main element
+    sectionPictures.appendChild(section);
+
+    // Initialize carousel
+    initializeCarousel(carousel);
+    
+}
+
+function createCarouselItem(film) {
+    
+        var filmDiv = document.createElement("div");
+        filmDiv.classList.add("item");
+
+        var link = document.createElement("a");
+        link.classList.add("link-item-container");
+        if (film.media_type == "movie" || film.poster_path != null ) {
+            link.setAttribute("href", "single_movie.html?id=" + film.id);
+        } else {
+         link.setAttribute("href", "#");
         }
-    });
+
+        var img = document.createElement("img");
+        img.classList.add("movie-series-placeholder");
+        if (film.poster_path != undefined) {
+            img.src = theMovieDb.common.images_uri + "w154" + film.poster_path  
+        } else if (film.profile_path != undefined) {
+            img.src = theMovieDb.common.images_uri + "w154" + film.profile_path;
+        } else if (film.profile_path == undefined ) {
+            img.src = "../resources/imgs/Placeholder/Placeholder_actor(1).png"
+        }
+
+        img.alt = film.name || film.title;
+
+        var p = document.createElement("p");
+        p.classList.add("small-one");
+        p.textContent = film.name || film.title;
+
+        link.appendChild(img);
+        link.appendChild(p);
+
+        filmDiv.appendChild(link);
+        return filmDiv;
 }
-
-function createFigureHyperlink(object, path) {
-    const hyperlink = document.createElement("a");
-    const figure = document.createElement("figure");
-    const poster = document.createElement("img");
-    const title = document.createElement("figcaption");
-
-    // TODO: Place holder poster
-    poster.src = base_url + "w154" + object.poster_path;
-    title.innerHTML = object.title;
-
-    hyperlink.setAttribute("href", path + object.id);
-
-    figure.appendChild(poster);
-    figure.appendChild(title);
-    hyperlink.appendChild(figure);
-    return hyperlink;
-}
-
 // ----------------------------------------------------------
 function errorCB(data) {
     console.log("Error callback: " + data);
