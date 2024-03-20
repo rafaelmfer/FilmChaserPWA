@@ -24,9 +24,6 @@ if(movieArray.length>1){
 }
 
 
-theMovieDb.movies.getRecommendations({ id: 126308 }, successCB, errorCB)
-
-
 // ***********THIS LIBRARRY IS NOT WORKIING **************************;
 // for (let x = 0; x < tvArray.length; x++) {
 //     theMovieDb.tv.getRecommendations({ id:tvArray[x] }, successCB, errorCB)
@@ -36,6 +33,7 @@ theMovieDb.movies.getRecommendations({ id: 126308 }, successCB, errorCB)
 //     console.log(data);
 // }
 
+theMovieDb.movies.getRecommendations({ id: 126308 }, successCB, errorCB)
 
 async function successCB(data) {
     const obj = JSON.parse(data);
