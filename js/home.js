@@ -4,7 +4,7 @@ import { checkSession } from "./auth.js";
 import { createCarousel, initializeCarousel } from "./common.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
-let arrayRecommendation = [];
+let arrayTrending = [];
 let arrayUpcoming = [];
 
 let arrayAction = [];
@@ -52,8 +52,8 @@ function callNextTwoFunctions(index, delay) {
 }
 
 const genreFunctions = [
-    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({}, data => successCB(data, "You Might Like", arrayRecommendation), errorCB),
-    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({ page:2 }, data => successCB(data, "You Might Like", arrayRecommendation), errorCB),
+    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({}, data => successCB(data, "You Might Like", arrayTrending), errorCB),
+    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({ page:2 }, data => successCB(data, "You Might Like", arrayTrending), errorCB),
 
     // Gênero Adventure
     () => theMovieDb.discover.getMovies({ with_genres: 12 }, data => successCB(data, "Adventure", arrayAdventure), errorCB),

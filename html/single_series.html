@@ -10,13 +10,7 @@
     
     <link rel="stylesheet" href="../css/component-carousel.css">
     <link rel="stylesheet" href="../css/details-series.css">
-
-
-
-    <!-- TODO: DELETE SWIPER AFTER ALL HAS BEEN CHANGED -->
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>   
+   
     <script type="module" src="../js/home_api_movies.js"  defer></script>
     <script type="module" src="../js/details-series.js" defer></script>
 
@@ -40,7 +34,6 @@
             </ul>
         </nav>
 
-        <!-- REMOVE userNotify after -->
         <nav class="nav-bar nav--notify-user userNotify">
             <ul>
                 <li><a href="#"><span class="material-symbols-outlined">notifications</span>Notification</a></li>
@@ -50,7 +43,7 @@
         </nav>
 
     </header>
-    <!-- ACTIVETE THIS AFTER RAFA CHANGES THE LAYOUT -->
+    <!-- ACTIVATE THIS AFTER RAFA CHANGES THE LAYOUT -->
     <!-- <section class="poster">
         <div class="movie-header js-movie-header">
             <div class="top-buttonr">
@@ -122,37 +115,6 @@
             </div>
     
             <div class="section-pictures">
-                <div class="section-cast">
-                    <h3>Cast</h3>
-<!-- ASI ESTABA ANTES
-                    <div class="movie-media-pictures js-media-cast-pictures gallery swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden"> -->
-                    <!-- The swiper is inside the gallery created trhough js -->
-                    <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden">
-                    <!-- <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-backface-hidden"> -->
-                            <div class="swiper-wrapper media-cast-pictures js-media-cast-pictures" id="swiper-wrapper-0579ee5ce2df0a102" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
-                            
-                                <!-- <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 304px; margin-right: 5px;">
-
-                                    <div class="documentary_img1"></div>
-                                </div> -->
-                            
-                            </div>
-                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-
-                    </div>
-                </div>
-    
-                <div class="section-related">
-                    <h3>Related Series</h3>
-                
-                        <div class="movie-related-pictures  js-movie-related-pictures gallery"></div>   
-                    
-                </div>
-    
-                <div class="section-also">
-                    <h3>People also watched</h3>
-                    <div class="movie-also-pictures js-movie-also-pictures gallery"></div>
-                </div>
             </div>
         </div>
         <div class="main-subsection--episodes page" id="page2">
@@ -161,7 +123,6 @@
 
             </div>
             <div class="section-all-seasons">
-                <h2>All episodes</h2>
             </div>
         </div>
 
@@ -170,31 +131,6 @@
     <footer>
         <div>footer</div>
     </footer>
-
-
-    <!-- Swiper carrousel -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script>
-
-        let tela = window.innerWidth;
-        let n = 5;
-
-
-        if(tela < 500){
-          n = 2;
-        }
-
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: n,
-            spaceBetween: 30,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            });
-
-    </script>
    
 </body>
 </html>

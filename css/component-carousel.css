@@ -26,8 +26,7 @@
     position: absolute;
     /* Vertically aligns in the center */
     top: 0;
-    /* transform: translateY(-50%); */
-
+    bottom: 0;
     background-color: var(--primary-color-90alpha);
     color: #fff;
 
@@ -90,12 +89,15 @@ USING THE {.component-carousel .carousel-container .carousel-items .item.yourNew
 
 .component-carousel .carousel-container .carousel-items .item a.link-item-container p.small-one {
     padding: 8px;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
 
     grid-row: 2/3;
     grid-column: 1/-1;
     z-index: 1;
     
     color: white;
-
-    text-align: center;
+    background-image: var(--background-gradient-black);
 }

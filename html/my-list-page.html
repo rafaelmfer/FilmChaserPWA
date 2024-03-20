@@ -6,108 +6,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Common CSS -->
     <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/desktop.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-navigation.css">
+    <link rel="stylesheet" href="../css/component-tab.css">
+    <link rel="stylesheet" href="../css/component-filter.css">
+    <link rel="stylesheet" href="../css/component-search-bar.css">
+    <link rel="stylesheet" href="../css/component-carousel-title.css">
+    <link rel="stylesheet" href="../css/component-carousel.css">
     <link rel="stylesheet" href="../css/card-movie-series.css">
+
+    <!-- Screen CSS -->
     <link rel="stylesheet" href="../css/page-my-list.css">
 
+    <!-- Screen Javascript -->
     <script type="module" src="../js/my-list-page.js" defer></script>
 </head>
 
 <body>
 
-    <header>
-        <div class="logoTitle">
-            <img src="../resources/imgs/logo.png" class="logo" alt="" srcset="">
-            <a href="home.html">
-                <h5>FilmChaser</h5>
+    <!-- COMPONENT NAVIGATION-DESKTOP -->
+    <nav class="film-chaser component-nav-desktop">
+        <div class="navigation-wrapper">
+            <div class="logo-page-navigation-wrapper">
+                <ul>
+                    <li>
+                        <a class="film-chaser app-name-logo" href="#">
+                            <img src="../resources/imgs/logo.png" alt="logo">
+                            <h5 class="app-name">FilmChaser</h5>
+                        </a>
+                    </li>
+                </ul>
+                <!-- PUT THE CLASS "active" in one of the links of the page -->
+                <ul>
+                    <li class="nav-links">
+                        <a href="home.html">
+                            <img src="../resources/icons/icons-default/default-home.svg" alt="home">
+                            <h6>Home</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="discover.html">
+                            <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
+                            <h6>Discover</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links active">
+                        <a href="">
+                            <img src="../resources/icons/icons-active/active-list.svg" alt="my list">
+                            <h6>MyList</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="settings.html">
+                            <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
+                            <h6>Settings</h6>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="notification-profile-wrapper">
+                <ul>
+                    <li class="nav-links">
+                        <a href="">
+                            <img src="../resources/icons/icons-default/default-notification.svg" alt="notification">
+                            <h5>Notification</h5>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="">
+                            <img src="../resources/imgs/profile/profile2.png" alt="home">
+                            <h5>Zara Everett</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="film-chaser tab-layout">
+        <div class="component-tab-container">
+            <a class="watchList" href="#watchlist">
+                <div class="tab-underline active">
+                    <div class="tab button-text">
+                        <p>WatchList</p>
+                    </div>
+                </div>
+            </a>
+            <a class="upcoming" href="#upcoming">
+                <div class="tab-underline">
+                    <div class="tab button-text">
+                        <p>Upcoming</p>
+                    </div>
+                </div>
+            </a>
+            <a class="completed" href="#completed">
+                <div class="tab-underline">
+                    <div class="tab button-text">
+                        <p>Completed</p>
+                    </div>
+                </div>
             </a>
         </div>
+    </section>
 
-        <nav>
-            <ul>
-                <li>
-                    <a href="home.html">
-                        <span class="material-symbols-outlined">home</span>
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="discover.html">
-                        <span class="material-symbols-outlined">saved_search</span>
-                        Discover
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="material-symbols-outlined">list_alt</span>
-                        My List
-                    </a>
-                </li>
-                <li>
-                    <a href="settings.html">
-                        <span class="material-symbols-outlined">settings</span>
-                        Settings
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="userNotify">
-            <ul>
-                <li>
-                    <span class="material-symbols-outlined">notifications</span>
-                    Notification
-                </li>
-                <li>
-                    <span class="material-symbols-outlined">notifications</span>
-                    Name
-                </li>
-            </ul>
-        </div>
-    </header>
-
-    <section class="mainTop">
-        <div class="divUlMovies">
-            <ul class="topLinks">
-                <li><a href="#watchlist">Watch List</a></li>
-                <li><a href="#upcoming">Upcoming List</a></li>
-                <li><a href="#completed">Completed</a></li>
-            </ul>
-        </div>
-
-        <div class="searchMovies">
-            <ul class="ulMovies">
-                <li>All</li>
-                <li>Movies</li>
-                <li>TV</li>
-                <li style="
-                    padding: 0;
-                    border: 1px solid white;
-                    /* max-height: fit-content; */
-                    height: 20px">
-                </li>
-                <li>icon</li>
-                <li><span class="material-symbols-outlined">filter_alt</span></li>
-            </ul>
-
-            <ul class="ulSearch">
-                <div>
-                    <li><span id="btnSearch" class="material-symbols-outlined">search</span></li>
-                    <li style="
-                    width: 100%;
-                "><input type="text" id="search_field" class="searchField"></li>
+    <section class="film-chaser filter-and-search">
+        <div class="component-filter">
+            <div class="component-filter--left">
+                <div class="filter-category all active">
+                    <p class="all-p active">All</p>
                 </div>
-            </ul>
+                <div class="filter-category movies">
+                    <p class="movies-p">Movies</p>
+                </div>
+                <div class="filter-category tv">
+                    <p class="tv-p">TV</p>
+                </div>
+            </div>
+            <div class="component-filter--right">
+                <div class="filter-platform">
+                    <img class="filter-platform-icons" src="../resources/icons/streaming-service-logo/round-subscribe-netflix-primevideo.png" alt="filter-platform">
+                </div>
+            </div>
         </div>
 
+        <div class="component-search-bar">
+            <img class="search-bar--icon" src="../resources/icons/icons-default/default-discover.svg" alt="discover-icon">
+            <input class="search-input body-text" type="text" placeholder="Search for a show, movie, actor">
+        </div>
     </section>
 
     <main>
         <div class="page" id="watchlist">
-            <section id="list-watching">
+            <section class="list-watching">
                 <h4 class="film-chaser list-title">Watching</h4>
-                <div class="watching-cards-container">
+                <div class="watching-cards-container hidden">
                     <article class="film-chaser card-movie-series hidden">
                         <a href="single_movie.html">
                             <img src="../resources/imgs/logo.png" alt="" width="154" height="231">
@@ -119,7 +156,6 @@
                             <div class="film-chaser year-rate-time">
                                 <p class="small-one">2022</p>
                                 <p class="small-one">5.7/10</p>
-                                <p class="small-one">2h30min</p>
                             </div>
                             <p class="film-chaser synopsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, totam.</p>
                             <button class="film-chaser watch-now">
@@ -134,7 +170,7 @@
             <section class="list-havent-started">
                 <h4 class="film-chaser list-title">Haven't Watched</h4>
 
-                <div class="havent-started-cards-container">
+                <div class="havent-started-cards-container hidden">
                     <article class="film-chaser card-movie-series hidden">
                         <img src="../resources/imgs/logo.png" alt="" width="150" height="225">
                         <div class="film-chaser movie-series-info">
@@ -142,7 +178,6 @@
                             <div class="film-chaser year-rate-time">
                                 <p class="small-one">2022</p>
                                 <p class="small-one">5.7/10</p>
-                                <p class="small-one">2h30min</p>
                             </div>
                             <p class="film-chaser synopsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, totam.</p>
                             <button class="film-chaser watch-now">
@@ -200,8 +235,36 @@
         </div>
     </main>
 
-    <footer>
-        <h1>footer</h1>
+    <!-- COMPONENT NAVIGATION-MOBILE -->
+    <footer class="component-nav-mobile">
+        <nav class="nav-mobile">
+            <ul>
+                <li class="nav-links">
+                    <a href="home.html">
+                        <img src="../resources/icons/icons-default/default-home.svg" alt="home">
+                        <h1 class="small-two">Home</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="discover.html">
+                        <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
+                        <h1 class="small-two">Discover</h1>
+                    </a>
+                </li>
+                <li class="nav-links active">
+                    <a href="">
+                        <img src="../resources/icons/icons-active/active-list.svg" alt="my list">
+                        <h1 class="small-two">MyList</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="settings.html">
+                        <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
+                        <h1 class="small-two">Settings</h1>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </footer>
 
 </body>

@@ -4,11 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Common CSS -->
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/common.css">
+
     <!-- Components CSS -->
     <link rel="stylesheet" href="../css/component-navigation.css">
+    <link rel="stylesheet" href="../css/component-filter.css">
+    <link rel="stylesheet" href="../css/component-search-bar.css">
     <link rel="stylesheet" href="../css/component-carousel-title.css">
     <link rel="stylesheet" href="../css/component-carousel.css">
 
@@ -35,7 +41,7 @@
                         </a>
                     </li>
                 </ul>
-                <!-- PUT THE CLASS "active" in one of the links of the page -->
+                <!-- PUT THE CLASS "active" and change the icon in one of the links of the page -->
                 <ul>
                     <li class="nav-links active">
                         <a href="">
@@ -44,19 +50,19 @@
                         </a>
                     </li>
                     <li class="nav-links">
-                        <a href="">
+                        <a href="discover.html">
                             <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
                             <h6>Discover</h6>
                         </a>
                     </li>
                     <li class="nav-links">
-                        <a href="">
+                        <a href="my-list-page.html">
                             <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
-                            <h6>My List</h6>
+                            <h6>MyList</h6>
                         </a>
                     </li>
                     <li class="nav-links">
-                        <a href="">
+                        <a href="settings.html">
                             <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
                             <h6>Settings</h6>
                         </a>
@@ -90,19 +96,29 @@
     </section>
 
     <section class="film-chaser filter-and-search">
-        <!-- Replace this div with component -->
-        <div class="filter" style="height: 56px;
-        width: 390px;
-        background-color: var(--secondary-color);"></div>
+        <div class="component-filter">
+            <div class="component-filter--left">
+                <div class="filter-category all active">
+                    <p class="all-p active">All</p>
+                </div>
+                <div class="filter-category movies">
+                    <p class="movies-p">Movies</p>
+                </div>
+                <div class="filter-category tv">
+                    <p class="tv-p">TV</p>
+                </div>
+            </div>
+            <div class="component-filter--right">
+                <div class="filter-platform">
+                    <img class="filter-platform-icons" src="../resources/icons/streaming-service-logo/round-subscribe-netflix-primevideo.png" alt="filter-platform">
+                </div>
+            </div>
+        </div>
 
-        <!-- Replace this div with component -->
-        <div class="search" style="height: 44px;
-        width: 400px;
-        margin-left: 48px;
-        border-radius: 25px;
-        background-color: var(--secondary-color);
-        "></div>
-    </section>
+        <div class="component-search-bar">
+            <img class="search-bar--icon" src="../resources/icons/icons-default/default-discover.svg" alt="discover-icon">
+            <input class="search-input body-text" type="text" placeholder="Search for a show, movie, actor">
+        </div>
     </section>
 
     <main class="film-chaser home-carousel">
@@ -158,19 +174,19 @@
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="">
+                    <a href="discover.html">
                         <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
                         <h1 class="small-two">Discover</h1>
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="">
+                    <a href="my-list-page.html">
                         <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
-                        <h1 class="small-two">My List</h1>
+                        <h1 class="small-two">MyList</h1>
                     </a>
                 </li>
                 <li class="nav-links">
-                    <a href="">
+                    <a href="settings.html">
                         <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
                         <h1 class="small-two">Settings</h1>
                     </a>

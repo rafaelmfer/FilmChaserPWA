@@ -1,3 +1,7 @@
+body {
+    min-width: 320px;
+}
+
 .hidden {
     display: none;
 }
@@ -8,35 +12,109 @@ a {
     text-decoration: none;
 }
 
+section.filter-and-search .filter {
+    min-width: 280px;
+    height: 56px;
+    margin-top: 24px;
 
-/* img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-} */
+    background-color: var(--secondary-color);
+}
+
+section.filter-and-search .component-search-bar {
+    margin: 0 16px;
+    margin-top: 20px;
+}
 
 main {
-    padding: 0 3rem 2rem 3rem;
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 main section {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 main section h4 {
-    margin-bottom: 24px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+    padding: 4px 8px;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--secondary-color);
+
+    font-size: var(--font-mob-body);
 }
 
 main section .watching-cards-container,
 main section .havent-started-cards-container {
-    display: flex;
+    display: none;
+}
+
+main section .watching-cards-container-mobile .item,
+main section .havent-started-cards-container-mobile .item {
+    margin-bottom: 8px;
+}
+
+main .upcoming-container,
+main .completed-container {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 360px);
     gap: 20px;
 }
 
-main .upcoming-container, 
-main .completed-container { 
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 360px);
-    gap: 20px
-}
+@media screen and (min-width: 450px) {
+    section.filter-and-search .filter {
+        min-width: 280px;
+        height: 56px;
+        margin-top: 0px;
+    
+        
+        background-color: var(--secondary-color);
+    }
 
+    section.filter-and-search .component-search-bar {
+        margin-top: unset;
+        margin-left: 42px;
+    }
+
+    main {
+        margin-left: 72px;
+        margin-right: unset;
+    }
+
+    main section {
+        display: block;
+    }
+
+    main section h4 {
+        margin-bottom: 24px;
+        margin-top: unset;
+        padding: unset;
+        border-radius: unset;
+
+        justify-content: start;
+
+        background-color: unset;
+
+        font-size: var(--font-size-h4);
+    }
+
+    main section .watching-cards-container-mobile,
+    main section .havent-started-cards-container-mobile {
+        display: none;
+    }
+
+    main section .watching-cards-container,
+    main section .havent-started-cards-container {
+        display: block;
+    }
+}

@@ -1,0 +1,45 @@
+.component-tab-container {
+    display: flex;
+}
+
+.component-tab-container a.watchList,
+.component-tab-container a.upcoming,
+.component-tab-container a.completed {
+    text-decoration: none;
+    flex-grow: 1;
+    flex-basis: 33.333%;
+}
+
+.component-tab-container a.watchList .tab-underline,
+.component-tab-container a.upcoming .tab-underline,
+.component-tab-container a.completed .tab-underline {
+    height: 53px;
+
+    color: var(--tertiary-color);
+    background-color: var(--divider-color-one);
+}
+
+.component-tab-container a.watchList .tab-underline.active,
+.component-tab-container a.upcoming .tab-underline.active,
+.component-tab-container a.completed .tab-underline.active {
+    background-image: var(--background-gradient);
+}
+
+.component-tab-container a.watchList .tab-underline .tab,
+.component-tab-container a.upcoming .tab-underline .tab,
+.component-tab-container a.completed .tab-underline .tab {
+    height: 50px;
+
+    background: var(--primary-color);
+    color: var(--tertiary-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.component-tab-container a.watchList .tab-underline.active .tab,
+.component-tab-container a.upcoming .tab-underline.active .tab,
+.component-tab-container a.completed .tab-underline.active .tab {
+    color: var(--text-color-one);
+}

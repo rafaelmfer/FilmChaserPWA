@@ -97,17 +97,18 @@ export function createCarousel(films, createItemFunction) {
 /**
  * Function to initialize the behavior of a carousel.
  * @param {Object} carousel - An object containing the carousel components.
+ * @param {Number} widthItem - A number representing the item's width in pixels.
+ * @param {Number} marginItem - A number  representing the space between items in pixels.
  */
-export function initializeCarousel(carousel) {
+export function initializeCarousel(carousel, widthItem, marginItem) {
     // Constants for carousel
-    var itemWidth = 154;
-    var itemMargin = 8;
+    var itemWidth = widthItem || 154;
+    var itemMargin = marginItem || 8;
     var currentIndex = 0;
 
     // Function to update carousel visibility
     function updateCarousel() {
         var containerWidth = carousel.container.offsetWidth;
-        console.log("ANCHO DEL ELEMENTO", containerWidth);
         var numVisibleItems = Math.floor(
             containerWidth / (itemWidth + itemMargin)
         );
@@ -158,7 +159,66 @@ export function initializeCarousel(carousel) {
     
     updateCarousel();
 }
+// SECOND CAROUSEL FOR THE EPISODES
+export function initializeCarousel_episodes(carousel) {
+    // Constants for carousel
+    var itemWidth = 304;
+    var itemMargin = 8;
+    var currentIndex = 0;
 
+    // Function to update carousel visibility
+    function updateCarousel() {
+        var containerWidth = carousel.container.offsetWidth;
+        var numVisibleItems = Math.floor(
+            containerWidth / (itemWidth + itemMargin)
+        );
+        var maxIndex = Math.max(
+            0,
+            carousel.items.children.length - numVisibleItems
+        );
+        carousel.nextButton.classList.toggle("hide", currentIndex >= maxIndex);
+        carousel.prevButton.classList.toggle("hide", currentIndex <= 0);
+    }
+
+    // Function to update carousel position
+    function updateCarouselPosition() {
+        var newPosition = -1 * (itemWidth + itemMargin) * currentIndex;
+        carousel.items.style.transform = `translateX(${newPosition}px)`;
+        updateCarousel();
+    }
+
+    // Event listeners for previous and next buttons
+    carousel.prevButton.addEventListener("click", function () {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarouselPosition();
+        }
+    });
+
+    carousel.nextButton.addEventListener("click", function () {
+        var containerWidth = carousel.container.offsetWidth;
+        var numVisibleItems = Math.floor(
+            containerWidth / (itemWidth + itemMargin)
+        );
+        var maxIndex = Math.max(
+            0,
+            carousel.items.children.length - numVisibleItems
+        );
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarouselPosition();
+        }
+    });
+
+    // Event listener for window resize
+    window.addEventListener("resize", function () {
+        updateCarousel();
+    });
+
+    // Initialize carousel
+    
+    updateCarousel();
+}
 //**********************SEARCH--->MOVIE********************************** */
 export const options = {
     method: "GET",

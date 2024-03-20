@@ -12,6 +12,10 @@ section.filter-and-search {
     grid-column: 2/3;
 }
 
+section.filter-and-search .component-search-bar {
+    display: none;
+}
+
 .hidden {
     display: none;
 }
