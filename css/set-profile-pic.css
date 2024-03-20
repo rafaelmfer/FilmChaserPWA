@@ -289,7 +289,7 @@ img{
     border: 3px solid var(--primary);
     background-color: var(--secondary);
     border-radius: 10px;
-    top: 0;
+    top: -100%;
     width: 300px;
     left: calc (50% - 300px);
     z-index: 3;
