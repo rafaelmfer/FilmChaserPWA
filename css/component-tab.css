@@ -1,44 +1,34 @@
-/* the black color is just for showing layout */
-body{
-    background-color: black;
-}
-
-.tab-container{
+.component-tab-container {
     display: flex;
 }
 
-a.watchList,
-a.upcoming,
-a.completed
-{
+.component-tab-container a.watchList,
+.component-tab-container a.upcoming,
+.component-tab-container a.completed {
     text-decoration: none;
+    flex-grow: 1;
+    flex-basis: 33.333%;
 }
 
-.watchList .tab-underline,
-.upcoming .tab-underline,
-.completed .tab-underline,
-.tab-underline-blank-space
-{
-    width: 230px;
-    height: 53.538px;
+.component-tab-container a.watchList .tab-underline,
+.component-tab-container a.upcoming .tab-underline,
+.component-tab-container a.completed .tab-underline {
+    height: 53px;
 
-    background-color:var(--divider-color-one);
+    color: var(--tertiary-color);
+    background-color: var(--divider-color-one);
 }
 
-.watchList .tab-underline.active,
-.upcoming .tab-underline.active,
-.completed .tab-underline.active
- {
+.component-tab-container a.watchList .tab-underline.active,
+.component-tab-container a.upcoming .tab-underline.active,
+.component-tab-container a.completed .tab-underline.active {
     background-image: var(--background-gradient);
 }
 
-.watchList .tab-underline .tab,
-.upcoming .tab-underline .tab,
-.completed .tab-underline .tab
-{
-    width: 230px;
-    height: 50.72px;
-    /* underline height: 53.538-50.72= 2.818px */
+.component-tab-container a.watchList .tab-underline .tab,
+.component-tab-container a.upcoming .tab-underline .tab,
+.component-tab-container a.completed .tab-underline .tab {
+    height: 50px;
 
     background: var(--primary-color);
     color: var(--tertiary-color);
@@ -48,9 +38,8 @@ a.completed
     align-items: center;
 }
 
-/* the black color is just for showing layout */
-.tab-underline-blank-space .blank-space{
-    width: 230px;
-    height: 50.72px;
-    background-color: black;
+.component-tab-container a.watchList .tab-underline.active .tab,
+.component-tab-container a.upcoming .tab-underline.active .tab,
+.component-tab-container a.completed .tab-underline.active .tab {
+    color: var(--text-color-one);
 }

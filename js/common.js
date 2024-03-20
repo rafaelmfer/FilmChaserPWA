@@ -97,11 +97,13 @@ export function createCarousel(films, createItemFunction) {
 /**
  * Function to initialize the behavior of a carousel.
  * @param {Object} carousel - An object containing the carousel components.
+ * @param {Number} widthItem - A number representing the item's width in pixels.
+ * @param {Number} marginItem - A number  representing the space between items in pixels.
  */
-export function initializeCarousel(carousel) {
+export function initializeCarousel(carousel, widthItem, marginItem) {
     // Constants for carousel
-    var itemWidth = 154;
-    var itemMargin = 8;
+    var itemWidth = widthItem || 154;
+    var itemMargin = marginItem || 8;
     var currentIndex = 0;
 
     // Function to update carousel visibility
