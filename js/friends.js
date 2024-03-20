@@ -4,24 +4,21 @@ import { createCarousel, initializeCarousel } from "./common.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 let mainFriends = document.getElementById("main-Friends");
-let mainDiscover = document.getElementById("mainDiscover");
 let mainDiscover2 = document.getElementById("mainDiscover2");
 let mainFilmChaser = document.getElementById("main-film-chaser");
 
 let activeShowsMovies = document.querySelector("#active-shows-movies");
 let activeFriends = document.querySelector("#active-friends");
-let sectionMovies = document.querySelector(".section_movies")
 
 activeFriends.addEventListener("click", () => {
     mainFriends.classList.add("active");
-    mainDiscover.classList.add("notActive");
     mainDiscover2.classList.add("notActive");
     mainFilmChaser.classList.add("notActive");
+    console.log("clicado friends ")
 });
 
 activeShowsMovies.addEventListener("click", () => {
     mainFriends.classList.remove("active");
-    mainDiscover.classList.add("notActive");
     mainDiscover2.classList.add("notActive");
     mainFilmChaser.classList.remove("notActive")
     console.log("clicado show ")
@@ -64,7 +61,9 @@ function createSectionWithFilms(name, films) {
     headerDiv.classList.add("section-header");
 
     var nameHeader = document.createElement("h4");
-    nameHeader.textContent = `${name}'s Watchlist`;
+    nameHeader.textContent = `${name.toLowerCase()}'s Watchlist`;
+    
+    nameHeader.style.textTransform  = "capitalize";
 
     var viewProfileDiv = document.createElement("div");
     viewProfileDiv.classList.add("view-profile");

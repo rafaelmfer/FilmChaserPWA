@@ -22,9 +22,9 @@
     --divider-color-one: rgba(255, 255, 255, 0.12);
 
     --background-selected: #283237;
-
-    /* --background-gradient: linear-gradient(270deg, var(--accent-color-one), #72465D, var(--accent-color-two)); */
-    --background-gradient: linear-gradient(281deg, #ec764f -16.78%, #72465d 46.56%, #2e5df3 143.11%);
+    
+    --background-gradient: linear-gradient(281deg, var(--accent-color-one) -16.78%, #72465d 46.56%, var(--accent-color-two) 143.11%);
+    --background-gradient-black: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 3.57%, rgba(0, 0, 0, 0.52) 30.06%, #000 100%);
 
     --font-size-h1: 47.78px;
     --font-size-h2: 39.81px;

@@ -4,6 +4,8 @@
 
 .component-carousel-with-profile .section-header {
     display: flex;
+    flex-flow: row wrap;
+    gap: 0 16px;
     justify-content: space-between;
     margin-bottom: 16px;
 }

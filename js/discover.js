@@ -4,6 +4,31 @@ import { checkSession } from "./auth.js";
 import { createCarousel, initializeCarousel } from "./common.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
+// TAB LAYOUT =================================================================
+const showsMovies = document.querySelector(".firstTab");
+const friends = document.querySelector(".secondTab");
+
+showsMovies.addEventListener("click", (e) => {
+    showsMovies.querySelector(".tab-underline").classList.add("active");
+
+    try {
+        friends.querySelector(".tab-underline").classList.remove("active");
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+friends.addEventListener("click", (e) => {
+    friends.querySelector(".tab-underline").classList.add("active");
+
+    try {
+        showsMovies.querySelector(".tab-underline").classList.remove("active");
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+// ===============================================================================
 let arrayRecommendation = [];
 let arrayTrending = [];
 let arrayUpcoming = [];
@@ -27,6 +52,8 @@ let arrayThriller = [];
 let arrayReality = [];
 let arrayWar = [];
 
+const user = await checkSession();
+document.getElementById("userName").innerHTML = user.displayName;
 
 // Function to call with delay and pair functions
 function callWithDelayAndPairs(func1, func2, delay) {
@@ -53,8 +80,8 @@ function callNextTwoFunctions(index, delay) {
 }
 
 const genreFunctions = [
-    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({}, data => successCB(data, "You Might Like", arrayTrending), errorCB),
-    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({ page:2 }, data => successCB(data, "You Might Like", arrayTrending), errorCB),
+    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({}, data => successCB(data, "Trend", arrayTrending), errorCB),
+    () => theMovieDb.discover.getMoviesTvShowsTrendingDay({ page:2 }, data => successCB(data, "Trend", arrayTrending), errorCB),
 
     // Gênero Adventure
     () => theMovieDb.discover.getMovies({ with_genres: 12 }, data => successCB(data, "Adventure", arrayAdventure), errorCB),
@@ -215,7 +242,7 @@ function createSectionWithFilms(name, films) {
     section.appendChild(contentDiv);
 
     // Adding the section to the main element
-    var mainFriends = document.querySelector(".home-carousel");
+    var mainFriends = document.querySelector(".discover-carousel");
     mainFriends.appendChild(section);
 
     // Initialize carousel

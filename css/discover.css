@@ -1,9 +1,3 @@
-.mainTop .divUlMovies .topLinks #active-shows-movies:hover,
-.mainTop .divUlMovies .topLinks #active-friends:hover {
-    cursor: pointer;
-
-}
-
 .mainTop .searchMovies .ulMovies {
     display: flex;
 }
@@ -12,38 +6,55 @@
     display: none;
 }
 
-.div_image {
-    padding: 0.5rem;
+.film-chaser.discover-carousel {
+    margin-top: 24px;
+    display: block;
 }
 
-.mainDiscover.notActive {
-    display: none;
-}
-
-.main-Friends{
-    display: none;
-}
-
-.film-chaser.home-carousel{
-    display: block ;
-}
-
-.film-chaser.home-carousel.noActive{
+.film-chaser.home-carousel.noActive {
     display: block !important;
 }
 
-
 /************************* FRIENDS *******************************/
 .main-Friends {
+    margin-top: 24px;
     display: none;
-    flex-direction: column;
-    gap: 2rem;
 }
 
 .main-Friends.active {
     display: flex;
+    flex-direction: column;
 }
 
 .main-Friends .hidden {
     display: none;
+}
+
+/* --------------------------- SEARCH -----------------------------*/
+section.filter-and-search .component-search-bar {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.div-grid-detail {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(154px, 160px));
+    gap: 24px 16px;
+}
+
+.div-grid-detail img {
+    width: 154px;
+    height: 231px;
+}
+
+.div-grid-detail a {
+    color: var(--text-color-one);
+    text-decoration: none;
+}
+
+@media screen and (min-width: 450px) {
+    section.filter-and-search .component-search-bar {
+        margin-top: unset;
+        margin-left: 42px;
+    }
 }

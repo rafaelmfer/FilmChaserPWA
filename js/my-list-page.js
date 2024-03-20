@@ -30,10 +30,10 @@ function navigateToPage(event) {
     return;
 }
 
-// ============================================================================
-const watchList = document.querySelector(".watchList");
-const upcoming = document.querySelector(".upcoming");
-const completed = document.querySelector(".completed");
+// TAB LAYOUT ============================================================================
+const watchList = document.querySelector(".firstTab");
+const upcoming = document.querySelector(".secondTab");
+const completed = document.querySelector(".thirdTab");
 
 watchList.addEventListener("click", (e) => {
     watchList.querySelector(".tab-underline").classList.add("active");
@@ -41,7 +41,9 @@ watchList.addEventListener("click", (e) => {
     try {
         upcoming.querySelector(".tab-underline").classList.remove("active");
         completed.querySelector(".tab-underline").classList.remove("active");
-    } catch (error) {}
+    } catch (error) {
+        console.log(error)
+    }
 });
 
 upcoming.addEventListener("click", (e) => {
@@ -50,7 +52,9 @@ upcoming.addEventListener("click", (e) => {
     try {
         watchList.querySelector(".tab-underline").classList.remove("active");
         completed.querySelector(".tab-underline").classList.remove("active");
-    } catch (error) {}
+    } catch (error) {
+        console.log(error)
+    }
 });
 
 completed.addEventListener("click", (e) => {
@@ -59,11 +63,15 @@ completed.addEventListener("click", (e) => {
     try {
         watchList.querySelector(".tab-underline").classList.remove("active");
         upcoming.querySelector(".tab-underline").classList.remove("active");
-    } catch (error) {}
+    } catch (error) {
+        console.log(error)
+    }
 });
 
 // ============================================================================
 const user = await checkSession();
+document.getElementById("userName").innerHTML = user.displayName;
+
 let documentId = user.uid;
 // let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
 let documentDbPath = `users/${documentId}`;
@@ -160,7 +168,7 @@ setTimeout(() => {
         var div = createItemMovieSeriesCard(item);
         document.querySelector(".upcoming-container").appendChild(div);
     });
-}, "1000");
+}, 500);
 
 // COMPLETED PAGE ===============================================================
 let watchlistCompletedArray = await getDocsByQuery(
