@@ -447,3 +447,57 @@ section.section-content--external-wrapper {
   }
 
 
+  /* DESKTOP */
+
+
+  @media screen and (min-width:450px) {
+    #mainDiscover {
+        margin: 0;
+        grid-column: 2 / 3;
+        grid-row: 1 / -1;
+    }
+
+    .movie-header {
+        padding-left: 72px;
+        padding-bottom: .5rem;
+        aspect-ratio: 3;
+
+    }
+
+    /* ---------------------------- */
+    .information-container {
+        justify-content: flex-start;
+        gap: .5rem;
+
+        > div {
+            border-bottom: 1px solid #535353;
+            padding: 1rem 0;
+            margin: 1rem 0;
+        }
+    }
+
+    .section--where-to-watch h3 {
+        font-size: var(--font-size-h4);
+    }
+    .section--where-to-watch h4 {
+        font-size: var(--font-size-h6);
+        margin-bottom: .5rem;
+    }
+
+    .section--where-to-watch .js-not-subscribed, .section--where-to-watch .js-subscribed {
+        gap: .5rem;
+    }
+
+    /* -------------------- */
+    .section--movie-info h3 {
+        font-size: var( --font-size-h6);
+    }
+
+    .section--movie-info-details {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+
+} 
