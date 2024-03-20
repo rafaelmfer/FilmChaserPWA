@@ -1,5 +1,7 @@
+.component-carousel .carousel-container .carousel-items .item.card-movie-series,
 .card-movie-series {
-    max-width: 360px;
+    width: 360px;
+
     border-radius: 4px;
 
     display: flex;
@@ -11,7 +13,8 @@
     display: inline-block;
 }
 
-.card-movie-series a img {
+.card-movie-series a .movie-series--poster {
+    max-width: 154px;
     vertical-align: bottom;
 
     border-radius: 4px;
@@ -19,7 +22,7 @@
     flex-shrink: 0;
 }
 
-.card-movie-series .movie-series-info {
+.card-movie-series .movie-series--info {
     padding: 0 24px;
 
     overflow-y: scroll;
@@ -27,28 +30,28 @@
     flex-direction: column;
 }
 
-.card-movie-series .movie-series-info .movie-series-title {
+.card-movie-series .movie-series--info .movie-series--title {
     margin-top: 24px;
 }
 
-.card-movie-series .movie-series-info .year-rate-time {
+.card-movie-series .movie-series--info .year-rate-time {
     margin-top: 8px;
     display: flex;
 }
 
-.card-movie-series .movie-series-info .year-rate-time p {
+.card-movie-series .movie-series--info .year-rate-time p {
     padding-right: 8px;
 }
 
-.card-movie-series .movie-series-info .year-rate-time p:not(:first-child) {
+.card-movie-series .movie-series--info .year-rate-time p:not(:first-child) {
     padding-left: 8px;
 }
 
-.card-movie-series .movie-series-info .year-rate-time p:not(:last-child) {
+.card-movie-series .movie-series--info .year-rate-time p:not(:last-child) {
     border-right: 1px solid var(--text-color-one);
 }
 
-.card-movie-series .movie-series-info .synopsis {
+.card-movie-series .movie-series--info .synopsis {
     margin-top: 8px;
 
     display: -webkit-box;
@@ -58,7 +61,7 @@
     text-overflow: ellipsis;
 }
 
-.card-movie-series .movie-series-info .watch-now {
+.card-movie-series .movie-series--info .watch-now {
     min-height: 32px;
     margin-top: 16px;
     border-radius: 5px;
@@ -71,4 +74,10 @@
     background-color: var(--primary-color);
 
     color: var(--text-color-one);
+}
+
+@media screen and (max-width: 450px) {
+    .card-movie-series {
+        max-width: 350px;
+    }
 }

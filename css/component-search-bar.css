@@ -1,52 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap');
+.component-search-bar {
+    min-width: 288px;
+    padding: 0 8px;
 
-body{
-    background-color: black;
-}
 
-.searchBarDiv{
     display: flex;
-    width: 360px;
-
-    padding: 4px;
-    align-items: center;
     gap: 4px;
-
-    background-color: var(--secondary-color);
-    border-radius: 25px;
-    padding: 10px
-}
-
-img{
-    display: flex;
-    width: 24px;
-    height: 24px;
-    padding: 3px 4px 4px 3px;
-    justify-content: center;
     align-items: center;
-    flex-shrink: 0;
-}
-
-
-.searchInput{
-    width: 250px;
-    height: auto;
 
     background-color: var(--secondary-color);
-    color: var(--tertiary-color);
-
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    border-radius: 100px;
 }
 
-input::placeholder{
+.component-search-bar .search-bar--icon {
+    width: 48px;
+    height: 48px;
+    display: block;
+    padding: 12px;
+}
+
+.component-search-bar .search-input {
+    width: 100%;
+    padding-right: 16px;
+
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
+}
+
+.component-search-bar .search-input::placeholder {
     color: var(--tertiary-color);
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    text-overflow: ellipsis;
+}
+
+.component-search-bar .search-input:focus {
+    outline: none;
 }

@@ -9,6 +9,7 @@ import {
     getAllDocsInSubcollection,
     getDocsByQuery,
 } from "./firestore.js";
+import { createCarousel, initializeCarousel } from "./common.js";
 
 // related to SPA ============================================================
 const allPages = document.querySelectorAll("div.page");
@@ -28,6 +29,38 @@ function navigateToPage(event) {
     }
     return;
 }
+
+// ============================================================================
+const watchList = document.querySelector(".watchList");
+const upcoming = document.querySelector(".upcoming");
+const completed = document.querySelector(".completed");
+
+watchList.addEventListener("click", (e) => {
+    watchList.querySelector(".tab-underline").classList.add("active");
+
+    try {
+        upcoming.querySelector(".tab-underline").classList.remove("active");
+        completed.querySelector(".tab-underline").classList.remove("active");
+    } catch (error) {}
+});
+
+upcoming.addEventListener("click", (e) => {
+    upcoming.querySelector(".tab-underline").classList.add("active");
+
+    try {
+        watchList.querySelector(".tab-underline").classList.remove("active");
+        completed.querySelector(".tab-underline").classList.remove("active");
+    } catch (error) {}
+});
+
+completed.addEventListener("click", (e) => {
+    completed.querySelector(".tab-underline").classList.add("active");
+
+    try {
+        watchList.querySelector(".tab-underline").classList.remove("active");
+        upcoming.querySelector(".tab-underline").classList.remove("active");
+    } catch (error) {}
+});
 
 // ============================================================================
 const user = await checkSession();
@@ -85,18 +118,47 @@ setTimeout(() => {
     console.log(alreadyWatching);
     console.log(haventStarted);
 
-    alreadyWatching.forEach(function (series) {
-        createMovieSeriesCard(series, ".watching-cards-container");
-    });
+    createListOfMoviesSeries(
+        alreadyWatching,
+        "watching-cards-container",
+        ".list-watching"
+    );
 
     // Haven't Watched - series that you didnt see any episode and movies
-    haventStarted.forEach(function (movie) {
-        createMovieSeriesCard(movie, ".havent-started-cards-container");
+    createListOfMoviesSeries(
+        haventStarted,
+        "havent-started-cards-container",
+        ".list-havent-started"
+    );
+
+    var watchList = document.querySelector(".list-watching");
+    var divContainerWatching = document.createElement("div");
+    divContainerWatching.classList.add("watching-cards-container-mobile");
+    watchList.appendChild(divContainerWatching);
+
+    var haventStartedList = document.querySelector(".list-havent-started");
+    var divContainerHaventStarted = document.createElement("div");
+    divContainerHaventStarted.classList.add("havent-started-cards-container-mobile");
+    haventStartedList.appendChild(divContainerHaventStarted);
+
+    alreadyWatching.forEach(function (item) {
+        var div = createItemMovieSeriesCard(item);
+        document
+            .querySelector(".watching-cards-container-mobile")
+            .appendChild(div);
+    });
+
+    haventStarted.forEach(function (item) {
+        var div = createItemMovieSeriesCard(item);
+        document
+            .querySelector(".havent-started-cards-container-mobile")
+            .appendChild(div);
     });
 
     // UPCOMING PAGE ================================================================
     upcomingArray.forEach(function (item) {
-        createMovieSeriesCard(item, ".upcoming-container");
+        var div = createItemMovieSeriesCard(item);
+        document.querySelector(".upcoming-container").appendChild(div);
     });
 }, "1000");
 
@@ -109,7 +171,8 @@ let watchlistCompletedArray = await getDocsByQuery(
     {}
 );
 watchlistCompletedArray.forEach(function (item) {
-    createMovieSeriesCard(item, ".completed-container");
+    var div = createItemMovieSeriesCard(item);
+    document.querySelector(".completed-container").appendChild(div);
 });
 
 // GENERAL FUNCTIONS ================================================================
@@ -130,38 +193,56 @@ function checkIfEpisodeIsWatched(json) {
     return false;
 }
 
+function createListOfMoviesSeries(films, className, locationId) {
+    // Creating the content of the section
+    var contentDiv = document.createElement("div");
+    contentDiv.classList.add("section-content", className);
+
+    // Creating the carousel
+    var carousel = createCarousel(films, createItemMovieSeriesCard);
+    contentDiv.appendChild(carousel.container);
+
+    // Adding the section to the main element
+    var main = document.querySelector(locationId);
+    main.appendChild(contentDiv);
+
+    // Initialize carousel
+    initializeCarousel(carousel, 360, 8);
+}
+
 // Function that writes the HTML code
-function createMovieSeriesCard(item, locationId) {
+function createItemMovieSeriesCard(item) {
+    var filmDiv = document.createElement("div");
+    filmDiv.classList.add("film-chaser", "item", "card-movie-series");
+
     if (item.media_type == "tv") {
         var path = "single_series.html?id=";
     } else {
         var path = "single_movie.html?id=";
     }
-    // Create the <article> element
-    var article = document.createElement("article");
-    article.classList.add("film-chaser", "card-movie-series");
 
     // Add the movie image
     var hyperlinkImg = document.createElement("a");
     hyperlinkImg.setAttribute("href", path + item.id);
     var img = document.createElement("img");
-    img.src = "http://image.tmdb.org/t/p/w154" + item.poster_path;
+    img.classList.add("movie-series--poster");
+    img.src = theMovieDb.common.images_uri + "w154" + item.poster_path;
     img.alt = item.original_name;
     img.width = 154;
     img.height = 231;
     hyperlinkImg.appendChild(img);
-    article.appendChild(hyperlinkImg);
+    filmDiv.appendChild(hyperlinkImg);
 
     // Create a <div> for the movie information
     var infoDiv = document.createElement("div");
-    infoDiv.classList.add("film-chaser", "movie-series-info");
-    article.appendChild(infoDiv);
+    infoDiv.classList.add("film-chaser", "movie-series--info");
+    filmDiv.appendChild(infoDiv);
 
     // Add the movie title
     var hyperlinkTitle = document.createElement("a");
     hyperlinkTitle.setAttribute("href", path + item.id);
     var title = document.createElement("h6");
-    title.classList.add("film-chaser", "movie-series-title");
+    title.classList.add("film-chaser", "movie-series--title");
     title.textContent = item.title || item.name;
     hyperlinkTitle.appendChild(title);
     infoDiv.appendChild(hyperlinkTitle);
@@ -183,15 +264,9 @@ function createMovieSeriesCard(item, locationId) {
     rate.textContent = Number(item.vote_average).toFixed(1) + "/10";
     yearRateTimeDiv.appendChild(rate);
 
-    // Add the movie duration
-    var duration = document.createElement("p");
-    duration.classList.add("small-one");
-    duration.textContent = "2h30min";
-    yearRateTimeDiv.appendChild(duration);
-
     // Add the movie synopsis
     var synopsis = document.createElement("p");
-    synopsis.classList.add("film-chaser", "synopsis");
+    synopsis.classList.add("film-chaser", "synopsis", "small-one");
     synopsis.textContent = item.overview;
     infoDiv.appendChild(synopsis);
 
@@ -201,7 +276,8 @@ function createMovieSeriesCard(item, locationId) {
     infoDiv.appendChild(watchNowBtn);
 
     var watchNowImg = document.createElement("img");
-    watchNowImg.src = ""; // Place the URL of the "Watch Now" button image if available
+    // Place the URL of the "Watch Now" button image if available
+    watchNowImg.src = "";
     watchNowImg.alt = "Watch Now";
     watchNowImg.width = 18;
     watchNowImg.height = 18;
@@ -212,9 +288,5 @@ function createMovieSeriesCard(item, locationId) {
     watchNowText.textContent = "Watch Now";
     watchNowBtn.appendChild(watchNowText);
 
-    // Add the movie card to the page
-    var container = document.querySelector(locationId);
-    container.appendChild(article);
+    return filmDiv;
 }
-
-// Function that handles the search bar functionality

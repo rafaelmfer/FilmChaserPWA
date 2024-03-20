@@ -1,30 +1,35 @@
-body{
-background-color: black;
-}
-
-.filter-container{
-    width: 340px;
+.component-filter {
+    max-width: 340px;
     height: 53px;
+    margin: 24px auto 0 auto;
     border-radius: 4px;
     background: var(--secondary-color);
 
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 88px;
     align-items: center;
 }
 
-.filter-container-left{
-    width: 266px;
+.component-filter--left {
     height: 22px;
     border-right: solid 1px var(--tertiary-color);
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, 88px);
+    grid-template-columns: repeat(3, 68px);
+    gap: 16px;
     justify-items: center;
     align-content: center;
 }
 
-.filter-container-left .filter-category p{
+.component-filter--left .all-p,
+.component-filter--left .movies-p,
+.component-filter--left .tv-p {
+    padding: 4px 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     color: var(--tertiary-color);
 
     font-family: "Open Sans";
@@ -34,70 +39,31 @@ background-color: black;
     line-height: normal;
 }
 
-.filter-platform .filter-platform-icons{
+.filter-platform .filter-platform-icons {
     height: 21px;
 }
 
-.filter-category{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.filter-category.all.active{
-    width: 40px;
-    height: 30px;
-    border-radius: 2px;
-    background-image: var(--background-gradient); 
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.filter-category.all p.active{
-    color: var(--text-color-one);
-}
-
-.filter-category.movies.active{
-    width: 65px;
-    height: 30px;
-    border-radius: 2px;
-    background-image: var(--background-gradient); 
-    color: var(--text-color-one);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.filter-category.movies p.active{
-    color: var(--text-color-one);
-}
-
-.filter-category.tv.active{
-    width: 37px;
-    height: 30px;
-    border-radius: 2px;
-    background-image: var(--background-gradient); 
-    color: var(--text-color-one);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.filter-category.tv p.active{
-    color: var(--text-color-one);
-}
-
-
-.filter-container-right{
+.component-filter--right {
     justify-self: center;
 }
 
-.filter-platform.active{
+/* HOVER STATE */
+.component-filter--left p:hover {
+    border-radius: 2px;
+    background-image: var(--background-gradient);
+    color: var(--text-color-one);
+}
+
+/* ACTIVE STATE */
+.component-filter--left .all-p.active,
+.component-filter--left .movies-p.active,
+.component-filter--left .tv-p.active {
+    border-radius: 2px;
+    background-image: var(--background-gradient);
+    color: var(--text-color-one);
+}
+
+.filter-platform.active {
     border: 1px solid var(--text-color-one);
     border-radius: 2px;
     height: 30px;
@@ -107,3 +73,10 @@ background-color: black;
     align-items: center;
 }
 
+
+@media screen and (min-width: 450px) {
+    .component-filter {
+        width: 340px;
+        margin: 0px;
+    }
+}
