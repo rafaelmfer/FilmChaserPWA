@@ -2,6 +2,7 @@
 
 import { checkSession } from "./auth.js";
 import { createCarousel, initializeCarousel } from "./common.js";
+import { getInfoDb } from "./firestore.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 // TAB LAYOUT =================================================================
@@ -52,8 +53,12 @@ let arrayThriller = [];
 let arrayReality = [];
 let arrayWar = [];
 
-const user = await checkSession();
-document.getElementById("userName").innerHTML = user.displayName;
+const user = await checkSession();;
+let documentId = user.uid;
+
+const userDoc = await getInfoDb(`users/${documentId}`);
+document.getElementById("userName").innerHTML = userDoc.name;
+document.getElementById("userPicture").src = userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
 
 // Function to call with delay and pair functions
 function callWithDelayAndPairs(func1, func2, delay) {

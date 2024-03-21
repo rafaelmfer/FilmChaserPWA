@@ -12,6 +12,18 @@ a {
     text-decoration: none;
 }
 
+header.component-header-mobile { 
+    border-bottom: 0;
+}
+
+section.tab-layout {
+    position: sticky;
+    top: 64px;
+    z-index: 2;
+
+    background-color: var(--primary-color);
+}
+
 section.filter-and-search .component-search-bar {
     margin: 0 auto;
     margin-top: 20px;
@@ -64,6 +76,13 @@ main .completed-container {
 }
 
 @media screen and (min-width: 450px) {
+    section.tab-layout {
+        position: unset;
+        z-index: 0;
+    
+        background-color: unset;
+    }
+
     section.filter-and-search .component-search-bar {
         margin-top: unset;
         margin-left: 42px;

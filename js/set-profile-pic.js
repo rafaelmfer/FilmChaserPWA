@@ -72,10 +72,9 @@ async function handleEvent(event) {
 btn_save_profile.addEventListener("click", async () => {
     const user = await checkSession();
     console.log("SAVED IN DB")
-    //let documentId = user.uid;
+    let documentId = user.uid;
 
-    // await updateInfoDb(`users/${documentId}`, { profile_photo: imgResult });
-    await updateInfoDb(`users/j7hBgo46ATgnYVdRRGTAA9hyBmB2`, { profile_photo: imgResult });
+    await updateInfoDb(`users/${documentId}`, { profile_photo: imgResult });
 
     window.location.replace("streamingServices.html");
 
