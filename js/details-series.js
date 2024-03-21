@@ -3,7 +3,6 @@
 import { urlInfo,
         createCarousel,
         initializeCarousel,
-        initializeCarousel_episodes,
         options, 
 } from './common.js';
 
@@ -69,12 +68,13 @@ function successCB_series (data) {
     
 
     const movieInfoDetails_votes = document.createElement("div");
+    movieInfoDetails_votes.classList.add("small-size-font");
     const movie_vote_average = document.createElement("p");
     const movie_vote_stars = document.createElement("p");
 
     
     let vote_average = JSON.parse(data).vote_average * 5 / 10 ;
-    movie_vote_average.innerHTML = vote_average.toFixed(2) + "/5 (" + JSON.parse(data).vote_count + ")";
+    movie_vote_average.innerHTML = vote_average.toFixed(2) + " / 5 (" + JSON.parse(data).vote_count + ")";
 
     let star = "";
     let i = 1;
@@ -321,7 +321,7 @@ function createSectionWithFilms(name, films) {
     sectionPictures.appendChild(section);
 
     // Initialize carousel
-    initializeCarousel(carousel);
+    initializeCarousel(carousel, 124, 8);
     
 }
 
@@ -380,9 +380,13 @@ function navigateToPage() {
   const pageId = window.location.hash ? window.location.hash : '#page1';
   for (let page of allPages) {
     if (pageId === '#' + page.id) {
-      page.style.display = 'grid';
+        document.querySelector(`.${page.id}`).classList.toggle('active-tab');
+        page.style.display = 'grid';
+      
     } else {
+        document.querySelector(`.${page.id}`).classList.toggle('active-tab');
       page.style.display = 'none';
+      
     }
   }
   return;
@@ -392,7 +396,7 @@ navigateToPage();
 //init handler for hash navigation
 window.addEventListener('hashchange', navigateToPage);
 
-// CARROUSELS ================================================
+// CARROUSEL SEASONS ================================================
 // Last season that the user watched
 const uSeasonNum = 1;
 theMovieDb.tvSeasons.getById({"id":seriesId, "season_number": uSeasonNum}, successCB_tracking, errorCB);
@@ -419,7 +423,8 @@ function successCB_tracking (data){
     sectionTracking.appendChild(section);
 
     // Initialize carousel
-    initializeCarousel_episodes(carousel);
+    // initializeCarousel_episodes(carousel);
+    initializeCarousel(carousel, 304, 8)
 }
 
  function createEpisodesCard2 (object){

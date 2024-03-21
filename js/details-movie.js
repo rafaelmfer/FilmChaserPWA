@@ -48,7 +48,7 @@ function successCB_movie(data) {
 
     movieTitle.innerHTML = movieDetails.title;
     const movieYear = document.createElement("p");
-    movieYear.innerHTML = movieDetails.release_date.slice(0, 4);
+    movieYear.innerHTML = movieDetails.release_date.slice(0, 4)+ " - ";
     movieGralInfo.appendChild(movieYear);
 
     const movieInfoDetails_child = document.createElement("div");
@@ -68,16 +68,17 @@ function successCB_movie(data) {
     const movie_duration = document.createElement("p");
     const hours = Math.floor(movieDetails.runtime / 60);
     const minutes = movieDetails.runtime % 60;
-    movie_duration.innerHTML = `${hours}h ${minutes}m`;
+    movie_duration.innerHTML = `${hours}h ${minutes}m - `;
     movieGralInfo.appendChild(movie_duration);
 
     const movieInfoDetails_votes = document.createElement("div");
+    movieInfoDetails_votes.classList.add("small-size-font");
     const movie_vote_average = document.createElement("p");
     const movie_vote_stars = document.createElement("p");
 
     let vote_average = (movieDetails.vote_average * 5) / 10;
     movie_vote_average.innerHTML =
-        vote_average.toFixed(2) + "/5 (" + movieDetails.vote_count + ")";
+        vote_average.toFixed(2) + " / 5 (" + movieDetails.vote_count + ")";
 
     let star = "";
     let i = 1;
@@ -328,7 +329,7 @@ function createSectionWithFilms(name, films) {
     sectionPictures.appendChild(section);
 
     // Initialize carousel
-    initializeCarousel(carousel);
+    initializeCarousel(carousel, 124, 8);
     
 }
 
