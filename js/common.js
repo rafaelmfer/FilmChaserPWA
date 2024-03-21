@@ -57,7 +57,7 @@ export function createCarousel(films, createItemFunction) {
     // Creating the carousel items container
     var carouselItems = document.createElement("div");
     carouselItems.classList.add("carousel-items");
-    
+
     // Adding films to the carousel
     films.forEach(function (film) {
         var filmDiv = createItemFunction(film);
@@ -157,7 +157,7 @@ export function initializeCarousel(carousel, widthItem, marginItem) {
     });
 
     // Initialize carousel
-    
+
     updateCarousel();
 }
 

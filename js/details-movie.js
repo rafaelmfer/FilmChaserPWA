@@ -7,6 +7,7 @@ import { urlInfo,
 } from './common.js';
 import { checkSession } from "./auth.js";
 import {
+    getInfoDb,
     saveMovieInDb,
     updateInfoDb,
     deleteInfoDb,
@@ -14,8 +15,6 @@ import {
 } from "./firestore.js";
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
-
-
 
 var movieId = urlInfo("id");
 let movieDetails = {};
@@ -137,12 +136,12 @@ function successCB_release(data) {
 }
 
 // SECTION BUTTONS (Watchlist, Completed)
-const user = await checkSession();
-document.getElementById("userName").innerHTML = user.displayName;
-
+const user = await checkSession();;
 let documentId = user.uid;
 
-// let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+const userDoc = await getInfoDb(`users/${documentId}`);
+document.getElementById("userName").innerHTML = userDoc.name;
+document.getElementById("userPicture").src = userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
 
 const watchlistPathInFirebase = `users/${documentId}/watchlist`;
 
