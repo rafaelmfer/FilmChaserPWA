@@ -1,3 +1,8 @@
+body{
+    grid-template-columns: 284px 100vw;
+}
+
+
 .mainTop .searchMovies .ulMovies {
     display: flex;
 }
@@ -34,6 +39,7 @@
 section.filter-and-search .component-search-bar {
     margin: 0 auto;
     margin-top: 20px;
+    
 }
 
 .div-grid-detail {
@@ -52,9 +58,36 @@ section.filter-and-search .component-search-bar {
     text-decoration: none;
 }
 
+
+
 @media screen and (min-width: 450px) {
+    section.tab-layout{
+        margin-right: 0;
+    }
+
+    section.film-chaser.filter-and-search{
+        flex-flow: wrap;
+        gap: 20px;
+    }
+    section.filter-and-search .component-search-bar{
+        margin: 0;
+    }
+    .film-chaser.discover-carousel {
+        margin-top: 96px;
+    }
+
+} 
+
+@media screen and (min-width: 750px) { 
     section.filter-and-search .component-search-bar {
         margin-top: unset;
         margin-left: 42px;
+    }
+    section.film-chaser.filter-and-search{
+    flex-flow: nowrap;
+    gap: 0;
+    }
+    .film-chaser.discover-carousel {
+        margin-top: 48px;
     }
 }
