@@ -1,5 +1,6 @@
 body {
     min-width: 320px;
+    grid-template-columns: 284px 100vw;
 }
 
 .hidden {
@@ -16,6 +17,8 @@ section.filter-and-search .component-search-bar {
     margin: 0 auto;
     margin-top: 20px;
 }
+
+
 
 main {
     margin-left: 16px;
@@ -64,9 +67,20 @@ main .completed-container {
 }
 
 @media screen and (min-width: 450px) {
+    section.film-chaser.filter-and-search{
+        flex-flow: wrap;
+        gap: 20px;
+    }
+    section.filter-and-search .component-search-bar{
+        margin: 0;
+    }
+    .page{
+        margin-top: 96px;
+    }
+    
     section.filter-and-search .component-search-bar {
         margin-top: unset;
-        margin-left: 42px;
+        margin-left: 0;
     }
 
     main {
@@ -99,5 +113,20 @@ main .completed-container {
     main section .watching-cards-container,
     main section .havent-started-cards-container {
         display: block;
+    }
+}
+
+@media screen and (min-width: 750px) { 
+    
+    section.filter-and-search .component-search-bar {
+        margin-top: unset;
+        margin-left: 42px;
+    }
+    section.film-chaser.filter-and-search{
+    flex-flow: nowrap;
+    gap: 0;
+    }
+    .page{
+        margin-top: 48px;
     }
 }
