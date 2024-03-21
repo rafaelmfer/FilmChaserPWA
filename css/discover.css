@@ -61,9 +61,6 @@ section.filter-and-search .component-search-bar {
 
 
 @media screen and (min-width: 450px) {
-    section.tab-layout{
-        margin-right: 0;
-    }
 
     section.film-chaser.filter-and-search{
         flex-flow: wrap;
