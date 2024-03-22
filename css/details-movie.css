@@ -1,8 +1,13 @@
 body {
     color: var(--text-color-one);
-    /* font-family: "Amiko", sans-serif; */
     font-family: "Open Sans", sans-serif;
     grid-template-rows: 116px auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 button {
@@ -12,9 +17,24 @@ button {
 .buttons-actions {
     display: flex;
     flex-direction: row;
-    gap:2rem;
-
+    gap:.5rem;
 }
+#js-completed , #js-add-watchlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img.material-symbols-outlined {
+        font-size: 24px;
+        height: 24px;
+    }
+}
+
+#js-completed > p, #js-add-watchlist > p {
+    font-size: var(--font-mob-small-two);
+    color: var(--tertiary-color)
+}
+
 .button-action {
     display: flex;
     flex-direction: column;
@@ -23,32 +43,26 @@ button {
     color:var(--text-color-one);
 }
 
-
-/* ----------------------------- */
-/* MY CHANGES */
 a {
     text-decoration: none;
     color: white;
 }
 
-a:hover .material-symbols-outlined {
+/* a:hover .material-symbols-outlined {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
     background-image: var(--background-gradient);
-}
+} */
 
 /* MAIN SECTION */
 
- #mainDiscover {
-    /* grid-column: 2 / 3;
-    grid-row: 1 / -1; */
+#mainDiscover {
     display: grid;
-    /* grid-template-columns: 1fr 1fr;
-    grid-template-rows: 40vh 2fr; */
+    margin: 0;
     padding: 0;
-    column-gap: 1rem;
 } 
+
 
 /* HERO IMAGE */
  .movie-header {
@@ -59,31 +73,47 @@ a:hover .material-symbols-outlined {
     flex-direction: column;
     justify-content: flex-end;
     gap: 0.5rem;
-
+    padding: 8px 16px;
     width: 100%;
     aspect-ratio: 1.6;
 } 
 
 .movie-header > .js-movie--general-info {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 /* MAIN SUBSECTION */
 .main-subsection {
+    margin: 0 2%;
     display: grid;
 
 }
 .main-subsection h2 {
-    grid-column: 1 / -1;
+    font-size: var( --font-mob-size-h5);
+    font-style: normal;
+    font-weight: 700;
+    
+    text-align: center;
     border-bottom: 2px solid;
     border-image: var(--background-gradient) 15;
+
+    padding: 1rem 0 0.5rem 0;
 }
+
+/* ------------------------ */
 .information-container {
     display: flex;
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.information-container > div {
+    padding: 16px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid #535353;
 }
 
 .section--where-to-watch {
@@ -94,36 +124,77 @@ a:hover .material-symbols-outlined {
 }
 
 .section--where-to-watch h3 {
+    font-size: var(--font-mob-size-h6);
     grid-column: 1 / -1;
+}
+
+.section--where-to-watch h4 {
+    font-size: var( --font-mob-body);
+    
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    
+    flex-basis: 100%;
 }
 
 .section--where-to-watch .js-not-subscribed {
     display: flex;
     flex-flow: row wrap;
+    gap: .4rem;
 }
-.section--where-to-watch .js-not-subscribed h4 {
-    flex-basis: 100%;
-}
+
 
 .section--where-to-watch .js-streaming-logo {
     border-radius: 10px;
-    height: 56px;
-    width: 56px;
+    height: 45px;
+    width: 45px;
 }
 
-.section--movie-info-details div {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    padding: 0.5rem 0;
+/* -------------------------- */
+.section--movie-info h3 {
+    font-size: var(--font-mob-size-h6);
 }
-.section--comments p {
-    font-size: var(--font-body);
+.section--movie-info-details > * {
+    padding: 8px 0;
+}
+.section--movie-info-details div{
     display: flex;
-    align-items: center;
+    gap: 1rem;    
+}
+.section--movie-info p {
+    font-size: var(--font-mob-body);
+}
+.section--movie-info .small-size-font > p{
+    font-size: var(--font-mob-small-two);
+}
+.section--movie-info-details > p:nth-last-child(1) {
+    display: flex;
+    text-align: center;
     gap: 0.5rem;
 }
+
+
+/* ---------------- */
+.section--comments {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    
+}
+
+.section--comments div {
+    display: flex;
+    align-items: center;
+    a {
+        display: grid;
+    }
+}
+
+/* CAROUSEL */
 .section-pictures {
+    padding-top: 32px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -131,43 +202,23 @@ a:hover .material-symbols-outlined {
     overflow: hidden;
 }
 
-
-/* CARROUSEL */
-.carrousel {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.section-pictures h4 {
+    font-size: var(--font-mob-size-h6);
 }
 
-.carrousel .btn-arrow {
-    background-color: transparent;
-    color: var(--text-color-one);
-    transition: all 0.3s ease-in-out;
+.component-carousel .carousel-container .carousel-items .item {
+    width: 124px;
 }
 
-.js-movie-related-pictures figure {
-    position: relative;
-    height: 100%;
-}
-
-.js-movie-related-pictures figcaption {
-    /* Same width as the posters */
-    width: 154px;
-    position: absolute;
-    bottom: 0;
-    background-color: var(--primary-color);
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
+.component-carousel .carousel-container .carousel-items .item a.link-item-container {
+    /* display: grid; */
+    grid-template-rows: 116px 70px;
+    /* text-decoration: none; */
+} 
 
 
 /* DESKTOP */
-@media screen and (min-width:450px) {
+@media screen and (min-width:900px) {
     #mainDiscover p {
         font-size: var(--font-body);
     }
@@ -181,8 +232,6 @@ img {
         padding-left: 72px;
         padding-bottom: .5rem;
         aspect-ratio: 3;
-
-        /* background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 3.57%, rgba(0, 0, 0, 0.52) 30.06%, #000 100%); */
     }
 
     /* ------------------------- */
@@ -194,8 +243,7 @@ img {
         h2 {
             grid-column: 1 / -1;
             font-size: var( --font-size-h6);
-            font-style: normal;
-            font-weight: 600;        
+            text-align: left;        
             letter-spacing: -0.5px;
             padding: 27px 101px 21px 101px;
 

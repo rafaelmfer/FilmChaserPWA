@@ -95,16 +95,18 @@
             <div class="buttons-actions buttons-share">
                 <a href="" id="js-add-watchlist">
                     <img class="material-symbols-outlined" src="../resources/icons/icons-default/default-heart.svg" alt="image">
+                    <p>WatchingList</p>
                 </a>
                 <a href="" id="js-completed">
                     <img class="material-symbols-outlined" src="../resources/icons/icons-default/default-completed.svg" alt="image">
+                    <p>Completed</p>
                 </a>
             </div>
         </div>
 
         <div class="section-tabs js-section-tabs">
-        <h2><a href="#page1">About</a></h2>
-        <h2><a href="#page2">Episodes</a></h2>
+        <h2 class="page1 active-tab"><a href="#page1">About</a></h2>
+        <h2 class="page2"><a href="#page2">Episodes</a></h2>
         </div>
         <div class="main-subsection--about page" id="page1">
             <div class="movie-details">
@@ -126,8 +128,13 @@
                     </div>
     
                     <div class="section--comments">
-                        <p>Comments: <span class="movie-comments js-movie-comments"> </span><a href="#"><span class="material-symbols-outlined">keyboard_arrow_right</span></a>
-                        </p>
+                        <p>Comments:</p>
+                         <div>
+                             <span class="movie-comments js-movie-comments">
+                             
+                             </span><a href="#"><span class="material-symbols-outlined">keyboard_arrow_right</span></a>
+                         </div>
+                        
                         <!-- TODO add path to comments -->
                     </div>
                 </div>
