@@ -1,5 +1,5 @@
 body {
-    grid-template-columns: 284px 100vw;
+    grid-template-columns: 284px calc(100vw - 284px);
 }
 
 .film-chaser.discover-carousel {

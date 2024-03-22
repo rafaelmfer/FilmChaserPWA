@@ -1,6 +1,6 @@
 body {
     min-width: 320px;
-    grid-template-columns: 284px 100vw;
+    grid-template-columns: 284px calc(100vw - 284px);
 }
 
 .hidden {
