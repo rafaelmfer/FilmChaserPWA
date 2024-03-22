@@ -69,12 +69,14 @@ completed.addEventListener("click", (e) => {
 });
 
 // ============================================================================
-const user = await checkSession();
-document.getElementById("userName").innerHTML = user.displayName;
-
+const user = await checkSession();;
 let documentId = user.uid;
-// let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
 let documentDbPath = `users/${documentId}`;
+
+const userDoc = await getInfoDb(documentDbPath);
+document.getElementById("userName").innerHTML = userDoc.name;
+document.getElementById("userPicture").src = userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
+
 let watchlistPath = `users/${documentId}/watchlist`;
 let watchlistArray = await getDocsByQuery(
     watchlistPath,

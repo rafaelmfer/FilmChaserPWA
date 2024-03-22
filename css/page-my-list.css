@@ -13,12 +13,22 @@ a {
     text-decoration: none;
 }
 
+header.component-header-mobile {
+    border-bottom: 0;
+}
+
+section.tab-layout {
+    position: sticky;
+    top: 64px;
+    z-index: 2;
+
+    background-color: var(--primary-color);
+}
+
 section.filter-and-search .component-search-bar {
     margin: 0 auto;
     margin-top: 20px;
 }
-
-
 
 main {
     margin-left: 16px;
@@ -68,21 +78,24 @@ main .completed-container {
 
 /* medium screen */
 @media screen and (min-width: 450px) {
-    body{
+    body {
         grid-template-rows: 116px 152px auto;
     }
 
-    section.film-chaser.filter-and-search{
-        flex-flow: wrap;
+    section.tab-layout {
+        position: unset;
+        z-index: 0;
+
+        background-color: unset;
+    }
+
+    section.film-chaser.filter-and-search {
+        flex-wrap: wrap;
         gap: 20px;
     }
-    section.filter-and-search .component-search-bar{
-        margin: 0;
-    }
-    
+
     section.filter-and-search .component-search-bar {
-        margin-top: unset;
-        margin-left: 0;
+        margin: 0;
     }
 
     main {
@@ -117,14 +130,14 @@ main .completed-container {
         display: block;
     }
 
-    main{
+    main {
         margin-top: 24px;
     }
 }
 
 /* large screen */
-@media screen and (min-width: 750px) { 
-    body{
+@media screen and (min-width: 750px) {
+    body {
         grid-template-rows: 116px 80px auto;
     }
 
@@ -132,12 +145,12 @@ main .completed-container {
         margin-top: unset;
         margin-left: 42px;
     }
-    section.film-chaser.filter-and-search{
+    section.film-chaser.filter-and-search {
         flex-flow: nowrap;
         gap: 0;
     }
 
-    main{
+    main {
         margin-top: 24px;
     }
 }

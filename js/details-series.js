@@ -6,9 +6,9 @@ import { urlInfo,
         initializeCarousel_episodes,
         options, 
 } from './common.js';
-
 import { checkSession } from "./auth.js";
 import {
+    getInfoDb,
     saveTvShowInDb2,
     updateInfoDb,
     deleteInfoDb,
@@ -110,7 +110,10 @@ function successCB_series (data) {
 // SECTION BUTTONS (Watchlist, Completed)
 const user = await checkSession();
 let documentId = user.uid;
-// let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+
+const userDoc = await getInfoDb(`users/${documentId}`);
+document.getElementById("userName").innerHTML = userDoc.name;
+document.getElementById("userPicture").src = userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
 
 const watchlistPathInFirebase = `users/${documentId}/watchlist`;
 
