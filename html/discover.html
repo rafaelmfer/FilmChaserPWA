@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/common.css">
 
     <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-header-mobile.css">
     <link rel="stylesheet" href="../css/component-navigation.css">
     <link rel="stylesheet" href="../css/component-tab.css">
     <link rel="stylesheet" href="../css/component-filter.css">
@@ -84,7 +85,7 @@
                     </li>
                     <li class="nav-links">
                         <a href="">
-                            <img src="../resources/imgs/profile/profile2.png" alt="home">
+                            <img id="userPicture" src="../resources/imgs/profile/profile2.png" alt="home">
                             <h5 id="userName">Profile</h5>
                         </a>
                     </li>
@@ -93,6 +94,19 @@
         </div>
     </nav>
 
+    <header class="film-chaser component-header-mobile">
+        <div class="header-wrapper">
+            <div class="header--logo-title-wrapper">
+                <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+                <h4 class="app-name-mobile">FilmChaser</h4>
+            </div>
+            <div class="header--notification-profile-wrapper">
+                <img class="notification" src="../resources/icons/icons-default/default-notification.svg" alt="">
+                <img class="user-profile" src="../resources/imgs/profile/profile3.png" alt="">
+            </div>
+        </div>
+    </header>
+    
     <section class="film-chaser tab-layout">
         <div class="component-tab-container">
             <a class="firstTab" id="active-shows-movies" href="#shows_movies">
@@ -131,42 +145,6 @@
             <input id="search_field" class="search-input body-text" type="text" placeholder="Search for a show, movie, actor">
         </div>
     </section>
-
-    <!-- <section class="mainTop">
-        <div class="divUlMovies">
-            <ul class="topLinks">
-                <li id="active-shows-movies">Shows & Movies</li>
-                <li id="active-friends">Friends</li>
-            </ul>
-        </div>
-
-        <div class="searchMovies">
-            <ul id="test" class="ulMovies">
-                <li><a href="#" class="filterMovies" id="filterAll">All</a></li>
-                <li><a href="#" class="filterMovies" id="filterMovies">Movies</a></li>
-                <li><a href="#" class="filterMovies" id="filterTv">TV</a></li>
-
-                <li style="
-                    padding: 0;
-                    border: 1px solid white;
-                    /* max-height: fit-content; */
-                    height: 20px">
-                </li>
-                <li>icon</li>
-                <li><span class="material-symbols-outlined">filter_alt</span></li>
-            </ul>
-
-            <ul class="ulSearch">
-                <div>
-                    <li><span id="btnSearch" class="material-symbols-outlined">search</span></li>
-                    <li style="
-                    width: 100%;
-                "><input type="text" id="search_field" class="searchField"></li>
-                </div>
-            </ul>
-        </div>
-
-    </section> -->
 
     <main id="main-film-chaser" class="film-chaser discover-carousel">
     </main>

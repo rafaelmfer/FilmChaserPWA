@@ -1,13 +1,5 @@
-body{
+body {
     grid-template-columns: 284px 100vw;
-}
-
-.mainTop .searchMovies .ulMovies {
-    display: flex;
-}
-
-.mainTop .searchMovies .ulMovies.hidden {
-    display: none;
 }
 
 .film-chaser.discover-carousel {
@@ -35,10 +27,21 @@ body{
 }
 
 /* --------------------------- SEARCH -----------------------------*/
+header.component-header-mobile {
+    border-bottom: 0;
+}
+
+section.tab-layout {
+    position: sticky;
+    top: 64px;
+    z-index: 2;
+
+    background-color: var(--primary-color);
+}
+
 section.filter-and-search .component-search-bar {
     margin: 0 auto;
     margin-top: 20px;
-    
 }
 
 .div-grid-detail {
@@ -57,27 +60,30 @@ section.filter-and-search .component-search-bar {
     text-decoration: none;
 }
 
-
-
 @media screen and (min-width: 450px) {
-
-    body{
-        grid-template-rows: 116px 152px auto;
+    body {
+        grid-template-rows: 116px 128px auto;
     }
 
-    section.film-chaser.filter-and-search{
+    section.tab-layout {
+        position: unset;
+        z-index: 0;
+
+        background-color: unset;
+    }
+
+    section.film-chaser.filter-and-search {
         flex-flow: wrap;
         gap: 20px;
     }
-    section.filter-and-search .component-search-bar{
+
+    section.filter-and-search .component-search-bar {
         margin: 0;
     }
+}
 
-} 
-
-@media screen and (min-width: 750px) { 
-
-    body{
+@media screen and (min-width: 750px) {
+    body {
         grid-template-rows: 116px 80px auto;
     }
 
@@ -85,9 +91,9 @@ section.filter-and-search .component-search-bar {
         margin-top: unset;
         margin-left: 42px;
     }
-    section.film-chaser.filter-and-search{
-    flex-flow: nowrap;
-    gap: 0;
-    }
 
+    section.film-chaser.filter-and-search {
+        flex-flow: nowrap;
+        gap: 0;
+    }
 }
