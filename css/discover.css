@@ -1,6 +1,14 @@
+body {
+    grid-template-columns: 284px 100vw;
+}
+
 .film-chaser.discover-carousel {
     margin-top: 24px;
     display: block;
+}
+
+.film-chaser.home-carousel.noActive {
+    display: block !important;
 }
 
 /************************* FRIENDS *******************************/
@@ -19,7 +27,7 @@
 }
 
 /* --------------------------- SEARCH -----------------------------*/
-header.component-header-mobile { 
+header.component-header-mobile {
     border-bottom: 0;
 }
 
@@ -53,15 +61,39 @@ section.filter-and-search .component-search-bar {
 }
 
 @media screen and (min-width: 450px) {
+    body {
+        grid-template-rows: 116px 128px auto;
+    }
+
     section.tab-layout {
         position: unset;
         z-index: 0;
-    
+
         background-color: unset;
+    }
+
+    section.film-chaser.filter-and-search {
+        flex-flow: wrap;
+        gap: 20px;
+    }
+
+    section.filter-and-search .component-search-bar {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    body {
+        grid-template-rows: 116px 80px auto;
     }
 
     section.filter-and-search .component-search-bar {
         margin-top: unset;
         margin-left: 42px;
+    }
+
+    section.film-chaser.filter-and-search {
+        flex-flow: nowrap;
+        gap: 0;
     }
 }
