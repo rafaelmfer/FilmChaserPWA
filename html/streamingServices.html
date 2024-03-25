@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/streamingServices.css">
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/streamingServices.css">
+
+    <!-- Screen Javascript -->
     <script type="module" src="../js/streamingServices.js" defer></script>
 
+    <title>Choose the Streaming Services</title>
 </head>
+
 <body>
+
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img src="" alt="">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img src="" alt="">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
 
     <div class="StreamingServices">
         <p class="Film_Chaser">FilmChaser</p>
 
         <div class="streaming">
-            <div class="StreamingLeft">                
+            <div class="StreamingLeft">
                 <h1>Select your <br>streaming services</h1>
-                <span>2 Selected</span>      
-                
+                <span>2 Selected</span>
+
                 <div class="searchFieldButton">
                     <input type="text" id="search_mobile" class="search" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button> 
+                    <button type="submit"><i class="fa fa-search"></i></button>
                     <span>flag</span>
-                </div>               
-                
+                </div>
+
             </div>
             <div class="StreamingRight">
                 <div class="searchFieldButton">
                     <input type="text" id="search" class="search" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button> 
+                    <button type="submit"><i class="fa fa-search"></i></button>
                     <span>flag</span>
                 </div>
                 <div class="StreamingOptions">
@@ -37,7 +68,7 @@
                         <img src="../resources/icons/streaming-service-logo/netflix.png" alt="" srcset="" width="50" height="50">
                         <p>Netflix</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="netflix" id="netflix">
+                            <input type="checkbox" class="streamingCheckboxes" name="netflix" id="netflix">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -45,7 +76,7 @@
                         <img src="../resources/icons/streaming-service-logo/aande.png" alt="" srcset="" width="50" height="50">
                         <p>A&E</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="aeb" id="aeb">
+                            <input type="checkbox" class="streamingCheckboxes" name="aeb" id="aeb">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -53,7 +84,7 @@
                         <img src="../resources/icons/streaming-service-logo/disneyplus.png" alt="" srcset="" width="50" height="50">
                         <p>Disney+</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="disney" id="disney">
+                            <input type="checkbox" class="streamingCheckboxes" name="disney" id="disney">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -61,7 +92,7 @@
                         <img src="../resources/icons/streaming-service-logo/hulu.png" alt="" srcset="" width="50" height="50">
                         <p>Hulu</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="hulu" id="hulu">
+                            <input type="checkbox" class="streamingCheckboxes" name="hulu" id="hulu">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -69,7 +100,7 @@
                         <img src="../resources/icons/streaming-service-logo/tvGuide.png" alt="" srcset="" width="50" height="50">
                         <p>TvGuide</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="tvguide" id="tvguide">
+                            <input type="checkbox" class="streamingCheckboxes" name="tvguide" id="tvguide">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -77,7 +108,7 @@
                         <img src="../resources/icons/streaming-service-logo/peacock.png" alt="" srcset="" width="50" height="50">
                         <p>Peacock</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="peacock" id="peacock">
+                            <input type="checkbox" class="streamingCheckboxes" name="peacock" id="peacock">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -85,7 +116,7 @@
                         <img src="../resources/icons/streaming-service-logo/historyhit.png" alt="" srcset="" width="50" height="50">
                         <p>History Hit</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="history" id="history">
+                            <input type="checkbox" class="streamingCheckboxes" name="history" id="history">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -93,7 +124,7 @@
                         <img src="../resources/icons/streaming-service-logo/britbox.png" alt="" srcset="" width="50" height="50">
                         <p>BritBox</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="britbox" id="britbox">
+                            <input type="checkbox" class="streamingCheckboxes" name="britbox" id="britbox">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -101,7 +132,7 @@
                         <img src="../resources/icons/streaming-service-logo/hbox.png" alt="" srcset="" width="50" height="50">
                         <p>HBox</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="hbox" id="hbox">
+                            <input type="checkbox" class="streamingCheckboxes" name="hbox" id="hbox">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -109,7 +140,7 @@
                         <img src="../resources/icons/streaming-service-logo/plex.png" alt="" srcset="" width="50" height="50">
                         <p>Plex</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="plex" id="plex">
+                            <input type="checkbox" class="streamingCheckboxes" name="plex" id="plex">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -117,7 +148,7 @@
                         <img src="../resources/icons/streaming-service-logo/nbc.png" alt="" srcset="" width="50" height="50">
                         <p>NBC</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="nbc" id="nbc">
+                            <input type="checkbox" class="streamingCheckboxes" name="nbc" id="nbc">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -125,7 +156,7 @@
                         <img src="../resources/icons/streaming-service-logo/pbs.png" alt="" srcset="" width="50" height="50">
                         <p>PBS</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="pbs" id="pbs">
+                            <input type="checkbox" class="streamingCheckboxes" name="pbs" id="pbs">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -133,7 +164,7 @@
                         <img src="../resources/icons/streaming-service-logo/watchworthy.png" alt="" srcset="" width="50" height="50">
                         <p>Watchworthy</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="watch" id="watch">
+                            <input type="checkbox" class="streamingCheckboxes" name="watch" id="watch">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -162,4 +193,5 @@
     </div>
 
 </body>
+
 </html>

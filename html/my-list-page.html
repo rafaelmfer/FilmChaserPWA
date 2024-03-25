@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/common.css">
 
     <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
     <link rel="stylesheet" href="../css/component-header-mobile.css">
     <link rel="stylesheet" href="../css/component-navigation.css">
     <link rel="stylesheet" href="../css/component-tab.css">
@@ -32,6 +33,16 @@
 
 <body>
 
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img src="" alt="">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
     <!-- COMPONENT NAVIGATION-DESKTOP -->
     <nav class="film-chaser component-nav-desktop">
         <div class="navigation-wrapper">
@@ -44,7 +55,7 @@
                         </a>
                     </li>
                 </ul>
-                <!-- PUT THE CLASS "active" in one of the links of the page -->
+                <!-- PUT THE CLASS "active" and change the icon in one of the links of the page -->
                 <ul>
                     <li class="nav-links">
                         <a href="home.html">
@@ -59,7 +70,7 @@
                         </a>
                     </li>
                     <li class="nav-links active">
-                        <a href="">
+                        <a href="#">
                             <img src="../resources/icons/icons-active/active-list.svg" alt="my list">
                             <h6>MyList</h6>
                         </a>
@@ -75,15 +86,15 @@
             <div class="notification-profile-wrapper">
                 <ul>
                     <li class="nav-links">
-                        <a href="">
+                        <a href="#">
                             <img src="../resources/icons/icons-default/default-notification.svg" alt="notification">
                             <h5>Notification</h5>
                         </a>
                     </li>
                     <li class="nav-links">
-                        <a href="">
-                            <img id="userPicture" src="../resources/imgs/profile/profile2.png" alt="home">
-                            <h5 id="userName">Profile</h5>
+                        <a href="#">
+                            <img id="userPicture" src="../resources/imgs/Placeholder/Placeholder_actor.png" alt="profile photo">
+                            <h5 id="userName"></h5>
                         </a>
                     </li>
                 </ul>

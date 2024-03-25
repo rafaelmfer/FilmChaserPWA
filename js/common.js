@@ -25,6 +25,23 @@ export async function fetchData(url, options = {}) {
     return response.json();
 }
 
+export function networkInfo() {
+    const messageDiv = document.querySelector(".no-network-information");
+
+    function updateConnectionStatus() {
+        if (!navigator.onLine) {
+            messageDiv.classList.add("show");
+        } else {
+            messageDiv.classList.remove("show");
+        }
+    }
+
+    updateConnectionStatus();
+
+    window.addEventListener("online", updateConnectionStatus);
+    window.addEventListener("offline", updateConnectionStatus);
+}
+
 /**
  * Function to retrieve information from the URL query string.
  * @param {string} parameter - The parameter name to retrieve from the URL.
@@ -101,7 +118,6 @@ export function createCarousel(films, createItemFunction) {
  * @param {Number} marginItem - A number  representing the space between items in pixels.
  */
 export function initializeCarousel(carousel, widthItem, marginItem) {
-    
     // Constants for carousel
     var itemWidth = widthItem || 154;
     var itemMargin = marginItem || 8;

@@ -1,0 +1,38 @@
+.no-network-information.show {
+    display: flex;
+}
+
+.no-network-information {
+    height: 100vh;
+    width: 100vw;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: fixed;
+    top: 0px;
+
+    z-index: 100;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: var(--background-gradient-network);
+
+    text-align: center;
+}
+
+.no-network-information h4 {
+    margin-top: 8px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.no-network-information h5 {
+    margin-top: 32px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.no-network-information h6 {
+    margin-top: 32px;
+    color: rgba(255, 255, 255, 0.5);
+}
