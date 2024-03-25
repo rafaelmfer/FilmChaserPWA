@@ -1,27 +1,11 @@
 "use strict";
 
 import { checkSession } from "./auth.js";
-import { createCarousel, initializeCarousel } from "./common.js";
+import { createCarousel, initializeCarousel, networkInfo } from "./common.js";
 import { getInfoDb } from "./firestore.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
-// const header = document.querySelector(".component-header-mobile");
-// let lastScrollTop = 0;
-
-// window.addEventListener("scroll", function () {
-//     let currentScroll =
-//         window.pageYOffset || document.documentElement.scrollTop;
-
-//     if (currentScroll > lastScrollTop) {
-//         // Scrolling down
-//         header.classList.add("scroll-up");
-//     } else {
-//         // Scrolling up
-//         header.classList.remove("scroll-up");
-//     }
-
-//     lastScrollTop = currentScroll;
-// });
+networkInfo();
 
 let arrayTrending = [];
 let arrayUpcoming = [];

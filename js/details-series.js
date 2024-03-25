@@ -4,6 +4,7 @@ import { urlInfo,
         createCarousel,
         initializeCarousel,
         options, 
+        networkInfo,
 } from './common.js';
 import { checkSession } from "./auth.js";
 import {
@@ -16,6 +17,7 @@ import {
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
+networkInfo();
   var seriesId = urlInfo("id");
   let seriesDetails = {};
   const movieHeader = document.querySelector(".js-movie-header");

@@ -9,7 +9,9 @@ import {
     getAllDocsInSubcollection,
     getDocsByQuery,
 } from "./firestore.js";
-import { createCarousel, initializeCarousel } from "./common.js";
+import { createCarousel, initializeCarousel, networkInfo } from "./common.js";
+
+networkInfo();
 
 // related to SPA ============================================================
 const allPages = document.querySelectorAll("div.page");
