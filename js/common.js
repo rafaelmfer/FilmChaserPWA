@@ -31,8 +31,10 @@ export function networkInfo() {
     function updateConnectionStatus() {
         if (!navigator.onLine) {
             messageDiv.classList.add("show");
+            document.body.style.overflow = "hidden"
         } else {
             messageDiv.classList.remove("show");
+            document.body.style.overflow = "auto"
         }
     }
 
