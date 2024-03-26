@@ -26,6 +26,13 @@ const movieHeader = document.querySelector(".js-movie-header");
 const movieTitle = document.querySelector(".js-movie--title");
 const movieGralInfo = document.querySelector(".js-movie--general-info");
 const movieInfoDetails = document.querySelector(".js-section--movie-info-details");
+const btnBack = document.querySelector(".btn-go-back");
+
+btnBack.addEventListener("click", history_back);
+
+function history_back() {
+    window.history.back();
+}
 
 // SECTION: HERO IMAGE
 

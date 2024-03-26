@@ -1,69 +1,80 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap");
-
 * {
     margin: 0px;
     border: 0px;
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
-}
-
-:root {
-    --primary: #0f1a20;
-    --secondary: #262730;
-    --textcolor_white: #fffffc;
-    --textField_backGround: #262730;
-    --textField_border: #979797;
-}
-
-.SignUp_Center {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
-    color: var(--textcolor_white);
-    background-color: var(--primary);
-    padding: 0px 0.5rem;
-    font-size: 16px;
+    color: var( --text-color-one);
+    background-color: var(--primary-color);
+    padding: 0px 2%;
 }
 
-.Film_Chaser {
-    top: 0.5rem;
-    left: 0.5rem;
-    font-size: 14px;
-    letter-spacing: 2px;
-    font-weight: bold;
-    position: absolute;
+.SignUp p {
+    font-family: "Open Sans", sans-serif;
 }
+
+
+/* ---------------- */
+
+.site-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+    padding: 1rem 0 2rem 0;
+
+    h5 {
+        padding: 0.3rem;
+        font-weight: 600;
+    }
+    img {
+        height: 28px;
+    }
+}
+
 
 .SignUp {
     display: grid;
-    grid-template-columns: 1fr;
-    height: 100vh;
     width: 100%;
-    justify-content: center;
     align-items: center;
-    justify-items: center;
+}
+.SignUp form {
+    justify-self: center;
+}
+.SignUp_Center {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+
+    text-align: center;
+
+    width: 100vw;
+    max-width: 620px;
+
+    h1 {
+       font-size: var(--font-mob-size-h2);
+       padding: 1rem 0; 
+    }
+
+    img {
+        width: 48px;
+    }
 }
 
-.SignUp_Center {
-    text-align: center;
-    width: 100%;
-    max-width: 350px;
-}
 
 ul {
     list-style-type: none;
-    font-size: 30px;
-    padding: 0px;
+    padding: 2rem 0;
     display: flex;
     justify-content: space-between;
     width: 70%;
     margin: auto;
 }
 
+/* ----------- */
 .line_or {
     position: relative;
 }
@@ -73,7 +84,7 @@ ul {
     display: block;
     width: 45%;
     height: 2px;
-    background: rgb(255, 255, 255);
+    background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     left: 0;
@@ -84,7 +95,7 @@ ul {
     display: block;
     width: 45%;
     height: 2px;
-    background: #ffffff;
+    background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     right: 0;
@@ -98,39 +109,50 @@ ul {
     font-weight: 500;
 }
 
-.fields {
-    display: inline-block;
-}
 
+input {
+    border-radius: 4px;
+}
 input::placeholder {
-    color: var(--textcolor_white);
+    color: var(--text-color-one);
 }
 
 .signup_field {
-    border: 1px solid var(--textField_border);
+    border: 1px solid var(--tertiary-color);
     padding: 0.5rem;
-    background-color: var(--textField_backGround);
-    color: var(--textcolor_white);
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
 }
 
 .my_fields {
     display: grid;
     gap: 1rem;
+    padding: 2rem 0;
 }
 
 .button {
-    background-image: linear-gradient(270deg, #ec764f, #72465d, #2e5df3);
-    color: var(--textcolor_white);
+    background-image: var(--background-gradient);
+    color: var(--text-color-one);
+    font-family: "Amiko", sans-serif; ;
+    font-size: var(--font-mob-button);
+    font-weight: 600;
+    text-align: center;
 }
 
-a {
-    color: var(--textcolor_white);
-    padding-left: 0.7rem;
+.signIn  {
+    color: var(--text-color-one);
+    font-size: var(--font-mob-small-one);
+
+    a {
+        color:  var(--text-color-one);
+        cursor: pointer;
+    }
 }
 
-input {
-    border-radius: 4px;
-}
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 450px) {
+    .site-logo {
+        justify-content: left;
+    }
+
 }
