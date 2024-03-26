@@ -7,72 +7,69 @@
 }
 
 body{
-    font-family: 'Roboto', sans-serif;
-    color: white;
+    color: var( --text-color-one);
     background-color: var(--primary-color);
-    padding:0px 0.5rem;
+    padding: 0px 2%;
 }
+
+.SignIn p, .SignIn span {
+    font-family: "Open Sans", sans-serif;
+}
+
 
 /* SITE IDENTITY AREA */
-.site-identity {
-    display: grid;
+.site-logo {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    height: 10vh;
-    margin: 8% 0 2% 0;
-}
+    gap: .3rem;
+    padding: 1rem 0 2rem 0;
 
-.app-logo {
-    height: inherit;
-
-}
-
-.Film_Chaser{
-    padding: 1rem;
-    font-size: 24px;
-    font-weight: bold;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    width: 1px;
+    h5 {
+        padding: 0.3rem;
+        font-weight: 600;
+    }
+    img {
+        height: 28px;
+    }
 }
 
 .SignIn{
     display: grid;
-    grid-template-columns: 1fr;
-    height: 80vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
 }
 
-.SignIn_Center{
+.SignIn_Center {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+
     text-align: center;
-    width: 100%;
-    max-width: 350px;
+
+    max-width: 620px;
+    margin: 2%;
+
+    h2 {
+        font-size: var(--font-mob-size-h2);
+        padding: 1rem 0; 
+     }
+ 
+     img {
+         width: 48px;
+     }
 }
-.SignIn_Center h2 {
-    font-weight: 600;
-    font-size: 39.8px;
-}
-.SignIn_Center p{
-    margin-top: 2rem;
-    margin-bottom: 1.2rem;
-    font-size: 16px;
-}
+
 
 ul{
     list-style-type: none;
-    font-size: 30px;
-    padding: 0px;
+    padding: 2rem 0;
     display: flex;
     justify-content: space-between;
     width: 70%;
     margin: auto;
 }
-
+/* ----------- */
 .line_or{
     position: relative;
 }
@@ -81,87 +78,89 @@ ul{
     content: "";
     display: block;
     width: 45%;
-    height: 1px;
-    background: rgb(255, 255, 255);
+    height: 2px;
+    background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translateY(-50%);
 }
 
 .line_or::after{
     content: "";
     display: block;
     width: 45%;
-    height: 1px;
-    background: rgb(255, 255, 255);
+    height: 2px;
+    background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     right: 0;
-    transform: translateY(-50%);
 }
 
 
 .fields, .signin_field, .button{
     width: 100%;
     height: 54px;
+    font-weight: 500;
 }
 
-.fiels{
-    display: inline-block;
-}
+
 
 .signin_field{
     border: 1px solid #979797;
     padding: 0.5rem;
     background-color: #262730;
     color: white;
+    border-radius: 4px;
 }
 
 .signin_field::placeholder {
     color: var(--text-color-one);
 }
-
+div:has(#show-btn) {
+    position: relative;
+}
+#show-btn{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: var(--font-mob-small-two);
+}
 .my_fields{
     display: grid;
     gap: 1rem;
+    padding: 1rem 0;
 }
 
 .button{
     padding: 0.5rem;
     margin-top: 3rem;
+    height: 54px;
+    border-radius: 4px;
     background-image: var(--background-gradient);
-    /* linear-gradient(135deg, var(--accent-color-two) , var(--accent-color-one)); */
     color: var(--text-color-one);
-    text-shadow: 0.5px 0.5px 0.5px black;
+    font-family: "Amiko", sans-serif; ;
+    font-size: var(--font-mob-button);
+    font-weight: 600;
+    text-align: center;
+    
 }
 
 a{
     color: var(--text-color-one);
     padding-left: 0.7rem;
-    text-underline-position: under;
+    cursor: pointer;
 }
 
 
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 450px) {
     
-    .app-logo {
-        display: none;
-    }
-
-
-    .Film_Chaser{
-        clip:auto;
-        clip-path:none;
-        height: auto;
-        overflow:unset;
-        position:unset;
-        width: auto;
-    }
-
-    .site-identity {
+    .site-logo {
         justify-content: left;
     }
     
+    .SignIn_Center { 
+        width: 100vw;
+        margin: 0 auto;
+    }
 }
