@@ -1,6 +1,8 @@
 import { updateInfoDb } from "../js/firestore.js";
 import { checkSession } from "./auth.js";
-import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
+import { networkInfo } from "./common.js";
+
+networkInfo();
 
 const pic_Upload = document.querySelector('input[type="file"]');
 let user_upload_pic = document.getElementById("myfile");

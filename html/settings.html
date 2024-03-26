@@ -11,68 +11,102 @@
     <!-- Common CSS -->
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/common.css">
-    
+
     <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
+    <link rel="stylesheet" href="../css/component-header-mobile.css">
     <link rel="stylesheet" href="../css/component-navigation.css">
 
     <!-- Screen CSS -->
     <link rel="stylesheet" href="../css/settings.css">
 
     <!-- Screen Javascript -->
-    <script src="../js/settings.js" defer></script>
+    <script type="module" src="../js/settings.js" defer></script>
+
     <title>Settings</title>
 </head>
 
 <body>
 
-    <header>
-        <div class="logoTitle">
-            <img src="../resources/imgs/logo.png" class="logo" alt="" srcset="">
-            <a href="home.html">
-                <h5>FilmChaser</h5>
-            </a>
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img src="" alt="">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
+    <!-- COMPONENT NAVIGATION-DESKTOP -->
+    <nav class="film-chaser component-nav-desktop">
+        <div class="navigation-wrapper">
+            <div class="logo-page-navigation-wrapper">
+                <ul>
+                    <li>
+                        <a class="film-chaser app-name-logo" href="#">
+                            <img src="../resources/imgs/logo.png" alt="logo">
+                            <h5 class="app-name">FilmChaser</h5>
+                        </a>
+                    </li>
+                </ul>
+                <!-- PUT THE CLASS "active" and change the icon in one of the links of the page -->
+                <ul>
+                    <li class="nav-links">
+                        <a href="home.html">
+                            <img src="../resources/icons/icons-default/default-home.svg" alt="home">
+                            <h6>Home</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="discover.html">
+                            <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
+                            <h6>Discover</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="my-list-page.html">
+                            <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
+                            <h6>MyList</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links active">
+                        <a href="#">
+                            <img src="../resources/icons/icons-active/active-setting.svg" alt="settings">
+                            <h6>Settings</h6>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="notification-profile-wrapper">
+                <ul>
+                    <li class="nav-links">
+                        <a href="#">
+                            <img src="../resources/icons/icons-default/default-notification.svg" alt="notification">
+                            <h5>Notification</h5>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="#">
+                            <img id="userPicture" src="../resources/imgs/Placeholder/Placeholder_actor.png" alt="profile photo">
+                            <h5 id="userName"></h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <nav>
-            <ul>
-                <li>
-                    <a href="home.html">
-                        <span class="material-symbols-outlined">home</span>
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="discover.html">
-                        <span class="material-symbols-outlined">saved_search</span>
-                        Discover
-                    </a>
-                </li>
-                <li>
-                    <a href="my-list-page.html">
-                        <span class="material-symbols-outlined">list_alt</span>
-                        My List
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="material-symbols-outlined">settings</span>
-                        Settings
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="userNotify">
-            <ul>
-                <li>
-                    <span class="material-symbols-outlined">notifications</span>
-                    Notification
-                </li>
-                <li>
-                    <span class="material-symbols-outlined">notifications</span>
-                    Name
-                </li>
-            </ul>
+    <header class="film-chaser component-header-mobile">
+        <div class="header-wrapper">
+            <div class="header--logo-title-wrapper">
+                <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+                <h4 class="app-name-mobile">FilmChaser</h4>
+            </div>
+            <div class="header--notification-profile-wrapper">
+                <img class="notification" src="../resources/icons/icons-default/default-notification.svg" alt="">
+                <img class="user-profile" src="../resources/imgs/profile/profile3.png" alt="">
+            </div>
         </div>
     </header>
 
@@ -97,11 +131,37 @@
         </div>
     </main>
 
-    <footer>
-        <h1>footer</h1>
+    <!-- COMPONENT NAVIGATION-MOBILE -->
+    <footer class="component-nav-mobile">
+        <nav class="nav-mobile">
+            <ul>
+                <li class="nav-links active">
+                    <a href="">
+                        <img src="../resources/icons/icons-active/active-home.svg" alt="home">
+                        <h1 class="small-two">Home</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="discover.html">
+                        <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
+                        <h1 class="small-two">Discover</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="my-list-page.html">
+                        <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
+                        <h1 class="small-two">MyList</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="settings.html">
+                        <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
+                        <h1 class="small-two">Settings</h1>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </footer>
-
-
 </body>
 
 </html>

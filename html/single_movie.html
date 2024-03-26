@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Detail</title>
 
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/common.css">
@@ -19,9 +18,20 @@
     <!-- Javascript -->
     <script type="module" src="../js/details-movie.js" defer></script>
 
+    <title>Movie Detail</title>
 </head>
 
 <body>
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img src="" alt="">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
     <!-- COMPONENT NAVIGATION-DESKTOP -->
     <nav class="film-chaser component-nav-desktop">
         <div class="navigation-wrapper">
@@ -65,13 +75,13 @@
             <div class="notification-profile-wrapper">
                 <ul>
                     <li class="nav-links">
-                        <a href="">
+                        <a href="#">
                             <img src="../resources/icons/icons-default/default-notification.svg" alt="notification">
                             <h5>Notification</h5>
                         </a>
                     </li>
                     <li class="nav-links">
-                        <a href="">
+                        <a href="#">
                             <img id="userPicture" src="../resources/imgs/profile/profile2.png" alt="home">
                             <h5 id="userName">Profile</h5>
                         </a>

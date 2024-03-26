@@ -3,7 +3,8 @@
 import { urlInfo,
     createCarousel,
     initializeCarousel,
-    options, 
+    options,
+    networkInfo,
 } from './common.js';
 import { checkSession } from "./auth.js";
 import {
@@ -15,6 +16,8 @@ import {
 } from "./firestore.js";
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
+
+networkInfo();
 
 var movieId = urlInfo("id");
 let movieDetails = {};

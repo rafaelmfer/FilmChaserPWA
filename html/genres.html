@@ -1,161 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/Genres.css">
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/Genres.css">
+
+    <!-- Screen Javascript -->
     <script type="module" src="../js/genres.js" defer></script>
 
+    <title>Genres</title>
 </head>
+
 <body>
+
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img src="" alt="">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
 
     <div class="StreamingServices">
         <p class="Film_Chaser">FilmChaser</p>
 
         <div class="streaming">
-            <div class="StreamingLeft">                
+            <div class="StreamingLeft">
                 <h1>Pick Your <br>Preferred Genres</h1>
-                <span>2 Selected</span>      
-                
+                <span>2 Selected</span>
+
                 <div class="searchFieldButton">
                     <input type="text" id="search_mobile" class="search" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button> 
+                    <button type="submit"><i class="fa fa-search"></i></button>
                     <span>flag</span>
-                </div>               
-                
+                </div>
+
             </div>
             <div class="StreamingRight">
                 <div class="searchFieldButton">
                     <input type="text" id="search" class="search" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button> 
+                    <button type="submit"><i class="fa fa-search"></i></button>
                     <span>flag</span>
                 </div>
                 <div class="StreamingOptions">
                     <div class="Streaming2Columns">
                         <p>Action</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Action" id="Action">
+                            <input type="checkbox" class="streamingCheckboxes" name="Action" id="Action">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Adventure</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Adventure" id="Adventure">
+                            <input type="checkbox" class="streamingCheckboxes" name="Adventure" id="Adventure">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Animation</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Animation" id="Animation">
+                            <input type="checkbox" class="streamingCheckboxes" name="Animation" id="Animation">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Comedy</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Comedy" id="Comedy">
+                            <input type="checkbox" class="streamingCheckboxes" name="Comedy" id="Comedy">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Crime</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Crime" id="Crime">
+                            <input type="checkbox" class="streamingCheckboxes" name="Crime" id="Crime">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Documentary</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Documentary" id="Documentary">
+                            <input type="checkbox" class="streamingCheckboxes" name="Documentary" id="Documentary">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Drama</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Drama" id="Drama">
+                            <input type="checkbox" class="streamingCheckboxes" name="Drama" id="Drama">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Family</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Family" id="Family">
+                            <input type="checkbox" class="streamingCheckboxes" name="Family" id="Family">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Fantasy</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Fantasy" id="Fantasy">
+                            <input type="checkbox" class="streamingCheckboxes" name="Fantasy" id="Fantasy">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>History</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="History" id="History">
+                            <input type="checkbox" class="streamingCheckboxes" name="History" id="History">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Horror</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Horror" id="Horror">
+                            <input type="checkbox" class="streamingCheckboxes" name="Horror" id="Horror">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Music</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Music" id="Music">
+                            <input type="checkbox" class="streamingCheckboxes" name="Music" id="Music">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Mystery</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Mystery" id="Mystery">
+                            <input type="checkbox" class="streamingCheckboxes" name="Mystery" id="Mystery">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Romance</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Romance" id="Romance">
+                            <input type="checkbox" class="streamingCheckboxes" name="Romance" id="Romance">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Science Fiction</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Science Fiction" id="Science Fiction">
+                            <input type="checkbox" class="streamingCheckboxes" name="Science Fiction" id="Science Fiction">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>TV Movie</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="TV Movie" id="TV Movie">
+                            <input type="checkbox" class="streamingCheckboxes" name="TV Movie" id="TV Movie">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>Thriller</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="Thriller" id="Thriller">
+                            <input type="checkbox" class="streamingCheckboxes" name="Thriller" id="Thriller">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="Streaming2Columns">
                         <p>War</p>
                         <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes"      name="War" id="War">
+                            <input type="checkbox" class="streamingCheckboxes" name="War" id="War">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -176,4 +198,5 @@
     </div>
 
 </body>
+
 </html>
