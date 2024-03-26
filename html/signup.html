@@ -3,29 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/signup.css">
+
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <!-- Screen Javascript -->
+    <script type="module" src="../js/signup.js" defer> </script>
+
 </head>
 <body>
 
     <div class="SignUp">
-        <p class="Film_Chaser">FilmChaser</p>
+        <div class="site-logo">
+            <img src="../resources/imgs/logo.png" alt="logo">
+            <h5 class="app-name">FilmChaser</h5>
+        </div>
 
         <form action="#">
             <div class="SignUp_Center">
             
-                <h1 class="logo">LOGO1</h1>
-                <h1>Sign Up</h1>
+                <h1>Sign Up with</h1>
                 <ul>
+                    <a id="btn-google" href="create-user-name.html">
+                        <img src="../resources/icons/SNS/google.png" alt="google icon">
+                    </a>
                     <li>
-                        <i class="fa-brands fa-google"></i>
+                        <img src="../resources/icons/SNS/facebook.png" alt="facebook icon">
                     </li>
                     <li>
-                        <i class="fa-brands fa-facebook"></i>
-                    </li>
-                    <li>
-                        <i class="fa-brands fa-apple"></i>
+                        <img src="../resources/icons/SNS/apple.png" alt="apple icon">
                     </li>
                 </ul>
                 <p class="line_or">or</p>
@@ -33,12 +41,14 @@
                 <div class="my_fields">
                     <input type="email" class="signup_field" placeholder="Email">
                     <input type="password" class="signup_field" placeholder="Password">
-                    <input type="password" class="signup_field" placeholder="Password">
+                    <input type="password" class="signup_field" placeholder="Confirm Password">
                 </div>
                 
-                <input type="button" class="button" value="Create a Free Account">
-
-                <p>You already have an account? <a href="#">Sign in</a></p>
+                <input type="button" class="button btn-create" value="Create a Free Account">
+                
+                <div class="signIn">
+                    <p>You already have an account? <a href="../html/signin.html">Sign in</a></p>
+                </div>
                 
             </div>
         </form>

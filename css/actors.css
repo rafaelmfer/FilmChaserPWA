@@ -117,7 +117,7 @@ button{
 img{
     height: 50px;
     width: 100px;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .StreamingRight{

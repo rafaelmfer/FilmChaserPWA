@@ -62,7 +62,7 @@
         flex-flow: column nowrap;
         height: 100vh;
         justify-content: space-between;
-        width: 284px;
+        width: 224px;
     }
 
     .component-nav-desktop .notification-profile-wrapper {

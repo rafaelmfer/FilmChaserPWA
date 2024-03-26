@@ -1,13 +1,13 @@
 import { loginWithGoogle, loginWithEmailAndPassword, loginWithFacebook } from "./auth.js";
 import { saveInfoDb } from "./firestore.js";
 
-async function test() {
+async function googleLogIn() {
     try {
         let result = await loginWithGoogle();
 
         let location = `users`;
         saveInfoDb(location, result.user.uid, { 
-            name: result.user.displayName,
+            // name: result.user.displayName,
             email: result.user.email
         });
     } catch (error) {
@@ -15,6 +15,6 @@ async function test() {
     }
 }
 
-const loginBtn = document.getElementById("loginBtn");
-loginBtn.addEventListener("click", test);
 
+const googleBtn = document.querySelector("#btn-google");
+googleBtn.addEventListener("click", googleLogIn);
