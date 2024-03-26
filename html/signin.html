@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="../css/signin.css">
     <link rel="stylesheet" href="../css/variables.css">
     
+    <script src="../js/password.js" defer></script>
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
 
-    <header class="site-identity"> 
-        <img src="resources/imgs/logo.png" alt="Logo" class="app-logo">
-        <h1 class="Film_Chaser">FilmChaser</h1>
-    </header>
 
     <div class="SignIn">
-        <!-- <p class="Film_Chaser">FilmChaser</p> -->
+
+        <div class="site-logo">
+            <img src="../resources/imgs/logo.png" alt="logo">
+            <h5 class="app-name">FilmChaser</h5>
+        </div>
 
         <div class="SignIn_Center">
             <!-- <h1 class="logo">LOGO1</h1> -->
@@ -26,28 +29,31 @@
             <p>Sign in with SNS Accounts</p>
 
             <ul>
+                <a id="btn-google" href="create-user-name.html">
+                    <img src="../resources/icons/SNS/google.png" alt="google icon">
+                </a>
                 <li>
-                    <i class="fa-brands fa-google" aria-hidden="true"></i>
+                    <img src="../resources/icons/SNS/facebook.png" alt="facebook icon">
                 </li>
                 <li>
-                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                </li>
-                <li>
-                    <i class="fa-brands fa-apple" aria-hidden="true"></i>
+                    <img src="../resources/icons/SNS/apple.png" alt="apple icon">
                 </li>
             </ul>
             <p class="line_or">or</p>
 
             <div class="my_fields">
                 <input type="email" class="signin_field" placeholder="Email" required>
-                <input type="password" class="signin_field" placeholder="Password" required>                
+                <div>
+                    <input type="password" class="signin_field" placeholder="Password" id="psswd" required>
+                    <span id="show-btn">Show</span></input>
+                </div>                
             </div>
 
-            <p>Forgot password? <a href="../login/signup.html"> Reset it</a></p>
+            <p>Forgot password? <a href="#"> Reset it</a></p>
 
             <input type="button" class="button" value="Sign In">
 
-            <p>New here? <a href="../login/signup.html">Sign up</a></p>
+            <p>New here? <a href="signup.html">Sign up</a></p>
         </div>
     </div>
 

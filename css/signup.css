@@ -10,7 +10,7 @@ body {
     padding: 0px 2%;
 }
 
-.SignUp p {
+.SignUp p, .SignUp span {
     font-family: "Open Sans", sans-serif;
 }
 
@@ -127,7 +127,17 @@ input::placeholder {
 .my_fields {
     display: grid;
     gap: 1rem;
-    padding: 2rem 0;
+    padding: 1rem 0;
+}
+div:has(#show-btn), div:has(#show-btn2)  {
+    position: relative;
+}
+#show-btn, #show-btn2 {
+    position: absolute;
+    top: 16px;
+    right: 15px;
+    font-size: var(--font-mob-small-two);
+
 }
 
 .button {

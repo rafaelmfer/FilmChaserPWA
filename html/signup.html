@@ -11,6 +11,8 @@
 
     <!-- Screen Javascript -->
     <script type="module" src="../js/signup.js" defer> </script>
+    <script src="../js/password.js" defer></script>
+
 
 </head>
 <body>
@@ -40,8 +42,14 @@
 
                 <div class="my_fields">
                     <input type="email" class="signup_field" placeholder="Email">
-                    <input type="password" class="signup_field" placeholder="Password">
-                    <input type="password" class="signup_field" placeholder="Confirm Password">
+                    <div>
+                        <input type="password" class="signup_field" placeholder="Password" id="psswd" required>
+                        <span id="show-btn">Show</span>
+                    </div>
+                    <div>
+                        <input type="password" class="signup_field" placeholder="Confirm Password" id="psswd2" required><span id="show-btn2">Show</span>
+                        
+                    </div>
                 </div>
                 
                 <input type="button" class="button btn-create" value="Create a Free Account">
