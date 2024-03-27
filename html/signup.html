@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/signup.css">
 
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/signup.css">
 
     <!-- Screen Javascript -->
     <script type="module" src="../js/signup.js" defer> </script>
     <script src="../js/password.js" defer></script>
 
-
+    <title>Sign Up</title>
 </head>
+
 <body>
 
     <div class="SignUp">
         <div class="site-logo">
-            <img src="../resources/imgs/logo.png" alt="logo">
-            <h5 class="app-name">FilmChaser</h5>
+            <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+            <h4 class="app-name">FilmChaser</h4>
         </div>
 
-        <form action="#">
-            <div class="SignUp_Center">
-            
-                <h1>Sign Up with</h1>
-                <ul>
-                    <a id="btn-google" href="create-user-name.html">
-                        <img src="../resources/icons/SNS/google.png" alt="google icon">
-                    </a>
-                    <li>
-                        <img src="../resources/icons/SNS/facebook.png" alt="facebook icon">
-                    </li>
-                    <li>
-                        <img src="../resources/icons/SNS/apple.png" alt="apple icon">
-                    </li>
-                </ul>
-                <p class="line_or">or</p>
+        <div class="SignUp_Center">
 
-                <div class="my_fields">
-                    <input type="email" class="signup_field" placeholder="Email" id="email">
-                    <div>
-                        <input type="password" class="signup_field" placeholder="Password" id="psswd" required>
-                        <span id="show-btn">Show</span>
-                    </div>
-                    <div>
-                        <input type="password" class="signup_field" placeholder="Confirm Password" id="psswd2" required><span id="show-btn2">Show</span>
-                        
-                    </div>
-                    <span id="Message"></span>
+            <h2>Sign Up with</h2>
+            <ul>
+                <li id="btn-google">
+                    <img src="../resources/icons/SNS/google.png" alt="google icon">
+                </li>
+                <li>
+                    <img src="../resources/icons/SNS/facebook.png" alt="facebook icon">
+                </li>
+                <li>
+                    <img src="../resources/icons/SNS/apple.png" alt="apple icon">
+                </li>
+            </ul>
+            <p class="line_or body">or</p>
 
+            <div class="my_fields">
+                <input type="email" class="signup_field" placeholder="Email">
+                <div>
+                    <input type="password" class="signup_field" placeholder="Password" id="psswd" required>
+                    <span id="show-btn" class="small-one">Show</span>
                 </div>
-                
-                <input type="button" class="button btn-create" id="btn-create" value="Create a Free Account">
-                
-                <div class="signIn">
-                    <p>You already have an account? <a href="../html/signin.html">Sign in</a></p>
+                <div>
+                    <input type="password" class="signup_field" placeholder="Confirm Password" id="psswd2" required>
+                    <span id="show-btn2" class="small-one">Show</span>
                 </div>
-
-                
             </div>
-        </form>
+            <span id="Message"></span>
+
+            <input type="button" class="button-text btn-create" value="Create a Free Account">
+
+            <div class="signIn small-one">
+                <p>You already have an account? <a class="small-one" href="../html/signin.html">Sign in</a></p>
+            </div>
+
+        </div>
     </div>
 
 </body>
+
 </html>
