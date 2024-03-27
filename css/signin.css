@@ -1,41 +1,32 @@
+body {
+    min-width: 320px;
+    margin: 0;
 
-
-*{
-    margin: 0px;
-    border: 0px;
-    box-sizing: border-box;
+    display: block;
 }
 
-body{
-    color: var( --text-color-one);
-    background-color: var(--primary-color);
-    padding: 0px 2%;
+.SignIn {
+    display: grid;
+    grid-template-rows: 64px calc(100vh - 64px);
+    align-items: center;
 }
 
-.SignIn p, .SignIn span {
-    font-family: "Open Sans", sans-serif;
-}
-
-
-/* SITE IDENTITY AREA */
 .site-logo {
     display: flex;
+    gap: 8px;
+
     align-items: center;
     justify-content: center;
-    gap: .3rem;
-    padding: 1rem 0 2rem 0;
 
-    h5 {
-        padding: 0.3rem;
-        font-weight: 600;
-    }
-    img {
-        height: 28px;
-    }
+    height: 28px;
 }
 
-.SignIn{
-    display: grid;
+.site-logo h4 {
+    font-size: clamp(var(--font-mob-size-h5), 6vw, var(--font-mob-size-h3));
+}
+
+.site-logo img {
+    height: 28px;
 }
 
 .SignIn_Center {
@@ -47,120 +38,143 @@ body{
 
     text-align: center;
 
-    max-width: 620px;
-    margin: 2%;
-
-    h2 {
-        font-size: var(--font-mob-size-h2);
-        padding: 1rem 0; 
-     }
- 
-     img {
-         width: 48px;
-     }
+    max-width: 450px;
 }
 
+.SignIn_Center h2 {
+    padding: 1rem 0;
+}
 
-ul{
-    list-style-type: none;
+.SignIn_Center img {
+    width: 48px;
+
+    cursor: pointer;
+}
+
+.SignIn_Center .forgot-password {
+    margin-bottom: 48px;
+}
+
+ul {
+    width: 100%;
     padding: 2rem 0;
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
     margin: auto;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    list-style-type: none;
 }
+
 /* ----------- */
-.line_or{
+.line_or {
     position: relative;
 }
 
-.line_or::before{
+.line_or::before {
     content: "";
     display: block;
-    width: 45%;
+    width: 40%;
     height: 2px;
+    margin-left: 16px;
     background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     left: 0;
 }
 
-.line_or::after{
+.line_or::after {
     content: "";
     display: block;
-    width: 45%;
+    width: 40%;
     height: 2px;
+    margin-right: 16px;
     background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     right: 0;
 }
 
-
-.fields, .signin_field, .button{
-    width: 100%;
-    height: 54px;
-    font-weight: 500;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    caret-color: var(--text-color-one);
+    -webkit-text-fill-color: var(--text-color-one) !important;
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-color) inset !important;
 }
 
-
-
-.signin_field{
-    border: 1px solid #979797;
-    padding: 0.5rem;
-    background-color: #262730;
-    color: white;
+input {
     border-radius: 4px;
+    height: 54px;
 }
 
-.signin_field::placeholder {
+input::placeholder {
     color: var(--text-color-one);
 }
-div:has(#show-btn) {
+
+.signin_field {
+    width: 100%;
+    min-width: 288px;
+    border: 1px solid var(--tertiary-color);
+    padding: 0.5rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
+}
+
+.my_fields {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    margin: 16px;
+}
+
+div:has(#show-btn),
+div:has(#show-btn2) {
     position: relative;
 }
-#show-btn{
+
+#show-btn {
     position: absolute;
-    top: 15px;
+    top: 16px;
     right: 15px;
-    font-size: var(--font-mob-small-two);
-}
-.my_fields{
-    display: grid;
-    gap: 1rem;
-    padding: 1rem 0;
 }
 
-.button{
-    padding: 0.5rem;
-    margin-top: 3rem;
-    height: 54px;
+.button-text {
+    margin: 0 16px;
+    padding: 18px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 4px;
-    background-image: var(--background-gradient);
-    color: var(--text-color-one);
-    font-family: "Amiko", sans-serif; ;
-    font-size: var(--font-mob-button);
-    font-weight: 600;
-    text-align: center;
-    
-}
 
-a{
     color: var(--text-color-one);
-    padding-left: 0.7rem;
+    background-image: var(--background-gradient);
+
+    font-size: var(--font-button);
+
     cursor: pointer;
 }
 
+.SignIn {
+    color: var(--text-color-one);
+    font-size: var(--font-mob-small-one);
 
+    a {
+        color: var(--text-color-one);
+        cursor: pointer;
+    }
+}
 
 @media screen and (min-width: 450px) {
-    
     .site-logo {
+        margin-top: 32px;
+        margin-left: 40px;
         justify-content: left;
     }
-    
-    .SignIn_Center { 
-        width: 100vw;
-        margin: 0 auto;
+
+    .SignIn_Center {
+        justify-self: center;
     }
 }

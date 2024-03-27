@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/common.css">
 
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-snackbar.css">
+
     <!-- Screen CSS -->
     <link rel="stylesheet" href="../css/signup.css">
 
     <!-- Screen Javascript -->
-    <script type="module" src="../js/signup.js" defer> </script>
+    <script src="../js/component-snackbar.js" defer></script>
     <script src="../js/password.js" defer></script>
+    <script type="module" src="../js/signup.js" defer> </script>
+    
 
     <title>Sign Up</title>
 </head>
@@ -39,14 +44,14 @@
                 <li>
                     <img src="../resources/icons/SNS/facebook.png" alt="facebook icon">
                 </li>
-                <li>
+                <li onclick="myFunction()">
                     <img src="../resources/icons/SNS/apple.png" alt="apple icon">
                 </li>
             </ul>
             <p class="line_or body">or</p>
 
             <div class="my_fields">
-                <input type="email" class="signup_field" placeholder="Email">
+                <input id="email" type="email" class="signup_field" placeholder="Email">
                 <div>
                     <input type="password" class="signup_field" placeholder="Password" id="psswd" required>
                     <span id="show-btn" class="small-one">Show</span>
@@ -58,7 +63,7 @@
             </div>
             <span id="Message"></span>
 
-            <input type="button" class="button-text btn-create" value="Create a Free Account">
+            <input id="btn-create" type="button" class="button-text" value="Create a Free Account">
 
             <div class="signIn small-one">
                 <p>You already have an account? <a class="small-one" href="../html/signin.html">Sign in</a></p>
@@ -66,7 +71,7 @@
 
         </div>
     </div>
-
+    <div class="body-text" id="snackbar">Future Feature...</div>
 </body>
 
 </html>
