@@ -121,7 +121,7 @@ div:has(#show-btn) {
 }
 #show-btn{
     position: absolute;
-    top: 15px;
+    top: 16Px;
     right: 15px;
     font-size: var(--font-mob-small-two);
 }
