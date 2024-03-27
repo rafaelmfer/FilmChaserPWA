@@ -1,5 +1,6 @@
 import { firebase } from "./firebase-config.js";
 import {
+    addDoc,
     getFirestore,
     getDocs,
     doc,
@@ -471,6 +472,7 @@ async function findDocumentInSubcollection(location, documentId) {
  * @returns {function} - The function to cancel listening for changes to the document.
  *                       Call this function to stop listening for changes when necessary.
  */
+
 async function listenToDocumentChanges(
     location,
     documentId,
@@ -585,6 +587,38 @@ async function deleteInfoDb(location) {
     }
 }
 
+
+async function saveSeasons(id, season, episode, boo){
+    let myid = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+    console.log(id+" --- "+myid);
+
+    await setDoc(doc(firestore,"users/j7hBgo46ATgnYVdRRGTAA9hyBmB2/watchlist/"+id+"/seasons",season),
+                       {
+                            episodes_count: "",
+                            name: "",
+                            season_number: season
+                        })     
+                        
+        let boolean = boo==1?true: false;
+        await setDoc(doc(firestore,"users/j7hBgo46ATgnYVdRRGTAA9hyBmB2/watchlist/"+id+"/seasons/"+season+"/episode",episode),
+        {
+            episode_number: episode,
+            watched: boo==1?true: false
+        })
+}
+
+async function deleteEpisode(id, season, episode){
+    let myid = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+
+    await deleteDoc(doc(firestore,"users/j7hBgo46ATgnYVdRRGTAA9hyBmB2/watchlist/"+id+"/seasons/"+season+"/episode/"+episode))
+
+}
+
+
+
+
+
+
 export {
     saveInfoDb,
     saveMovieInDb,
@@ -599,4 +633,6 @@ export {
     updateInfoDb,
     updateMapInDb,
     deleteInfoDb,
+    saveSeasons,
+    deleteEpisode,
 };
