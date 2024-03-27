@@ -12,5 +12,33 @@
 }
 
 .Results{
-    padding: 2rem 0rem;
+    padding: 1rem 0rem;
+    font-size: var(--font-size-h4);
 }
+
+
+/* Pictures */
+#mainDiscover2 .movie-detail{
+    display: grid;
+    grid-template-rows: 151px 80px;
+    text-decoration: none;
+
+    img {
+        border-radius: 4px;
+        grid-row: 1 / 3;
+        grid-column: 1 / -1;
+    }
+
+    h4 {
+        padding: 8px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        grid-row: 2 / 3;
+        grid-column: 1 / -1;
+        z-index: 1;
+        color: white;
+        background-image: var(--background-gradient-black);
+}
+}
+
