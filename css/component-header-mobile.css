@@ -65,6 +65,7 @@ header.component-header-mobile
     .user-profile {
     width: 24px;
     height: 24px;
+    border-radius: 50%;
 }
 
 

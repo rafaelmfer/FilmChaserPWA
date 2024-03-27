@@ -13,4 +13,7 @@ let documentDbPath = `users/${documentId}`;
 const userDoc = await getInfoDb(documentDbPath);
 document.getElementById("userName").innerHTML = userDoc.name;
 document.getElementById("userPicture").src =
-    userDoc.profile_photo || "../resources/imgs/Placeholder/Placeholder_actor.png";
+  userDoc.profile_photo ||
+  "../resources/imgs/Placeholder/Placeholder_actor.png";
+document.querySelector(".user-profile").src =
+  userDoc.profile_photo || "../resources/imgs/Placeholder/Placeholder_actor.png";
