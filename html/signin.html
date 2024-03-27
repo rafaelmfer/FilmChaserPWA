@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
 
-    <link rel="stylesheet" href="../css/signin.css">
-    <link rel="stylesheet" href="../css/variables.css">
-    
-    <script src="../js/password.js" defer></script>
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
 
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
 
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/signin.css">
+
+    <!-- Screen Javascript -->
+    <script src="../js/password.js" defer></script>
+    <script type="module" src="../js/signin.js" defer></script>
+
+    <title>Sign In</title>
 </head>
+
 <body>
 
 
@@ -24,14 +31,13 @@
         </div>
 
         <div class="SignIn_Center">
-            <!-- <h1 class="logo">LOGO1</h1> -->
             <h2>Sign In</h2>
             <p>Sign in with SNS Accounts</p>
 
             <ul>
-                <a id="btn-google" href="create-user-name.html">
+                <li id="btn-google">
                     <img src="../resources/icons/SNS/google.png" alt="google icon">
-                </a>
+                </li>
                 <li>
                     <img src="../resources/icons/SNS/facebook.png" alt="facebook icon">
                 </li>
@@ -46,7 +52,7 @@
                 <div>
                     <input type="password" class="signin_field" placeholder="Password" id="psswd" required>
                     <span id="show-btn">Show</span></input>
-                </div>                
+                </div>
             </div>
 
             <p>Forgot password? <a href="#"> Reset it</a></p>
@@ -58,4 +64,5 @@
     </div>
 
 </body>
+
 </html>
