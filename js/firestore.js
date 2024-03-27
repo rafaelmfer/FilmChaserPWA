@@ -278,7 +278,7 @@ async function saveTvShowInDb(location, id, object, completed) {
  * @param {boolean} completed - A flag indicating whether the user has already seen this TV show.
  *
  * await saveTvShowInDb2(watchlistPathInFirebase, "71728", seriesDetails ,false);
- * 
+ *
  * This function adds the TV show details under the specified location in Firestore.
  * Each TV show is stored as a document under the location path, with subcollections for each season and episodes within each season.
  * The document ID for each season is set to the season number, and the document ID for each episode is set to the episode number.
@@ -343,6 +343,27 @@ async function getInfoDb(location) {
     } else {
         // docSnap.data() will be undefined in this case
         console.log("No such document!");
+    }
+}
+
+/**
+ * Check if the Document exists in Firestore
+ *
+ * @param {location} string - the location of the document you want to read
+ *
+ * getInfoDb(`users/${documentId}`)
+ * This would retrieve the document under `users/${documentId}`
+ *
+ * @returns {Boolean} - Boolean true if it does exist, false otherwise.
+ */
+async function docExists(location, callbackSuccess, callbackError) {
+    const docRef = doc(firestore, location);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        callbackSuccess();
+    } else {
+        callbackError();
     }
 }
 
@@ -510,11 +531,11 @@ async function updateInfoDb(location, object) {
  */
 async function updateMapInDb(location, key, values) {
     const docRef = doc(firestore, location);
-    
+
     try {
         // Use Firestore's update method to update the specified key within the map
         await updateDoc(docRef, {
-            [key]: arrayUnion(...values)
+            [key]: arrayUnion(...values),
         });
         console.log("Map updated in Firestore.");
     } catch (error) {
@@ -570,6 +591,7 @@ export {
     saveTvShowInDb,
     saveTvShowInDb2,
     getInfoDb,
+    docExists,
     getAllDocsInSubcollection,
     getDocsByQuery,
     findDocumentInSubcollection,

@@ -15,7 +15,7 @@ import {
 const auth = getAuth(firebase);
 
 async function createAccountEmailAndPassword(email, password) {
-    createUserWithEmailAndPassword(auth, email, password)
+    return createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // UserCredential - https://firebase.google.com/docs/reference/js/v8/firebase.auth#usercredential;
             return userCredential;
