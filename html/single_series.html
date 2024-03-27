@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Common CSS -->
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/common.css">
+
     <!-- Components CSS -->
     <link rel="stylesheet" href="../css/component-no-network-info.css">
     <link rel="stylesheet" href="../css/component-navigation.css">
@@ -16,10 +18,9 @@
     <!-- Screen CSS -->
     <link rel="stylesheet" href="../css/details-series.css">
 
-    <!-- Javascript -->
-    <!-- DELETE -->
-    <script type="module" src="../js/home_api_movies.js" defer></script>
+    <!-- Screen Javascript -->
     <script type="module" src="../js/details-series.js" defer></script>
+
 
     <title>TV Series Detail</title>
 </head>
@@ -97,9 +98,11 @@
     <main id="mainDiscover">
 
         <div class="movie-header js-movie-header">
-            <!-- <div class="top-buttonr">
-                <a href="home.html"><span class="material-symbols-outlined"> navigate_before</span></a>
-            </div> -->
+            <div class="top-goback">
+                <div class="btn-go-back">
+                        <span class="material-symbols-outlined">navigate_before</span>
+                </div>
+            </div>
 
             <h1 class="media--title js-media--title">TV Serie Title</h1>
             <div class="movie--general-info js-movie--general-info"></div>
@@ -117,8 +120,8 @@
         </div>
 
         <div class="section-tabs js-section-tabs">
-        <h2 class="page1"><a href="#page1">About</a></h2>
-        <h2 class="page2 active-tab"><a href="#page2">Episodes</a></h2>
+            <h2 class="page1"><a href="#page1">About</a></h2>
+            <h2 class="page2 active-tab"><a href="#page2">Episodes</a></h2>
         </div>
         <div class="main-subsection--about page" id="page1">
             <div class="movie-details">

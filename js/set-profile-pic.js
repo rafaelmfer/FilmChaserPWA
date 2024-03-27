@@ -36,7 +36,6 @@ user_upload_pic.addEventListener("change", (event) => {
 
 btn_take_photo.addEventListener("click",(e)=>{
     e.preventDefault();
-
     take_picture_box.classList.add("active");
     console.log("working fine")
 })
@@ -44,8 +43,8 @@ btn_take_photo.addEventListener("click",(e)=>{
 
 btn_cancel.addEventListener("click",()=>{
     off_screen.classList.remove("active")
+    take_picture_box.classList.remove("active");
     box_chose_photo.classList.remove("active")
-    take_picture_box.style.top = "-100%";
 })
 
 
@@ -74,7 +73,6 @@ async function handleEvent(event) {
 
 btn_save_profile.addEventListener("click", async () => {
     const user = await checkSession();
-    console.log("SAVED IN DB")
     let documentId = user.uid;
 
     await updateInfoDb(`users/${documentId}`, { profile_photo: imgResult });

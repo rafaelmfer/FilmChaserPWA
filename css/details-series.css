@@ -81,6 +81,10 @@ a {
     gap: 0.3rem;
 }
 
+.btn-go-back {
+    cursor: pointer;
+}
+
 /* MAIN SUBSECTION */
 .main-subsection--about, .main-subsection--episodes {
     display: grid;
@@ -92,11 +96,14 @@ a {
     /* border-bottom: 2px solid var(--tertiary-color); */
     display: flex;
     margin: 0;
+    
 }
 
 .section-tabs .active-tab {
     border-image: var(--background-gradient) 15;
-    color: white;
+    a {
+        color: white;
+    }
 }
 
 .section-tabs h2 {
@@ -108,7 +115,7 @@ a {
     font-weight: 700;
     
     text-align: center;
-    border-bottom: 2px solid;
+    border-bottom: 3px solid;
     border-image: var(--tertiary-color) 15;
     color: var(--tertiary-color);
 }
@@ -187,7 +194,6 @@ a {
 }
 .section--movie-info-details > p:nth-last-child(1) {
     display: flex;
-    text-align: center;
     gap: 0.5rem;
 }
 
@@ -341,10 +347,13 @@ section.section-content--external-wrapper {
   .episodeCard {
     display: flex;
     gap: 1rem;
-
     align-items: center;
     margin: 1rem 0;
   } 
+
+  .episodeCard.episode1 {
+    margin-top: 0;
+  }
 
   .inputField {
     display: flex;
@@ -356,9 +365,12 @@ section.section-content--external-wrapper {
 
 
   .episodeCard img {
-    max-height: 100%;
-    width: 154px;
-    object-position: cover;
+    height: 87px;
+    width: 100px;
+    object-position: fill;
+    object-fit: cover;
+    aspect-ratio: 2.5;
+    
   }
   
   /* CHECKBOX */
