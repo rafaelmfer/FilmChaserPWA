@@ -1,69 +1,68 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap");
-
-* {
-    margin: 0px;
-    border: 0px;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
-}
-
-:root {
-    --primary: #0f1a20;
-    --secondary: #262730;
-    --textcolor_white: #fffffc;
-    --textField_backGround: #262730;
-    --textField_border: #979797;
-}
-
-.SignUp_Center {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-}
-
 body {
-    font-family: "Roboto", sans-serif;
-    color: var(--textcolor_white);
-    background-color: var(--primary);
-    padding: 0px 0.5rem;
-    font-size: 16px;
-}
+    min-width: 320px;
+    margin: 0;
 
-.Film_Chaser {
-    top: 0.5rem;
-    left: 0.5rem;
-    font-size: 14px;
-    letter-spacing: 2px;
-    font-weight: bold;
-    position: absolute;
+    display: block;
 }
 
 .SignUp {
     display: grid;
-    grid-template-columns: 1fr;
-    height: 100vh;
-    width: 100%;
-    justify-content: center;
+    grid-template-rows: 64px calc(100vh - 64px);
     align-items: center;
-    justify-items: center;
+}
+
+.site-logo {
+    display: flex;
+    gap: 8px;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 28px;
+}
+
+.site-logo h4 {
+    font-size: clamp(var(--font-mob-size-h5), 6vw, var(--font-mob-size-h3));
+}
+
+.site-logo img {
+    height: 28px;
 }
 
 .SignUp_Center {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+
     text-align: center;
-    width: 100%;
-    max-width: 350px;
+
+    max-width: 450px;
+}
+
+.SignUp_Center h2 {
+    padding: 1rem 0;
+}
+
+.SignUp_Center img {
+    width: 48px;
+
+    cursor: pointer;
 }
 
 ul {
-    list-style-type: none;
-    font-size: 30px;
-    padding: 0px;
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
+    width: 100%;
+    padding: 2rem 0;
     margin: auto;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    list-style-type: none;
 }
 
+/* ----------- */
 .line_or {
     position: relative;
 }
@@ -71,9 +70,10 @@ ul {
 .line_or::before {
     content: "";
     display: block;
-    width: 45%;
+    width: 40%;
     height: 2px;
-    background: rgb(255, 255, 255);
+    margin-left: 16px;
+    background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     left: 0;
@@ -82,55 +82,87 @@ ul {
 .line_or::after {
     content: "";
     display: block;
-    width: 45%;
+    width: 40%;
     height: 2px;
-    background: #ffffff;
+    margin-right: 16px;
+    background: var(--divider-color-one);
     position: absolute;
     top: 50%;
     right: 0;
 }
 
-.fields,
-.signup_field,
-.button {
-    width: 100%;
+input {
+    border-radius: 4px;
     height: 54px;
-    font-weight: 500;
-}
-
-.fields {
-    display: inline-block;
 }
 
 input::placeholder {
-    color: var(--textcolor_white);
+    color: var(--text-color-one);
 }
 
 .signup_field {
-    border: 1px solid var(--textField_border);
+    width: 100%;
+    min-width: 288px;
+    border: 1px solid var(--tertiary-color);
     padding: 0.5rem;
-    background-color: var(--textField_backGround);
-    color: var(--textcolor_white);
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
 }
 
 .my_fields {
-    display: grid;
+    display: flex;
+    flex-flow: column nowrap;
     gap: 1rem;
+    margin: 16px;
 }
 
-.button {
-    background-image: linear-gradient(270deg, #ec764f, #72465d, #2e5df3);
-    color: var(--textcolor_white);
+div:has(#show-btn),
+div:has(#show-btn2) {
+    position: relative;
 }
 
-a {
-    color: var(--textcolor_white);
-    padding-left: 0.7rem;
+#show-btn,
+#show-btn2 {
+    position: absolute;
+    top: 16px;
+    right: 15px;
 }
 
-input {
+.button-text {
+    margin: 0 16px;
+    padding: 18px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 4px;
+
+    color: var(--text-color-one);
+    background-image: var(--background-gradient);
+
+    font-size: var(--font-button);
+
+    cursor: pointer;
 }
 
-@media screen and (min-width: 600px) {
+.signIn {
+    color: var(--text-color-one);
+    font-size: var(--font-mob-small-one);
+
+    a {
+        color: var(--text-color-one);
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 450px) {
+    .site-logo {
+        margin-top: 32px;
+        margin-left: 40px;
+        justify-content: left;
+    }
+
+    .SignUp_Center {
+        justify-self: center;
+    }
 }

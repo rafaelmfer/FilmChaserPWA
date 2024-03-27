@@ -15,6 +15,8 @@
     height: 48px;
     display: block;
     padding: 12px;
+
+    cursor: pointer;
 }
 
 .component-search-bar .search-input {

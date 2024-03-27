@@ -1,0 +1,27 @@
+{
+  "short_name": "FilmChaser",
+  "name": "Film Chaser",
+  "start_url": "html/onboarding.html",
+  "display": "fullscreen",
+  "background_color": "#6A6AAA",
+  "theme_color": "#6A6AAA",
+  "icons": [
+    {
+      "src": "resources/favicons/144px.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable"
+     },
+    {
+      "src": "resources/favicons/192px.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "resources/favicons/512px.png",
+      "sizes": "512x512",
+      "type": "image/png"
+
+    }
+  ]
+}

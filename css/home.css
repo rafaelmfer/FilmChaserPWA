@@ -7,7 +7,7 @@ section.tab-layout {
 }
 
 section.filter-and-search {
-    margin-top: 36px;
+    margin-top: 0;
     grid-row: 1/2;
     grid-column: 2/3;
 }
@@ -25,6 +25,10 @@ section.filter-and-search .component-search-bar {
 }
 
 @media screen and (min-width: 450px) {
+    section.filter-and-search {
+        margin-top: 36px;
+    }
+
     main.home-carousel {
         margin-top: 0;
     }

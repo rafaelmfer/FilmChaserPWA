@@ -1,6 +1,8 @@
-import { options } from "./common.js";
+import { options, networkInfo } from "./common.js";
 import { updateMapInDb } from '../js/firestore.js';
 import { checkSession } from "./auth.js";
+
+networkInfo();
 
 
 let StreamingOptions = document.querySelector(".StreamingOptions")

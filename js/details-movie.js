@@ -3,10 +3,12 @@
 import { urlInfo,
     createCarousel,
     initializeCarousel,
-    options, 
+    options,
+    networkInfo,
 } from './common.js';
 import { checkSession } from "./auth.js";
 import {
+    getInfoDb,
     saveMovieInDb,
     updateInfoDb,
     deleteInfoDb,
@@ -15,7 +17,7 @@ import {
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
-
+networkInfo();
 
 var movieId = urlInfo("id");
 let movieDetails = {};
@@ -24,6 +26,13 @@ const movieHeader = document.querySelector(".js-movie-header");
 const movieTitle = document.querySelector(".js-movie--title");
 const movieGralInfo = document.querySelector(".js-movie--general-info");
 const movieInfoDetails = document.querySelector(".js-section--movie-info-details");
+const btnBack = document.querySelector(".btn-go-back");
+
+btnBack.addEventListener("click", history_back);
+
+function history_back() {
+    window.history.back();
+}
 
 // SECTION: HERO IMAGE
 
@@ -48,7 +57,7 @@ function successCB_movie(data) {
 
     movieTitle.innerHTML = movieDetails.title;
     const movieYear = document.createElement("p");
-    movieYear.innerHTML = movieDetails.release_date.slice(0, 4);
+    movieYear.innerHTML = movieDetails.release_date.slice(0, 4)+ " - ";
     movieGralInfo.appendChild(movieYear);
 
     const movieInfoDetails_child = document.createElement("div");
@@ -68,16 +77,17 @@ function successCB_movie(data) {
     const movie_duration = document.createElement("p");
     const hours = Math.floor(movieDetails.runtime / 60);
     const minutes = movieDetails.runtime % 60;
-    movie_duration.innerHTML = `${hours}h ${minutes}m`;
+    movie_duration.innerHTML = `${hours}h ${minutes}m - `;
     movieGralInfo.appendChild(movie_duration);
 
     const movieInfoDetails_votes = document.createElement("div");
+    movieInfoDetails_votes.classList.add("small-size-font");
     const movie_vote_average = document.createElement("p");
     const movie_vote_stars = document.createElement("p");
 
     let vote_average = (movieDetails.vote_average * 5) / 10;
     movie_vote_average.innerHTML =
-        vote_average.toFixed(2) + "/5 (" + movieDetails.vote_count + ")";
+        vote_average.toFixed(2) + " / 5 (" + movieDetails.vote_count + ")";
 
     let star = "";
     let i = 1;
@@ -136,12 +146,12 @@ function successCB_release(data) {
 }
 
 // SECTION BUTTONS (Watchlist, Completed)
-const user = await checkSession();
-document.getElementById("userName").innerHTML = user.displayName;
-
+const user = await checkSession();;
 let documentId = user.uid;
 
-// let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
+const userDoc = await getInfoDb(`users/${documentId}`);
+document.getElementById("userName").innerHTML = userDoc.name;
+document.getElementById("userPicture").src = userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
 
 const watchlistPathInFirebase = `users/${documentId}/watchlist`;
 
@@ -328,7 +338,7 @@ function createSectionWithFilms(name, films) {
     sectionPictures.appendChild(section);
 
     // Initialize carousel
-    initializeCarousel(carousel);
+    initializeCarousel(carousel, 124, 8);
     
 }
 

@@ -1,5 +1,8 @@
 import { updateInfoDb } from '../js/firestore.js';
 import { checkSession } from "./auth.js";
+import { networkInfo } from "./common.js";
+
+networkInfo();
 
 const streamingServices = [...document.getElementsByClassName("streamingCheckboxes")]
 const btn_next = document.querySelector("#streaming_services");

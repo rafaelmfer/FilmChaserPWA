@@ -348,6 +348,27 @@ async function getInfoDb(location) {
 }
 
 /**
+ * Check if the Document exists in Firestore
+ *
+ * @param {location} string - the location of the document you want to read
+ *
+ * getInfoDb(`users/${documentId}`)
+ * This would retrieve the document under `users/${documentId}`
+ *
+ * @returns {Boolean} - Boolean true if it does exist, false otherwise.
+ */
+async function docExists(location) {
+    const docRef = doc(firestore, location);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
  * Get all Documents in a Subcollection in Firestore
  *
  * @param {function} callbackError - The callback function to execute if an error occurs during listening for changes.
@@ -604,6 +625,7 @@ export {
     saveTvShowInDb,
     saveTvShowInDb2,
     getInfoDb,
+    docExists,
     getAllDocsInSubcollection,
     getDocsByQuery,
     findDocumentInSubcollection,

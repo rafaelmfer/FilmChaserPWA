@@ -1,6 +1,8 @@
 import { updateInfoDb } from "../js/firestore.js";
 import { checkSession } from "./auth.js";
-import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
+import { networkInfo } from "./common.js";
+
+networkInfo();
 
 const pic_Upload = document.querySelector('input[type="file"]');
 let user_upload_pic = document.getElementById("myfile");
@@ -71,11 +73,9 @@ async function handleEvent(event) {
 
 btn_save_profile.addEventListener("click", async () => {
     const user = await checkSession();
-    console.log("SAVED IN DB")
     let documentId = user.uid;
 
     await updateInfoDb(`users/${documentId}`, { profile_photo: imgResult });
-    //await updateInfoDb(`users/j7hBgo46ATgnYVdRRGTAA9hyBmB2`, { profile_photo: imgResult });
 
     window.location.replace("streamingServices.html");
 

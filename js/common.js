@@ -25,6 +25,25 @@ export async function fetchData(url, options = {}) {
     return response.json();
 }
 
+export function networkInfo() {
+    const messageDiv = document.querySelector(".no-network-information");
+
+    function updateConnectionStatus() {
+        if (!navigator.onLine) {
+            messageDiv.classList.add("show");
+            document.body.style.overflow = "hidden"
+        } else {
+            messageDiv.classList.remove("show");
+            document.body.style.overflow = "auto"
+        }
+    }
+
+    updateConnectionStatus();
+
+    window.addEventListener("online", updateConnectionStatus);
+    window.addEventListener("offline", updateConnectionStatus);
+}
+
 /**
  * Function to retrieve information from the URL query string.
  * @param {string} parameter - The parameter name to retrieve from the URL.
@@ -57,7 +76,7 @@ export function createCarousel(films, createItemFunction) {
     // Creating the carousel items container
     var carouselItems = document.createElement("div");
     carouselItems.classList.add("carousel-items");
-    
+
     // Adding films to the carousel
     films.forEach(function (film) {
         var filmDiv = createItemFunction(film);
@@ -156,69 +175,10 @@ export function initializeCarousel(carousel, widthItem, marginItem) {
     });
 
     // Initialize carousel
-    
+
     updateCarousel();
 }
-// SECOND CAROUSEL FOR THE EPISODES
-export function initializeCarousel_episodes(carousel) {
-    // Constants for carousel
-    var itemWidth = 304;
-    var itemMargin = 8;
-    var currentIndex = 0;
 
-    // Function to update carousel visibility
-    function updateCarousel() {
-        var containerWidth = carousel.container.offsetWidth;
-        var numVisibleItems = Math.floor(
-            containerWidth / (itemWidth + itemMargin)
-        );
-        var maxIndex = Math.max(
-            0,
-            carousel.items.children.length - numVisibleItems
-        );
-        carousel.nextButton.classList.toggle("hide", currentIndex >= maxIndex);
-        carousel.prevButton.classList.toggle("hide", currentIndex <= 0);
-    }
-
-    // Function to update carousel position
-    function updateCarouselPosition() {
-        var newPosition = -1 * (itemWidth + itemMargin) * currentIndex;
-        carousel.items.style.transform = `translateX(${newPosition}px)`;
-        updateCarousel();
-    }
-
-    // Event listeners for previous and next buttons
-    carousel.prevButton.addEventListener("click", function () {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarouselPosition();
-        }
-    });
-
-    carousel.nextButton.addEventListener("click", function () {
-        var containerWidth = carousel.container.offsetWidth;
-        var numVisibleItems = Math.floor(
-            containerWidth / (itemWidth + itemMargin)
-        );
-        var maxIndex = Math.max(
-            0,
-            carousel.items.children.length - numVisibleItems
-        );
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateCarouselPosition();
-        }
-    });
-
-    // Event listener for window resize
-    window.addEventListener("resize", function () {
-        updateCarousel();
-    });
-
-    // Initialize carousel
-    
-    updateCarousel();
-}
 //**********************SEARCH--->MOVIE********************************** */
 export const options = {
     method: "GET",

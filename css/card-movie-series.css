@@ -15,6 +15,7 @@
 
 .card-movie-series a .movie-series--poster {
     max-width: 154px;
+    max-height: 224px;
     vertical-align: bottom;
 
     border-radius: 4px;
@@ -32,6 +33,12 @@
 
 .card-movie-series .movie-series--info .movie-series--title {
     margin-top: 24px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-movie-series .movie-series--info .year-rate-time {
@@ -53,10 +60,11 @@
 
 .card-movie-series .movie-series--info .synopsis {
     margin-top: 8px;
-
+    
+    flex-grow: 1;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -64,6 +72,7 @@
 .card-movie-series .movie-series--info .watch-now {
     min-height: 32px;
     margin-top: 16px;
+    margin-bottom: 16px;
     border-radius: 5px;
 
     display: flex;

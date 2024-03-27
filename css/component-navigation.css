@@ -5,8 +5,10 @@
 .component-nav-mobile {
     position: fixed;
     bottom: 0;
-    z-index: 5;
+    z-index: 2;
     width: 100%;
+
+    box-shadow: 0 -1px 5px var(--shadow-color);
 }
 
 .component-nav-mobile .nav-mobile {
@@ -18,16 +20,18 @@
 
     display: flex;
     flex-flow: row nowrap;
-    /* justify-content: center; */
 }
 
 .component-nav-mobile .nav-mobile ul li.nav-links {
+    padding-top: 8px;
+    padding-bottom: 8px;
+
     display: flex;
     flex-grow: 1;
     flex-basis: 24%;
     justify-content: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
+
+    cursor: pointer;
 }
 
 .component-nav-mobile .nav-mobile ul li.nav-links a {
@@ -36,7 +40,6 @@
     align-items: center;
     color: var(--tertiary-color);
     text-decoration: none;
-    cursor: pointer;
 }
 
 /* HOVER STATE */
@@ -61,7 +64,7 @@
         flex-flow: column nowrap;
         height: 100vh;
         justify-content: space-between;
-        width: 284px;
+        width: 224px;
     }
 
     .component-nav-desktop .notification-profile-wrapper {
@@ -100,7 +103,6 @@
         .logo-page-navigation-wrapper
         ul
         .app-name-logo {
-        font-weight: bold;
         gap: 16px;
         color: var(--text-color-one);
     }
@@ -117,6 +119,8 @@
         li {
         padding: 8px 10px;
         color: var(--tertiary-color);
+
+        cursor: pointer;
     }
 
     .component-nav-desktop
@@ -155,6 +159,16 @@
         img {
         width: 24px;
         height: 24px;
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li
+        a
+        img {
+        border-radius: 50%;
     }
 
     /* HOVER STATE */

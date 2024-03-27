@@ -16,6 +16,8 @@
     --secondary-color: #262730;
     --tertiary-color: #9e9bac;
 
+    --shadow-color: rgba(0,0,0,0.5);
+
     --text-color-one: #fffffc;
     --text-color-two: #d9d9d9;
 
@@ -23,7 +25,9 @@
 
     --background-selected: #283237;
     
-    --background-gradient: linear-gradient(281deg, var(--accent-color-one) -16.78%, #72465d 46.56%, var(--accent-color-two) 143.11%);
+    
+    --background-gradient: linear-gradient(333deg, var(--accent-color-one) -16.78%, #72465d 46.56%, var(--accent-color-two) 143.11%);
+    --background-gradient-network: linear-gradient(281deg, rgba(157, 21, 21, 0.8) -16.78%, rgba(0, 0, 0, 0.8) 46.56%, rgba(9, 17, 115, 0.8) 143.11%);
     --background-gradient-black: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 3.57%, rgba(0, 0, 0, 0.52) 30.06%, #000 100%);
 
     --font-size-h1: 47.78px;

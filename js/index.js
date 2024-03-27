@@ -17,3 +17,4 @@ async function test() {
 
 const loginBtn = document.getElementById("loginBtn");
 loginBtn.addEventListener("click", test);
+

@@ -1,8 +1,12 @@
 body{
     color: var(--text-color-one);
     font-family: "Open Sans", sans-serif;
-
     grid-template-rows: 116px auto;
+}
+img {
+    max-width:100%;
+    height:auto;
+    display:block;
 }
 
 button {
@@ -12,110 +16,32 @@ button {
 .buttons-actions {
     display: flex;
     flex-direction: row;
-    gap:2rem;
-
+    gap:.5rem;
 }
-.button-action {
+#js-completed , #js-add-watchlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img.material-symbols-outlined {
+        font-size: 24px;
+        height: 24px;
+    }
+}
+
+#js-completed > p, #js-add-watchlist > p {
+    font-size: var(--font-mob-small-two);
+    color: var(--tertiary-color)
+}
+/* .button-action {
     display: flex;
     flex-direction: column;
     background-color: transparent;
     align-items: center;
-    color:var(--text-color-one);
-}
-/* li {
-    list-style: none;
 } */
 
-/*header{
-    background-color: var(--primary-color);
-    width:200px;
-    height: 100vh;
-    position:fixed;
-    left: 0;
-    top: 0;
-    padding: 40px 20px;
-    border-right: 1px solid #353535;
-}
-
-main{
-    background-color: var(--primary-color);
-    padding: 3rem;
-}
 
 
-.film-chaser {
-    font-size: var(--font-mob-size-h5);
-}
-
-.logo{
-    width: 23px;
-}
-
-.logoTitle{
-    display: grid;
-    align-items: center;
-    grid-template-columns: auto auto;
-}
-
-nav ul{
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    margin-top: 5rem;
-}
-
-.userNotify ul li a,
-nav ul li a{
-    display: flex;
-    align-items: center;
-    column-gap:  16px;
-    transition: all 1s;
-    padding: 6px;
-    color: var(--tertiary-color);
-}
-
-nav ul li:hover{
-    cursor: pointer;
-    background-color: #ffffff4a;    
-    color: var(--text-color-one);
-}
-
-nav ul li:hover .material-symbols-outlined{
-    -webkit-text-fill-color: transparent; 
-    background-clip: inherit; 
-    -webkit-background-clip: text;
-    background-image: var(--background-gradient)
-}
-
-.mainTop{
-    margin-left: 200px;
-    background-color: var(--primary-color);
-    padding: 3rem;
-}
-
-.userNotify{
-    position: fixed;
-    bottom: 2rem;
-    left: 20px;
-}
-
-.userNotify ul{
-    list-style-type: none;
-    padding-left: 0px;
-}
-
-.topLinks{
-    display: flex;
-    list-style-type: none;
-    border-bottom: 2px solid var(--secondary-color)
-}
-
-.topLinks li{
-    padding: 10px 50px;
-    border-bottom: 2px solid ;
-    border-image: var(--background-gradient) 15;
-    transform: translateY(2px);
-} */
 
 /* ----------------------------- */
 /* MY CHANGES */
@@ -123,20 +49,16 @@ a {
     text-decoration: none;
     color: white;
 }
-.material-symbols-outline {
+/* .material-symbols-outline {
     font-size: 16px !important;
-}
+} */
 
 /* MAIN SECTION */
 #mainDiscover {
-    grid-column: 2 / 3;
-    grid-row: 1 / -1;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 40vh auto 2fr;
-    /* This padding is being overuled by home.css */
     padding: 0;
-    gap: 2rem;
+    margin: 0;
     
 }
 
@@ -150,176 +72,194 @@ a {
     flex-direction: column;
     justify-content: flex-end;
     gap:0.5rem;
-
-    padding:2rem;
+    aspect-ratio: 1.6;
+    padding: 8px 16px;
 }
 
 .movie-header > .js-movie--general-info {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 /* MAIN SUBSECTION */
-.main-subsection {
+.main-subsection--about, .main-subsection--episodes {
     display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
-    grid-template-rows: auto auto;
+    margin: 0 2%;
+
 }
 
 .section-tabs {
-    grid-column: 1 / -1;
-    border-bottom: 2px solid var(--tertiary-color);
-    /* border-image: var(--background-gradient) 15; */
+    /* border-bottom: 2px solid var(--tertiary-color); */
     display: flex;
-    gap: 10%;
-    margin: 0 36px;
+    margin: 0;
+}
+
+.section-tabs .active-tab {
+    border-image: var(--background-gradient) 15;
+    color: white;
 }
 
 .section-tabs h2 {
-    text-align: center;
+    flex: 1;
+    padding: 1rem 0 0.5rem 0;
 
-    font-size: var(--font-button);
+    font-size: var( --font-mob-size-h5);
     font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.5px;
-    padding: 27px 48px 18px 48px;
+    font-weight: 700;
+    
+    text-align: center;
+    border-bottom: 2px solid;
+    border-image: var(--tertiary-color) 15;
+    color: var(--tertiary-color);
 }
 
 .section-tabs h2 a {
     color: var(--tertiary-color);
 }
 
-.main-subsection--about {
-
-    grid-template-columns: 50% 50%;
-    column-gap: 32px;
-    margin: 0 36px;
-    overflow: hidden;
-} 
-
+/* ------------------------------- */
 .information-container {
     display: flex;
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.information-container > div {
+    padding: 16px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid #535353;
 }
 
 .section--where-to-watch {
     display: grid;
+    gap: 1rem;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
 }
 
 .section--where-to-watch h3 {
+    font-size: var(--font-mob-size-h6);
     grid-column: 1 / -1;
+}
+
+.section--where-to-watch h4 {
+    font-size: var( --font-mob-body);
+    
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    
+    flex-basis: 100%;
 }
 
 .section--where-to-watch .js-not-subscribed {
     display: flex;
     flex-flow: row wrap;
-}
-.section--where-to-watch .js-not-subscribed h4{
-    flex-basis: 100%;
+    gap: .4rem;
 }
 
 .section--where-to-watch .js-streaming-logo {
     border-radius: 10px;
-    height: 56px;
-    width: 56px;
+    height: 45px;
+    width: 45px;
 }
 
-
+/* -------------------------------- */
+.section--movie-info h3 {
+    font-size: var(--font-mob-size-h6);
+}
+.section--movie-info-details > * {
+    padding: 8px 0;
+}
 .section--movie-info-details div {
     display: flex;
-    flex-direction: row;
     gap: 1rem;
-    padding: 0.5rem 0;
+    
 }
 .section--comments p{
-    font-size: var(--font-body);
+    font-size: var(--font-mob-body);
+}
+
+.section--movie-info .small-size-font > p{
+    font-size: var(--font-mob-small-two);
+}
+.section--movie-info-details > p:nth-last-child(1) {
     display: flex;
-    align-items: center;
+    text-align: center;
     gap: 0.5rem;
 }
 
-/* CARROUSEL */
-.main-subsection--episodes {
-    display: grid;
-    grid-template-columns: 100%;
-    margin: 0 36px;
-}
-.carrousel {
-    width: 100%;
+/* ---------------------------- */
+.section--comments {
     display: flex;
-    justify-content: center;
-    align-items: center;    
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    
 }
 
-.carrousel .btn-arrow {
-    background-color: transparent;
-    color: var(--text-color-one);
-    transition: all .3s ease-in-out;
+.section--comments div {
+    display: flex;
+    align-items: center;
+    a {
+        display: grid;
+    }
+}
+.section-pictures {
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    overflow: hidden;
 }
 
-/* .js-movie-related-pictures figure {
-    position: relative;
-    height: 100%;
+.section-pictures h4 {
+    font-size: var(--font-mob-size-h6);
 }
 
-.js-movie-related-pictures figcaption{
-    width: 154px; 
-    position:absolute;
-    bottom: 0;
-    background-color: var(--primary-color);
+.main-subsection--about .component-carousel .carousel-container .carousel-items .item {
+    width: 124px;
+}
+
+.main-subsection--about .component-carousel .carousel-container .carousel-items .item a.link-item-container {
+    grid-template-rows: 116px 70px;
+} 
+
+
+/* EPISODES SECTION ----------------- */
+/* .section-all-seasons {
+    width: 100vw;
 } */
-.section-pictures > section {
-    margin-right: 36px;
-}
 
-.section-pictures figure {
-    position: relative;
-    height: 100%;
-}
-
-.section-pictures figcaption{
-    /* Same width as the posters */
-    width: 100%; 
-    position:absolute;
-    bottom: 0;
-    padding: 1rem 2% 0.5rem 2%;
-    background: linear-gradient(transparent, black 30% );
-    font-size: var (--font-small-two);
-}
-
-
-img {
-    max-width:100%;
-    height:auto;
-    display:block;
-}
-
-
-/* EPISODES SECTION */
-/* .main-subsection--episodes {
-    grid-column: 1 / -1;
-} */
 
 /* CAROUSEL */
-.section-tracking h2 {
+.section-tracking {
+    padding-top: 2rem;
+    /* overflow: hidden; */
+}
 
+.section-tracking h2 {
     font-family: Amiko;
     font-size: var(--font-size-h6);
     font-style: normal;
     font-weight: 400;
     padding: 1.5rem 0;
 }
+
 section.section-content--external-wrapper {
     border-bottom: 1px solid var(--tertiary-color);
     padding: 0.5rem 0;
+
+
 }
 
+.section-content {
+    display: grid;
+    overflow: hidden;
+}
 .section-tracking .item img {
     width: 66px;
     height: 67px;
@@ -340,17 +280,19 @@ section.section-content--external-wrapper {
     width: 304px;
     height: 66px;
     padding-right: 16px;
-    margin-right: 8px;
+    /* margin-right: 8px; */
     border-radius: 5px;
     background: var(--secondary-color);
 }
+
+
 /* ACCORDION */
 .section-all-seasons {
     padding: 1.5rem 0;
 }
 .section-all-seasons > div{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     margin: 0;
     gap: 1rem;
 }
@@ -389,7 +331,7 @@ section.section-content--external-wrapper {
   
   
   .panel {
-    padding: 0 18px;
+    padding: 0 8px;
     background-color: transparent;
     max-height: 0;
     overflow: hidden;
@@ -450,7 +392,7 @@ section.section-content--external-wrapper {
   /* DESKTOP */
 
 
-  @media screen and (min-width:450px) {
+  @media screen and (min-width:900px) {
     #mainDiscover {
         margin: 0;
         grid-column: 2 / 3;
@@ -461,19 +403,19 @@ section.section-content--external-wrapper {
         padding-left: 72px;
         padding-bottom: .5rem;
         aspect-ratio: 3;
-
     }
 
     /* ---------------------------- */
+    /* ABOUT */
+    .main-subsection--about {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 32px;
+        margin: 0 36px;
+        overflow: hidden;
+    }
     .information-container {
         justify-content: flex-start;
         gap: .5rem;
-
-        > div {
-            border-bottom: 1px solid #535353;
-            padding: 1rem 0;
-            margin: 1rem 0;
-        }
     }
 
     .section--where-to-watch h3 {
@@ -499,5 +441,10 @@ section.section-content--external-wrapper {
         gap: 16px;
     }
 
+    /* EPISODES */
+
+    .section-all-seasons > div{
+        grid-template-columns: 1fr 1fr;
+    }
 
 } 

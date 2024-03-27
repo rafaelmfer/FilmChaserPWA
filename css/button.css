@@ -1,0 +1,135 @@
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  background-color: var(--primary-color);
+}
+
+
+/* STYLE */
+.clickable {
+  background-image: var(--background-gradient);
+}
+
+.false {
+  background-color: var(--secondary-color);
+  border: 3px solid transparent;
+  border-image: var(--background-gradient);
+  border-image-slice: 1;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.deactivate {
+  opacity: 0.5;
+  background-image: var(--background-gradient);
+}
+
+.none {
+  background-color: var(--secondary-color);
+}
+
+/* EXTRA LARGE ===============*/
+/* DESKTOP  */
+.dt-bt-vl {
+  display: flex;
+  width: 358px;
+  padding: 20px 132px 16px 133px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--text-color-one);
+  font-size: var(--font-button);
+  cursor: pointer;
+}
+
+/* MOBILE */
+.mb-bt-vl {
+  display: flex;
+  width: 358px;
+  padding: 20px 132px 16px 133px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--text-color-one);
+  font-size: var(--font-mob-button);
+  cursor: pointer;
+}
+
+
+
+/* LARGE ===============*/
+/* DESKTOP  */
+.dt-bt-l {
+  display: flex;
+  width: 228px;
+  padding: 18px 132px 18px 133px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--text-color-one);
+  font-size: var(--font-button);
+  cursor: pointer;
+}
+
+/* MEDIUM ===============*/
+/* DESKTOP  */
+.dt-bt-m {
+  display: flex;
+  width: 197px;
+  height: 55px;
+  padding: 18px 132px 18px 133px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  color: var(--text-color-one);
+  font-size: var(--font-button);
+  cursor: pointer;
+}
+
+/* MOBILE */
+.mb-bt-m {
+  display: flex;
+  width: calc(164px - 6px);
+  height: 45px;
+  padding: 12px 132px 12px 133px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--text-color-one);
+  font-size: var(--font-mob-button);
+  cursor: pointer;
+}
+
+/* VERY SMALL ===============*/
+/* DESKTOP  */
+.dt-bt-vs {
+  display: flex;
+  height: 37px;
+  width: fit-content;
+  padding: 8px 24px 8px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--text-color-one);
+  font-size: var(--font-button);
+  cursor: pointer;
+}
+
+/* MOBILE */
+.mb-bt-vs {
+  display: flex;
+  height: 37px;
+  width: fit-content;
+  padding: 8px 24px 8px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--text-color-one);
+  font-size: var(--font-mob-button);
+  cursor: pointer;
+}

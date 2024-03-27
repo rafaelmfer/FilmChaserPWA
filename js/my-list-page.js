@@ -1,7 +1,6 @@
 "use strict";
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
-import { ACCOUNT_ID, SESSION_ID } from "../local_properties.js";
 
 import { checkSession } from "./auth.js";
 import {
@@ -9,7 +8,9 @@ import {
     getAllDocsInSubcollection,
     getDocsByQuery,
 } from "./firestore.js";
-import { createCarousel, initializeCarousel } from "./common.js";
+import { createCarousel, initializeCarousel, networkInfo } from "./common.js";
+
+networkInfo();
 
 // related to SPA ============================================================
 const allPages = document.querySelectorAll("div.page");
@@ -42,7 +43,7 @@ watchList.addEventListener("click", (e) => {
         upcoming.querySelector(".tab-underline").classList.remove("active");
         completed.querySelector(".tab-underline").classList.remove("active");
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 });
 
@@ -53,7 +54,7 @@ upcoming.addEventListener("click", (e) => {
         watchList.querySelector(".tab-underline").classList.remove("active");
         completed.querySelector(".tab-underline").classList.remove("active");
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 });
 
@@ -64,17 +65,20 @@ completed.addEventListener("click", (e) => {
         watchList.querySelector(".tab-underline").classList.remove("active");
         upcoming.querySelector(".tab-underline").classList.remove("active");
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 });
 
 // ============================================================================
 const user = await checkSession();
-document.getElementById("userName").innerHTML = user.displayName;
-
 let documentId = user.uid;
-// let documentId = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
 let documentDbPath = `users/${documentId}`;
+
+const userDoc = await getInfoDb(documentDbPath);
+document.getElementById("userName").innerHTML = userDoc.name;
+document.getElementById("userPicture").src =
+    userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
+
 let watchlistPath = `users/${documentId}/watchlist`;
 let watchlistArray = await getDocsByQuery(
     watchlistPath,
@@ -146,7 +150,9 @@ setTimeout(() => {
 
     var haventStartedList = document.querySelector(".list-havent-started");
     var divContainerHaventStarted = document.createElement("div");
-    divContainerHaventStarted.classList.add("havent-started-cards-container-mobile");
+    divContainerHaventStarted.classList.add(
+        "havent-started-cards-container-mobile"
+    );
     haventStartedList.appendChild(divContainerHaventStarted);
 
     alreadyWatching.forEach(function (item) {
