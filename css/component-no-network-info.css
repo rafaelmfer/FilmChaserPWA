@@ -33,6 +33,12 @@
 }
 
 .no-network-information h6 {
-    margin-top: 32px;
     color: rgba(255, 255, 255, 0.5);
+}
+
+.hotpink-rubber-chicken{
+    margin-top: 32px;
+
+    height: auto;
+    width: 100px;
 }
