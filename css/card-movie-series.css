@@ -85,6 +85,10 @@
     color: var(--text-color-one);
 }
 
+
+img[alt="Watch Now"] {
+    order: -1;
+}
 @media screen and (max-width: 450px) {
     .card-movie-series {
         max-width: 350px;
