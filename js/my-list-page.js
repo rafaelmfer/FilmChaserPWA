@@ -8,7 +8,7 @@ import {
   getAllDocsInSubcollection,
   getDocsByQuery,
 } from "./firestore.js";
-import { createCarousel, initializeCarousel, networkInfo } from "./common.js";
+import { createCarousel, initializeCarousel, networkInfo, options } from "./common.js";
 
 networkInfo();
 
@@ -226,13 +226,16 @@ function createListOfMoviesSeries(films, className, locationId) {
 
 // Function that writes the HTML code
 function createItemMovieSeriesCard(item) {
+  var media_url_providers = "";
   var filmDiv = document.createElement("div");
   filmDiv.classList.add("film-chaser", "item", "card-movie-series");
 
   if (item.media_type == "tv") {
     var path = "single_series.html?id=";
+    media_url_providers = `https://api.themoviedb.org/3/tv/${item.id}/watch/providers`;
   } else {
     var path = "single_movie.html?id=";
+    media_url_providers =`https://api.themoviedb.org/3/movie/${item.id}/watch/providers`;
   }
 
   // Add the movie image
@@ -289,18 +292,49 @@ function createItemMovieSeriesCard(item) {
   watchNowBtn.classList.add("film-chaser", "watch-now");
   infoDiv.appendChild(watchNowBtn);
 
-  var watchNowImg = document.createElement("img");
-  // Place the URL of the "Watch Now" button image if available
-  watchNowImg.src = "";
-  watchNowImg.alt = "Watch Now";
-  watchNowImg.width = 18;
-  watchNowImg.height = 18;
-  watchNowBtn.appendChild(watchNowImg);
 
-  var watchNowText = document.createElement("p");
-  watchNowText.classList.add("small-one");
-  watchNowText.textContent = "Watch Now";
-  watchNowBtn.appendChild(watchNowText);
+  // Call for providers
+  let provider = {};
+  fetch(media_url_providers, options)
+    .then((response) => response.json())
+    .then((response) => {
+       provider = media_info_providers(response.results);
+
+       if (provider != null) {
+        var watchNowImg = document.createElement("img");
+        watchNowImg.src = "https://image.tmdb.org/t/p/w92" + provider.logo_path;
+    
+        watchNowImg.alt = "Watch Now";
+        watchNowImg.width = 18;
+        watchNowImg.height = 18;
+        watchNowBtn.appendChild(watchNowImg);
+      } 
+
+    })
+    .catch((err) => console.error(err));
+
+
+    var watchNowText = document.createElement("p");
+    watchNowText.classList.add("small-one");
+    watchNowText.textContent = "Watch Now";
+    watchNowBtn.appendChild(watchNowText);
+
 
   return filmDiv;
+}
+
+
+function media_info_providers(providers) {
+
+  if (providers.CA != null) {
+      if (providers.CA.flatrate != undefined) {
+          return providers.CA.flatrate[0];
+      } else if (providers.CA.rent != undefined) {
+          return providers.CA.rent[0];
+      } else if (providers.CA.buy != undefined) {
+          return providers.CA.buy[0];
+      }
+  } else {
+      return null;
+  }
 }

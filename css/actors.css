@@ -133,7 +133,7 @@ img{
     justify-content: space-between;
     gap: 0.5rem;
     border-bottom: 1px solid #616161;
-    padding-bottom: 1rem;
+    padding: 0.5rem 0;
 }
 
 .streamingCheckboxes{

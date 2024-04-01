@@ -235,6 +235,7 @@ fetch(media_url_providers, options)
 
 function media_info_providers(providers) {
     // TODO the country initials could be taken from the profile info.
+    console.log("PROVIDERS:",providers);
     if (providers.CA != null) {
         if (providers.CA.flatrate != undefined) {
             iterate_media_provider(providers.CA.flatrate);
@@ -575,7 +576,7 @@ const AllSeasons = document.querySelector(".section-all-seasons");
 theMovieDb.tv.getById({ id: seriesId }, successCB_numSeasons, errorCB);
 
 function successCB_numSeasons(data) {
-    console.log(data);
+    console.log(JSON.parse(data));
     number_of_seasons = JSON.parse(data).number_of_seasons;
 
     for (let j = 1; j <= number_of_seasons; j++) {

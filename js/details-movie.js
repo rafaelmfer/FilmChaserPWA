@@ -49,6 +49,7 @@ const file_size = "w1000_and_h450_multi_faces";
 theMovieDb.movies.getById({ id: movieId }, successCB_movie, errorCB);
 
 function successCB_movie(data) {
+    console.log("DAATAAAAA",JSON.parse(data));
     movieDetails = JSON.parse(data);
     
     const image_path = base_url + file_size + movieDetails.backdrop_path;
