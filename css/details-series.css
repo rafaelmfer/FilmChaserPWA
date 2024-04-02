@@ -54,9 +54,11 @@ a {
 } */
 
 /* MAIN SECTION */
+
 #mainDiscover {
 
     display: grid;
+    grid-template-rows: max-content max-content auto;
     padding: 0;
     margin: 0;
     
@@ -88,6 +90,7 @@ a {
 /* MAIN SUBSECTION */
 .main-subsection--about, .main-subsection--episodes {
     display: grid;
+    grid-template-rows: max-content auto;
     margin: 0 2%;
 
 }
@@ -460,3 +463,8 @@ section.section-content--external-wrapper {
     }
 
 } 
+@media screen and (min-width:1200px) {
+    .movie-header {
+        aspect-ratio: 3.7;
+    }
+}
