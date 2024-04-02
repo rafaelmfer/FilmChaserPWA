@@ -140,14 +140,6 @@ body {
     .all-streaming-services
     .streaming-service-container
     .streaming-service-field
-    p {
-    /* flex-grow: 1; */
-}
-
-.streaming
-    .all-streaming-services
-    .streaming-service-container
-    .streaming-service-field
     .checkbox {
     width: 24px;
     height: 24px;
