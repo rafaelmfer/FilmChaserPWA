@@ -10,7 +10,6 @@ const showPicture = document.querySelector(".show-Picture");
 const showLogo = document.querySelector(".show-Logo");
 const user_photo = document.querySelector("#user-photo");
 const btn_save_profile = document.querySelector("#btn-save-profile");
-const btn_skip = document.getElementById("user-pic-upload");
 const btn_user_upload_pic = document.querySelector("#user-upload-pic")
 const btn_cancel = document.querySelector("#btn-cancel")
 const off_screen = document.querySelector(".off-screen");
@@ -34,11 +33,7 @@ user_upload_pic.addEventListener("change", (event) => {
 });
 
 
-btn_take_photo.addEventListener("click",(e)=>{
-    e.preventDefault();
-    take_picture_box.classList.add("active");
-    console.log("working fine")
-})
+
 
 
 btn_cancel.addEventListener("click",()=>{
@@ -81,9 +76,14 @@ btn_save_profile.addEventListener("click", async () => {
 
 });
 
-btn_skip.addEventListener("click", () => {
+document.querySelector(".btn_skip").addEventListener("click",()=>{
     window.location.replace("streamingServices.html");
-});
+})
+
+document.getElementById("btn_skip_photo").addEventListener("click",()=>{
+    window.location.replace("streamingServices.html");
+})
+
 
 
 
@@ -96,22 +96,27 @@ btn_skip.addEventListener("click", () => {
 
 // TAKE PICTURE
 
-document.getElementById("start").addEventListener("click", function () {
-    console.log("taking picture")
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      // Not adding `{ audio: true }` since we only want video now
-      navigator.mediaDevices.getUserMedia({ video: true })
-      .then( (stream) => {
-        video.srcObject = stream;
-        // video.play();  // or autplay
-      }).catch( (error) => {
-          console.log("failed to get media stream", error);
-      });
-  
-    } else {
-      console.log("media devices not available in this browser");
-    }
-  });
+
+    btn_take_photo.addEventListener("click",(e)=>{
+        e.preventDefault();
+
+        let snap = document.getElementById("snap");
+        snap.classList.add("active");
+        
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then( (stream) => {
+            video.srcObject = stream;
+            // video.play();  // or autplay
+        }).catch( (error) => {
+            console.log("failed to get media stream", error);
+        });
+    
+        } else {
+        console.log("media devices not available in this browser");
+        }
+    });
 
 
 
@@ -141,7 +146,17 @@ document.getElementById("snap").addEventListener("click",  () => {
 });
 
 
-// document.getElementById("stop").addEventListener("click",  () => {
+    document.getElementById("btn-cancel").addEventListener("click",  () => {
+        let snap = document.getElementById("snap");
+        snap.classList.remove("active");
+        const tracks = video.srcObject.getTracks();
+        tracks.forEach(track => track.stop());
+    });
+
+
+
+
+// document.getElementById("btn-cancel").addEventListener("click",  () => {
 //     const tracks = video.srcObject.getTracks();
 //     tracks.forEach(track => track.stop());
 //   });
