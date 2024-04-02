@@ -1,335 +1,293 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap');
-
-*{
-    margin: 0px;
-    border: 0px;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;;
-}
-
-:root{
-    --primary: #0F1A20;
-    --secondary: #262730;
-    --textcolor_white: #FFFFFC;
-    --textField_backGround: #262730;
-    --textField_border: #979797;
-}
-
-body{
-    font-family: 'Roboto', sans-serif;
-    color: var(--textcolor_white);
-    background-color: var(--primary);
-    padding:0px 1rem;
+body {
+    color: var(--text-color-one);
+    background-color: var(--primary-color);
     font-size: 16px;
     min-width: 330px;
 }
 
-.StreamingServices{
+.genres-services {
     display: grid;
-    grid-template-columns: 1fr;
-    height: 100vh;
-    width: 100%;
-    justify-content: center;
+    grid-template-rows: calc(100vh - 64px);
+}
+
+.site-logo {
+    flex-shrink: 0;
+    align-self: center;
+
+    display: flex;
+    gap: 8px;
+
     align-items: center;
-    justify-items: center;
+    justify-content: center;
+
+    height: 64px;
 }
 
-
-.buttons_mobile_size{
-    display: flex;
-    width: 100%;
-
+.site-logo h4 {
+    font-size: clamp(var(--font-mob-size-h5), 6vw, var(--font-mob-size-h3));
 }
 
-.Film_Chaser{
-    top: 0.5rem;
-    left: 0.5rem;
-    font-size: 14px;
-    letter-spacing: 2px;
-    font-weight: bold;
-    position: fixed;
-    z-index: 22;
+.site-logo img {
+    height: 28px;
 }
 
-.streaming{
-    display: flex;
-    width: 100%;
-    max-width: 900px;
-    gap: 1.5rem;
+.genres {
+    overflow: auto;
+    padding: 0px 1rem;
+
+    padding-bottom: 80px;
 }
 
-.StreamingLeft,
-.StreamingRight{
-    flex:1;
+.genres .genres-title {
+    margin-top: 16px;
+    text-align: center;
 }
 
+.genres .genres-title h6 {
+    margin-top: 8px;
+}
 
-.searchFieldButton{
+.genres .search-field-container {
+    margin-top: 24px;
+
     display: flex;
 }
 
-.search{
-    background-color: #222529;
-    color: white;
-    width: 100%;
-    padding: 10px ;
-    border-radius: 10px 0px 0px 10px;
+.genres .search-field-container input#search {
+    padding: 4px 13px;
+    border-radius: 25px 0px 0px 25px;
+
+    align-self: stretch;
+
+    display: flex;
+    align-items: center;
+    flex: 1 0 0;
+
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+
     outline: none;
 }
 
-.StreamingLeft .searchFieldButton{
-    display: none;
+.genres .search-field-container input#search::placeholder {
+    color: #d9d9d9;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
 }
 
+.genres .search-field-container button {
+    width: 45px;
+    padding: 0 0 0 10px;
+    border-radius: 0px 25px 25px 0;
 
-button{
-    border-radius: 0px 10px 10px 0;
-    background-color: #222529;
-}
-
-.fa-search{
-    padding: 10px;
-    color: #b3b3b3
-}
-
-.searchFieldButton span{
-    padding-left: 15px;
-}
-
-.StreamingOptions{
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 0;
+    align-items: center;
+
+    background-color: var(--secondary-color);
+    color: #d9d9d9;
+
+    font-size: 16px;
+
+    cursor: pointer;
+    z-index: 10;
 }
 
-.StreamingOptions .Streaming2Columns:nth-child(even){
-    padding-left: 1rem;
+.genres .search-field-container span {
+    font-size: 34px;
+    margin-left: 12px;
+    margin-right: 8px;
 }
 
-.StreamingOptions .Streaming2Columns:nth-child(odd){
-    padding-right: 1rem;
+.genres .all-genres-services {
+    margin-top: 16px;
 }
 
-img{
-    max-width: 100%;
-    height: auto;
-}
+.genres .all-genres-services .genres-service-container {
+    padding: 8px 0 16px 10px;
 
-.StreamingRight{
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    gap: 0 12px;
 }
 
-.Streaming2Columns{
-    flex: 47%;    
+.genres
+    .all-genres-services
+    .genres-service-container {
+    border-bottom: 1px solid var(--divider-color-one);
+}
+
+.genres
+    .all-genres-services
+    .genres-service-container
+    .genres-service-field {
+    flex-basis: 100%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
-    border-bottom: 1px solid #616161;
-    padding-bottom: 1rem;
 }
 
-.streamingCheckboxes{
-    background-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3);
-}
+.genres
+    .all-genres-services
+    .genres-service-container
+    .genres-service-field
+    .checkbox {
+    width: 24px;
+    height: 24px;
+    margin: 0 12px;
 
-.Streaming2Columns p{
-    flex: 100%;
-}
+    background-image: url(../resources/icons/icons-default/default-checkbox.svg);
 
-
-.buttons{
-    flex: 47%;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.btn_signin{
-    background-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3);
-    color: var(--textcolor_white);
-    width: -webkit-fill-available;
-    width: -moz-available;
-    height: 54px;
-    font-weight: 500;
-    margin-left: 2rem;
-    border-radius: 4px;
-}
-
-.container {
-    display: block;
-    position: relative;
     cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    width: 17px;
-    height: 17px;
-    
-  }
+}
 
-  a{
-    text-decoration: none;
-    color: white;
-  }
+.genres
+    .all-genres-services
+    .genres-service-container
+    .genres-service-field
+    .checkbox.checked {
+    width: 24px;
+    height: 24px;
+    margin: 0 12px;
 
-  .btn_Skip{
-    background-color: transparent;
-    color: white;
-    float: right;
-    height: 54px;
-    
-  }
+    background-image: url(../resources/icons/icons-active/active-checkbox.svg);
 
-/* Hide the browser's default checkbox */
-  .container input {
-    opacity: 0;
     cursor: pointer;
-    height: 17px;
-    width: 17px;
-  }
+}
 
-  /* Create a custom checkbox */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 17px;
-    width: 17px;
-    
-    /* background-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3); */
-
-    border: 1px solid;
-    border-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3) 1;
-    background-color: var(--secondary) !important;
-    
-  }
-
-
-  /* On mouse-over, add a grey background color */
-/* .container:hover input ~ .checkmark {
-    background-image: linear-gradient(270deg, #EC764F , #72465D, #692ef3);
-  } */
-
-  /* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-    background-image: linear-gradient(270deg, #EC764F , #72465D, #692ef3);
-  }
-
-  /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
+.buttons-container-desktop {
     display: none;
-  }
-
-  /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-    display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left: 3px;
-    top: 0px;
-    width: 5px;
-    height: 10px;
-    border: solid var(--primary);
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-
-@media only screen and (max-width: 700px) {    
-
-    .streaming {
-        flex-direction: column;
-    } 
 }
 
+.buttons-container-mobile {
+    padding: 28px 16px;
 
-@media only screen and (max-width: 450px) {    
-    body{
-        padding: 3rem 1rem;
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+
+    display: flex;
+    gap: 0 24px;
+
+    background-color: rgba(15, 26, 32, 0.80);
+}
+
+.buttons-container-mobile .button {
+    height: 45px;
+    border-radius: 4px;
+
+    flex-basis: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.buttons-container-mobile .button p {
+    color: var(--text-color-one);
+
+    text-align: center;
+}
+
+.btn-next {
+    border-radius: 4px;
+
+    background-image: var(--background-gradient);
+    color: var(--text-color-one);
+}
+
+.btn-skip {
+    border-radius: 4px;
+
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
+}
+
+@media screen and (min-width: 800px) {
+    .site-logo {
+        height: 28px;
+        margin-top: 32px;
+        margin-left: 40px;
+
+        justify-content: left;
     }
 
-    .StreamingLeft{
+    .genres-services {
+        padding: 40px 0;
+        /* margin: 0 40px; */
+        display: block;
+    }
+
+    .genres {
+        max-width: 1000px;
+        padding: 0px 1rem;
+        margin: 0 auto;
+
+        display: grid;
+        grid-template-columns: 400px minmax(350px, 1fr);
+        grid-template-rows: auto;
+        gap: 0 50px;
+    }
+
+    .genres .genres-title {
+        margin: 0;
+        text-align: left;
+    }
+
+    .genres .all-genress-wrapper {
         display: flex;
-        flex-direction: column;        
-        width: 100%;
-        gap: 1rem;
-        position: fixed;
-        left: 0;
-        top: 0px;
-        padding: 3rem 1rem;
-        background-color: var(--primary);
-        z-index: 2;
-        min-width: 330px;
-    }
-
-
-    .StreamingRight{
-        margin-top: 215px;
-    }
-
-
-    .StreamingOptions {  
         flex-direction: column;
-        margin-bottom: 3rem;
     }
 
-    .StreamingOptions .Streaming2Columns:nth-child(odd) {
-        padding-right: 0rem;
+    .genres .search-field-container {
+        margin: 0;
     }
 
-    .StreamingOptions .Streaming2Columns:nth-child(even) {
-        padding-left: 0rem;
+    .genres .all-genres-services {
+        margin-top: 40px;
+        padding-bottom: 32px;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .streaming {
-        gap: 2.5rem;
+    .buttons-container-mobile {
+        display: none;
     }
 
-    .StreamingRight .searchFieldButton{
-        display: none !important;
-    }
-
-    .searchFieldButton {
-        display: flex !important;
-    }
-    .StreamingLeft .searchFieldButton{
-        display: contents ;
-    }
-
-    .StreamingServices {
-        height: auto;
-    }
-
-    .btn_signin {
-        margin-left: 0;
+    .buttons-container-desktop {
+        align-self: end;
+        max-width: 416px;
         width: 100%;
+
+        display: flex;
+        gap: 0 24px;
+        justify-content: flex-end;
     }
 
-    .buttons_mobile_size {
-        gap: 1rem;
-    }
+    .buttons-container-desktop .button {
+        height: 45px;
+        border-radius: 4px;
 
-    .btn_Skip{
-        width: 100%;
-        background-color: var(--secondary);
-    }
+        flex-grow: 1;
 
-    .buttons_mobile_size{
-        position: fixed;
-        bottom: 0rem;
-        background-color: var(--primary);
-        left: 0rem;
-        padding: 1rem 1rem;
-        min-width: 330px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
     }
 }
