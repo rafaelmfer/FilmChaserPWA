@@ -60,7 +60,7 @@
 
 .card-movie-series .movie-series--info .synopsis {
     margin-top: 8px;
-    
+
     flex-grow: 1;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -85,10 +85,10 @@
     color: var(--text-color-one);
 }
 
-
 img[alt="Watch Now"] {
     order: -1;
 }
+
 @media screen and (max-width: 450px) {
     .card-movie-series {
         max-width: 350px;

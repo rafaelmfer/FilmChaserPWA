@@ -30,7 +30,8 @@ export function showResultall(res) {
             let link = document.createElement("a");
             let div = document.createElement("div");
             let img = document.createElement("img");
-            let h4 = document.createElement("h4");
+            let p = document.createElement("p");
+            p.classList.add("small-one");
 
 
             let Image = element.poster_path
@@ -39,7 +40,7 @@ export function showResultall(res) {
 
             img.setAttribute("src", Image);
 
-            h4.innerHTML =
+            p.innerHTML =
                 element.name != undefined ? element.name : element.title;
 
             div.setAttribute("class", "movie-detail");

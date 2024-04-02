@@ -3,13 +3,15 @@
 import { checkSession } from "./auth.js";
 import { updateInfoDb } from "./firestore.js";
 
+const username = document.getElementById("username");
+
 async function saveUsername() {
     const user = await checkSession();
     let userId = user.uid;
 
     let location = `users/${userId}`;
     await updateInfoDb(location, {
-        name: username,
+        name: username.value,
     });
     window.location.replace("set-profile-pic.html");
 }

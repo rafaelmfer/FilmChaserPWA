@@ -6,6 +6,7 @@ import {
 import { docExists, saveInfoDb } from "./firestore.js";
 
 let result;
+
 async function googleLogIn() {
     try {
         result = await loginWithGoogle();
@@ -25,6 +26,8 @@ function success() {
 async function error() {
     console.log("Create User");
     console.log(result);
+
+    let location = `users`;
     await saveInfoDb(location, result.user.uid, {
         email: result.user.email,
     });

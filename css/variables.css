@@ -142,8 +142,8 @@ h6 {
 }
 
 /* MOBILE SCREEN */
-/* THEY ARE TWO MEDIA QUERIES SO FAR 450px and 700px */
-@media screen and (max-width: 450px) {
+/* THEY ARE TWO MEDIA QUERIES SO FAR 450px */
+@media screen and (max-width: 449px) {
     h1 {
         font-family: "Amiko", sans-serif;
         font-size: var(--font-mob-size-h1);

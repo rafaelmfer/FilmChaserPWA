@@ -16,7 +16,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     background-image: var(--background-gradient-network);
 
     text-align: center;
@@ -36,7 +36,7 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
-.hotpink-rubber-chicken{
+.hotpink-rubber-chicken {
     margin-top: 32px;
 
     height: auto;
