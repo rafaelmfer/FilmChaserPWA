@@ -10,6 +10,7 @@ import {
 import { checkSession } from "./auth.js";
 import {
     getInfoDb,
+    getAllDocsInSubcollection,
     saveTvShowInDb,
     saveTvShowInDb2,
     updateInfoDb,
@@ -33,13 +34,12 @@ const movieInfoDetails = document.querySelector(
 
 let allSeasons = [];
 
-  const btnBack = document.querySelector(".btn-go-back");
-  btnBack.addEventListener("click", history_back);
+const btnBack = document.querySelector(".btn-go-back");
+btnBack.addEventListener("click", history_back);
 
-  function history_back() {
-      window.history.back();
-  }
-  
+function history_back() {
+    window.history.back();
+}
 
 // SECTION: HERO IMAGE ==================================
 
@@ -194,7 +194,7 @@ btCompleted.addEventListener("click", async function (event) {
             completed: updatedCompletedState,
         });
     } else {
-        await saveTvShowInDb2(
+        await saveTvShowInDb(
             watchlistPathInFirebase,
             seriesId,
             seriesDetails,
@@ -235,7 +235,7 @@ fetch(media_url_providers, options)
 
 function media_info_providers(providers) {
     // TODO the country initials could be taken from the profile info.
-    console.log("PROVIDERS:",providers);
+    console.log("PROVIDERS:", providers);
     if (providers.CA != null) {
         if (providers.CA.flatrate != undefined) {
             iterate_media_provider(providers.CA.flatrate);
@@ -518,6 +518,7 @@ function createEpisodesCard2(object) {
             console.log(object.show_id);
 
             saveSeasons(
+                watchlistPathInFirebase,
                 object.show_id,
                 object.season_number.toString(),
                 object.episode_number.toString(),
@@ -530,11 +531,11 @@ function createEpisodesCard2(object) {
             // console.log(e.target.parentNode.parentElement.classList[2])
             console.log(object.show_id);
             deleteEpisode(
+                watchlistPathInFirebase,
                 object.show_id,
                 object.season_number.toString(),
                 object.episode_number.toString()
             );
-            //saveSeasons(object.show_id, object.season_number.toString(), object.episode_number.toString(), 0);
         }
     });
 
@@ -608,7 +609,7 @@ function successCB_numSeasons(data) {
                     if (allSeasons[s].name === season) {
                         console.log("deleted" + allSeasons[s].name);
                         console.log(allSeasons[s]);
-                        // deleteEpisode(id, season, episode)
+
                         let seasonId = allSeasons[s].id;
                         let seasonName = allSeasons[s].name.toString();
                         console.log("ids: " + seasonId);
@@ -619,6 +620,7 @@ function successCB_numSeasons(data) {
                             n++
                         ) {
                             deleteEpisode(
+                                watchlistPathInFirebase,
                                 allSeasons[s].episodes[n].show_id,
                                 allSeasons[s].episodes[n].season_number,
                                 allSeasons[s].episodes[n].episode_number
@@ -655,6 +657,7 @@ function successCB_numSeasons(data) {
                             ) {
                                 // console.log(allSeasons[x].episodes[z].episode_number.toString())
                                 saveSeasons(
+                                    watchlistPathInFirebase,
                                     allSeasons[x].episodes[0].show_id,
                                     allSeasons[x].episodes[
                                         z
@@ -678,7 +681,7 @@ function successCB_numSeasons(data) {
         const numberOfEpisodes = document.querySelector(
             `.season${JSON.parse(data).season_number} .numberOfEpisodes`
         );
-        numberOfEpisodes.innerText = ` / ${JSON.parse(data).episodes.length}`;
+        numberOfEpisodes.innerText = `/${JSON.parse(data).episodes.length}`;
     }
 
     // ACCORDION =============================================
@@ -771,6 +774,7 @@ async function createEpisodesCard(object) {
                         "checked"
                     ) {
                         saveSeasons(
+                            watchlistPathInFirebase,
                             object.episodes[x].show_id,
                             object.episodes[x].season_number.toString(),
                             object.episodes[x].episode_number.toString(),
@@ -778,6 +782,7 @@ async function createEpisodesCard(object) {
                         );
                     } else {
                         deleteEpisode(
+                            watchlistPathInFirebase,
                             object.episodes[x].show_id,
                             object.episodes[x].season_number,
                             object.episodes[x].episode_number
@@ -872,9 +877,87 @@ function AllEpisodesSelected(seasonNum) {
         console.log("remove all");
         console.log(allSeasons);
     }
-    var watched = document.querySelectorAll(
-        `.section-all-seasons .season${seasonNum} div.checked`
-    );
+    // var watched = document.querySelectorAll(
+    //     `.section-all-seasons .season${seasonNum} div.checked`
+    // );
 
-    quantity.innerHTML = `${watched.length}`;
+    // quantity.innerHTML = `${watched.length}`;
+
+    updateQuantity(seasonNum);
 }
+
+function updateQuantity(seasonNum) {
+    const quantity = document.querySelector(`.season${seasonNum} .quantity`);
+    const episodes = document.querySelectorAll(`.season${seasonNum} .episodeCard`);
+
+    let count = 0;
+    episodes.forEach((episode) => {
+        if (episode.classList.contains("checked")) {
+            count++;
+        }
+    });
+
+    quantity.textContent = count; // Atualizar o contador com a quantidade de checkboxes marcados
+}
+
+setTimeout(async () => {
+    let seasonsPath = `${watchlistPathInFirebase}/${itemAdded.id}/seasons`;
+    let seasonsArray = await getAllDocsInSubcollection(seasonsPath, {});
+    console.log(seasonsArray);
+
+    if (
+        seasonsArray !== undefined &&
+        seasonsArray !== null &&
+        seasonsArray.length !== 0
+    ) {
+        seasonsArray.forEach(async (doc) => {
+            let episodePath = `${seasonsPath}/${doc.season_number}/episodes`;
+            let episodesArray = await getAllDocsInSubcollection(
+                episodePath,
+                {}
+            );
+            console.log(JSON.stringify(episodesArray));
+
+            episodesArray.forEach((episode) => {
+                const episodeNumberToFind = `S${doc.season_number} | E${episode.episode_number}`;
+
+                // Selecionar todos os elementos que representam episódios
+                const episodes = document.querySelectorAll(".episodeCard");
+
+                const episodesTrack = document.querySelectorAll(`.episode${episode.episode_number}`);
+
+                // Iterar sobre cada elemento episódio
+                episodes.forEach((episode) => {
+                    // Encontrar o elemento de texto dentro do elemento episódio
+                    const episodeTextElement = episode.querySelector("p");
+                    // Obter o texto dentro desse elemento
+                    const episodeText = episodeTextElement.textContent.trim();
+                    // Verificar se o texto do episódio corresponde ao número do episódio que estamos procurando
+                    if (episodeText === episodeNumberToFind) {
+                        // Se corresponder, você encontrou o elemento HTML correspondente
+                        // console.log("Elemento encontrado:", episode);
+                        // Faça o que você precisa com esse elemento aqui
+
+                        episode.classList.add("checked");
+                    }
+                });
+
+                episodesTrack.forEach((episode) => {
+                    // Encontrar o elemento de texto dentro do elemento episódio
+                    // const episodeTextElement = episode.querySelector("p");
+                    // Obter o texto dentro desse elemento
+                    // const episodeText = episodeTextElement.textContent.trim();
+                    // Verificar se o texto do episódio corresponde ao número do episódio que estamos procurando
+                    // if (episodeText === episodeNumberToFind) {
+                        // Se corresponder, você encontrou o elemento HTML correspondente
+                        // console.log("Elemento encontrado:", episode);
+                        // Faça o que você precisa com esse elemento aqui
+
+                        episode.classList.add("checked");
+                    // }
+                });
+            });
+            updateQuantity(doc.season_number);
+        });
+    }
+}, 1000);
