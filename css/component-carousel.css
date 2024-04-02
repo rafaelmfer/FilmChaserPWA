@@ -89,10 +89,10 @@ USING THE {.component-carousel .carousel-container .carousel-items .item.yourNew
 
 .component-carousel .carousel-container .carousel-items .item a.link-item-container p.small-one {
     padding: 8px;
+    padding-top: 24px;
     border-radius: 4px;
 
     display: flex;
-    align-items: center;
 
     grid-row: 2/3;
     grid-column: 1/-1;
