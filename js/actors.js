@@ -1,16 +1,52 @@
-import { options, networkInfo } from "./common.js";
+"use strict";
+
 import { updateMapInDb } from "../js/firestore.js";
 import { checkSession } from "./auth.js";
+import { networkInfo } from "./common.js";
+import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 networkInfo();
 
-let StreamingOptions = document.querySelector(".StreamingOptions");
-let search = document.querySelector("#search");
-let search_mobile = document.querySelector("#search_mobile");
+// FUNCTIONS TO FETCH actors FROM THE API TO INITIALIZE THE SCREEN
+// IT IS NOT EFFECTIVE BECAUSE IT TAKES TOO LONG TO LOAD THE PAGE
+// THAT'S WHY WE USED THE DATA ALREADY STORED ON THE ARRAY actors BELOW
+// let actorsArray = [];
+// let pageNumber = 1;
 
-const streamingsArray = [];
+// function callPersonPopularAPI(pageNumber) {
+//     theMovieDb.people.getPopular({ page: pageNumber }, successCB, errorCB);
+// }
 
-let actor = [
+// function successCB(data) {
+//     console.log("successCB: ", JSON.parse(data));
+
+//     let newArray = JSON.parse(data).results.filter(
+//         (actor) =>
+//             actor.known_for_department === "Acting" &&
+//             actor.profile_path !== null
+//     );
+
+//     if (newArray.length > 0) {
+//         actorsArray.push(...newArray);
+//     }
+
+//     if (actorsArray.length < 12) {
+//         pageNumber++;
+//         callPersonPopularAPI(pageNumber);
+//     } else {
+//         // Calling the function to add actors to the page
+//         addactorsToPage(actorsArray);
+//         console.log(JSON.stringify(actorsArray));
+//     }
+// }
+
+// function errorCB(error) {
+//     console.log("errorCB: ", error);
+// }
+
+// callPersonPopularAPI(pageNumber);
+
+let actors = [
     {
         adult: false,
         gender: 2,
@@ -133,176 +169,120 @@ let actor = [
     },
 ];
 
-function load_all_actors() {
-    insert_actors(actor);
+// Array to store selected actors
+let selectedActors = [];
+
+// Function to add actors to the page
+function addactorsToPage(actors) {
+    const allactors = document.querySelector(".all-actors-services");
+
+    actors.forEach((actor) => {
+        // Creating the container element
+        const container = document.createElement("div");
+        container.classList.add("actors-service-container");
+
+        // Creating the actor's image
+        const img = document.createElement("img");
+        img.src = `https://image.tmdb.org/t/p/original${actor.profile_path}`;
+        img.alt = actor.name;
+        img.width = 50;
+        img.height = 50;
+
+        const wrapperNameAndCheckbox = document.createElement("div");
+        wrapperNameAndCheckbox.classList.add("actors-service-field");
+
+        // Creating the actor's text field
+        const text = document.createElement("p");
+        text.classList.add("body-text");
+        text.textContent = actor.name;
+
+        // Creating the checkbox div
+        const checkbox = document.createElement("div");
+        checkbox.classList.add("checkbox");
+
+        wrapperNameAndCheckbox.appendChild(text);
+        wrapperNameAndCheckbox.appendChild(checkbox);
+
+        // Adding elements to the container
+        container.appendChild(img);
+        container.appendChild(wrapperNameAndCheckbox);
+
+        // Adding the container to the wrapper
+        allactors.appendChild(container);
+
+        // Adding click event to the checkbox
+        checkbox.addEventListener("click", function () {
+            // Toggle actor selection
+            toggleactorselection(actor);
+            // Update selected actors count
+            updateSelectedCount();
+            // Toggle "checked" class to change checkbox appearance
+            checkbox.classList.toggle("checked");
+        });
+    });
 }
 
-search_mobile.addEventListener("keyup", async () => {
-    console.log(search_mobile.value);
-    let value = search_mobile.value;
-    filter_movie(value);
-});
-
-search.addEventListener("keyup", async () => {
-    let value = search.value;
-
-    if (value == "") {
-        load_all_actors();
+// Function to add or remove selected actors
+function toggleactorselection(actor) {
+    const index = selectedActors.findIndex((d) => d.id === actor.id);
+    if (index === -1) {
+        let actorReduced = {
+            id: actor.id,
+            name: actor.name,
+            photo: actor.profile_path,
+        };
+        // If actor is not selected, add to the list
+        selectedActors.push(actorReduced);
     } else {
-        filter_movie(value);
+        // If actor is selected, remove from the list
+        selectedActors.splice(index, 1);
     }
+}
+
+// Function to update the selected actors count
+function updateSelectedCount() {
+    const selectedCountElement = document.querySelector(".actors-title h6");
+    selectedCountElement.textContent = `${selectedActors.length} Selected`;
+}
+
+// Calling the function to add actors to the page
+addactorsToPage(actors);
+
+// Selecting the "Next" button
+const btnNext = document.querySelectorAll(".btn-next");
+
+// Adding an event listener to the "Next" button
+btnNext.forEach((button) => {
+    button.addEventListener("click", async function () {
+        // Checking user session
+        const user = await checkSession();
+        let documentId = user.uid;
+
+        // Updating user information in Firebase database
+        await updateMapInDb(
+            `users/${documentId}`,
+            "interests.actors",
+            selectedActors
+        );
+
+        // Logging selected actors to console
+        console.log(selectedActors);
+
+        // Going to the next page
+        goToNextPage();
+    });
 });
 
-async function filter_movie(value) {
-    await fetch(
-        "https://api.themoviedb.org/3/search/person?query=" +
-            value +
-            "&include_adult=false&language=en-US&page=1",
-        options
-    )
-        .then((response) => response.json())
-        .then((response) => {
-            insert_actors(response.results);
-        })
-        .catch((err) => console.error(err));
-}
+// Selecting the "Skip" button
+const btnSkip = document.querySelectorAll(".btn-skip");
 
-async function insert_actors(actors) {
-    StreamingOptions.innerHTML = "";
-
-    let total = actors.length;
-    if (actors.length > 12) {
-        total = 12;
-    }
-
-    for (let x = 0; x < total; x++) {
-        // Create the div element
-        var divElement = document.createElement("div");
-        divElement.classList.add("Streaming2Columns");
-
-        // Create the img element
-        var imgElement = document.createElement("img");
-        imgElement.src =
-            "https://image.tmdb.org/t/p/original" + actors[x].profile_path;
-        imgElement.alt = "";
-
-        // Create the p element
-        var pElement = document.createElement("p");
-        pElement.textContent = actors[x].original_name;
-
-        // Create the label element
-        var labelElement = document.createElement("label");
-        labelElement.classList.add("container");
-
-        // Create the input element
-        var inputElement = document.createElement("input");
-        inputElement.type = "checkbox";
-        inputElement.classList.add("streamingCheckboxes");
-        inputElement.name = actors[x].id;
-        inputElement.id = actors[x].id;
-
-        // Create the span element
-        var spanElement = document.createElement("span");
-        spanElement.classList.add("checkmark");
-
-        // Append the input element to the label element
-        labelElement.appendChild(inputElement);
-        // Append the span element to the label element
-        labelElement.appendChild(spanElement);
-
-        // Append the img, p, and label elements to the div element
-        divElement.appendChild(imgElement);
-        divElement.appendChild(pElement);
-        divElement.appendChild(labelElement);
-
-        // Append the div element to the document body or any desired parent element
-        StreamingOptions.appendChild(divElement);
-    } //END FOR
-
-    // AFTER APPEND ALL CHILD IT WILL APPEND THE BUTTONS AT THE BOTTOM
-
-    // Create the div element with class "buttons_mobile_size"
-    var divElement = document.createElement("div");
-    divElement.classList.add("buttons_mobile_size");
-
-    // Create the first div element with class "buttons"
-    var firstButtonsDivElement = document.createElement("div");
-    firstButtonsDivElement.classList.add("buttons");
-
-    // Create the input element for the "Skip" button
-    var skipButton = document.createElement("input");
-    skipButton.type = "button";
-    skipButton.value = "Add";
-    skipButton.setAttribute("id", "btn_Add");
-    skipButton.classList.add("btn_Skip");
-
-    // Append the "Skip" button input element to the first div
-    firstButtonsDivElement.appendChild(skipButton);
-
-    // Create the second div element with class "buttons"
-    var secondButtonsDivElement = document.createElement("div");
-    secondButtonsDivElement.classList.add("buttons");
-
-    // Create the input element for the "Next" button
-    var nextButton = document.createElement("input");
-    nextButton.type = "button";
-    nextButton.value = "Next";
-    nextButton.id = "streaming_services";
-    nextButton.classList.add("btn_signin");
-
-    // Append the "Next" button input element to the second div
-    secondButtonsDivElement.appendChild(nextButton);
-
-    // Append the div elements to the main div
-    divElement.appendChild(firstButtonsDivElement);
-    divElement.appendChild(secondButtonsDivElement);
-
-    // Append the main div to the document body or any desired parent element
-
-    StreamingOptions.appendChild(divElement);
-
-    let btn_next = document.querySelector("#streaming_services");
-    let btn_Add = document.querySelector("#btn_Add");
-
-    btn_next.addEventListener("click", () => {
-        adding_actor_array();
-        add_actors_db();
+// Adding an event listener to the "Skip" button
+btnSkip.forEach((button) => {
+    button.addEventListener("click", function () {
+        goToNextPage();
     });
+});
 
-    btn_Add.addEventListener("click", () => {
-        adding_actor_array();
-    });
-}
-
-function adding_actor_array() {
-    const streamings = document.querySelectorAll(".streamingCheckboxes");
-
-    console.log(streamings);
-
-    streamings.forEach((x, i) => {
-        // console.log(streamings[i].checked)
-        if (streamings[i].checked) {
-            let actor = {
-                id: streamings[i].id,
-                photo: streamings[i].parentNode.parentNode.firstChild.src,
-                name: streamings[i].parentNode.parentNode.innerText,
-            };
-            streamingsArray.push(actor);
-        }
-    });
-
-    console.log(streamingsArray);
-}
-
-async function add_actors_db() {
-    const user = await checkSession();
-    let documentId = user.uid;
-
-    if (streamingsArray.length > 0) {
-        await updateMapInDb(`users/${documentId}`, 'interests.actors', [...streamingsArray]);
-    }
-
+function goToNextPage() {
     window.location.replace("director.html");
 }
-
-load_all_actors();
