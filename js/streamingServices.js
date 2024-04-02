@@ -58,7 +58,7 @@ btnNext.forEach((button) => {
         // Logging selected services to console
         console.log(selectedServices);
 
-        window.location.replace("genres.html");
+        goToNextPage();
     });
 });
 
@@ -68,6 +68,10 @@ const btnSkip = document.querySelectorAll(".btn-skip");
 // Adding an event listener to the "Skip" button
 btnSkip.forEach((button) => {
     button.addEventListener("click", function () {
-        window.location.replace("genres.html");
+        goToNextPage();
     });
 });
+
+function goToNextPage() {
+    window.location.replace("genres.html");
+}
