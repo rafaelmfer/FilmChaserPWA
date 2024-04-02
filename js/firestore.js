@@ -323,6 +323,33 @@ async function saveTvShowInDb2(location, idTvShow, object, completed) {
     }
 }
 
+async function saveSeasons(locationWatchlist, idTvShow, season, episode, boo) {
+    let pathSeasons = `${locationWatchlist}/${idTvShow}/seasons`;
+    let referenceSeasons = doc(firestore, pathSeasons, season);
+
+    try {
+        await setDoc(referenceSeasons, {
+            episodes_count: "",
+            name: "",
+            season_number: season,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+
+    try {
+        let boolean = boo == 1 ? true : false;
+        let pathEpisode = `${locationWatchlist}/${idTvShow}/seasons/${season}/episodes`;
+        let referenceEpisode = doc(firestore, pathEpisode, episode);
+        await setDoc(referenceEpisode, {
+            episode_number: episode,
+            watched: boo == 1 ? true : false,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // Functions R ====================================================
 /**
  * Read a Document in Firestore
@@ -587,43 +614,24 @@ async function deleteInfoDb(location) {
     }
 }
 
+async function deleteEpisode(locationWatchlist, idTvShow, season, episode) {
+    let pathEpisode = `${locationWatchlist}/${idTvShow}/seasons/${season}/episodes/${episode}`;
+    let reference = doc(firestore, pathEpisode);
 
-async function saveSeasons(id, season, episode, boo){
-    let myid = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
-    console.log(id+" --- "+myid);
-
-    await setDoc(doc(firestore,"users/j7hBgo46ATgnYVdRRGTAA9hyBmB2/watchlist/"+id+"/seasons",season),
-                       {
-                            episodes_count: "",
-                            name: "",
-                            season_number: season
-                        })     
-                        
-        let boolean = boo==1?true: false;
-        await setDoc(doc(firestore,"users/j7hBgo46ATgnYVdRRGTAA9hyBmB2/watchlist/"+id+"/seasons/"+season+"/episode",episode),
-        {
-            episode_number: episode,
-            watched: boo==1?true: false
-        })
+    try {
+        await deleteDoc(reference);
+        console.log("doc deleted Firestore.");
+    } catch (error) {
+        console.error(error);
+    }
 }
-
-async function deleteEpisode(id, season, episode){
-    let myid = "j7hBgo46ATgnYVdRRGTAA9hyBmB2";
-
-    await deleteDoc(doc(firestore,"users/j7hBgo46ATgnYVdRRGTAA9hyBmB2/watchlist/"+id+"/seasons/"+season+"/episode/"+episode))
-
-}
-
-
-
-
-
 
 export {
     saveInfoDb,
     saveMovieInDb,
     saveTvShowInDb,
     saveTvShowInDb2,
+    saveSeasons,
     getInfoDb,
     docExists,
     getAllDocsInSubcollection,
@@ -633,6 +641,5 @@ export {
     updateInfoDb,
     updateMapInDb,
     deleteInfoDb,
-    saveSeasons,
     deleteEpisode,
 };
