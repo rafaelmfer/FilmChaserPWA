@@ -1,358 +1,288 @@
-import { options, networkInfo } from "./common.js";
-import { updateMapInDb } from '../js/firestore.js';
+"use strict";
+
+import { updateMapInDb } from "../js/firestore.js";
 import { checkSession } from "./auth.js";
+import { networkInfo } from "./common.js";
+import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 networkInfo();
 
+// FUNCTIONS TO FETCH DIRECTORS FROM THE API TO INITIALIZE THE SCREEN
+// IT IS NOT EFFECTIVE BECAUSE IT TAKES TOO LONG TO LOAD THE PAGE
+// THAT'S WHY WE USED THE DATA ALREADY STORED ON THE ARRAY directors BELOW
+// let directorsArray = [];
+// let pageNumber = 100;
 
-let StreamingOptions = document.querySelector(".StreamingOptions")
-let search = document.querySelector("#search")
-let search_mobile = document.querySelector("#search_mobile")
+// function callPersonPopularAPI(pageNumber) {
+//     theMovieDb.people.getPopular({ page: pageNumber }, successCB, errorCB);
+// }
 
-let streamingsArray = [];
-let streamingDirectors = [];
+// function successCB(data) {
+//     console.log("successCB: ", JSON.parse(data));
+
+//     let newArray = JSON.parse(data).results.filter(
+//         (director) =>
+//             director.known_for_department === "Directing" &&
+//             director.profile_path !== null
+//     );
+
+//     if (newArray.length > 0) {
+//         directorsArray.push(...newArray);
+//     }
+
+//     if (directorsArray.length < 12) {
+//         pageNumber++;
+//         callPersonPopularAPI(pageNumber);
+//     } else {
+//         // Calling the function to add directors to the page
+//         addDirectorsToPage(directorsArray);
+//         console.log(JSON.stringify(directorsArray));
+//     }
+// }
+
+// function errorCB(error) {
+//     console.log("errorCB: ", error);
+// }
+
+// callPersonPopularAPI(pageNumber);
 
 let directors = [
-    {      
-        "adult": false,
-        "gender": 2,
-        "id": 1032,
-        "known_for_department": "Directing",
-        "name": "Martin Scorsese",
-        "original_name": "Martin Scorsese",
-        "popularity": 56.98,
-        "profile_path": "/9U9Y5GQuWX3EZy39B8nkk4NY01S.jpg"
-    },
-    {      
-        "adult": false,
-        "gender": 2,
-        "id": 240,
-        "known_for_department": "Directing",
-        "name": "Stanley Kubrick",
-        "original_name": "Stanley Kubrick",
-        "popularity": 24.839,
-        "profile_path": "/yFT0VyIelI9aegZrsAwOG5iVP4v.jpg"
+    {
+        adult: false,
+        gender: 2,
+        id: 1032,
+        known_for_department: "Directing",
+        name: "Martin Scorsese",
+        original_name: "Martin Scorsese",
+        popularity: 56.98,
+        profile_path: "/9U9Y5GQuWX3EZy39B8nkk4NY01S.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 488,
-        "known_for_department": "Directing",
-        "name": "Steven Spielberg",
-        "original_name": "Steven Spielberg",
-        "popularity": 52.003,
-        "profile_path": "/tZxcg19YQ3e8fJ0pOs7hjlnmmr6.jpg"
+        adult: false,
+        gender: 2,
+        id: 240,
+        known_for_department: "Directing",
+        name: "Stanley Kubrick",
+        original_name: "Stanley Kubrick",
+        popularity: 24.839,
+        profile_path: "/yFT0VyIelI9aegZrsAwOG5iVP4v.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 1776,
-        "known_for_department": "Directing",
-        "name": "Francis Ford Coppola",
-        "original_name": "Francis Ford Coppola",
-        "popularity": 26.673,
-        "profile_path": "/3Pblihd6KjXliie9vj4iQJwbNPU.jpg"
+        adult: false,
+        gender: 2,
+        id: 488,
+        known_for_department: "Directing",
+        name: "Steven Spielberg",
+        original_name: "Steven Spielberg",
+        popularity: 52.003,
+        profile_path: "/tZxcg19YQ3e8fJ0pOs7hjlnmmr6.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 7467,
-        "known_for_department": "Directing",
-        "name": "David Fincher",
-        "original_name": "David Fincher",
-        "popularity": 22.053,
-        "profile_path": "/yV36WTsLBAGyYVUQshNdI8hyk9l.jpg"
+        adult: false,
+        gender: 2,
+        id: 525,
+        known_for_department: "Directing",
+        name: "Christopher Nolan",
+        original_name: "Christopher Nolan",
+        popularity: 20.664,
+        profile_path: "/xuAIuYSmsUzKlUMBFGVZaWsY3DZ.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 138,
-        "known_for_department": "Directing",
-        "name": "Quentin Tarantino",
-        "original_name": "Quentin Tarantino",
-        "popularity": 72.121,
-        "profile_path": "/1gjcpAa99FAOWGnrUvHEXXsRs7o.jpg"
+        adult: false,
+        gender: 2,
+        id: 7467,
+        known_for_department: "Directing",
+        name: "David Fincher",
+        original_name: "David Fincher",
+        popularity: 22.053,
+        profile_path: "/yV36WTsLBAGyYVUQshNdI8hyk9l.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 5026,
-        "known_for_department": "Directing",
-        "name": "Akira Kurosawa",
-        "original_name": "Akira Kurosawa",
-        "popularity": 21.699,
-        "profile_path": "/eGexa6MZ22T1MZxce1qR3RcAYaS.jpg"
+        adult: false,
+        gender: 2,
+        id: 138,
+        known_for_department: "Directing",
+        name: "Quentin Tarantino",
+        original_name: "Quentin Tarantino",
+        popularity: 72.121,
+        profile_path: "/1gjcpAa99FAOWGnrUvHEXXsRs7o.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 40,
-        "known_for_department": "Directing",
-        "name": "Orson Welles",
-        "original_name": "Orson Welles",
-        "popularity": 23.935,
-        "profile_path": "/e9lGmqQq3EsHeUQgQLByo275hcc.jpg"
+        adult: false,
+        gender: 2,
+        id: 7623,
+        known_for_department: "Directing",
+        name: "Sam Raimi",
+        original_name: "Sam Raimi",
+        popularity: 19.909,
+        profile_path: "/8gssvwiPrFRuFRlr5ruKx68k1Jl.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 5281,
-        "known_for_department": "Directing",
-        "name": "Spike Lee",
-        "original_name": "Spike Lee",
-        "popularity": 16.282,
-        "profile_path": "/2KOHXgk2uoRXl6u7V9xpAIo3uay.jpg"
+        adult: false,
+        gender: 2,
+        id: 956,
+        known_for_department: "Directing",
+        name: "Guy Ritchie",
+        original_name: "Guy Ritchie",
+        popularity: 20.664,
+        profile_path: "/9pLUnjMgIEWXi0mlHYzie9cKUTD.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 3556,
-        "known_for_department": "Directing",
-        "name": "Roman Polanski",
-        "original_name": "Roman Polanski",
-        "popularity": 23.582,
-        "profile_path": "/yHwHSXdZatkoLgIjPeW14GKlrZs.jpg"
+        adult: false,
+        gender: 2,
+        id: 5281,
+        known_for_department: "Directing",
+        name: "Spike Lee",
+        original_name: "Spike Lee",
+        popularity: 16.282,
+        profile_path: "/2KOHXgk2uoRXl6u7V9xpAIo3uay.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 578,
-        "known_for_department": "Directing",
-        "name": "Ridley Scott",
-        "original_name": "Ridley Scott",
-        "popularity": 36.798,
-        "profile_path": "/zABJmN9opmqD4orWl3KSdCaSo7Q.jpg"
+        adult: false,
+        gender: 2,
+        id: 18865,
+        known_for_department: "Directing",
+        name: "Louis Leterrier",
+        original_name: "Louis Leterrier",
+        popularity: 15.228,
+        profile_path: "/bpqqRRyCLeoAup2OAv1Dtm5C8Tn.jpg",
     },
     {
-        "adult": false,
-        "gender": 2,
-        "id": 5602,
-        "known_for_department": "Directing",
-        "name": "David Lynch",
-        "original_name": "David Lynch",
-        "popularity": 26.605,
-        "profile_path": "/b6TnSpuqeOlbq7aHH9G4inmQ1v9.jpg"
-    }
+        adult: false,
+        gender: 2,
+        id: 578,
+        known_for_department: "Directing",
+        name: "Ridley Scott",
+        original_name: "Ridley Scott",
+        popularity: 36.798,
+        profile_path: "/zABJmN9opmqD4orWl3KSdCaSo7Q.jpg",
+    },
+    {
+        adult: false,
+        gender: 2,
+        id: 5602,
+        known_for_department: "Directing",
+        name: "David Lynch",
+        original_name: "David Lynch",
+        popularity: 26.605,
+        profile_path: "/b6TnSpuqeOlbq7aHH9G4inmQ1v9.jpg",
+    },
 ];
 
+// Array to store selected directors
+let selectedDirectors = [];
 
+// Function to add directors to the page
+function addDirectorsToPage(directors) {
+    const allDirectors = document.querySelector(".all-directors-services");
 
-function load_all_directors(){
-    insert_directors(directors);
+    directors.forEach((director) => {
+        // Creating the container element
+        const container = document.createElement("div");
+        container.classList.add("directors-service-container");
+
+        // Creating the director's image
+        const img = document.createElement("img");
+        img.src = `https://image.tmdb.org/t/p/original${director.profile_path}`;
+        img.alt = director.name;
+        img.width = 50;
+        img.height = 50;
+
+        const wrapperNameAndCheckbox = document.createElement("div");
+        wrapperNameAndCheckbox.classList.add("directors-service-field");
+
+        // Creating the director's text field
+        const text = document.createElement("p");
+        text.classList.add("body-text");
+        text.textContent = director.name;
+
+        // Creating the checkbox div
+        const checkbox = document.createElement("div");
+        checkbox.classList.add("checkbox");
+
+        wrapperNameAndCheckbox.appendChild(text);
+        wrapperNameAndCheckbox.appendChild(checkbox);
+
+        // Adding elements to the container
+        container.appendChild(img);
+        container.appendChild(wrapperNameAndCheckbox);
+
+        // Adding the container to the wrapper
+        allDirectors.appendChild(container);
+
+        // Adding click event to the checkbox
+        checkbox.addEventListener("click", function () {
+            // Toggle director selection
+            toggleDirectorSelection(director);
+            // Update selected directors count
+            updateSelectedCount();
+            // Toggle "checked" class to change checkbox appearance
+            checkbox.classList.toggle("checked");
+        });
+    });
 }
 
-
-
-
-search_mobile.addEventListener("keyup",async ()=>{    
- 
-    console.log(search_mobile.value);
-    let value = search_mobile.value;
-
-    console.log(value)
-    // filter_movie(value);
-})
-
-
-search.addEventListener("keyup",  ()=>{
-
-    if(search.value == ""){
-        load_all_directors();
-    }else{
-        filter_director();
+// Function to add or remove selected directors
+function toggleDirectorSelection(director) {
+    const index = selectedDirectors.findIndex((d) => d.id === director.id);
+    if (index === -1) {
+        let directorReduced = {
+            id: director.id,
+            name: director.name,
+            photo: director.profile_path,
+        };
+        // If director is not selected, add to the list
+        selectedDirectors.push(directorReduced);
+    } else {
+        // If director is selected, remove from the list
+        selectedDirectors.splice(index, 1);
     }
-
-})
-
-
-async function filter_director(){
-    
-    fetch('https://api.themoviedb.org/3/search/person?query='+search.value+'&include_adult=false&language=en-US&page=1', options)
-    .then(response => response.json())
-    .then(response =>{ 
-
-        for(let x=0; x<response.total_pages; x++){
-            let show = response.results.find( (e)=> e.known_for_department == "Directing");
-            // console.log(show)
-      
-            if(show){
-                // console.log(streamingsArray)
-                let teste = streamingsArray.find( (f)=> f.name == show.name);
-                // console.log(teste)
-                if(!teste){
-                //     console.log(teste)
-                    console.log("ADICIONADO COM SUCESSO")
-                    // console.log(show)
-                    streamingsArray.push(show)
-                    console.log(streamingsArray)
-                    
-                    console.log("+++++++++++++++++++++++")
-
-                }
-            }
-
-        }
-
-        insert_directors(streamingsArray);
-    })
-    .catch(err => console.error(err));
-
 }
 
-
-
-
-
-
-async function insert_directors(director){
-    StreamingOptions.innerHTML = "";
-    console.log("EXECUTANDO CAROUSEL")
-    streamingsArray = [];
-    console.log(streamingsArray)
-    let total = director.length;
-    if(director.length> 12){
-        total = 12;
-    }
-    
-
-    for(let x=0; x<total; x++){
-        
-        // Create the div element
-        var divElement = document.createElement('div');
-        divElement.classList.add('Streaming2Columns');
-
-        // Create the img element
-        var imgElement = document.createElement('img');
-        imgElement.src = "https://image.tmdb.org/t/p/original"+director[x].profile_path;
-        imgElement.alt = '';
-
-        // Create the p element
-        var pElement = document.createElement('p');
-        pElement.textContent = director[x].original_name;
-
-        // Create the label element
-        var labelElement = document.createElement('label');
-        labelElement.classList.add('container');
-
-        // Create the input element
-        var inputElement = document.createElement('input');
-        inputElement.type = 'checkbox';
-        inputElement.classList.add('streamingCheckboxes');
-        inputElement.name = director[x].id;
-        inputElement.id = director[x].id;
-
-        // Create the span element
-        var spanElement = document.createElement('span');
-        spanElement.classList.add('checkmark');
-
-        // Append the input element to the label element
-        labelElement.appendChild(inputElement);
-        // Append the span element to the label element
-        labelElement.appendChild(spanElement);
-
-        // Append the img, p, and label elements to the div element
-        divElement.appendChild(imgElement);
-        divElement.appendChild(pElement);
-        divElement.appendChild(labelElement);
-
-        // Append the div element to the document body or any desired parent element
-        StreamingOptions.appendChild(divElement);
-    
-    }//END FOR
-
-
-    // AFTER APPEND ALL CHILD IT WILL APPEND THE BUTTONS AT THE BOTTOM
-
-
-    // Create the div element with class "buttons_mobile_size"
-    var divElement = document.createElement('div');
-    divElement.classList.add('buttons_mobile_size');
-
-    // Create the first div element with class "buttons"
-    var firstButtonsDivElement = document.createElement('div');
-    firstButtonsDivElement.classList.add('buttons');
-
-    // Create the input element for the "Skip" button
-    var skipButton = document.createElement('input');
-    skipButton.type = 'button';
-    skipButton.value = 'Add';
-    skipButton.setAttribute('id','btn_Add')
-    skipButton.classList.add('btn_Skip');
-
-    // Append the "Skip" button input element to the first div
-    firstButtonsDivElement.appendChild(skipButton);
-
-    // Create the second div element with class "buttons"
-    var secondButtonsDivElement = document.createElement('div');
-    secondButtonsDivElement.classList.add('buttons');
-
-    // Create the input element for the "Next" button
-    var nextButton = document.createElement('input');
-    nextButton.type = 'button';
-    nextButton.value = 'Next';
-    nextButton.id = 'streaming_services';
-    nextButton.classList.add('btn_signin');
-
-    // Append the "Next" button input element to the second div
-    secondButtonsDivElement.appendChild(nextButton);
-
-    // Append the div elements to the main div
-    divElement.appendChild(firstButtonsDivElement);
-    divElement.appendChild(secondButtonsDivElement);
-
-    // Append the main div to the document body or any desired parent element
-    
-    StreamingOptions.appendChild(divElement);
-
-    let btn_next = document.querySelector("#streaming_services")
-    let btn_Add = document.querySelector("#btn_Add")
-
-    btn_next.addEventListener("click",()=>{
-        adding_director_array();
-        add_actors_db();
-    })
-
-    btn_Add.addEventListener("click",()=>{
-        adding_director_array();
-    })
-
+// Function to update the selected directors count
+function updateSelectedCount() {
+    const selectedCountElement = document.querySelector(".directors-title h6");
+    selectedCountElement.textContent = `${selectedDirectors.length} Selected`;
 }
 
+// Calling the function to add directors to the page
+addDirectorsToPage(directors);
 
+// Selecting the "Next" button
+const btnNext = document.querySelectorAll(".btn-next");
 
-function adding_director_array(){
-    const streamings = document.querySelectorAll(".streamingCheckboxes");
- 
-    console.log(streamings);
+// Adding an event listener to the "Next" button
+btnNext.forEach((button) => {
+    button.addEventListener("click", async function () {
+        // Checking user session
+        const user = await checkSession();
+        let documentId = user.uid;
 
-    streamings.forEach((x, i)=>{
-        // console.log(streamings[i].checked)
-        if(streamings[i].checked){
-            let actor = {
-                "id" : streamings[i].id,
-                "photo" : streamings[i].parentNode.parentNode.firstChild.src,
-                "name" : streamings[i].parentNode.parentNode.innerText
-            }
-            streamingDirectors.push(actor);
-        }
-    })
+        // Updating user information in Firebase database
+        await updateMapInDb(
+            `users/${documentId}`,
+            "interests.directors",
+            selectedDirectors
+        );
 
-    console.log(streamingDirectors)
-}
+        // Logging selected directors to console
+        console.log(selectedDirectors);
 
+        // Going to the next page
+        goToNextPage();
+    });
+});
 
-async function add_actors_db(){
+// Selecting the "Skip" button
+const btnSkip = document.querySelectorAll(".btn-skip");
 
-    const user = await checkSession();
-    let documentId = user.uid;
-    
-    if(streamingDirectors.length>0){
-        await updateMapInDb(`users/${documentId}`, 'interests.directors', [...streamingDirectors]);
-    }
+// Adding an event listener to the "Skip" button
+btnSkip.forEach((button) => {
+    button.addEventListener("click", function () {
+        goToNextPage();
+    });
+});
 
+function goToNextPage() {
     window.location.replace("home.html");
 }
-
-
-
-load_all_directors()
