@@ -18,7 +18,7 @@
     <!-- Screen Javascript -->
     <script type="module" src="../js/genres.js" defer></script>
 
-    <title>Genres</title>
+    <title>Choose the Genres</title>
 </head>
 
 <body>
@@ -29,173 +29,161 @@
         <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
         <h5>Check your internet connection and let's get back to the showtime!</h5>
 
-        <img class="hotpink-rubber-chicken" src="../resources/imgs/hotpink-rubber-chicken.png" alt="hotpink-rubber-chicken">
+        <img class="hotpink-rubber-chicken" src="../resources/imgs/hotpink-rubber-chicken.png" alt="">
         <h6>Hotpink rubber chicken!!</h6>
     </div>
 
-    <div class="StreamingServices">
-        <p class="Film_Chaser">FilmChaser</p>
+    <div class="site-logo">
+        <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+        <h4 class="app-name">FilmChaser</h4>
+    </div>
 
-        <div class="streaming">
-            <div class="StreamingLeft">
-                <h1>Pick Your <br>Preferred Genres</h1>
-                <span>2 Selected</span>
-
-                <div class="searchFieldButton">
-                    <input type="text" id="search_mobile" class="search" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                    <span>flag</span>
-                </div>
-
+    <main class="genres-services">
+        <div class="genres">
+            <div class="genres-title">
+                <h2>Pick Your Preferred Genres</h2>
+                <h6>0 Selected</h6>
             </div>
-            <div class="StreamingRight">
-                <div class="searchFieldButton">
-                    <input type="text" id="search" class="search" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                    <span>flag</span>
+
+            <div class="all-genress-wrapper">
+                <div class="search-field-container">
+                    <input type="text" id="search" class="search" placeholder="Search genre" name="search">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <span>🇨🇦</span>
                 </div>
-                <div class="StreamingOptions">
-                    <div class="Streaming2Columns">
-                        <p>Action</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Action" id="Action">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Adventure</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Adventure" id="Adventure">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Animation</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Animation" id="Animation">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Comedy</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Comedy" id="Comedy">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Crime</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Crime" id="Crime">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Documentary</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Documentary" id="Documentary">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Drama</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Drama" id="Drama">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Family</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Family" id="Family">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Fantasy</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Fantasy" id="Fantasy">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>History</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="History" id="History">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Horror</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Horror" id="Horror">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Music</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Music" id="Music">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Mystery</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Mystery" id="Mystery">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Romance</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Romance" id="Romance">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Science Fiction</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Science Fiction" id="Science Fiction">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>TV Movie</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="TV Movie" id="TV Movie">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>Thriller</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="Thriller" id="Thriller">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="Streaming2Columns">
-                        <p>War</p>
-                        <label class="container">
-                            <input type="checkbox" class="streamingCheckboxes" name="War" id="War">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-
-                    <div class="buttons_mobile_size">
-                        <div class="buttons">
-                            <input type="button" value="Skip" class="btn_Skip">
-                        </div>
-                        <div class="buttons">
-                            <input type="button" id="streaming_services" class="btn_signin" value="Next">
+                <div class="all-genres-services">
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Action</p>
+                            <div class="checkbox"></div>
                         </div>
                     </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Adventure</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Animation</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Comedy</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Crime</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Documentary</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Drama</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Family</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Fantasy</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">History</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Horror</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Music</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Mystery</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Romance</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Science Fiction</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">TV Movie</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">Thriller</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="genres-service-container">
+                        <div class="genres-service-field">
+                            <p class="body-text">War</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="buttons-container-desktop">
+                    <div class="button btn-skip">
+                        <p class="button-text">Skip</a>
+                    </div>
+                    <div class="button btn-next">
+                        <p class="button-text">Next</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
+        <div class="buttons-container-mobile">
+            <div class="button btn-skip">
+                <p class="button-text">Skip</a>
+            </div>
+            <div class="button btn-next">
+                <p class="button-text">Next</a>
+            </div>
+        </div>
+    </main>
 
 </body>
 
