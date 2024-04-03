@@ -467,6 +467,11 @@ function createCarouselItem(film) {
     link.appendChild(img);
     link.appendChild(p);
 
+
+  filmDiv.appendChild(create_heart())
+  filmDiv.appendChild(create_heart_active())
+  
+
     filmDiv.appendChild(link);
 
     return filmDiv;
@@ -519,4 +524,141 @@ function createWatchlist(data) {
 
 function errorWatchlist(error) {
     console.log(error);
+}
+
+function create_heart(){
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", "24");
+  svg.setAttribute("height", "24");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("fill", "none");
+  // svg.setAttribute("class","icon-heart active")
+
+  // First path element
+  const path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path1.setAttribute("d", "M13 18.5C12.8385 18.594 11.6868 18.9895 11.5 18.9895C11.3132 18.9895 11.1297 18.94 10.9682 18.8459C9.58044 18.0384 8.28427 17.0828 7.10238 15.996C5.73196 14.6324 4.27291 12.7097 4.03428 10.7734C3.76156 8.48255 5.12516 6.0008 7.80464 6.0008C8.35521 5.98909 8.9009 6.10631 9.3981 6.34307C9.89531 6.57983 10.3303 6.92959 10.6682 7.3644C10.7671 7.49055 10.8933 7.59257 11.0374 7.66272C11.1815 7.73287 11.3397 7.76933 11.5 7.76933C11.6603 7.76933 11.8185 7.73287 11.9626 7.66272C12.1067 7.59257 12.2329 7.49055 12.3318 7.3644C12.6697 6.92959 13.1047 6.57983 13.6019 6.34307C14.0991 6.10631 14.6448 5.98909 15.1954 6.0008C17.8748 6.0008 19.2384 8.48255 18.9657 10.7734");
+  path1.setAttribute("stroke", "#9E9BAC");
+  path1.setAttribute("stroke-width", "2");
+  path1.setAttribute("stroke-linecap", "round");
+  path1.setAttribute("stroke-linejoin", "round");
+
+
+  // Second path element
+  const path2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path2.setAttribute("fill-rule", "evenodd");
+  path2.setAttribute("clip-rule", "evenodd");
+  path2.setAttribute("d", "M17.75 12.25C17.75 11.6977 17.3023 11.25 16.75 11.25C16.1977 11.25 15.75 11.6977 15.75 12.25V13.75H14.25C13.6977 13.75 13.25 14.1977 13.25 14.75C13.25 15.3023 13.6977 15.75 14.25 15.75H15.75V17.25C15.75 17.8023 16.1977 18.25 16.75 18.25C17.3023 18.25 17.75 17.8023 17.75 17.25V15.75H19.25C19.8023 15.75 20.25 15.3023 20.25 14.75C20.25 14.1977 19.8023 13.75 19.25 13.75H17.75V12.25Z");
+  path2.setAttribute("fill", "#9E9BAC");
+
+
+  let div = document.createElement("div")
+  div.setAttribute("class","empty-heart active");
+  div.addEventListener("click",(e)=>{
+    console.log(e)
+    e.target.parentNode.nextSibling.classList.add("active")
+    e.target.parentElement.classList.remove("active")
+
+  })
+
+
+  // Append paths to the SVG
+  svg.appendChild(path1);
+  svg.appendChild(path2);
+
+
+  div.appendChild(svg);
+
+  return div;
+}
+
+
+
+function create_heart_active(){
+  // Create SVG element
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", "24");
+  svg.setAttribute("height", "24");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("fill", "none");
+  // svg.setAttribute("class","icon-heart-active active")
+
+  // Create path element
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", "M15.1954 6.0008C14.6448 5.98909 14.0991 6.10631 13.6019 6.34307C13.1047 6.57983 12.6697 6.92959 12.3318 7.3644C12.2329 7.49055 12.1067 7.59257 11.9626 7.66272C11.8185 7.73287 11.6603 7.76933 11.5 7.76933C11.3397 7.76933 11.1815 7.73287 11.0374 7.66272C10.8933 7.59257 10.7671 7.49055 10.6682 7.3644C10.3303 6.92959 9.8953 6.57983 9.3981 6.34307C8.9009 6.10631 8.35521 5.98909 7.80464 6.0008C5.12516 6.0008 3.76156 8.48255 4.03428 10.7734C4.27291 12.7097 5.73196 14.6324 7.10238 15.996C8.28427 17.0828 9.58044 18.0384 10.9682 18.8459C11.1297 18.94 11.3132 18.9895 11.5 18.9895C11.6868 18.9895 11.8703 18.94 12.0318 18.8459C13.4196 18.0384 14.7157 17.0828 15.8976 15.996C17.2612 14.6324 18.7271 12.7097 18.9657 10.7734C19.2384 8.48255 17.8748 6.0008 15.1954 6.0008Z");
+  path.setAttribute("fill", "url(#paint0_linear_206_21634)");
+  path.setAttribute("stroke", "url(#paint1_linear_206_21634)");
+  path.setAttribute("stroke-width", "2");
+  path.setAttribute("stroke-linecap", "round");
+  path.setAttribute("stroke-linejoin", "round");
+
+  // Append path to SVG
+  svg.appendChild(path);
+
+  // Create linearGradient elements
+  const linearGradient0 = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+  linearGradient0.setAttribute("id", "paint0_linear_206_21634");
+  linearGradient0.setAttribute("x1", "18.3421");
+  linearGradient0.setAttribute("y1", "34.813");
+  linearGradient0.setAttribute("x2", "-8.99381");
+  linearGradient0.setAttribute("y2", "28.4526");
+  linearGradient0.setAttribute("gradientUnits", "userSpaceOnUse");
+
+  const stop0 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop0.setAttribute("stop-color", "#EC764F");
+
+  const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop1.setAttribute("offset", "0.396134");
+  stop1.setAttribute("stop-color", "#72465D");
+
+  const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop2.setAttribute("offset", "1");
+  stop2.setAttribute("stop-color", "#2E5DF3");
+
+  linearGradient0.appendChild(stop0);
+  linearGradient0.appendChild(stop1);
+  linearGradient0.appendChild(stop2);
+
+  const linearGradient1 = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+  linearGradient1.setAttribute("id", "paint1_linear_206_21634");
+  linearGradient1.setAttribute("x1", "18.3421");
+  linearGradient1.setAttribute("y1", "34.813");
+  linearGradient1.setAttribute("x2", "-8.99381");
+  linearGradient1.setAttribute("y2", "28.4526");
+  linearGradient1.setAttribute("gradientUnits", "userSpaceOnUse");
+
+  const stop3 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop3.setAttribute("stop-color", "#EC764F");
+
+  const stop4 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop4.setAttribute("offset", "0.396134");
+  stop4.setAttribute("stop-color", "#72465D");
+
+  const stop5 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+  stop5.setAttribute("offset", "1");
+  stop5.setAttribute("stop-color", "#2E5DF3");
+
+  linearGradient1.appendChild(stop3);
+  linearGradient1.appendChild(stop4);
+  linearGradient1.appendChild(stop5);
+
+  let div = document.createElement("div")
+  div.setAttribute("class","color-heart");
+
+  div.addEventListener("click",(e)=>{
+    console.log(e.target.parentElement.className)
+    console.log(e)
+
+    e.target.parentElement.parentElement.classList.remove("active")
+    e.target.parentNode.parentNode.previousElementSibling.classList.add("active")
+
+
+  })
+
+  // Append linearGradients to SVG
+  svg.appendChild(linearGradient0);
+  svg.appendChild(linearGradient1);
+
+  div.appendChild(svg)
+  // Append SVG to DOM
+  return div;
 }

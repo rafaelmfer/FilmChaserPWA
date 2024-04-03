@@ -21,9 +21,49 @@ section.filter-and-search .component-search-bar {
 }
 
 .hidden {
-    display: none;
+    position: absolute;
+    visibility: hidden;
 }
 
+.empty-heart.active{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    display: flex;
+    padding: 2px;
+    visibility: visible;
+
+}
+
+
+.color-heart{
+    position: absolute;
+    visibility: hidden;
+}
+
+.color-heart.active{
+    display: flex;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: var(--primary-color);
+    border-radius: 50px; 
+    padding: 2px;
+    visibility: visible;
+}
+
+
+.empty-heart{
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: var(--primary-color);
+    border-radius: 50px; 
+    padding: 2px;
+}
 @media screen and (min-width: 450px) {
     section.filter-and-search {
         margin-top: 36px;

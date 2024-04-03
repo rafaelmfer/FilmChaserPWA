@@ -72,6 +72,8 @@ USING THE {.component-carousel .carousel-container .carousel-items .item.yourNew
     border-radius: 4px;
 
     background-color: black;
+
+    position: relative;
 }
 
 .component-carousel .carousel-container .carousel-items .item a.link-item-container {
