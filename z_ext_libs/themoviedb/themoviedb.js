@@ -90,7 +90,7 @@ theMovieDb.common = {
       if (xhr.readyState === 4) {
         if (xhr.status === status) {
           success(xhr.responseText);
-          console.log(options.url);
+          // console.log(options.url);
         } else {
           error(xhr.responseText);
         }
