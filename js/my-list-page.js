@@ -140,23 +140,22 @@ setTimeout(() => {
     console.log(haventStarted);
 
     if (alreadyWatching.length === 0) {
-      var paragraph = document.createElement("p");
-      paragraph.className = "empty-state body-text";
-      paragraph.style.height = "225px";
-      paragraph.style.display = "flex";
-      paragraph.style.alignItems = "center";
-      paragraph.textContent = "You didn't start to watch anything yet. :(";
-      document
-          .querySelector(".watching-cards-container")
-          .appendChild(paragraph);
-  } else {
-      createListOfMoviesSeries(
-        alreadyWatching,
-        "watching-cards-container",
-        ".list-watching"
-    );
+        var paragraph = document.createElement("p");
+        paragraph.className = "empty-state body-text";
+        paragraph.style.height = "225px";
+        paragraph.style.display = "flex";
+        paragraph.style.alignItems = "center";
+        paragraph.textContent = "You didn't start to watch anything yet. :(";
+        document
+            .querySelector(".watching-cards-container")
+            .appendChild(paragraph);
+    } else {
+        createListOfMoviesSeries(
+            alreadyWatching,
+            "watching-cards-container",
+            ".list-watching"
+        );
     }
-    
 
     // Haven't Watched - series that you didnt see any episode and movies
     createListOfMoviesSeries(
@@ -190,22 +189,42 @@ setTimeout(() => {
     }
 
     alreadyWatching.forEach(function (item) {
-        var div = createItemMovieSeriesCard(item);
+        var div = createItemMovieSeriesCard(item, false);
         document
             .querySelector(".watching-cards-container-mobile")
             .appendChild(div);
     });
 
     haventStarted.forEach(function (item) {
-        var div = createItemMovieSeriesCard(item);
+        var div = createItemMovieSeriesCard(item, false);
         document
             .querySelector(".havent-started-cards-container-mobile")
             .appendChild(div);
     });
 
+    upcomingArray.sort(function(a, b) {
+        // Check if release_date exists and is not empty
+        if (a.release_date && b.release_date) {
+          // Convert release_date strings to Date objects
+          var dateA = new Date(a.release_date);
+          var dateB = new Date(b.release_date);
+          
+          // Compare the dates
+          return dateA - dateB;
+        } else if (!a.release_date && b.release_date) {
+          // If a's release_date is empty or non-existent, move it to the end
+          return 1;
+        } else if (a.release_date && !b.release_date) {
+          // If b's release_date is empty or non-existent, move it to the end
+          return -1;
+        } else {
+          // If both release_dates are empty or non-existent, maintain the order
+          return 0;
+        }
+      });
     // UPCOMING PAGE ================================================================
     upcomingArray.forEach(function (item) {
-        var div = createItemMovieSeriesCard(item);
+        var div = createItemMovieSeriesCard(item, true);
         document.querySelector(".upcoming-container").appendChild(div);
     });
 }, 500);
@@ -219,11 +238,37 @@ let watchlistCompletedArray = await getDocsByQuery(
     {}
 );
 watchlistCompletedArray.forEach(function (item) {
-    var div = createItemMovieSeriesCard(item);
+    var div = createItemMovieSeriesCard(item, false);
     document.querySelector(".completed-container").appendChild(div);
 });
 
 // GENERAL FUNCTIONS ================================================================
+// function to order elements according to date, leaving those with a blank date last.
+function compareReleaseDates(a, b) {
+    // Handle blank release dates by moving them to the end
+    if (a.release_date === "" && b.release_date === "") {
+      return 0;
+    } else if (a.release_date === "") {
+      return 1;
+    } else if (b.release_date === "") {
+      return -1;
+    }
+    
+    // Convert release_date strings to Date objects
+    var dateA = new Date(a.release_date);
+    var dateB = new Date(b.release_date);
+    
+    // Compare release dates
+    if (dateA < dateB) {
+      return -1;
+    } else if (dateA > dateB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+
 // Function that check if there is any episode in array of episodes that are watched
 function checkIfEpisodeIsWatched(json) {
     for (let i = 0; i < json.length; i++) {
@@ -259,7 +304,7 @@ function createListOfMoviesSeries(films, className, locationId) {
 }
 
 // Function that writes the HTML code
-function createItemMovieSeriesCard(item) {
+function createItemMovieSeriesCard(item, isUpcoming) {
     var media_url_providers = "";
     var filmDiv = document.createElement("div");
     filmDiv.classList.add("film-chaser", "item", "card-movie-series");
@@ -298,7 +343,7 @@ function createItemMovieSeriesCard(item) {
     hyperlinkTitle.appendChild(title);
     infoDiv.appendChild(hyperlinkTitle);
 
-    // Create a <div> for the year, rating, and duration of the movie
+    // Create a <div> for the year and rating
     var yearRateTimeDiv = document.createElement("div");
     yearRateTimeDiv.classList.add("film-chaser", "year-rate-time");
     infoDiv.appendChild(yearRateTimeDiv);
@@ -306,7 +351,11 @@ function createItemMovieSeriesCard(item) {
     // Add the movie year
     var year = document.createElement("p");
     year.classList.add("small-one");
-    year.textContent = (item.release_date || item.first_air_date).split("-")[0];
+    if ((item.release_date || item.first_air_date).split("-")[0] !== "") {
+        year.textContent = (item.release_date || item.first_air_date).split("-")[0];
+    } else {
+        year.textContent = "Prod";
+    }
     yearRateTimeDiv.appendChild(year);
 
     // Add the movie rating
@@ -321,35 +370,75 @@ function createItemMovieSeriesCard(item) {
     synopsis.textContent = item.overview;
     infoDiv.appendChild(synopsis);
 
-    // Add the "Watch Now" button
-    var watchNowBtn = document.createElement("button");
-    watchNowBtn.classList.add("film-chaser", "watch-now");
-    infoDiv.appendChild(watchNowBtn);
+    if (isUpcoming === true) {
+        // Add the "X days" button
+        var daysBtn = document.createElement("button");
+        daysBtn.classList.add("film-chaser", "upcoming");
+        infoDiv.appendChild(daysBtn);
 
-    // Call for providers
-    let provider = {};
-    fetch(media_url_providers, options)
-        .then((response) => response.json())
-        .then((response) => {
-            provider = media_info_providers(response.results);
+        var daysTextParagraph = document.createElement("p");
+        daysTextParagraph.classList.add("small-one");
 
-            if (provider != null) {
-                var watchNowImg = document.createElement("img");
-                watchNowImg.src =
-                    "https://image.tmdb.org/t/p/w92" + provider.logo_path;
+        var numberOfdaysSpan = document.createElement("span");
 
-                watchNowImg.alt = "Watch Now";
-                watchNowImg.width = 18;
-                watchNowImg.height = 18;
-                watchNowBtn.appendChild(watchNowImg);
-            }
-        })
-        .catch((err) => console.error(err));
+        if (item.release_date === "" || item.release_date === null || item.release_date === undefined) {
+            numberOfdaysSpan.textContent = "Production";
+            daysTextParagraph.appendChild(numberOfdaysSpan);
+        } else {
+            // item.release_date' is a string in the format 'YYYY-MM-DD'
+            var releaseDate = new Date(item.release_date);
 
-    var watchNowText = document.createElement("p");
-    watchNowText.classList.add("small-one");
-    watchNowText.textContent = "Watch Now";
-    watchNowBtn.appendChild(watchNowText);
+            // Get the current date
+            var currentDate = new Date();
+
+            // Calculate the difference in milliseconds between the two dates
+            var differenceInMilliseconds = currentDate - releaseDate;
+
+            // Convert the difference in milliseconds to days
+            var differenceInDays =
+                Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24)) *
+                -1;
+
+            numberOfdaysSpan.textContent = differenceInDays;
+            daysTextParagraph.appendChild(numberOfdaysSpan);
+            var daysText = document.createTextNode(" days");
+            daysTextParagraph.appendChild(daysText);
+        }
+
+        daysBtn.appendChild(daysTextParagraph);
+    } else {
+        // Add the "Watch Now" button
+        var watchNowBtn = document.createElement("button");
+        watchNowBtn.classList.add("film-chaser", "watch-now");
+        infoDiv.appendChild(watchNowBtn);
+
+        // Call for providers
+        let provider = {};
+        fetch(media_url_providers, options)
+            .then((response) => response.json())
+            .then((response) => {
+                provider = media_info_providers(response.results);
+
+                if (provider != null) {
+                    var watchNowImg = document.createElement("img");
+                    watchNowImg.src =
+                        theMovieDb.common.images_uri +
+                        "w92" +
+                        provider.logo_path;
+
+                    watchNowImg.alt = "Watch Now";
+                    watchNowImg.width = 18;
+                    watchNowImg.height = 18;
+                    watchNowBtn.appendChild(watchNowImg);
+                }
+            })
+            .catch((err) => console.error(err));
+
+        var watchNowText = document.createElement("p");
+        watchNowText.classList.add("small-one");
+        watchNowText.textContent = "Watch Now";
+        watchNowBtn.appendChild(watchNowText);
+    }
 
     return filmDiv;
 }

@@ -42,11 +42,15 @@ function history_back() {
     const maxAttempts = 10;
 
     function navigateBack() {
-        if (i < maxAttempts && window.location.href.includes("single_series.html")) {
+        if (
+            i < maxAttempts &&
+            window.location.href.includes("single_series.html")
+        ) {
             window.history.back();
             i++;
             console.log(i);
-            setTimeout(navigateBack, 100); // Add a delay of 100 milliseconds between each navigation attempt
+            // Add a delay of 100 milliseconds between each navigation attempt
+            setTimeout(navigateBack, 100); 
         }
     }
 
@@ -461,8 +465,7 @@ navigateToPage();
 //init handler for hash navigation
 window.addEventListener("hashchange", navigateToPage);
 
-
-// 
+//
 
 // CARROUSEL SEASONS ================================================
 // Last season that the user watched
@@ -575,28 +578,23 @@ function createEpisodesCard2(object) {
 
     const box = document.createElement("div");
     box.setAttribute("class", "checkbox");
-    
+
     poster.src = base_url + "w92" + object.still_path;
-    
+
     if (object.name.length > 14) {
         label.innerHTML = `<p>S${object.season_number} | E${
             object.episode_number
         }</p> <p>${object.name.substr(0, 14)} ...</p> `;
-
     } else {
-        label.innerHTML = `<p>S${object.season_number} | E${
-            object.episode_number
-        }</p> <p>${object.name}</p> `;
-
+        label.innerHTML = `<p>S${object.season_number} | E${object.episode_number}</p> <p>${object.name}</p> `;
     }
-    
 
     card.appendChild(poster);
     innerDiv.appendChild(label);
     innerDiv.appendChild(box);
     card.appendChild(innerDiv);
 
-    return card;  
+    return card;
 }
 
 // // SECTION: EPISODES =================================
@@ -711,8 +709,6 @@ function successCB_numSeasons(data) {
             `.season${JSON.parse(data).season_number} .numberOfEpisodes`
         );
         numberOfEpisodes.innerText = `/${JSON.parse(data).episodes.length}`;
-
-        
     }
 
     // ACCORDION =============================================
@@ -859,19 +855,25 @@ async function createEpisodesCard(object) {
 
         const box = document.createElement("div");
         box.setAttribute("class", "checkbox");
-         
+
         poster.src = object.episodes[i].still_path
             ? base_url + "w154" + object.episodes[i].still_path
             : base_url + "w154" + object.poster_path;
 
         //Double checking if the episode card in the carousel has an image
-        const image_sibling = document.querySelector(`.episode${episodeNumber} img`);
+        const image_sibling = document.querySelector(
+            `.episode${episodeNumber} img`
+        );
         // const image_sibling = episode_sibling.querySelector("img");
 
-        if (image_sibling.src.includes("null") || image_sibling.src.includes("undefined")){
-            image_sibling.src = base_url + "w154" + object.poster_path;
-        }
-
+        setTimeout(() => {
+            if (
+                image_sibling.src.includes("null") ||
+                image_sibling.src.includes("undefined")
+            ) {
+                image_sibling.src = base_url + "w154" + object.poster_path;
+            }
+        }, 200);
 
         label.innerHTML = `<p>S${object.season_number} | E${object.episodes[i].episode_number}</p> <p>${object.episodes[i].name}</p> `;
 
@@ -924,7 +926,9 @@ function AllEpisodesSelected(seasonNum) {
 
 function updateQuantity(seasonNum) {
     const quantity = document.querySelector(`.season${seasonNum} .quantity`);
-    const episodes = document.querySelectorAll(`.season${seasonNum} .episodeCard`);
+    const episodes = document.querySelectorAll(
+        `.season${seasonNum} .episodeCard`
+    );
 
     let count = 0;
     episodes.forEach((episode) => {
@@ -960,7 +964,9 @@ setTimeout(async () => {
                 // Selecionar todos os elementos que representam episódios
                 const episodes = document.querySelectorAll(".episodeCard");
 
-                const episodesTrack = document.querySelectorAll(`.episode${episode.episode_number}`);
+                const episodesTrack = document.querySelectorAll(
+                    `.episode${episode.episode_number}`
+                );
 
                 // Iterar sobre cada elemento episódio
                 episodes.forEach((episode) => {
@@ -985,11 +991,11 @@ setTimeout(async () => {
                     // const episodeText = episodeTextElement.textContent.trim();
                     // Verificar se o texto do episódio corresponde ao número do episódio que estamos procurando
                     // if (episodeText === episodeNumberToFind) {
-                        // Se corresponder, você encontrou o elemento HTML correspondente
-                        // console.log("Elemento encontrado:", episode);
-                        // Faça o que você precisa com esse elemento aqui
+                    // Se corresponder, você encontrou o elemento HTML correspondente
+                    // console.log("Elemento encontrado:", episode);
+                    // Faça o que você precisa com esse elemento aqui
 
-                        episode.classList.add("checked");
+                    episode.classList.add("checked");
                     // }
                 });
             });

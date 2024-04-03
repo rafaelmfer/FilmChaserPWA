@@ -3,7 +3,7 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 a {
@@ -69,8 +69,8 @@ main .upcoming-container,
 main .completed-container {
     margin-top: 24px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 360px);
     gap: 20px;
+    justify-items: center;
 }
 
 /* medium screen */
@@ -99,6 +99,8 @@ main .completed-container {
     }
 
     main {
+        margin-top: 24px;
+
         grid-row: 3 / 4;
 
         margin-left: 72px;
@@ -133,15 +135,18 @@ main .completed-container {
         display: block;
     }
 
-    main {
-        margin-top: 24px;
+    main .upcoming-container,
+    main .completed-container {
+        margin-top: 8px;
+        margin-bottom: 24px;
+        grid-template-columns: repeat(auto-fill, 360px);
     }
 }
 
 /* large screen */
 @media screen and (min-width: 750px) {
     body {
-        grid-template-rows: 116px 80px auto;
+        grid-template-rows: 104px 80px auto;
     }
 
     section.filter-and-search .component-search-bar {

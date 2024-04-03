@@ -128,7 +128,7 @@ const genreFunctions = [
         theMovieDb.discover.getMovies(
             {
                 with_release_type: 2 | 3,
-                "release_date.gte": "2025-03-30",
+                "release_date.gte": "2024-06-10",
                 "release_date.lte": "2030-12-31",
             },
             (data) => successCB(data, "Upcoming", arrayUpcoming),
@@ -138,7 +138,7 @@ const genreFunctions = [
         theMovieDb.discover.getTvShows(
             {
                 with_release_type: 2 | 3,
-                "release_date.gte": "2025-03-30",
+                "release_date.gte": "2024-06-10",
                 "release_date.lte": "2030-12-31",
             },
             (data) => successCB(data, "Upcoming", arrayUpcoming),
