@@ -8,14 +8,14 @@
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
 
     <!-- Common CSS -->
-    <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
 
     <!-- Screen CSS -->
-    <link rel="stylesheet" href="../css/onboarding.css">
+    <link rel="stylesheet" href="css/onboarding.css">
 
     <!-- Manifest Link PWA -->
-    <link rel="manifest" href="../app.webmanifest">
+    <link rel="manifest" href="app.webmanifest">
 
     <title>Onboarding</title>
 </head>
@@ -25,36 +25,36 @@
     <div class="SignUp">
 
         <div class="site-logo">
-            <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+            <img class="app-name-logo" src="resources/imgs/logo.png" alt="">
             <h4 class="app-name">FilmChaser</h4>
         </div>
 
         <div class="SignUp_Center">
 
             <div class="div_texts">
-                <img src="../resources/icons/icons-active/active-video_camera.svg" alt="video_camera icon">
+                <img src="resources/icons/icons-active/active-video_camera.svg" alt="video_camera icon">
                 <h6>Tracking TV Shows and Movies</h6>
                 <p class="small-one">Manage user's current and past Watching Contents.</p>
             </div>
 
             <div class="div_texts">
-                <img src="../resources/icons/icons-active/active-group_friends.svg" alt="group_friends icon">
+                <img src="resources/icons/icons-active/active-group_friends.svg" alt="group_friends icon">
                 <h6>Getting Inspiration with friends</h6>
                 <p class="small-one">Get information about friend's watched and watching contents.</p>
             </div>
 
             <div class="div_texts">
-                <img src="../resources/icons/icons-hover/hover-heart_second.svg" alt="heart icon">
+                <img src="resources/icons/icons-hover/hover-heart_second.svg" alt="heart icon">
                 <h6>Personalized Recommendation</h6>
                 <p class="small-one">Provide recommendation based on what users have watched.</p>
             </div>
 
             <div class="two_buttons">
                 <div class="button btn_account">
-                    <a class="button-text" href="signup.html">Create a Free Account</a>
+                    <a class="button-text" href="html/signup.html">Create a Free Account</a>
                 </div>
                 <div class="button btn_sign">
-                    <a class="button-text" href="signin.html">Sign in</a>
+                    <a class="button-text" href="html/signin.html">Sign in</a>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
             if ('serviceWorker' in navigator) {
                 // then register our service worker
                 try {
-                    const reg = await navigator.serviceWorker.register('../sw.js', { scope: '/' });
+                    const reg = await navigator.serviceWorker.register('sw.js', { scope: '/' });
                     // display a success message
                     console.log(`Service Worker is Registered:`, reg);
                 } catch (error) {

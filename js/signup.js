@@ -20,7 +20,7 @@ async function googleLogIn() {
 
 function success() {
     console.log("User already exist on Database");
-    window.location.replace("home.html");
+    goToHome();
 }
 
 async function error() {
@@ -31,7 +31,7 @@ async function error() {
     await saveInfoDb(location, result.user.uid, {
         email: result.user.email,
     });
-    window.location.replace("create-user-name.html");
+    goToCreateUsername();
 }
 
 async function facebookLogIn() {
@@ -60,7 +60,7 @@ async function signUp() {
             await saveInfoDb(location, result.user.uid, {
                 email: result.user.email,
             });
-            window.location.replace("create-user-name.html");
+            goToCreateUsername();
         } else {
             document.getElementById("Message").style.color = "Red";
             document.getElementById("Message").innerHTML =
@@ -69,6 +69,14 @@ async function signUp() {
     } catch (error) {
         console.log(error);
     }
+}
+
+function goToHome() {
+    window.location.replace("home.html");
+}
+
+function goToCreateUsername() {
+    window.location.replace("create-user-name.html");
 }
 
 const googleBtn = document.querySelector("#btn-google");

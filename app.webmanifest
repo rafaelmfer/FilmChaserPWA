@@ -1,7 +1,7 @@
 {
   "short_name": "FilmChaser",
   "name": "Film Chaser",
-  "start_url": "html/onboarding.html",
+  "start_url": "index.html",
   "display": "fullscreen",
   "background_color": "#6A6AAA",
   "theme_color": "#6A6AAA",
