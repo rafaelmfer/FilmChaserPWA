@@ -499,7 +499,6 @@ async function findDocumentInSubcollection(location, documentId) {
  * @returns {function} - The function to cancel listening for changes to the document.
  *                       Call this function to stop listening for changes when necessary.
  */
-
 async function listenToDocumentChanges(
     location,
     documentId,
@@ -527,6 +526,49 @@ async function listenToDocumentChanges(
     // Returns the function to cancel listening for changes to the document
     // Call this function to stop listening for changes when necessary
     return unsub;
+}
+
+/**
+ * Starts listening for real-time changes to a specific collection in Firestore.
+ *
+ * @param {string} location - The path to the location of the collection (collection folder).
+ * @param {string} property - The field to query on.
+ * @param {string} operator - The operator to query with (e.g., "<", "<=", "==", ">", ">=", "!=", "array-contains",
+ *  "array-contains-any", "in", "not-in").
+ * @param {any} value - The value to compare against.
+ * @param {function} callbackSuccess - The callback function to execute whenever the collection is changed.
+ *                              This function will receive the updated data of the collection as an argument.
+ * @param {function} callbackError - The callback function to execute if an error occurs during listening for changes.
+ *                                    This function will receive the error object as an argument.
+ * @returns {function} - The function to cancel listening for changes to the collection.
+ *                       Call this function to stop listening for changes when necessary.
+ */
+export async function listenToCollectionChanges(
+    location,
+    property,
+    operator,
+    value,
+    callbackSuccess,
+    callbackError
+) {
+    const createQuery = query(
+        collection(firestore, location),
+        where(property, operator, value)
+    );
+    const unsubscribe = onSnapshot(createQuery, (querySnapshot) => {
+            let array = [];
+            querySnapshot.forEach((document) => {
+                // Adds each document in the snapshot to the array
+                array.push(document.data());
+            });
+            callbackSuccess(array);
+        },
+        (error) => {
+            callbackError(error);
+        }
+    );
+
+    return unsubscribe;
 }
 
 // Functions U ====================================================
