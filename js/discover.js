@@ -499,18 +499,3 @@ theMovieDb.movies.getRecommendations(
   (data) => successCB(data, "Recommendations", arrayRecommendation),
   errorCB
 );
-
-// theMovieDb.discover.getMoviesTvShowsTrendingDay({},data=>success(data, "Trending"), errorCB);
-
-// theMovieDb.discover.getMoviesTvShowsTrendingDay({page: 2},data=>success(data, "Trending"), errorCB);
-// let array = [];
-
-// function success(result, title){
-//      array = [...JSON.parse(result).results];
-//     console.log("---------"+title)
-//     console.log(array)
-//     console.log(array.length)
-
-//     // createGenreCarouselWithTitle(array, title);
-
-// }
