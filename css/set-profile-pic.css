@@ -25,7 +25,8 @@
     max-width: 350px;
     margin: auto;
     min-height: 700px;
-    max-height: 850px;
+    max-height: 750px;
+    align-items: center;
 }
 
 body{
@@ -60,6 +61,7 @@ form{
     align-items: center;
     justify-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 
@@ -99,11 +101,53 @@ ul{
     right: 0;
 }
 
-.btn_skip, 
+.box_photo{
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-button);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.5px;
+}
+
+.btn_skip, .snap, 
 .fields, .signup_field, .button{
+    margin: 0 16px;
+    padding: 18px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: var(--text-color-one);
+    background-image: var(--background-gradient);
+
+    cursor: pointer;
+
+
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-button);
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.5px;
+}
+
+.snap{
+    padding: 18px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: var(--text-color-one);
+    background-image: var(--secondary-color);
+    font-size: var(--font-button);
+    cursor: pointer;   
     width: 100%;
-    height: 54px;
-    font-weight: 500;
+}
+
+.btn_skip{
+    background-color: var(--secondary-color) !important;
+    background-image: none;
 }
 
 .fields{
@@ -113,6 +157,53 @@ ul{
 input::placeholder{
     color: var(--textcolor_white);
     
+}
+
+h2{
+    font-family: "Amiko", sans-serif;
+    font-size: var(--font-size-h2);
+}
+
+.positioning-logo{
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    position: absolute;
+}
+
+.site-logo img {
+    height: 28px;
+    width: 28px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .site-logo {
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-top: .5rem;
+    position: fixed;
+    z-index: 22;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    height: 28px;
+    width: 100%;
+  }
+
+.small-one{
+    font-family: "Open Sans", sans-serif;
+    font-size: var(--font-small-one);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .signup_field{
@@ -126,12 +217,13 @@ input::placeholder{
     display: grid;
     gap: 1rem;
     position: relative;
+    width: 100%;
 }
 
-.button{
+/* .button{
     background-image: linear-gradient(270deg, #EC764F , #72465D, #2E5DF3);
     color: var(--textcolor_white);
-}
+} */
 
 a{
     color: var(--textcolor_white);
@@ -142,6 +234,8 @@ input{
     border-radius: 4px;
 }
 
+
+.snap,
 .SignUp_Center .btn_skip{
     background-color: var(--secondary-color);
     color: var(--text-color-one)
@@ -159,6 +253,11 @@ input{
     background-color: var(--secondary-color);
     position: relative;
 }
+
+.user-image.photo-user-image{
+    margin: 1rem 0px 3rem !important;
+}
+
 
 .fa-solid{
     font-size: 140px;
@@ -266,14 +365,12 @@ img{
     /* top: calc(48% - 90px);
     left: calc(50% - 90px); */
     z-index: 3;
-    top: .5rem;
+    position: relative;
     border-radius: 200px;
     overflow: hidden;
     width: 180px;
     height: 180px;
     border: 2px solid var(--tertiary-color);
-    position: absolute;
-
 }
 
 .canvas{
@@ -283,15 +380,22 @@ img{
     z-index: 3;
 }
 
+.snap{
+    visibility: hidden;
+    transition: all 1s;
+    margin: 0 18px;
+}
+
+.snap.active{
+    display: block;
+    visibility: visible;
+}
+
 .take-picture-box{
     display: flex;
-    position: absolute;
-    border: 3px solid var(--primary);
-    background-color: var(--secondary);
+    gap: 1rem;
     border-radius: 10px;
-    top: -100%;
-    width: 300px;
-    left: calc (50% - 300px);
+    width: 100%;
     z-index: 3;
     flex-direction: column;
     align-items: center;
@@ -301,15 +405,14 @@ img{
     transition: all 1s;
 }
 
-.take-picture-box.active{
-    top: calc(50% - 150px);
-}
+
 
 .button-picture-box{
     display: flex;
     justify-content: center;
     gap: 1rem;
     z-index: 3;
+    width: 100%;
 }
 
 .video{
@@ -338,5 +441,16 @@ img{
 
     .box-chose-photo.active {
         bottom: 0rem;
+    }
+
+
+    .positioning-logo{
+        justify-content: center;
+    }
+
+    .site-logo {
+        margin-top: .5rem;
+        justify-content: center;
+
     }
 }
