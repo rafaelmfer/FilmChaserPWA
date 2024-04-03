@@ -18,3 +18,6 @@ async function saveUsername() {
 
 const nextBtn = document.querySelector("#btn-next");
 nextBtn.addEventListener("click", saveUsername);
+
+const nextDesktopBtn = document.querySelector("#btn-next-desktop");
+nextDesktopBtn.addEventListener("click", saveUsername);
