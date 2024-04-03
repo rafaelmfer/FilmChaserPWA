@@ -57,9 +57,10 @@ async function signUp() {
             
             let location = `users`;
 
-            saveInfoDb(location, result.user.uid, {
+            await saveInfoDb(location, result.user.uid, {
                 email: result.user.email,
             });
+            window.location.replace("create-user-name.html");
         } else {
             document.getElementById("Message").style.color = "Red";
             document.getElementById("Message").innerHTML =

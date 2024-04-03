@@ -45,7 +45,7 @@ export function showResultall(res) {
 
             div.setAttribute("class", "movie-detail");
             div.appendChild(img);
-            div.appendChild(h4);
+            div.appendChild(p);
             if (element.media_type == "movie") {
                 link.setAttribute("href", "single_movie.html?id=" + element.id);
             } else {
