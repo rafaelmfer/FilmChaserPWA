@@ -119,9 +119,13 @@ body {
     gap: 0 12px;
 }
 
+.streaming .all-streaming-services .streaming-service-container img {
+    border-radius: 12.5px;
+}
+
 .streaming
     .all-streaming-services
-    .streaming-service-container:not(:last-of-type) {
+    .streaming-service-container {
     border-bottom: 1px solid var(--divider-color-one);
 }
 
