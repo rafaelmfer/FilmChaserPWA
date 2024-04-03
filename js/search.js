@@ -28,6 +28,7 @@ export function showResultall(res) {
 
         res.forEach((element, index) => {
             let link = document.createElement("a");
+            link.classList.add("link-item-container");
             let div = document.createElement("div");
             let img = document.createElement("img");
             let p = document.createElement("p");

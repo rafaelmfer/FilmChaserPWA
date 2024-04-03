@@ -38,8 +38,8 @@
     --font-size-h6: 19.2px;
     --font-button: 16px;
     --font-body: 16px;
-    --font-small-one: 14.33px;
-    --font-small-two: 11.11px;
+    --font-small-one: 14.73px;
+    --font-small-two: 13.11px;
 
     /* FONT SIZES FOR MOBILE */
     --font-mob-size-h1: 32.44px;
@@ -50,8 +50,8 @@
     --font-mob-size-h6: 18px;
     --font-mob-button: 16px;
     --font-mob-body: 16px;
-    --font-mob-small-one: 14.22px;
-    --font-mob-small-two: 12.64px;
+    --font-mob-small-one: 14.72px;
+    --font-mob-small-two: 13.64px;
 }
 
 * {

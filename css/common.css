@@ -18,7 +18,7 @@ main {
     
         display: grid;
         grid-template-columns: 224px calc(100vw - 224px);
-        grid-template-rows: 116px 80px auto;
+        grid-template-rows: 104px 80px auto;
     
         color: var(--text-color-one);
         background-color: var(--primary-color);
@@ -32,10 +32,10 @@ main {
     }
     
     section.tab-layout {
-        height: 72px;
+        height: 68px;
         margin-left: 72px;
         margin-right: 72px;
-        margin-bottom: 44px;
+        margin-bottom: 36px;
         
         grid-column: 2/3;
         grid-row: 1/2;

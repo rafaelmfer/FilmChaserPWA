@@ -13,7 +13,7 @@
 .component-tab-container a.firstTab .tab-underline,
 .component-tab-container a.secondTab .tab-underline,
 .component-tab-container a.thirdTab .tab-underline {
-    height: 53px;
+    height: 68px;
 
     color: var(--tertiary-color);
     background-color: var(--divider-color-one);
@@ -28,7 +28,7 @@
 .component-tab-container a.firstTab .tab-underline .tab,
 .component-tab-container a.secondTab .tab-underline .tab,
 .component-tab-container a.thirdTab .tab-underline .tab {
-    height: 50px;
+    height: 65px;
 
     background: var(--primary-color);
     color: var(--tertiary-color);

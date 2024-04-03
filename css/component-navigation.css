@@ -56,9 +56,12 @@
     .component-nav-mobile {
         display: none;
     }
+    
     .component-nav-desktop {
         display: block;
+        position: fixed;
     }
+
     .component-nav-desktop .navigation-wrapper {
         display: flex;
         flex-flow: column nowrap;

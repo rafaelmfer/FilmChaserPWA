@@ -1,6 +1,5 @@
 body {
     min-width: 320px;
-    grid-template-columns: 284px calc(100vw - 284px);
 }
 
 .hidden {
@@ -36,8 +35,6 @@ main {
 }
 
 main section {
-    margin-bottom: 40px;
-
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -90,6 +87,9 @@ main .completed-container {
     }
 
     section.film-chaser.filter-and-search {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+
         flex-wrap: wrap;
         gap: 20px;
     }
@@ -99,11 +99,14 @@ main .completed-container {
     }
 
     main {
+        grid-row: 3 / 4;
+
         margin-left: 72px;
         margin-right: unset;
     }
 
     main section {
+        margin-bottom: 40px;
         display: block;
     }
 

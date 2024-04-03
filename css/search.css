@@ -1,24 +1,22 @@
-
-.notActive{
+.notActive {
     display: none !important;
 }
 
-#mainSearch{
+#mainSearch {
     display: none;
 }
 
-#mainSearch.Active{
+#mainSearch.Active {
     display: block !important;
 }
 
-.Results{
+.Results {
     padding: 1rem 0rem;
     font-size: var(--font-size-h4);
 }
 
-
 /* Pictures */
-#mainDiscover2 .movie-detail{
+#mainDiscover2 .movie-detail {
     display: grid;
     grid-template-rows: 151px 80px;
     text-decoration: none;
@@ -42,6 +40,5 @@
 
         font-size: clamp(1rem, 1vw, var(--font-size-h6));
         align-self: end;
+    }
 }
-}
-
