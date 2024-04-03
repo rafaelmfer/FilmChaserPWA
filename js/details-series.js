@@ -38,8 +38,29 @@ const btnBack = document.querySelector(".btn-go-back");
 btnBack.addEventListener("click", history_back);
 
 function history_back() {
-    window.history.back();
+    let i = 1;
+    const maxAttempts = 10;
+
+    function navigateBack() {
+        if (i < maxAttempts && window.location.href.includes("single_series.html")) {
+            window.history.back();
+            i++;
+            console.log(i);
+            setTimeout(navigateBack, 100); // Add a delay of 100 milliseconds between each navigation attempt
+        }
+    }
+
+    navigateBack();
 }
+
+// function history_back() {
+//     let i=1;
+//     while (window.location.href.includes("single_series.html") && i<10){
+//         window.history.back();
+//         i++;
+//         console.log(i);
+//     }
+// }
 
 // SECTION: HERO IMAGE ==================================
 
@@ -235,7 +256,6 @@ fetch(media_url_providers, options)
 
 function media_info_providers(providers) {
     // TODO the country initials could be taken from the profile info.
-    console.log("PROVIDERS:", providers);
     if (providers.CA != null) {
         if (providers.CA.flatrate != undefined) {
             iterate_media_provider(providers.CA.flatrate);
@@ -441,6 +461,9 @@ navigateToPage();
 //init handler for hash navigation
 window.addEventListener("hashchange", navigateToPage);
 
+
+// 
+
 // CARROUSEL SEASONS ================================================
 // Last season that the user watched
 const uSeasonNum = 1;
@@ -552,24 +575,31 @@ function createEpisodesCard2(object) {
 
     const box = document.createElement("div");
     box.setAttribute("class", "checkbox");
+    
+    poster.src = base_url + "w92" + object.still_path;
+    
+    if (object.name.length > 14) {
+        label.innerHTML = `<p>S${object.season_number} | E${
+            object.episode_number
+        }</p> <p>${object.name.substr(0, 14)} ...</p> `;
 
-    poster.src = object.still_path
-        ? base_url + "w92" + object.still_path
-        : base_url + "w92" + object.poster_path;
+    } else {
+        label.innerHTML = `<p>S${object.season_number} | E${
+            object.episode_number
+        }</p> <p>${object.name}</p> `;
 
-    label.innerHTML = `<p>S${object.season_number} | E${
-        object.episode_number
-    }</p> <p>${object.name.substr(0, 14)}...</p> `;
+    }
+    
 
     card.appendChild(poster);
     innerDiv.appendChild(label);
     innerDiv.appendChild(box);
     card.appendChild(innerDiv);
 
-    return card;
+    return card;  
 }
 
-// SECTION: EPISODES =================================
+// // SECTION: EPISODES =================================
 const AllSeasons = document.querySelector(".section-all-seasons");
 
 // CREATING THE ACCORDION
@@ -577,7 +607,6 @@ const AllSeasons = document.querySelector(".section-all-seasons");
 theMovieDb.tv.getById({ id: seriesId }, successCB_numSeasons, errorCB);
 
 function successCB_numSeasons(data) {
-    console.log(JSON.parse(data));
     number_of_seasons = JSON.parse(data).number_of_seasons;
 
     for (let j = 1; j <= number_of_seasons; j++) {
@@ -682,6 +711,8 @@ function successCB_numSeasons(data) {
             `.season${JSON.parse(data).season_number} .numberOfEpisodes`
         );
         numberOfEpisodes.innerText = `/${JSON.parse(data).episodes.length}`;
+
+        
     }
 
     // ACCORDION =============================================
@@ -828,10 +859,19 @@ async function createEpisodesCard(object) {
 
         const box = document.createElement("div");
         box.setAttribute("class", "checkbox");
-
+         
         poster.src = object.episodes[i].still_path
             ? base_url + "w154" + object.episodes[i].still_path
             : base_url + "w154" + object.poster_path;
+
+        //Double checking if the episode card in the carousel has an image
+        const image_sibling = document.querySelector(`.episode${episodeNumber} img`);
+        // const image_sibling = episode_sibling.querySelector("img");
+
+        if (image_sibling.src.includes("null") || image_sibling.src.includes("undefined")){
+            image_sibling.src = base_url + "w154" + object.poster_path;
+        }
+
 
         label.innerHTML = `<p>S${object.season_number} | E${object.episodes[i].episode_number}</p> <p>${object.episodes[i].name}</p> `;
 
@@ -863,8 +903,6 @@ function AllEpisodesSelected(seasonNum) {
         for (let episode of episodes) {
             episode.classList.add("checked");
         }
-        console.log("clicado all");
-        console.log(allSeasons);
     } else {
         if (clones != null) {
             for (let clone of clones) {
@@ -874,8 +912,6 @@ function AllEpisodesSelected(seasonNum) {
         for (let episode of episodes) {
             episode.classList.remove("checked");
         }
-        console.log("remove all");
-        console.log(allSeasons);
     }
     // var watched = document.querySelectorAll(
     //     `.section-all-seasons .season${seasonNum} div.checked`

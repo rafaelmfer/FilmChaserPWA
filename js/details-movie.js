@@ -148,7 +148,8 @@ function successCB_release(data) {
 
 // SECTION BUTTONS (Watchlist, Completed)
 const user = await checkSession();;
-let documentId = user.uid;
+// let documentId = user.uid;
+let documentId = "H0qU7XzWHYftZVP9NW9BmAbAQbH2";
 
 const userDoc = await getInfoDb(`users/${documentId}`);
 document.getElementById("userName").innerHTML = userDoc.name;

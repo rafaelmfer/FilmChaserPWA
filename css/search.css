@@ -39,6 +39,9 @@
         z-index: 1;
         color: white;
         background-image: var(--background-gradient-black);
+
+        font-size: clamp(1rem, 1vw, var(--font-size-h6));
+        align-self: end;
 }
 }
 
