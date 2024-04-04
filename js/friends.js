@@ -14,19 +14,18 @@ activeFriends.addEventListener("click", () => {
     mainFriends.classList.add("active");
     mainDiscover2.classList.add("notActive");
     mainFilmChaser.classList.add("notActive");
-    console.log("clicado friends ")
+    console.log("clicado friends ");
 });
 
 activeShowsMovies.addEventListener("click", () => {
     mainFriends.classList.remove("active");
     mainDiscover2.classList.add("notActive");
-    mainFilmChaser.classList.remove("notActive")
-    console.log("clicado show ")
+    mainFilmChaser.classList.remove("notActive");
+    console.log("clicado show ");
 });
 
 const user = await checkSession();
-// let documentId = user.uid;
-let documentId = "H0qU7XzWHYftZVP9NW9BmAbAQbH2";
+let documentId = user.uid;
 let documentDbPath = `users/${documentId}`;
 
 let documentDb = await getInfoDb(documentDbPath);
@@ -47,7 +46,9 @@ async function processFriends() {
             {}
         );
 
-        createSectionWithFilms(friendDoc.name, watchlistArrayNotCompleted);
+        if (watchlistArrayNotCompleted.length > 0) {
+            createSectionWithFilms(friendDoc.name, watchlistArrayNotCompleted);
+        }
     }
 }
 
@@ -62,8 +63,8 @@ function createSectionWithFilms(name, films) {
 
     var nameHeader = document.createElement("h4");
     nameHeader.textContent = `${name.toLowerCase()}'s Watchlist`;
-    
-    nameHeader.style.textTransform  = "capitalize";
+
+    nameHeader.style.textTransform = "capitalize";
 
     var viewProfileDiv = document.createElement("div");
     viewProfileDiv.classList.add("view-profile");
