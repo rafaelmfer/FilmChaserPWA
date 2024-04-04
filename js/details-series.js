@@ -57,14 +57,6 @@ function history_back() {
     navigateBack();
 }
 
-// function history_back() {
-//     let i=1;
-//     while (window.location.href.includes("single_series.html") && i<10){
-//         window.history.back();
-//         i++;
-//         console.log(i);
-//     }
-// }
 
 // SECTION: HERO IMAGE ==================================
 
@@ -226,6 +218,17 @@ btCompleted.addEventListener("click", async function (event) {
             true
         );
     }
+
+    // const checkboxes = document.querySelectorAll(".selectAll"),
+    //       episode_checkbox = document.querySelectorAll(".episodeCard");
+    // checkboxes.forEach((item)=>{
+    //     item.classList.toggle("Allchecked");
+    // });
+
+    // episode_checkbox.forEach((item)=>{
+    //     item.classList.toggle("checked");
+    // });
+
 });
 
 //Call to get the certification
@@ -247,9 +250,14 @@ function successCB_rating(data) {
 
 // SECTION: STREAMING SERVICES
 const mediaStreaming_not = document.querySelector(".js-not-subscribed");
+const mediaStreaming_yes = document.querySelector(".subscribed");
 
 const media_url_providers =
     "https://api.themoviedb.org/3/tv/" + seriesId + "/watch/providers";
+
+// USER STREAMING SERVICES
+let userSNS = userDoc.streamingServices;
+
 
 fetch(media_url_providers, options)
     .then((response) => response.json())
@@ -274,15 +282,56 @@ function media_info_providers(providers) {
 }
 
 function iterate_media_provider(array) {
+    let netflix = 0,
+        amc = 0,
+        paramount = 0,
+        crunchyroll = 0;
     for (let i in array) {
-        const logo_streaming = document.createElement("img");
-        logo_streaming.classList.add("js-streaming-logo");
-
-        logo_streaming.src = base_url + "w92" + array[i].logo_path;
-        logo_streaming.alt = array[i].provider_name;
-
-        mediaStreaming_not.appendChild(logo_streaming);
+        if (array[i].provider_name.includes("Netflix") && netflix === 0) {
+            compareSNS(array[i], array[i].provider_name);
+            netflix++;
+        } else if (array[i].provider_name.includes("AMC") && amc === 0) {
+            compareSNS(array[i], array[i].provider_name);
+            amc++;
+        } else if (array[i].provider_name.includes("Paramount") && paramount === 0) {
+            compareSNS(array[i], array[i].provider_name);
+            paramount++;
+        } else if (array[i].provider_name.includes("Crunchyroll") && crunchyroll === 0) {
+            compareSNS(array[i], array[i].provider_name);
+            crunchyroll++;
+        } else if (!array[i].provider_name.includes("Netflix") && !array[i].provider_name.includes("AMC") && !array[i].provider_name.includes("Paramount") && !array[i].provider_name.includes("Crunchyroll")) {
+            compareSNS(array[i], array[i].provider_name);
+        }
     }
+}
+
+function compareSNS(object, name) {
+    for (let service of userSNS) {
+        let serviceX = service.replace(/\s+/g, '');
+        if (name.includes(serviceX)) {
+            createImageSNS(object, mediaStreaming_yes);
+            return;
+        } else if (!name.includes(serviceX)) {
+            createImageSNS(object, mediaStreaming_not);
+            return;
+        }
+    }
+}
+
+function createImageSNS (object, htmlElement){
+    const logo_streaming = document.createElement("img");
+    logo_streaming.classList.add("js-streaming-logo");
+
+    logo_streaming.alt = object.provider_name;
+    if (object.provider_name.includes("Crunchyroll")){
+        logo_streaming.src = base_url + "w92" + "/mXeC4TrcgdU6ltE9bCBCEORwSQR.jpg";
+    } else if (object.provider_name.includes("AMC")){
+        logo_streaming.src = base_url + "w92" + "/ovmu6uot1XVvsemM2dDySXLiX57.jpg";
+    } else  {
+        logo_streaming.src = base_url + "w92" + object.logo_path;
+    }
+
+    htmlElement.appendChild(logo_streaming);
 }
 
 // SECTION: COMMENTS /  REVIEWS
@@ -915,11 +964,6 @@ function AllEpisodesSelected(seasonNum) {
             episode.classList.remove("checked");
         }
     }
-    // var watched = document.querySelectorAll(
-    //     `.section-all-seasons .season${seasonNum} div.checked`
-    // );
-
-    // quantity.innerHTML = `${watched.length}`;
 
     updateQuantity(seasonNum);
 }
@@ -976,24 +1020,12 @@ setTimeout(async () => {
                     const episodeText = episodeTextElement.textContent.trim();
                     // Verificar se o texto do episódio corresponde ao número do episódio que estamos procurando
                     if (episodeText === episodeNumberToFind) {
-                        // Se corresponder, você encontrou o elemento HTML correspondente
-                        // console.log("Elemento encontrado:", episode);
-                        // Faça o que você precisa com esse elemento aqui
 
                         episode.classList.add("checked");
                     }
                 });
 
                 episodesTrack.forEach((episode) => {
-                    // Encontrar o elemento de texto dentro do elemento episódio
-                    // const episodeTextElement = episode.querySelector("p");
-                    // Obter o texto dentro desse elemento
-                    // const episodeText = episodeTextElement.textContent.trim();
-                    // Verificar se o texto do episódio corresponde ao número do episódio que estamos procurando
-                    // if (episodeText === episodeNumberToFind) {
-                    // Se corresponder, você encontrou o elemento HTML correspondente
-                    // console.log("Elemento encontrado:", episode);
-                    // Faça o que você precisa com esse elemento aqui
 
                     episode.classList.add("checked");
                     // }
