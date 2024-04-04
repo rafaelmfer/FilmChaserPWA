@@ -1,95 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <link rel="icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="resources/favicons/apple-icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <!-- Common CSS -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/common.css">
 
     <!-- Screen CSS -->
-    <link rel="stylesheet" href="css/onboarding.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <!-- Manifest Link PWA -->
     <link rel="manifest" href="app.webmanifest">
-
-    <title>Onboarding</title>
-</head>
-
-<body>
-
+    
+    <title>FilmChaser</title>
+  </head>
+  <body>
     <div class="SignUp">
-
-        <div class="site-logo">
-            <img class="app-name-logo" src="resources/imgs/logo.png" alt="">
-            <h4 class="app-name">FilmChaser</h4>
+      <div class="site-logo">
+        <img class="app-name-logo" src="resources/imgs/logo.png" alt="">
+        <h4 class="app-name">FilmChaser</h4>
+      </div>
+      <div class="SignUp_Center">
+        <div class="div_texts">
+          <img src="resources/icons/icons-active/active-video_camera.svg" alt="video_camera icon">
+          <h6>Tracking TV Shows and Movies</h6>
+          <p class="small-one">Manage user's current and past Watching Contents.</p>
         </div>
-
-        <div class="SignUp_Center">
-
-            <div class="div_texts">
-                <img src="resources/icons/icons-active/active-video_camera.svg" alt="video_camera icon">
-                <h6>Tracking TV Shows and Movies</h6>
-                <p class="small-one">Manage user's current and past Watching Contents.</p>
-            </div>
-
-            <div class="div_texts">
-                <img src="resources/icons/icons-active/active-group_friends.svg" alt="group_friends icon">
-                <h6>Getting Inspiration with friends</h6>
-                <p class="small-one">Get information about friend's watched and watching contents.</p>
-            </div>
-
-            <div class="div_texts">
-                <img src="resources/icons/icons-hover/hover-heart_second.svg" alt="heart icon">
-                <h6>Personalized Recommendation</h6>
-                <p class="small-one">Provide recommendation based on what users have watched.</p>
-            </div>
-
-            <div class="two_buttons">
-                <div class="button btn_account">
-                    <a class="button-text" href="html/signup.html">Create a Free Account</a>
-                </div>
-                <div class="button btn_sign">
-                    <a class="button-text" href="html/signin.html">Sign in</a>
-                </div>
-            </div>
-
+        <div class="div_texts">
+          <img src="resources/icons/icons-active/active-group_friends.svg" alt="group_friends icon">
+          <h6>Getting Inspiration with friends</h6>
+          <p class="small-one">Get information about friend's watched and watching contents.</p>
         </div>
+        <div class="div_texts">
+          <img src="resources/icons/icons-hover/hover-heart_second.svg" alt="heart icon">
+          <h6>Personalized Recommendation</h6>
+          <p class="small-one">Provide recommendation based on what users have watched.</p>
+        </div>
+        <div class="two_buttons">
+          <div class="button btn_account">
+            <a class="button-text" href="html/signup.html">Create a Free Account</a>
+          </div>
+          <div class="button btn_sign">
+            <a class="button-text" href="html/signin.html">Sign in</a>
+          </div>
+        </div>
+      </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script>
-        ; (async () => {
-            // does the browser support service workers?
-            if ('serviceWorker' in navigator) {
-                // then register our service worker
-                try {
-                    const reg = await navigator.serviceWorker.register('sw.js', { scope: '/' });
-                    // display a success message
-                    console.log(`Service Worker is Registered:`, reg);
-                } catch (error) {
-                    // display an error message
-                    console.log(`Service Worker Error (${error})`);
-                };
-
-                // ready is a Promise that never rejects and resolved when the service worker is active. 
-                const active = await navigator.serviceWorker.ready;
-                // we have an active service worker working for us
-                console.log(`Service Worker is Active:`, active);
-                // At this point, you can call methods that require an active service worker,
-                // like registration.pushManager.subscribe() for push notification
-            } else {
-                // happens when the app isn't served over a TLS connection (HTTPS)
-                console.warn('Service Worker not available');
-            }
-        })();//async IIFE
-
+      ;
+      (async () => {
+        // does the browser support service workers?
+        if ('serviceWorker' in navigator) {
+          // then register our service worker
+          try {
+            const reg = await navigator.serviceWorker.register('sw.js', {
+              scope: '/'
+            });
+            // display a success message
+            console.log(`Service Worker is Registered:`, reg);
+          } catch (error) {
+            // display an error message
+            console.log(`Service Worker Error (${error})`);
+          };
+          // ready is a Promise that never rejects and resolved when the service worker is active. 
+          const active = await navigator.serviceWorker.ready;
+          // we have an active service worker working for us
+          console.log(`Service Worker is Active:`, active);
+          // At this point, you can call methods that require an active service worker,
+          // like registration.pushManager.subscribe() for push notification
+        } else {
+          // happens when the app isn't served over a TLS connection (HTTPS)
+          console.warn('Service Worker not available');
+        }
+      })(); //async IIFE
     </script>
-
-</body>
-
+  </body>
 </html>
