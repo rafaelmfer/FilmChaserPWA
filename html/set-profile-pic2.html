@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="app.webmanifest">
+
+    <script type="module" src="../js/set-profile-pic2.js" ></script>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/set-profile-pic2.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <title>Dog Application</title>
+</head>
+
+<body>
+
+    <div class="positioning-logo">
+        <div class="site-logo">
+            <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+            <h4 class="app-name">FilmChaser</h4>
+        </div>
+    </div>
+
+    <div class="page" id="picture" >
+        <div>
+            <h2>Set Up Profile Picture</h2>
+            <p class="small-one">You can change it anytime</p>
+        </div>
+        <div class="camera-buttons">
+            <button id="start" class="item">Start Camera</button>
+            <button id="snap" class="item">Snap Photo</button>
+            <label class="item" for="myFile">Upload</label>
+            <input type="file" id="myFile" class="myFile" name="filename">
+          </div>
+            <div class="canvas-circle" id="canvas-circle">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                <video id="video" width="267" height="200" autoplay>
+                </video>
+                <canvas id="canvas" width="267" height="200"></canvas>
+            </div>
+
+            <div class="btn-upload-box">
+                <input type="button" id="btn-upload-pic" class="button button upload_photo" value="Upload a Picture" id="user-upload-pic">
+                <input type="button" class="btn_skip btn_skip" value="Skip">
+            </div>
+
+                
+            
+          <br />
+    </div>
+    
+</body>
+
+</html>
