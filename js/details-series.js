@@ -257,8 +257,6 @@ const media_url_providers =
 
 // USER STREAMING SERVICES
 let userSNS = userDoc.streamingServices;
-console.log("MY SERVICESSSS",userSNS);
-
 
 fetch(media_url_providers, options)
     .then((response) => response.json())
@@ -283,7 +281,6 @@ function media_info_providers(providers) {
 }
 
 function iterate_media_provider(array) {
-    console.log("PROVIDERSSSSS",array);
     let netflix = 0,
         amc = 0,
         paramount = 0,
@@ -300,11 +297,9 @@ function iterate_media_provider(array) {
             paramount++;
         } else if (array[i].provider_name.includes("Crunchyroll") && crunchyroll === 0) {
             compareSNS(array[i], array[i].provider_name);
-            console.log("ENTRO AQUI",array[i].provider_name);
             crunchyroll++;
         } else if (!array[i].provider_name.includes("Netflix") && !array[i].provider_name.includes("AMC") && !array[i].provider_name.includes("Paramount") && !array[i].provider_name.includes("Crunchyroll")) {
             compareSNS(array[i], array[i].provider_name);
-            console.log("ENTRO en default",array[i].provider_name);
         }
     }
 }
@@ -316,7 +311,6 @@ function compareSNS(object, name) {
         if (serviceX === "Disney+"){
             serviceX = "Disney Plus";
         }
-        console.log("nombre cortado", serviceX);
         if (name.includes(serviceX)) {
             createImageSNS(object, mediaStreaming_yes);
             foundMatch = true; 
