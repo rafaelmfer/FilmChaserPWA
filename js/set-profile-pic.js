@@ -128,14 +128,23 @@ document.getElementById("btn_skip_photo").addEventListener("click",()=>{
 
 
   // Trigger photo take
-document.getElementById("snap").addEventListener("click",  () => {
-    context.drawImage(video, 0, 0);
-  
+document.getElementById("snap").addEventListener("click",  async () => {
+    
+    setInterval(async ()=>{
+    await context.drawImage(video, 0, 0);
+    },1000)
     // document.getElementById("image").value = canvas.toDataURL();
+
+    console.log("working fine")
     console.log("---FOTO---")
     console.log(canvas.toDataURL())
 
+    imgResult = canvas.toDataURL()
+
+
+
     user_photo.src = canvas.toDataURL();
+   
 
     // TURN OFF CAMERA
     const tracks = video.srcObject.getTracks();
@@ -143,6 +152,7 @@ document.getElementById("snap").addEventListener("click",  () => {
 
     showLogo.style.display = "none";
     showPicture.style.display = "flex";
+   
 });
 
 

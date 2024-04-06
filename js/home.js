@@ -1,12 +1,20 @@
 "use strict";
-
+import { firebase } from "./firebase-config.js";
 import { checkSession } from "./auth.js";
 import { createCarousel, initializeCarousel, networkInfo } from "./common.js";
-import { getInfoDb, listenToCollectionChanges, updateInfoDb, saveMovieInDb, listenToDocumentChanges, } from "./firestore.js";
+import { getInfoDb, listenToCollectionChanges, updateInfoDb, saveMovieInDb, listenToDocumentChanges, deleteInfoDb, saveTvShowInDb, docExists} from "./firestore.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
+import {
+  getFirestore,
+  getDoc,
+  doc
 
+} from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
 
 networkInfo();
+
+let element = "";
+let elementFilm = "";
 
 let arrayTrending = [];
 let arrayUpcoming = [];
@@ -497,6 +505,8 @@ function createCarouselItem(film) {
 
   filmDiv.appendChild(create_heart(film))
 
+  
+
   filmDiv.appendChild(link);
 
   return filmDiv;
@@ -554,7 +564,6 @@ function createWatchlist(data) {
     containerWatchlist.style.display = "none";
   }
 
-  changeHearts()
 }
 
 function errorWatchlist(error) {
@@ -566,23 +575,21 @@ function create_heart(film) {
   let div = document.createElement("div")
   div.setAttribute("class", "empty-heart active");
 
-  div.addEventListener("click", async (e) => {
-    console.log(e);
-    console.log(film.id);
-    console.log(film);
+  div.addEventListener("click",  (e) => {
 
+    let location = `users/${documentId}/watchlist/${film.id}`;
+    element = e;
+    elementFilm = film;
 
-    await saveMovieInDb(
-      watchlistPath,
-      `${film.id}`,
-      film,
-      false
-    );
-    console.log("adicionado")
+    docExists(location, fullHeart, emptyHeart);
+
   })//end event listener
 
   let myImage = document.createElement("img");
-  myImage.src = "../resources/icons/icons-default/default-heart.svg";
+
+  let checkExistingList =  checkWathList(film.id, div, myImage);
+
+  //myImage.src = "../resources/icons/icons-default/default-heart.svg";
   myImage.setAttribute("class", "not_active")
   myImage.setAttribute("id", film.id)
   div.appendChild(myImage);
@@ -590,11 +597,61 @@ function create_heart(film) {
   return div;
 }
 
-function changeHearts() {
 
-
-
-  // watchlistImg.src = itemAdded
-  //     ? "../resources/icons/icons-active/active-heart.svg"
-  //     : "../resources/icons/icons-default/default-heart.svg";
+async function checkWathList(id, div, myImage){
+  let check= `users/${documentId}/watchlist/${id}`;
+  const firestore = getFirestore(firebase);
+  const docRef = await doc(firestore, check);
+  let result = await getDoc(docRef)
+  console.log(id+" "+result.exists())
+  if(result.exists() == false){
+    myImage.src = "../resources/icons/icons-default/default-heart.svg";
+  }else{
+    myImage.src = "../resources/icons/icons-active/active-heart.svg";
+  }
+  div.appendChild(myImage);
+  return result.exists();
 }
+
+function colorFullHeart(){
+  console.log("SUCESSO")
+}
+
+function whiteHeart(){
+  
+}
+
+function fullHeart() {
+  console.log("deleting from DB");
+  console.log(element)
+  element.srcElement.src= "../resources/icons/icons-default/default-heart.svg";
+  element.srcElement.attributes[0].value = "../resources/icons/icons-default/default-heart.svg";
+  let location = `users/${documentId}/watchlist/${elementFilm.id}`;
+  deleteInfoDb(location)
+  //
+}
+
+//add user into watchlist 
+//update heart into colorfull
+async function emptyHeart() {
+  console.log("adding into DB ")
+  element.srcElement.src= "../resources/icons/icons-active/active-heart.svg";
+  element.srcElement.attributes[0].value = "../resources/icons/icons-active/active-heart.svg";
+    if(elementFilm.media_type === "movie"){
+      await saveMovieInDb(
+        watchlistPath,
+        `${elementFilm.id}`,
+        elementFilm,
+        false
+      );
+
+    }else if (elementFilm.media_type === "tv"){
+      await saveTvShowInDb(
+        watchlistPath,
+        `${elementFilm.id}`,
+        elementFilm,
+        false
+      );
+    }
+}
+
