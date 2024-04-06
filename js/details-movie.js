@@ -223,6 +223,8 @@ btCompleted.addEventListener("click", async function (event) {
 
 // SECTION: STREAMING SERVICES
 const movieStreaming_not = document.querySelector(".js-not-subscribed");
+const movieStreaming_yes = document.querySelector(".subscribed");
+let userSNS = userDoc.streamingServices;
 
 const movie_url_providers =
     "https://api.themoviedb.org/3/movie/" + movieId + "/watch/providers";
@@ -251,29 +253,47 @@ function movie_info_providers(providers) {
 
 function iterate_movie_provider(array) {
     let netflix = 0,
-    amc = 0,
-    paramount=0,
-    crunchyroll=0;
+        amc = 0,
+        paramount = 0,
+        crunchyroll = 0;
     for (let i in array) {
-        if (array[i].provider_name.includes("Netflix") && netflix === 0){
-            createImageSNS(array[i]);
+        if (array[i].provider_name.includes("Netflix") && netflix === 0) {
+            compareSNS(array[i], array[i].provider_name);
             netflix++;
-        } else if (array[i].provider_name.includes("AMC") && amc === 0){
-            createImageSNS(array[i]);
+        } else if (array[i].provider_name.includes("AMC") && amc === 0) {
+            compareSNS(array[i], array[i].provider_name);
             amc++;
-        } else if (array[i].provider_name.includes("Paramount") && paramount === 0){
-            createImageSNS(array[i]);
+        } else if (array[i].provider_name.includes("Paramount") && paramount === 0) {
+            compareSNS(array[i], array[i].provider_name);
             paramount++;
-        } else if (array[i].provider_name.includes("Crunchyroll") && paramount === 0){
-            createImageSNS(array[i]);
+        } else if (array[i].provider_name.includes("Crunchyroll") && crunchyroll === 0) {
+            compareSNS(array[i], array[i].provider_name);
             crunchyroll++;
-        } else if (!array[i].provider_name.includes("Netflix") && !array[i].provider_name.includes("AMC") && !array[i].provider_name.includes("Paramount") && !array[i].provider_name.includes("Crunchyroll") ){
-            createImageSNS(array[i]);
+        } else if (!array[i].provider_name.includes("Netflix") && !array[i].provider_name.includes("AMC") && !array[i].provider_name.includes("Paramount") && !array[i].provider_name.includes("Crunchyroll")) {
+            compareSNS(array[i], array[i].provider_name);
         }
     }
 }
 
-function createImageSNS (object){
+function compareSNS(object, name) {
+    let foundMatch = false; 
+    for (let service of userSNS) {
+        let serviceX = service.replace(/\s+/g, '');
+        if (serviceX === "Disney+"){
+            serviceX = "Disney Plus";
+        }
+        if (name.includes(serviceX)) {
+            createImageSNS(object, movieStreaming_yes);
+            foundMatch = true; 
+            break; 
+        }
+    }
+    if (!foundMatch) {
+        createImageSNS(object, movieStreaming_not);
+    }
+}
+
+function createImageSNS (object, htmlElement){
     const logo_streaming = document.createElement("img");
     logo_streaming.classList.add("js-streaming-logo");
 
@@ -286,8 +306,7 @@ function createImageSNS (object){
         logo_streaming.src = base_url + "w92" + object.logo_path;
     }
 
-    movieStreaming_not.appendChild(logo_streaming)
-
+    htmlElement.appendChild(logo_streaming);
 }
 
 // SECTION: COMMENTS /  REVIEWS
