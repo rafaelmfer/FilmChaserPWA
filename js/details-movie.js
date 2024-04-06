@@ -278,11 +278,11 @@ function iterate_movie_provider(array) {
 function compareSNS(object, name) {
     let foundMatch = false; 
     for (let service of userSNS) {
-        let serviceX = service.replace(/\s+/g, '');
-        if (serviceX === "Disney+"){
-            serviceX = "Disney Plus";
+        // let serviceX = service.replace(/\s+/g, '');
+        if (service === "Disney+"){
+            service = "Disney Plus";
         }
-        if (name.includes(serviceX)) {
+        if (name.includes(service)) {
             createImageSNS(object, movieStreaming_yes);
             foundMatch = true; 
             break; 
