@@ -90,7 +90,6 @@ async function checkSession() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 // Logged
-                console.log(user);
                 resolve(user);
             } else {
                 // Not logged

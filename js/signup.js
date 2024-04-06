@@ -11,8 +11,13 @@ async function googleLogIn() {
     try {
         result = await loginWithGoogle();
 
-        let location = `users/${result.user.uid}`;
-        docExists(location, success, error);
+        if (result.user.uid === "cAqNs7MlDsfJeeG3WLfqjCLvb422") {
+            console.log("You are logged in as the test user. Demo mode is enabled.");
+            goToCreateUsername();
+        } else {
+            let location = `users/${result.user.uid}`;
+            docExists(location, success, error);
+        }
     } catch (error) {
         console.log(error);
     }
@@ -54,7 +59,7 @@ async function signUp() {
 
         if (password === password2) {
             let result = await createAccountEmailAndPassword(email, password);
-            
+
             let location = `users`;
 
             await saveInfoDb(location, result.user.uid, {

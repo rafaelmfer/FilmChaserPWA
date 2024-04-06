@@ -3,14 +3,13 @@
   "name": "Film Chaser",
   "start_url": "index.html",
   "display": "fullscreen",
-  "background_color": "#6A6AAA",
-  "theme_color": "#6A6AAA",
+  "background_color": "#0f1a20",
+  "theme_color": "#0f1a20",
   "icons": [
     {
       "src": "resources/favicons/144px.png",
       "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable"
+      "type": "image/png"
      },
     {
       "src": "resources/favicons/192px.png",
