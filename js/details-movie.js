@@ -250,15 +250,44 @@ function movie_info_providers(providers) {
 }
 
 function iterate_movie_provider(array) {
+    let netflix = 0,
+    amc = 0,
+    paramount=0,
+    crunchyroll=0;
     for (let i in array) {
-        const logo_streaming = document.createElement("img");
-        logo_streaming.classList.add("js-streaming-logo");
-
-        logo_streaming.src = base_url + "w92" + array[i].logo_path;
-        logo_streaming.alt = array[i].provider_name;
-
-        movieStreaming_not.appendChild(logo_streaming);
+        if (array[i].provider_name.includes("Netflix") && netflix === 0){
+            createImageSNS(array[i]);
+            netflix++;
+        } else if (array[i].provider_name.includes("AMC") && amc === 0){
+            createImageSNS(array[i]);
+            amc++;
+        } else if (array[i].provider_name.includes("Paramount") && paramount === 0){
+            createImageSNS(array[i]);
+            paramount++;
+        } else if (array[i].provider_name.includes("Crunchyroll") && paramount === 0){
+            createImageSNS(array[i]);
+            crunchyroll++;
+        } else if (!array[i].provider_name.includes("Netflix") && !array[i].provider_name.includes("AMC") && !array[i].provider_name.includes("Paramount") && !array[i].provider_name.includes("Crunchyroll") ){
+            createImageSNS(array[i]);
+        }
     }
+}
+
+function createImageSNS (object){
+    const logo_streaming = document.createElement("img");
+    logo_streaming.classList.add("js-streaming-logo");
+
+    logo_streaming.alt = object.provider_name;
+    if (object.provider_name.includes("Crunchyroll")){
+        logo_streaming.src = base_url + "w92" + "/mXeC4TrcgdU6ltE9bCBCEORwSQR.jpg";
+    } else if (object.provider_name.includes("AMC")){
+        logo_streaming.src = base_url + "w92" + "/ovmu6uot1XVvsemM2dDySXLiX57.jpg";
+    } else  {
+        logo_streaming.src = base_url + "w92" + object.logo_path;
+    }
+
+    movieStreaming_not.appendChild(logo_streaming)
+
 }
 
 // SECTION: COMMENTS /  REVIEWS

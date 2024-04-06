@@ -159,7 +159,7 @@ a {
     flex-basis: 100%;
 }
 
-.section--where-to-watch .js-not-subscribed {
+.section--where-to-watch .js-not-subscribed, .section--where-to-watch .subscribed {
     display: flex;
     flex-flow: row wrap;
     gap: 0.4rem;
