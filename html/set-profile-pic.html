@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/set-profile-pic.css">
+
+    <!-- Screen Javascript -->
+    <script type="module" src="../js/set-profile-pic.js" defer></script>
+
+    <title>Profile Picture</title>
+</head>
+
+<body>
+
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img class="hotpink-rubber-chicken" src="../resources/imgs/hotpink-rubber-chicken.png" alt="hotpink-rubber-chicken">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
+    <div class="SignUp">
+        <div class="site-logo">
+            <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+            <h4 class="app-name">FilmChaser</h4>
+        </div>
+
+        <div class="SignUp_Center">
+
+            <div>
+                <h2>Set Up Profile Picture</h2>
+                <p class="small-one">You can change it at anytime.</p>
+            </div>
+            <div class="canvas-circle" id="canvas-circle">
+                <img src="../resources/imgs/Placeholder/placeholder_actor(1).png">
+                <video id="video" width="267" height="200" autoplay></video>
+                <canvas id="canvas" width="267" height="200"></canvas>
+                <img class="my-file-result" src="" alt="">
+            </div>
+
+            <div class="buttons-group-normal visible">
+                <input id="btn-upload" type="button" class="button-text" value="Upload a Picture">
+                <input id="btn-skip" type="button" class="button-text" value="Skip">
+            </div>
+
+            <div class="buttons-group-camera">
+                <input id="btn-snap" type="button" class="button-text" value="Snap Photo">
+                <input id="btn-cancel-snap" type="button" class="button-text" value="Cancel">
+            </div>
+
+            <div class="buttons-group-save">
+                <input id="btn-save" type="button" class="button-text" value="Save picture">
+                <input id="btn-cancel-save" type="button" class="button-text" value="Cancel">
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="box-chose-photo">
+        <p class="body-text" id="btn-take-photo">Take Photo</p>
+        <p class="body-text" id="btn-my-file">Choose Photo</p>
+        <p class="button-text" id="btn-cancel">Cancel</p>
+    </div>
+
+    <div class="off-screen"></div>
+
+    <!-- Input related to the image selection in this device -->
+    <input id="my-file" type="file" accept="image/*" style="display: none;">
+</body>
+
+</html>

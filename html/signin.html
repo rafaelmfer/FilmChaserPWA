@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-snackbar.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/signin.css">
+
+    <!-- Screen Javascript -->
+    <script src="../js/component-snackbar.js" defer></script>
+    <script src="../js/password.js" defer></script>
+    <script type="module" src="../js/signin.js" defer></script>
+
+    <title>Sign In</title>
+</head>
+
+<body>
+
+    <div class="SignIn">
+        <div class="site-logo">
+            <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+            <h4 class="app-name">FilmChaser</h4>
+        </div>
+
+        <div class="SignIn_Center">
+            <h2>Sign In</h2>
+            <p class="small-one">Sign in with SNS Accounts</p>
+
+            <ul>
+                <li id="btn-google">
+                    <img src="../resources/icons/SNS/google.png" alt="google icon">
+                </li>
+                <li>
+                    <img src="../resources/icons/SNS/facebook.png" alt="facebook icon">
+                </li>
+                <li onclick="myFunction()">
+                    <img src="../resources/icons/SNS/apple.png" alt="apple icon">
+                </li>
+            </ul>
+            <p class="line_or">or</p>
+
+            <div class="my_fields">
+                <input id="email" type="email" class="signin_field" placeholder="Email" required>
+                <div>
+                    <input type="password" class="signin_field" placeholder="Password" id="psswd" required>
+                    <span id="show-btn" class="small-one">Show</span></input>
+                </div>
+                <p class="forgot-password small-one">Forgot password? <a class="small-one" href="#"> Reset it</a></p>
+            </div>
+            <span id="Message"></span>
+            <input id="btn-login" type="button" class="button-text" value="Sign In">
+
+            <p class="new-signup small-one">New here? <a class="small-one" href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+    <div class="body-text" id="snackbar">Future Feature...</div>
+</body>
+
+</html>

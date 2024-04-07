@@ -1,0 +1,219 @@
+.component-nav-desktop {
+    display: none;
+}
+
+.component-nav-mobile {
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+
+    box-shadow: 0 -1px 5px var(--shadow-color);
+}
+
+.component-nav-mobile .nav-mobile {
+    background-color: var(--primary-color);
+}
+
+.component-nav-mobile .nav-mobile ul {
+    padding: 0;
+
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.component-nav-mobile .nav-mobile ul li.nav-links {
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 24%;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.component-nav-mobile .nav-mobile ul li.nav-links a {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    color: var(--tertiary-color);
+    text-decoration: none;
+}
+
+/* HOVER STATE */
+.component-nav-mobile .nav-mobile ul li.nav-links:hover {
+    background-color: var(--background-selected);
+}
+
+/* ACTIVE STATE */
+.component-nav-mobile .nav-mobile ul li.nav-links.active a {
+    color: var(--text-color-one);
+}
+
+@media screen and (min-width: 450px) {
+    .component-nav-mobile {
+        display: none;
+    }
+    
+    .component-nav-desktop {
+        display: block;
+        position: fixed;
+    }
+
+    .component-nav-desktop .navigation-wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        height: 100vh;
+        justify-content: space-between;
+        width: 224px;
+    }
+
+    .component-nav-desktop .notification-profile-wrapper {
+        margin-bottom: 32px;
+    }
+
+    .component-nav-desktop .navigation-wrapper .logo-page-navigation-wrapper ul,
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul {
+        display: flex;
+        flex-flow: column nowrap;
+        list-style-type: none;
+        padding: 0;
+        margin: 0 20px;
+        gap: 16px;
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul:nth-of-type(1) {
+        margin-top: 36px;
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul:nth-of-type(2) {
+        margin-top: 56px;
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul
+        .app-name-logo {
+        gap: 16px;
+        color: var(--text-color-one);
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul
+        li,
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li {
+        padding: 8px 10px;
+        color: var(--tertiary-color);
+
+        cursor: pointer;
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul
+        li
+        a,
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li
+        a {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 12px;
+        align-items: center;
+        text-decoration: none;
+        color: var(--tertiary-color);
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul
+        li
+        a
+        img,
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li
+        a
+        img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li
+        a
+        img {
+        border-radius: 50%;
+    }
+
+    /* HOVER STATE */
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul
+        li.nav-links:hover,
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li.nav-links:hover {
+        background-color: var(--background-selected);
+    }
+
+    /* ACTIVE STATE */
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul
+        li.nav-links.active,
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li.nav-links.active {
+        background-color: var(--background-selected);
+    }
+
+    .component-nav-desktop
+        .navigation-wrapper
+        .logo-page-navigation-wrapper
+        ul
+        li.nav-links.active
+        a,
+    .component-nav-desktop
+        .navigation-wrapper
+        .notification-profile-wrapper
+        ul
+        li.nav-links.active
+        a {
+        color: var(--text-color-one);
+    }
+}

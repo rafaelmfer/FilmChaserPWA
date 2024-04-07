@@ -1,0 +1,82 @@
+header.component-header-mobile {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+
+    border-bottom: 1px solid var(--divider-color-one);
+    display: flex;
+
+    /* box-shadow: none;
+
+    transition: box-shadow 0.3s; */
+}
+
+header.component-header-mobile .header-wrapper {
+    height: 64px;
+    padding-right: 16px;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    background-color: var(--primary-color);
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+header.component-header-mobile .header-wrapper .header--logo-title-wrapper {
+    grid-column: 2/3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+header.component-header-mobile
+    .header-wrapper
+    .header--logo-title-wrapper
+    .app-name-logo {
+    height: 28px;
+}
+header.component-header-mobile
+    .header-wrapper
+    .header--logo-title-wrapper
+    .app-name-mobile {
+    color: white;
+
+    font-size: clamp(var(--font-mob-size-h5), 6vw, var(--font-mob-size-h3));
+}
+
+header.component-header-mobile
+    .header-wrapper
+    .header--notification-profile-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+header.component-header-mobile
+    .header-wrapper
+    .header--notification-profile-wrapper
+    .user-profile {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+
+/* SCROLL UP EFFECT */
+header.component-header-mobile.scroll-up {
+    box-shadow: 0 1px 5px var(--shadow-color);
+}
+
+
+@media screen and (min-width: 450px) {
+    header.component-header-mobile {
+      display: none;
+    }
+}

@@ -1,0 +1,64 @@
+CSS STYLE FIELDs ORGANIZATION:
+
+>> variables.css : fonts, text sizes, colors and anything related the brand identity.
+
+>> poster.css : style sheet for the cards related on how we're going to display the poster of movies/series, the title and any other element relative to the app flow. 
+
+
+
+
+CLASS NAMING CONVENTION
+
+Block Element Modifier (BEM) methodology to assign classes:
+
+    >> Block examples: 
+        - Header
+        - Container
+        - Menu
+
+        <nav class="nav--secondary"> </nav>
+
+        <h1 class="film-chaser" > </h1>
+        <span class="film-chaser" > </span>
+        <p class="film-chaser" > </p>
+
+         <div class="poster"> </div>  
+
+    >> Element examples:
+        - Menu item
+        - List item
+        - Header title
+
+        <nav class="nav--secondary"> </nav>
+
+        <div class="poster--title"> </div>
+        <div class="poster--image"> </div>
+
+    >> Modifier examples: 
+        - Disabled
+        - Color Green
+        - Highlighted
+
+        <nav class="nav__header"> </nav
+
+        <button class="btn__gradient"></>
+        <button class="btn__outline"></>
+         <button class="btn__normal"></>
+
+         
+        <button class="btn__red"></>
+
+        <div class="poster__cast"> </div>  
+
+
+js- class names
+
+    Use a js-* class name to denote a relationship with the DOM element in question.
+
+    <div class="nav-bar js-nav-bar"" ></div>
+
+
+Reading materials if you have doubts:
+>> https://medium.com/@techathoncert/css-bem-concept-and-best-practices-dce695cd3530
+
+>> https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/

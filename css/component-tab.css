@@ -1,0 +1,45 @@
+.component-tab-container {
+    display: flex;
+}
+
+.component-tab-container a.firstTab,
+.component-tab-container a.secondTab,
+.component-tab-container a.thirdTab {
+    text-decoration: none;
+    flex-grow: 1;
+    flex-basis: 33.333%;
+}
+
+.component-tab-container a.firstTab .tab-underline,
+.component-tab-container a.secondTab .tab-underline,
+.component-tab-container a.thirdTab .tab-underline {
+    height: 68px;
+
+    color: var(--tertiary-color);
+    background-color: var(--divider-color-one);
+}
+
+.component-tab-container a.firstTab .tab-underline.active,
+.component-tab-container a.secondTab .tab-underline.active,
+.component-tab-container a.thirdTab .tab-underline.active {
+    background-image: var(--background-gradient);
+}
+
+.component-tab-container a.firstTab .tab-underline .tab,
+.component-tab-container a.secondTab .tab-underline .tab,
+.component-tab-container a.thirdTab .tab-underline .tab {
+    height: 65px;
+
+    background: var(--primary-color);
+    color: var(--tertiary-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.component-tab-container a.firstTab .tab-underline.active .tab,
+.component-tab-container a.secondTab .tab-underline.active .tab,
+.component-tab-container a.thirdTab .tab-underline.active .tab {
+    color: var(--text-color-one);
+}

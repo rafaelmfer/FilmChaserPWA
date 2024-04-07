@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
+    <link rel="stylesheet" href="../css/component-navigation.css">
+    <link rel="stylesheet" href="../css/component-carousel-title.css">
+    <link rel="stylesheet" href="../css/component-carousel.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/details-movie.css">
+
+    <!-- Javascript -->
+    <script type="module" src="../js/details-movie.js" defer></script>
+
+    <title>Movie Detail</title>
+</head>
+
+<body>
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img class="hotpink-rubber-chicken" src="../resources/imgs/hotpink-rubber-chicken.png" alt="hotpink-rubber-chicken">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
+    <!-- COMPONENT NAVIGATION-DESKTOP -->
+    <nav class="film-chaser component-nav-desktop">
+        <div class="navigation-wrapper">
+            <div class="logo-page-navigation-wrapper">
+                <ul>
+                    <li>
+                        <a class="film-chaser app-name-logo" href="#">
+                            <img src="../resources/imgs/logo.png" alt="logo">
+                            <h5 class="app-name">FilmChaser</h5>
+                        </a>
+                    </li>
+                </ul>
+                <!-- PUT THE CLASS "active" in one of the links of the page -->
+                <ul>
+                    <li class="nav-links">
+                        <a href="home.html">
+                            <img src="../resources/icons/icons-default/default-home.svg" alt="home">
+                            <h6>Home</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links active">
+                        <a href="discover.html">
+                            <img src="../resources/icons/icons-active/active-discover.svg" alt="discover">
+                            <h6>Discover</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="my-list-page.html">
+                            <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
+                            <h6>MyList</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="settings.html">
+                            <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
+                            <h6>Settings</h6>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="notification-profile-wrapper">
+                <ul>
+                    <li class="nav-links">
+                        <a href="#">
+                            <img src="../resources/icons/icons-default/default-notification.svg" alt="notification">
+                            <h5>Notification</h5>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="#">
+                            <img id="userPicture" src="../resources/imgs/profile/profile2.png" alt="home">
+                            <h5 id="userName">Profile</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="mainDiscover">
+
+        <div class="movie-header js-movie-header">
+            <div class="top-goback">
+                <div class="btn-go-back">
+                        <span class="material-symbols-outlined">navigate_before</span>
+                </div>
+            </div>
+
+            <h1 class="movie--title js-movie--title">Movie Title</h1>
+            <div class="movie--general-info js-movie--general-info"></div>
+
+            <div class="buttons-actions buttons-share">
+                <a href="" id="js-add-watchlist">
+                    <img class="material-symbols-outlined" src="../resources/icons/icons-default/default-heart.svg" alt="image">
+                    <p>WatchList</p>
+                </a>
+                <a href="" id="js-completed">
+                    <img class="material-symbols-outlined" src="../resources/icons/icons-default/default-completed.svg" alt="image">
+                    <p>Completed</p>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="main-subsection">
+            <h2>About</h2>
+            <div class="movie-details">
+                <div class="information-container">
+
+                    <div class="section--where-to-watch">
+                        <h3>Where to watch</h3>
+                        <div class="subscribed">
+                            <h4>Subscribed</h3>
+                        </div>
+
+                        <div class="not-subscribed js-not-subscribed">
+                            <h4>Not subscribed</h3>
+                        </div>
+                    </div>
+                    <div class="section--movie-info">
+                        <h3>Movie info</h3>
+                        <div class="section--movie-info-details js-section--movie-info-details"> </div>
+                    </div>
+
+                    <div class="section--comments">
+                        <p>Comments:</p>
+                         <div>
+                             <span class="movie-comments js-movie-comments">
+                             
+                             </span><a href="#"><span class="material-symbols-outlined">keyboard_arrow_right</span></a>
+                         </div>
+                        
+                        <!-- TODO add path to comments -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-pictures">
+          
+            </div>
+        </div>
+    </main>
+
+    <!-- COMPONENT NAVIGATION-MOBILE -->
+    <footer class="component-nav-mobile">
+        <nav class="nav-mobile">
+            <ul>
+                <li class="nav-links">
+                    <a href="home.html">
+                        <img src="../resources/icons/icons-default/default-home.svg" alt="home">
+                        <h1 class="small-two">Home</h1>
+                    </a>
+                </li>
+                <li class="nav-links active">
+                    <a href="discover.html">
+                        <img src="../resources/icons/icons-active/active-discover.svg" alt="discover">
+                        <h1 class="small-two">Discover</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="my-list-page.html">
+                        <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
+                        <h1 class="small-two">My List</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="settings.html">
+                        <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
+                        <h1 class="small-two">Settings</h1>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+
+
+
+</body>
+
+</html>

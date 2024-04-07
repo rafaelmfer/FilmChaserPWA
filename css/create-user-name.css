@@ -1,0 +1,149 @@
+body {
+    min-width: 320px;
+    margin: 0;
+
+    display: block;
+}
+
+.SignUp {
+    margin: 0 16px;
+    
+    display: grid;
+    grid-template-rows: 64px calc(100vh - 134px);
+    align-items: center;
+}
+
+.site-logo {
+    display: flex;
+    gap: 8px;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 28px;
+}
+
+.site-logo h4 {
+    font-size: clamp(var(--font-mob-size-h5), 6vw, var(--font-mob-size-h3));
+}
+
+.site-logo img {
+    height: 28px;
+}
+
+.SignUp_Center {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+
+    text-align: center;
+
+    max-width: 450px;
+}
+
+.SignUp_Center h2 {
+    margin-bottom: 8px;
+}
+
+.SignUp_Center img {
+    width: 48px;
+
+    cursor: pointer;
+}
+
+ul {
+    width: 100%;
+    padding: 2rem 0;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    list-style-type: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    caret-color: var(--text-color-one);
+    -webkit-text-fill-color: var(--text-color-one) !important;
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-color) inset !important;
+}
+
+input {
+    border-radius: 4px;
+    height: 54px;
+}
+
+input::placeholder {
+    color: var(--text-color-one);
+}
+
+.signup_field {
+    width: 100%;
+    min-width: 288px;
+    border: 1px solid var(--tertiary-color);
+    padding: 0.5rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color-one);
+}
+
+.my_fields {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 48px 0 16px 0;
+}
+
+.button-text {
+    width: 100%;
+    max-width: calc(450px - 32px);
+    padding: 18px 0;
+
+    justify-self: center;
+
+    color: var(--text-color-one);
+    background-image: var(--background-gradient);
+
+    font-size: var(--font-button);
+
+    cursor: pointer;
+}
+
+#btn-next-desktop {
+    display: none;
+}
+
+@media screen and (min-width: 450px) {
+    .site-logo {
+        margin-top: 32px;
+        margin-left: 24px;
+        justify-content: left;
+    }
+
+    .SignUp {
+        grid-template-rows: 64px calc(100vh - 134px);
+    }
+
+    .SignUp_Center {
+        justify-self: center;
+    }
+
+    .my_fields {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    #btn-next-desktop {
+        width: auto;
+        display: block;
+
+        margin: 48px 16px 0 16px;
+    }
+
+    #btn-next {
+        display: none;
+    }
+}

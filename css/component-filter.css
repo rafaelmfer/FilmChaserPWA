@@ -1,0 +1,88 @@
+.component-filter {
+    max-width: 340px;
+    height: 53px;
+    margin: 24px auto 0 auto;
+    border-radius: 4px;
+    background: var(--secondary-color);
+
+    display: grid;
+    grid-template-columns: 3fr 88px;
+    align-items: center;
+}
+
+.component-filter--left {
+    height: 22px;
+    border-right: solid 1px var(--tertiary-color);
+
+    display: grid;
+    grid-template-columns: repeat(3, 68px);
+    gap: 16px;
+    justify-items: center;
+    align-content: center;
+}
+
+.component-filter--left .all-p,
+.component-filter--left .movies-p,
+.component-filter--left .tv-p {
+    padding: 4px 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--tertiary-color);
+
+    font-family: "Open Sans";
+    font-size: 14.22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    cursor: pointer;
+}
+
+.filter-platform {
+    cursor: pointer;
+}
+
+.filter-platform .filter-platform-icons {
+    height: 21px;
+}
+
+.component-filter--right {
+    justify-self: center;
+}
+
+/* HOVER STATE */
+.component-filter--left p:hover {
+    border-radius: 2px;
+    background-image: var(--background-gradient);
+    color: var(--text-color-one);
+}
+
+/* ACTIVE STATE */
+.component-filter--left .all-p.active,
+.component-filter--left .movies-p.active,
+.component-filter--left .tv-p.active {
+    border-radius: 2px;
+    background-image: var(--background-gradient);
+    color: var(--text-color-one);
+}
+
+.filter-platform.active {
+    border: 1px solid var(--text-color-one);
+    border-radius: 2px;
+    height: 30px;
+    padding: 0 3px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+@media screen and (min-width: 450px) {
+    .component-filter {
+        width: 340px;
+        margin: 0px;
+    }
+}

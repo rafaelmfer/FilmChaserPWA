@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings-Preference Updates</title>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/desktop.css">
+    <link rel="stylesheet" href="../css/settings-PreferenceUpdates.css">
+
+    <script src="../js/settings-PreferenceUpdates.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logoTitle">
+            <img src="../resources/imgs/logo.png" class="logo" alt="" srcset="">
+            <a href="home.html">
+                <h5>FilmChaser</h5>
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="home.html">
+                        <span class="material-symbols-outlined">home</span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="discover.html">
+                        <span class="material-symbols-outlined">saved_search</span>
+                        Discover
+                    </a>
+                </li>
+                <li>
+                    <a href="my-list-page.html">
+                        <span class="material-symbols-outlined">list_alt</span>
+                        My List
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <span class="material-symbols-outlined">settings</span>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="userNotify">
+            <ul>
+                <li>
+                    <span class="material-symbols-outlined">notifications</span>
+                    Notification
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">notifications</span>
+                    Name
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="mainDiscover">
+
+
+        <div class="nav-secondary-container">
+            <nav>
+                <ul class="nav-secondary">
+                    <li><a href="settings-region.html"><i class="fa-solid fa-globe"></i>Region<i class="fa-solid fa-chevron-right"></i></a></li>
+
+                    <li><a href=""><i class="fa-solid fa-language"></i>Language<i class="fa-solid fa-chevron-right"></i></a></li>
+
+                    <li><a href=""><i class="fa-brands fa-youtube"></i>Streaming Platforms<i class="fa-solid fa-chevron-right"></i></a></li>
+
+                    <li><a href=""><i class="fa-regular fa-message"></i>Push Notifications<i class="fa-solid fa-chevron-right"></i></a></li>
+
+                    <li><a href=""><i class="fa-solid fa-lock"></i>Account Privacy<i class="fa-solid fa-chevron-right"></i></a></li>
+
+                    <li><a href="#"><i class="fa-solid fa-arrows-rotate"></i>Preference Updates<i class="fa-solid fa-chevron-right"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+        <div class="search-by-categories">
+
+            <div class="genres-container">
+
+                <h3>Genres</h3>
+                <i id="searchButtonGenres" class="fa-solid fa-magnifying-glass"></i>
+                <input id="search-by-genres" type="text" placeholder="Search for a show, movie, actor..."><br>
+
+                <div class="genres-tags-container">
+                    <!-- <div class="genres-tag">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <p class="genres-name">Comedy</p>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="actors-container" id="actors-container">
+                <h3>Actors</h3>
+                
+                <i class="fa-solid fa-magnifying-glass" id="searchButtonActor"></i>
+                    
+                <input id="search-by-actor" type="text" name="actorName" placeholder="Search for a show, movie, actor..."><br>
+
+                <div class="actors-images-container">
+
+                    <!-- <div class="actor-image">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <img src="" alt="">
+                        <p class="actor-name">Actor's name</p>
+                    </div> -->
+
+                </div>
+
+            </div>
+
+            <div class="directors-container">
+                <h3>Directors</h3>
+                <i class="fa-solid fa-magnifying-glass" id="searchButtonDirector"></i><input id="search-by-director" type="text" placeholder="Search for a show, movie, actor..."><br>
+
+                <div class="directors-images-container">
+                    <!-- <div class="director-image">
+                        <img src="" alt="">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <p>Director's name</p>
+                    </div> -->
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+</body>
+
+</html>

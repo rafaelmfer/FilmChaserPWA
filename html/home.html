@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
+    <link rel="stylesheet" href="../css/component-header-mobile.css">
+    <link rel="stylesheet" href="../css/component-navigation.css">
+    <link rel="stylesheet" href="../css/component-filter.css">
+    <link rel="stylesheet" href="../css/component-search-bar.css">
+    <link rel="stylesheet" href="../css/component-carousel-title.css">
+    <link rel="stylesheet" href="../css/component-carousel.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/home.css">
+
+    <!-- Screen Javascript -->
+    <script type="module" src="../js/component-filter.js" defer></script>
+    <script type="module" src="../js/home.js" defer></script>
+
+    <title>Home</title>
+</head>
+
+<body>
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img class="hotpink-rubber-chicken" src="../resources/imgs/hotpink-rubber-chicken.png" alt="hotpink-rubber-chicken">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
+    <!-- COMPONENT NAVIGATION-DESKTOP -->
+    <nav class="film-chaser component-nav-desktop">
+        <div class="navigation-wrapper">
+            <div class="logo-page-navigation-wrapper">
+                <ul>
+                    <li>
+                        <a class="film-chaser app-name-logo" href="#">
+                            <img src="../resources/imgs/logo.png" alt="logo">
+                            <h5 class="app-name">FilmChaser</h5>
+                        </a>
+                    </li>
+                </ul>
+                <!-- PUT THE CLASS "active" and change the icon in one of the links of the page -->
+                <ul>
+                    <li class="nav-links active">
+                        <a href="#">
+                            <img src="../resources/icons/icons-active/active-home.svg" alt="home">
+                            <h6>Home</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="discover.html">
+                            <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
+                            <h6>Discover</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="my-list-page.html">
+                            <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
+                            <h6>MyList</h6>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="settings.html">
+                            <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
+                            <h6>Settings</h6>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="notification-profile-wrapper">
+                <ul>
+                    <li class="nav-links">
+                        <a href="#">
+                            <img src="../resources/icons/icons-default/default-notification.svg" alt="notification">
+                            <h5>Notification</h5>
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="#">
+                            <img id="userPicture" src="../resources/imgs/Placeholder/Placeholder_actor.png" alt="profile photo">
+                            <h5 id="userName"></h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- COMPONENT HEADER-MOBILE -->
+    <header class="film-chaser component-header-mobile">
+        <div class="header-wrapper">
+            <div class="header--logo-title-wrapper">
+                <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+                <h4 class="app-name-mobile">FilmChaser</h4>
+            </div>
+            <div class="header--notification-profile-wrapper">
+                <img class="notification" src="../resources/icons/icons-default/default-notification.svg" alt="">
+                <img class="user-profile" src="../resources/imgs/Placeholder/Placeholder_actor.png" alt="">
+            </div>
+        </div>
+    </header>
+
+    <section class="film-chaser tab-layout">
+        <!-- Replace this div with component -->
+        <div style="height: 72px;
+        background-color: var(--secondary-color);"></div>
+
+    </section>
+
+    <section class="film-chaser filter-and-search">
+        <div class="component-filter">
+            <div class="component-filter--left">
+                <p class="all-p active">All</p>
+                <p class="movies-p">Movies</p>
+                <p class="tv-p">TV</p>
+            </div>
+            <div class="component-filter--right">
+                <div class="filter-platform">
+                    <img class="filter-platform-icons" src="../resources/icons/streaming-service-logo/round-subscribe-netflix-primevideo.png" alt="filter-platform">
+                </div>
+            </div>
+        </div>
+
+        <div class="component-search-bar">
+            <img class="search-bar--icon" src="../resources/icons/icons-default/default-discover.svg" alt="discover-icon">
+            <input class="search-input body-text" type="text" placeholder="Search for a show, movie, actor">
+        </div>
+    </section>
+
+    <main class="film-chaser home-carousel">
+
+        <!-- Genre Carousel section block model  -->
+        <!-- The real block is constructed by Javascript -->
+        <section class="film-chaser component-carousel-no-profile hidden">
+            <div class="section-header">
+                <h4>Genre</h2>
+            </div>
+            <div class="section-content">
+                <div class="component-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-items">
+                            <div class="item"><a>
+                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
+                                    <p>Blablabla</p>
+                                </a>
+                            </div>
+                            <div class="item"><a>
+                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
+                                    <p>Blablabla</p>
+                                </a>
+                            </div>
+                            <div class="item"><a>
+                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
+                                    <p>Blablabla</p>
+                                </a>
+                            </div>
+                            <div class="item"><a>
+                                    <img class="movie-series-placeholder" src="../resources/imgs/logo.png" alt="">
+                                    <p>Blablabla</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="prev-button"><img src="../resources/icons/icons-default/default-arrow-left.svg"></button>
+                    <button class="next-button"><img src="../resources/icons/icons-default/default-arrow-right.svg"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watchlist -->
+        <section class="component-carousel-no-profile watchlist" style="display:none">
+            <div class="section-header">
+                <h4>Watchlist</h4>
+            </div>
+            <div class="section-content">
+            </div>
+        </section>
+    </main>
+
+    <!-- COMPONENT NAVIGATION-MOBILE -->
+    <footer class="component-nav-mobile">
+        <nav class="nav-mobile">
+            <ul>
+                <li class="nav-links active">
+                    <a href="">
+                        <img src="../resources/icons/icons-active/active-home.svg" alt="home">
+                        <h1 class="small-two">Home</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="discover.html">
+                        <img src="../resources/icons/icons-default/default-discover.svg" alt="discover">
+                        <h1 class="small-two">Discover</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="my-list-page.html">
+                        <img src="../resources/icons/icons-default/default-list.svg" alt="my list">
+                        <h1 class="small-two">MyList</h1>
+                    </a>
+                </li>
+                <li class="nav-links">
+                    <a href="settings.html">
+                        <img src="../resources/icons/icons-default/default-setting.svg" alt="settings">
+                        <h1 class="small-two">Settings</h1>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+
+</body>
+
+</html>

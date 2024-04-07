@@ -1,0 +1,175 @@
+body {
+    min-width: 320px;
+    margin: 0;
+
+    display: block;
+}
+
+.SignUp {
+    display: grid;
+    grid-template-rows: 64px calc(100vh - 64px);
+    align-items: center;
+}
+
+.site-logo {
+    display: flex;
+    gap: 8px;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 28px;
+}
+
+.site-logo h4 {
+    font-size: clamp(var(--font-mob-size-h5), 6vw, var(--font-mob-size-h3));
+}
+
+.site-logo img {
+    height: 28px;
+}
+
+.SignUp_Center {
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 16px;
+
+    text-align: center;
+
+    max-width: 450px;
+}
+
+.SignUp_Center h2 {
+    padding: 16px 0 24px 0;
+}
+
+.SignUp_Center img {
+    margin-top: -15px;
+    width: 250px;
+}
+
+.button-text {
+    margin: 0 16px;
+    padding: 18px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+
+    font-size: var(--font-button);
+
+    cursor: pointer;
+}
+
+.buttons-group-normal,
+.buttons-group-camera,
+.buttons-group-save {
+    margin-top: 72px;
+
+    display: none;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.buttons-group-normal.visible,
+.buttons-group-camera.visible,
+.buttons-group-save.visible {
+    display: flex;
+}
+
+.canvas-circle {
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    margin: 48px auto 24px auto;
+}
+
+#canvas {
+    position: absolute;
+    top: -10px;
+    left: -48px;
+
+    border: 1px solid blue;
+}
+
+#video {
+    position: absolute;
+    top: -10px;
+    left: -47px;
+    border: 1px solid red;
+}
+
+#btn-upload, #btn-snap, #btn-save {
+    color: var(--text-color-one);
+    background-image: var(--background-gradient);
+}
+
+#btn-skip, #btn-cancel-snap, #btn-cancel-save {
+    border-radius: 4px;
+    border: 1px solid;
+    border-image: var(--background-gradient) 1;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+@media screen and (min-width: 450px) {
+    .site-logo {
+        margin-top: 32px;
+        margin-left: 40px;
+        justify-content: left;
+    }
+
+    .SignUp_Center {
+        justify-self: center;
+    }
+}
+
+.box-chose-photo {
+    width: 100%;
+    border-radius: 16px;
+    background-color: var(--secondary-color);
+    position: absolute;
+    bottom: -62rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 450px;
+    transition: all 1s;
+}
+
+.box-chose-photo.active {
+    bottom: 2rem;
+    z-index: 10;
+}
+
+.box-chose-photo p {
+    padding: 1.5rem;
+
+    cursor: pointer;
+}
+
+.box-chose-photo p:not(:last-of-type) {
+    border-bottom: 1px solid var(--divider-color-one);
+}
+
+.box-chose-photo p#btn-cancel {
+    text-align: center;
+}
+
+.off-screen {
+    position: absolute;
+    top: 86rem;
+    left: 0;
+    right: 0;
+    bottom: -51rem;
+    background-color: rgba(38, 39, 48, 0.5);
+    transition: all 1s;
+}
+
+.off-screen.active {
+    top: -51rem;
+}

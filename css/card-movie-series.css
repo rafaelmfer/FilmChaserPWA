@@ -1,0 +1,119 @@
+.component-carousel .carousel-container .carousel-items .item.card-movie-series,
+.card-movie-series {
+    width: 360px;
+
+    border-radius: 4px;
+
+    display: flex;
+
+    background-color: var(--secondary-color);
+}
+
+.card-movie-series a {
+    display: inline-block;
+}
+
+.card-movie-series a .movie-series--poster {
+    max-width: 154px;
+    max-height: 224px;
+    vertical-align: bottom;
+
+    border-radius: 4px;
+
+    flex-shrink: 0;
+}
+
+.card-movie-series .movie-series--info {
+    padding: 0 24px;
+
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-movie-series .movie-series--info .movie-series--title {
+    margin-top: 24px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-movie-series .movie-series--info .year-rate-time {
+    margin-top: 8px;
+    display: flex;
+}
+
+.card-movie-series .movie-series--info .year-rate-time p {
+    padding-right: 8px;
+}
+
+.card-movie-series .movie-series--info .year-rate-time p:not(:first-child) {
+    padding-left: 8px;
+}
+
+.card-movie-series .movie-series--info .year-rate-time p:not(:last-child) {
+    border-right: 1px solid var(--text-color-one);
+}
+
+.card-movie-series .movie-series--info .synopsis {
+    margin-top: 8px;
+
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-movie-series .movie-series--info .watch-now {
+    min-height: 32px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    background-color: var(--primary-color);
+
+    color: var(--text-color-one);
+}
+
+.card-movie-series .movie-series--info .upcoming {
+    min-height: 32px;
+    min-width: 158px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    background-color: var(--primary-color);
+
+    color: var(--text-color-one);
+
+    opacity: 0.7;
+}
+
+.card-movie-series .movie-series--info .upcoming span {
+    font-size: 17px;
+}
+
+img[alt="Watch Now"] {
+    order: -1;
+}
+
+@media screen and (max-width: 450px) {
+    .card-movie-series {
+        max-width: 350px;
+    }
+}

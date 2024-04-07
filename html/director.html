@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2a1a0eb3a6.js" crossorigin="anonymous"></script>
+    
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-no-network-info.css">
+
+    <!-- Screen CSS -->
+    <link rel="stylesheet" href="../css/director.css">
+
+    <!-- Screen Javascript -->
+    <script type="module" src="../js/director.js" defer></script>
+
+    <title>Choose the Favorite Directors</title>
+</head>
+
+<body>
+
+    <!-- COMPONENT NETWORK OFFLINE MESSAGE -->
+    <div class="no-network-information">
+        <h4>Oops!</h4>
+        <h4>Seems like your blockbuster connection is playing hide and seek.</h4>
+        <h5>Check your internet connection and let's get back to the showtime!</h5>
+
+        <img class="hotpink-rubber-chicken" src="../resources/imgs/hotpink-rubber-chicken.png" alt="">
+        <h6>Hotpink rubber chicken!!</h6>
+    </div>
+
+    <div class="site-logo">
+        <img class="app-name-logo" src="../resources/imgs/logo.png" alt="">
+        <h4 class="app-name">FilmChaser</h4>
+    </div>
+
+    <main class="directors-services">
+        <div class="directors">
+            <div class="directors-title">
+                <h2>Pick Your Favorite Directors</h2>
+                <h6>0 Selected</h6>
+            </div>
+
+            <div class="all-directorss-wrapper">
+                <div class="search-field-container">
+                    <input type="text" id="search" class="search" placeholder="Search Directors" name="search">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <span>🇨🇦</span>
+                </div>
+                <div class="all-directors-services">
+                    <!-- Model - Real html block is constructed via Javascript -->
+                    <!-- <div class="directors-service-container">
+                        <img src="../resources/icons/directors-service-logo/netflix.png" alt="" width="50" height="50">
+                        <div class="directors-service-field">
+                            <p class="body-text">Netflix</p>
+                            <div class="checkbox"></div>
+                        </div>
+                    </div> -->
+                    
+                </div>
+
+                <div class="buttons-container-desktop">
+                    <div class="button btn-skip">
+                        <p class="button-text">Skip</a>
+                    </div>
+                    <div class="button btn-next">
+                        <p class="button-text">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons-container-mobile">
+            <div class="button btn-skip">
+                <p class="button-text">Skip</a>
+            </div>
+            <div class="button btn-next">
+                <p class="button-text">Next</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

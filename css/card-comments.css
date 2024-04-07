@@ -1,0 +1,46 @@
+.card-comments {
+    border-radius: 12px;
+
+    background-color: var(--secondary-color);
+}
+
+.card-comments .comment-header {
+    padding: 1rem 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-comments .comment-header .js-comment-meta-info {
+    display: flex;
+}
+
+.card-comments .comment-header .js-comment-meta-info img {
+    border-radius: 50%;
+}
+
+.card-comments .comment-header .js-comment-meta-info .js-comment-name-date {
+    margin-left: 1rem;
+}
+
+.card-comments .js-comment-rating {
+    margin-top: 0.25rem;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.card-comments .js-comment-content {
+    margin-top: 0.25rem;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.card-comments .comment-actions {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-top: 1px solid var(--divider-color-one);
+
+    display: flex;
+    gap: 1rem;
+}
+
+.card-comments .comment-actions div {
+    display: flex;
+}

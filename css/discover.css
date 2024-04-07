@@ -1,0 +1,131 @@
+.film-chaser.discover-carousel {
+    margin-top: 24px;
+    display: block;
+}
+
+.film-chaser.home-carousel.noActive {
+    display: block !important;
+}
+
+/************************* FRIENDS *******************************/
+.main-Friends {
+    margin-top: 24px;
+    display: none;
+}
+
+.main-Friends.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-Friends .hidden {
+    display: none;
+}
+
+/* --------------------------- SEARCH -----------------------------*/
+header.component-header-mobile {
+    border-bottom: 0;
+}
+
+section.tab-layout {
+    position: sticky;
+    top: 64px;
+    z-index: 2;
+
+    background-color: var(--primary-color);
+}
+
+section.filter-and-search .component-search-bar {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.div-grid-detail {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(154px, 160px));
+    gap: 24px 16px;
+}
+
+.div-grid-detail img {
+    width: 154px;
+    height: 231px;
+}
+
+.div-grid-detail a {
+    color: var(--text-color-one);
+    text-decoration: none;
+}
+
+a.link-item-container {
+    display: grid;
+    grid-template-rows: 151px 80px;
+
+    text-decoration: none;
+}
+
+.div-grid-detail a.link-item-container img.movie-series-placeholder {
+    border-radius: 4px;
+    grid-row: 1/3;
+    grid-column: 1/-1;
+}
+
+.div-grid-detail a.link-item-container p.small-one {
+    padding: 8px;
+    padding-top: 24px;
+    border-radius: 4px;
+
+    display: flex;
+
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    z-index: 1;
+
+    color: white;
+    background-image: var(--background-gradient-black);
+}
+
+@media screen and (min-width: 450px) {
+    body {
+        grid-template-rows: 104px 128px auto;
+    }
+
+    main {
+        grid-row: 3 / 4;
+    }
+
+    section.tab-layout {
+        position: unset;
+        z-index: 0;
+
+        background-color: unset;
+    }
+
+    section.film-chaser.filter-and-search {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+
+        flex-flow: wrap;
+        gap: 20px;
+    }
+
+    section.filter-and-search .component-search-bar {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    section.filter-and-search .component-search-bar {
+        margin-top: unset;
+        /* margin-left: 42px; */
+    }
+
+    section.film-chaser.filter-and-search {
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 1068px) {
+    body {
+        grid-template-rows: 116px 80px auto;
+    }
+}

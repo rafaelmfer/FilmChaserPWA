@@ -1,0 +1,105 @@
+.component-carousel {
+    /* Total width of the carousel */
+    width: 100%;
+    /* Hides items that exceed the container's width */
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 32px;
+}
+
+.component-carousel .carousel-container {
+    display: flex;
+}
+
+.component-carousel .carousel-container .carousel-items {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.component-carousel .prev-button,
+.component-carousel .next-button {
+    height: 100%;
+    padding: 8px 16px;
+    border: none;
+
+    /* Positions the buttons absolutely relative to the container */
+    position: absolute;
+    /* Vertically aligns in the center */
+    top: 0;
+    bottom: 0;
+    background-color: var(--primary-color-90alpha);
+    color: #fff;
+
+    cursor: pointer;
+
+    /* Places the buttons above the items */
+    z-index: 1;
+}
+
+/* Aligns the previous button to the left */
+.component-carousel .prev-button {
+    left: 0;
+}
+
+/* Aligns the next button to the right */
+.component-carousel .next-button {
+    right: 0;
+}
+
+/* Hides the buttons when they are not needed */
+.component-carousel .prev-button.hide,
+.component-carousel .next-button.hide {
+    display: none;
+}
+
+.component-carousel .prev-button img,
+.component-carousel .next-button img {
+    height: 24px;
+    width: 24px;
+}
+
+/* STYLING THE CAROUSEL'S ITEM ========================================= */
+/* FOR MORE SPECIFIC STYLING CREATE ANOTHER CLASS IN YOUR ITEM AND CREATE OTHER STYLE
+USING THE {.component-carousel .carousel-container .carousel-items .item.yourNewClass} */
+.component-carousel .carousel-container .carousel-items .item {
+    /* Width of each item */
+    width: 154px;
+    /* Height of each item */
+    /* height: 231px; */
+    /* Spacing between items */
+    margin-right: 8px;
+
+    border-radius: 4px;
+
+    background-color: black;
+
+    position: relative;
+}
+
+.component-carousel .carousel-container .carousel-items .item a.link-item-container {
+    display: grid;
+    grid-template-rows: 151px 80px;
+
+    text-decoration: none;
+}
+
+.component-carousel .carousel-container .carousel-items .item a.link-item-container img.movie-series-placeholder {
+    border-radius: 4px;
+    grid-row: 1/3;
+    grid-column: 1/-1;
+}
+
+.component-carousel .carousel-container .carousel-items .item a.link-item-container p.small-one {
+    padding: 8px;
+    padding-top: 24px;
+    border-radius: 4px;
+
+    display: flex;
+
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    z-index: 1;
+    
+    color: white;
+    background-image: var(--background-gradient-black);
+}
