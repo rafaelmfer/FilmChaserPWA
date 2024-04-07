@@ -148,11 +148,11 @@ body {
 
 .box-chose-photo p {
     padding: 1.5rem;
+
+    cursor: pointer;
 }
 
-#btn-take-photo {
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+.box-chose-photo p:not(:last-of-type) {
     border-bottom: 1px solid var(--divider-color-one);
 }
 
