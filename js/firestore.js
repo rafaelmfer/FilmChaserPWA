@@ -50,7 +50,7 @@ class TvShow {
         this.poster_path = data.poster_path;
         this.vote_average = data.vote_average;
         this.completed = completed;
-        this.seasons = new TvShowSeasons(data.seasons);
+        //this.seasons = new TvShowSeasons(data.seasons);
     }
     toString() {
         let str = "";
@@ -260,6 +260,8 @@ async function saveTvShowInDb(location, id, object, completed) {
     const reference = doc(firestore, location, id).withConverter(
         tvShowConverter
     );
+
+   console.log(reference);
 
     try {
         await setDoc(reference, new TvShow(object, completed));
