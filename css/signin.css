@@ -138,6 +138,8 @@ div:has(#show-btn2) {
     position: absolute;
     top: 16px;
     right: 15px;
+
+    cursor: pointer;
 }
 
 .button-text {

@@ -80,16 +80,23 @@ body {
     display: flex;
 }
 
+.canvas-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .canvas-circle {
     width: 180px;
     height: 180px;
     overflow: hidden;
     border-radius: 50%;
     position: relative;
-    margin: 48px auto 24px auto;
+    margin: 48px 0 24px 0;
 }
 
 #canvas {
+    display: none;
+
     position: absolute;
     top: -10px;
     left: -48px;
@@ -98,6 +105,8 @@ body {
 }
 
 #video {
+    display: none;
+    
     position: absolute;
     top: -10px;
     left: -47px;
