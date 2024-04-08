@@ -1,13 +1,16 @@
 "use strict";
 import { firebase } from "./firebase-config.js";
-import { checkSession } from "./auth.js";
-import { createCarousel, initializeCarousel, networkInfo } from "./common.js";
 import {
-    getInfoDb,
+    createCarousel,
+    initializeCarousel,
+    networkInfo,
+    startLogoutTimer,
+    setupListenerOnScreen,
+    userDoc,
+} from "./common.js";
+import {
     listenToCollectionChanges,
-    updateInfoDb,
     saveMovieInDb,
-    listenToDocumentChanges,
     deleteInfoDb,
     saveTvShowInDb,
     docExists,
@@ -46,20 +49,18 @@ let arrayThriller = [];
 let arrayReality = [];
 let arrayWar = [];
 
-const user = await checkSession();
-let documentId = user.uid;
+let userId = userDoc.id;
+let watchlistPath = `users/${userId}/watchlist`;
 
-let watchlistPath = `users/${documentId}/watchlist`;
-
-const userDoc = await getInfoDb(`users/${documentId}`);
-document.getElementById("userName").innerHTML = userDoc.name;
-document.getElementById("userPicture").src =
-    userDoc.profile_photo ||
-    "../resources/imgs/Placeholder/Placeholder_actor.png";
-document.querySelector(".user-profile").src =
-    userDoc.profile_photo ||
-    "../resources/imgs/Placeholder/Placeholder_actor.png";
-
+if (userDoc !== null) {
+    document.getElementById("userName").innerHTML = userDoc.name;
+    document.getElementById("userPicture").src =
+        userDoc.profile_photo ||
+        "../resources/imgs/Placeholder/Placeholder_actor.png";
+    document.querySelector(".user-profile").src =
+        userDoc.profile_photo ||
+        "../resources/imgs/Placeholder/Placeholder_actor.png";
+}
 // Function to call with delay and pair functions
 function callWithDelayAndPairs(func1, func2, delay) {
     setTimeout(() => {
@@ -554,7 +555,7 @@ function create_heart(film) {
     div.setAttribute("class", "empty-heart active");
 
     div.addEventListener("click", (e) => {
-        let location = `users/${documentId}/watchlist/${film.id}`;
+        let location = `${watchlistPath}/${film.id}`;
         element = e;
         elementFilm = film;
 
@@ -574,7 +575,7 @@ function create_heart(film) {
 }
 
 async function checkWathList(id, div, myImage) {
-    let check = `users/${documentId}/watchlist/${id}`;
+    let check = `${watchlistPath}/${id}`;
     const firestore = getFirestore(firebase);
     const docRef = await doc(firestore, check);
     let result = await getDoc(docRef);
@@ -592,7 +593,7 @@ function fullHeart() {
         "../resources/icons/icons-default/default-heart.svg";
     element.srcElement.attributes[0].value =
         "../resources/icons/icons-default/default-heart.svg";
-    let location = `users/${documentId}/watchlist/${elementFilm.id}`;
+    let location = `${watchlistPath}/${elementFilm.id}`;
     deleteInfoDb(location);
     //
 }
@@ -619,4 +620,13 @@ async function emptyHeart() {
             false
         );
     }
+}
+
+setupListenerOnScreen();
+
+// Start the timer when the page is loaded
+startLogoutTimer(180000, detachListenersFirebase); // 3 minutes = 180000 milliseconds
+
+function detachListenersFirebase() {
+    watchlist();
 }

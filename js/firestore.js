@@ -261,7 +261,7 @@ async function saveTvShowInDb(location, id, object, completed) {
         tvShowConverter
     );
 
-   console.log(reference);
+    console.log(reference);
 
     try {
         await setDoc(reference, new TvShow(object, completed));
@@ -365,14 +365,23 @@ async function saveSeasons(locationWatchlist, idTvShow, season, episode, boo) {
  */
 async function getInfoDb(location) {
     const docRef = doc(firestore, location);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-        // console.log("Document data:", docSnap.data());
-        return docSnap.data();
-    } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
+    try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            // console.log("Document data:", docSnap.data());
+            return docSnap.data();
+        } else {
+            // docSnap.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    } catch (e) {
+        console.log(e);
+        // if (e.contains("FirebaseError: Quota exceeded")) {
+        //     console.log(true)
+        // } else {
+        //     console.log(false)
+        // }
+        return null
     }
 }
 
@@ -557,7 +566,9 @@ export async function listenToCollectionChanges(
         collection(firestore, location),
         where(property, operator, value)
     );
-    const unsubscribe = onSnapshot(createQuery, (querySnapshot) => {
+    const unsubscribe = onSnapshot(
+        createQuery,
+        (querySnapshot) => {
             let array = [];
             querySnapshot.forEach((document) => {
                 // Adds each document in the snapshot to the array

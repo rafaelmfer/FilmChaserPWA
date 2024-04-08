@@ -13,11 +13,13 @@ import {
 
 // Authentication reference
 const auth = getAuth(firebase);
+let userId;
 
 async function createAccountEmailAndPassword(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // UserCredential - https://firebase.google.com/docs/reference/js/v8/firebase.auth#usercredential;
+            userId = userCredential.user.uid;
             return userCredential;
         })
         .catch((error) => {
@@ -29,6 +31,7 @@ async function loginWithEmailAndPassword(email, password) {
     return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // UserCredential - https://firebase.google.com/docs/reference/js/v8/firebase.auth#usercredential;
+            userId = userCredential.user.uid;
             return userCredential;
         })
         .catch((error) => {
@@ -42,6 +45,7 @@ async function loginWithGoogle() {
     return signInWithPopup(auth, provider)
         .then((userCredential) => {
             // UserCredential - https://firebase.google.com/docs/reference/js/v8/firebase.auth#usercredential;
+            userId = userCredential.user.uid;
             return userCredential;
         })
         .catch((error) => {
@@ -55,6 +59,7 @@ async function loginWithFacebook() {
     return signInWithPopup(auth, provider)
         .then((userCredential) => {
             // UserCredential - https://firebase.google.com/docs/reference/js/v8/firebase.auth#usercredential;
+            userId = userCredential.user.uid;
             return userCredential;
         })
         .catch((error) => {
@@ -68,6 +73,7 @@ async function loginWithApple() {
     return signInWithPopup(auth, provider)
         .then((userCredential) => {
             // UserCredential - https://firebase.google.com/docs/reference/js/v8/firebase.auth#usercredential;
+            userId = userCredential.user.uid;
             return userCredential;
         })
         .catch((error) => {
@@ -90,10 +96,11 @@ async function checkSession() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 // Logged
+                userId = user.uid;
                 resolve(user);
             } else {
                 // Not logged
-                resolve(null);
+                reject((window.location.href = "signin.html"));
             }
         });
     });
@@ -107,4 +114,5 @@ export {
     loginWithApple,
     logout,
     checkSession,
+    userId,
 };

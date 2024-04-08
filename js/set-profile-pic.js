@@ -24,9 +24,6 @@ const btn_cancel_save = document.getElementById("btn-cancel-save");
 
 const myFileResult = document.querySelector(".my-file-result");
 
-const user = await checkSession();
-let documentId = user.uid;
-
 document.getElementById("btn-upload").addEventListener("click", () => {
     off_screen.classList.add("active");
     box_chose_photo.classList.add("active");
@@ -149,9 +146,7 @@ btn_cancel_snap.addEventListener("click", async () => {
 });
 
 btn_save.addEventListener("click", async () => {
-    await updateInfoDb(`users/${documentId}`, {
-        profile_photo: canvas.toDataURL(),
-    });
+    await savePhoto(canvas.toDataURL());
 
     goToStreamingServices();
 });
@@ -165,6 +160,13 @@ btn_cancel_save.addEventListener("click", () => {
     canvas.style.display = "none";
     stopCamera();
 });
+
+async function savePhoto(pictureText) {
+    let user = JSON.parse(localStorage.getItem("user")) || {};
+
+    user.profile_photo = pictureText;
+    localStorage.setItem("user", JSON.stringify(user));
+}
 
 function goToStreamingServices() {
     window.location.replace("streaming-services.html");

@@ -1,6 +1,5 @@
-import { checkSession } from "./auth.js";
 import { getInfoDb, getDocsByQuery } from "./firestore.js";
-import { createCarousel, initializeCarousel } from "./common.js";
+import { createCarousel, initializeCarousel, userDoc } from "./common.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 let mainFriends = document.getElementById("main-Friends");
@@ -24,14 +23,14 @@ activeShowsMovies.addEventListener("click", () => {
     console.log("clicado show ");
 });
 
-const user = await checkSession();
-let documentId = user.uid;
-let documentDbPath = `users/${documentId}`;
+// =============================================================================
+let documentDb;
+if (userDoc !== null) {
+    documentDb = userDoc;
+    // console.log(documentDb.friends);
 
-let documentDb = await getInfoDb(documentDbPath);
-console.log(documentDb.friends);
-
-processFriends();
+    processFriends();
+}
 
 async function processFriends() {
     for (const friendRef of documentDb.friends) {

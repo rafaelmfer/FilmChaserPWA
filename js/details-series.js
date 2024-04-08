@@ -6,10 +6,9 @@ import {
     initializeCarousel,
     options,
     networkInfo,
+    userDoc,
 } from "./common.js";
-import { checkSession } from "./auth.js";
 import {
-    getInfoDb,
     getAllDocsInSubcollection,
     saveTvShowInDb,
     saveTvShowInDb2,
@@ -23,6 +22,7 @@ import {
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
 networkInfo();
+
 var seriesId = urlInfo("id");
 let seriesDetails = {};
 const movieHeader = document.querySelector(".js-movie-header");
@@ -53,7 +53,7 @@ function history_back() {
             setTimeout(navigateBack, 100); 
         }
     }
-
+    unsub();
     navigateBack();
 }
 
@@ -145,15 +145,11 @@ function successCB_series(data) {
 }
 
 // SECTION BUTTONS (Watchlist, Completed)
-const user = await checkSession();
-let documentId = user.uid;
-
-const userDoc = await getInfoDb(`users/${documentId}`);
 document.getElementById("userName").innerHTML = userDoc.name;
 document.getElementById("userPicture").src =
     userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
 
-const watchlistPathInFirebase = `users/${documentId}/watchlist`;
+const watchlistPathInFirebase = `users/${userDoc.id}/watchlist`;
 
 const btWatchlist = document.getElementById("js-add-watchlist");
 const btCompleted = document.getElementById("js-completed");

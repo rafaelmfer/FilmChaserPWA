@@ -1,4 +1,30 @@
 import { ACCESS_TOKEN_TMDB } from "../local_properties.js";
+import { userId } from "./auth.js";
+
+export const userDoc = JSON.parse(localStorage.getItem("user")) || await getInfoDb(`users/${userId}`);
+
+let logoutTimer;
+
+export function setupListenerOnScreen() {
+    // Add event listeners for user interaction
+    document.addEventListener("mousemove", resetLogoutTimer); // Mouse movement
+    document.addEventListener("keypress", resetLogoutTimer); // Key press
+    document.addEventListener("touchstart", resetLogoutTimer); // Touch on screen (for mobile devices)
+}
+
+// Function to start the logout timer
+export function startLogoutTimer(timeout, functionYouWantExecute) {
+    // Clear the timer if it's already running
+    clearTimeout(logoutTimer);
+    // Start the timer
+    logoutTimer = setTimeout(functionYouWantExecute, timeout);
+}
+
+// Function to reset the logout timer
+export function resetLogoutTimer() {
+    // Reset the timer whenever there's user interaction
+    startLogoutTimer();
+}
 
 /**
  * Function to fetch data from a specified URL.
@@ -31,10 +57,10 @@ export function networkInfo() {
     function updateConnectionStatus() {
         if (!navigator.onLine) {
             messageDiv.classList.add("show");
-            document.body.style.overflow = "hidden"
+            document.body.style.overflow = "hidden";
         } else {
             messageDiv.classList.remove("show");
-            document.body.style.overflow = "auto"
+            document.body.style.overflow = "auto";
         }
     }
 

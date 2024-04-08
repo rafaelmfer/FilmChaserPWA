@@ -46,21 +46,18 @@ btnNext.forEach((button) => {
             }
         });
 
-        // Checking the user session
-        const user = await checkSession();
-        let documentId = user.uid;
-
-        // Updating the user info in the Firebase database
-        await updateInfoDb(`users/${documentId}`, {
-            streamingServices: selectedServices,
-        });
-
-        // Logging selected services to console
-        console.log(selectedServices);
+        await saveStreamingServices(selectedServices);
 
         goToNextPage();
     });
 });
+
+async function saveStreamingServices(selectedStreamingServices) {
+    let user = JSON.parse(localStorage.getItem("user")) || {};
+
+    user.streamingServices = selectedStreamingServices;
+    localStorage.setItem("user", JSON.stringify(user));
+}
 
 // Selecting the "Skip" button
 const btnSkip = document.querySelectorAll(".btn-skip");

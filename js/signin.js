@@ -5,7 +5,7 @@ import {
     loginWithEmailAndPassword,
     loginWithFacebook,
 } from "./auth.js";
-import { docExists, saveInfoDb, updateInfoDb } from "./firestore.js";
+import { docExists, saveInfoDb, updateInfoDb, getInfoDb } from "./firestore.js";
 
 async function googleLogIn() {
     try {
@@ -32,8 +32,12 @@ async function emailAndPasswordLogIn() {
     }
 }
 
-function success() {
+async function success() {
     console.log("User already exist on Database");
+
+    const userDoc = await getInfoDb(`users/${result.user.uid}`);
+    localStorage.setItem("user", JSON.stringify(userDoc));
+    
     window.location.replace("home.html");
 }
 
@@ -46,10 +50,17 @@ async function error() {
 
 async function errorSocial() {
     console.log("Create User");
-    await saveInfoDb(location, result.user.uid, {
-        email: result.user.email,
-    });
+
+    await saveUserEmail(result.user.email);
+
     window.location.replace("create-user-name.html");
+}
+
+async function saveUserEmail(userEmail) {
+    user = {
+        email: userEmail,
+    };
+    localStorage.setItem("user", JSON.stringify(user));
 }
 
 const googleBtn = document.querySelector("#btn-google");

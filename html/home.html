@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/common.css">
 
     <!-- Components CSS -->
+    <link rel="stylesheet" href="../css/component-snackbar.css">
     <link rel="stylesheet" href="../css/component-no-network-info.css">
     <link rel="stylesheet" href="../css/component-header-mobile.css">
     <link rel="stylesheet" href="../css/component-navigation.css">
@@ -24,9 +25,11 @@
     <link rel="stylesheet" href="../css/home.css">
 
     <!-- Screen Javascript -->  
+    <script src="../js/component-snackbar.js" defer></script>
     <script type="module" src="../js/dropdown.js" defer></script>
     <script type="module" src="../js/component-filter.js" defer></script>
     <script type="module" src="../js/home.js" defer></script>
+    <script type="module" src="../js/session-expired.js" defer></script>
 
     <title>Home</title>
 </head>
@@ -85,7 +88,7 @@
             <div class="notification-profile-wrapper">
                 <ul>
                     <li class="nav-links">
-                        <a href="#">
+                        <a href="#" onclick="myFunction()">
                             <img src="../resources/icons/icons-default/default-notification.svg" alt="notification">
                             <h5>Notification</h5>
                         </a>
@@ -109,7 +112,7 @@
                 <h4 class="app-name-mobile">FilmChaser</h4>
             </div>
             <div class="header--notification-profile-wrapper">
-                <img class="notification" src="../resources/icons/icons-default/default-notification.svg" alt="">
+                <img onclick="myFunction()" class="notification" src="../resources/icons/icons-default/default-notification.svg" alt="">
                 <img class="user-profile" src="../resources/imgs/Placeholder/Placeholder_actor.png" alt="">
             </div>
         </div>
@@ -223,7 +226,7 @@
             </ul>
         </nav>
     </footer>
-
+    <div class="body-text" id="snackbar"><p>Future Feature...</p></div>
 </body>
 
 </html>

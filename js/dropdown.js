@@ -41,7 +41,7 @@ function startTimer() {
     timer = setTimeout(function () {
         clearTimeout(timer);
         timer = undefined;
-    }, 5000);
+    }, 500);
 }
 
 if (window.innerWidth > 450) {

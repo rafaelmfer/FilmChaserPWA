@@ -1,7 +1,6 @@
 "use strict";
 
-import { updateMapInDb } from "../js/firestore.js";
-import { checkSession } from "./auth.js";
+import { saveInfoDb } from "../js/firestore.js";
 import { networkInfo } from "./common.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
@@ -254,19 +253,7 @@ const btnNext = document.querySelectorAll(".btn-next");
 // Adding an event listener to the "Next" button
 btnNext.forEach((button) => {
     button.addEventListener("click", async function () {
-        // Checking user session
-        const user = await checkSession();
-        let documentId = user.uid;
-
-        // Updating user information in Firebase database
-        await updateMapInDb(
-            `users/${documentId}`,
-            "interests.directors",
-            selectedDirectors
-        );
-
-        // Logging selected directors to console
-        console.log(selectedDirectors);
+        await saveDirectors(selectedDirectors);
 
         // Going to the next page
         goToNextPage();
@@ -282,6 +269,27 @@ btnSkip.forEach((button) => {
         goToNextPage();
     });
 });
+
+async function saveDirectors(selected) {
+    let user = JSON.parse(localStorage.getItem("user")) || {};
+
+    user.interests.directors = selected;
+    localStorage.setItem("user", JSON.stringify(user));
+
+    let location = `users`;
+    await saveInfoDb(location, user.id, {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        profile_photo: user.profile_photo,
+        streamingServices: user.streamingServices,
+        interests: {
+            genres: user.interests.genres,
+            actors: user.interests.actors,
+            directors: selected
+        }
+    });
+}
 
 function goToNextPage() {
     window.location.replace("home.html");

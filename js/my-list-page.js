@@ -2,9 +2,7 @@
 
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
-import { checkSession } from "./auth.js";
 import {
-    getInfoDb,
     getAllDocsInSubcollection,
     getDocsByQuery,
 } from "./firestore.js";
@@ -13,6 +11,7 @@ import {
     initializeCarousel,
     networkInfo,
     options,
+    userDoc,
 } from "./common.js";
 
 networkInfo();
@@ -75,27 +74,31 @@ completed.addEventListener("click", (e) => {
 });
 
 // ============================================================================
-const user = await checkSession();
-let documentId = user.uid;
-let documentDbPath = `users/${documentId}`;
+let documentId = userDoc.id;
 
-const userDoc = await getInfoDb(documentDbPath);
-document.getElementById("userName").innerHTML = userDoc.name;
-document.getElementById("userPicture").src =
-    userDoc.profile_photo ||
-    "../resources/imgs/Placeholder/Placeholder_actor.png";
-document.querySelector(".user-profile").src =
-    userDoc.profile_photo ||
-    "../resources/imgs/Placeholder/Placeholder_actor.png";
+let watchlistPath = `users/${documentId}/watchlist`; 
+let watchlistArray;
 
-let watchlistPath = `users/${documentId}/watchlist`;
-let watchlistArray = await getDocsByQuery(
-    watchlistPath,
-    "completed",
-    "==",
-    false,
-    {}
-);
+if (userDoc !== null) {
+    document.getElementById("userName").innerHTML = userDoc.name;
+    document.getElementById("userPicture").src =
+        userDoc.profile_photo ||
+        "../resources/imgs/Placeholder/Placeholder_actor.png";
+    document.querySelector(".user-profile").src =
+        userDoc.profile_photo ||
+        "../resources/imgs/Placeholder/Placeholder_actor.png";
+
+    
+    watchlistArray = await getDocsByQuery(
+        watchlistPath,
+        "completed",
+        "==",
+        false,
+        errorQuery
+    );
+}
+
+function errorQuery(data) {}
 
 var alreadyReleased = [];
 let upcomingArray = [];
@@ -117,7 +120,7 @@ let haventStarted = [];
 
 alreadyReleased.forEach(async function (item) {
     if (item.media_type === "tv") {
-        let seasonsPath = `users/${documentId}/watchlist/${item.id}/seasons`;
+        let seasonsPath = `${watchlistPath}/${item.id}/seasons`;
         let seasonsArray = await getAllDocsInSubcollection(seasonsPath, {});
         if (
             seasonsArray !== undefined &&
@@ -202,26 +205,26 @@ setTimeout(() => {
             .appendChild(div);
     });
 
-    upcomingArray.sort(function(a, b) {
+    upcomingArray.sort(function (a, b) {
         // Check if release_date exists and is not empty
         if (a.release_date && b.release_date) {
-          // Convert release_date strings to Date objects
-          var dateA = new Date(a.release_date);
-          var dateB = new Date(b.release_date);
-          
-          // Compare the dates
-          return dateA - dateB;
+            // Convert release_date strings to Date objects
+            var dateA = new Date(a.release_date);
+            var dateB = new Date(b.release_date);
+
+            // Compare the dates
+            return dateA - dateB;
         } else if (!a.release_date && b.release_date) {
-          // If a's release_date is empty or non-existent, move it to the end
-          return 1;
+            // If a's release_date is empty or non-existent, move it to the end
+            return 1;
         } else if (a.release_date && !b.release_date) {
-          // If b's release_date is empty or non-existent, move it to the end
-          return -1;
+            // If b's release_date is empty or non-existent, move it to the end
+            return -1;
         } else {
-          // If both release_dates are empty or non-existent, maintain the order
-          return 0;
+            // If both release_dates are empty or non-existent, maintain the order
+            return 0;
         }
-      });
+    });
     // UPCOMING PAGE ================================================================
     upcomingArray.forEach(function (item) {
         var div = createItemMovieSeriesCard(item, true);
@@ -247,27 +250,26 @@ watchlistCompletedArray.forEach(function (item) {
 function compareReleaseDates(a, b) {
     // Handle blank release dates by moving them to the end
     if (a.release_date === "" && b.release_date === "") {
-      return 0;
+        return 0;
     } else if (a.release_date === "") {
-      return 1;
+        return 1;
     } else if (b.release_date === "") {
-      return -1;
+        return -1;
     }
-    
+
     // Convert release_date strings to Date objects
     var dateA = new Date(a.release_date);
     var dateB = new Date(b.release_date);
-    
+
     // Compare release dates
     if (dateA < dateB) {
-      return -1;
+        return -1;
     } else if (dateA > dateB) {
-      return 1;
+        return 1;
     } else {
-      return 0;
+        return 0;
     }
-  }
-
+}
 
 // Function that check if there is any episode in array of episodes that are watched
 function checkIfEpisodeIsWatched(json) {
@@ -352,7 +354,9 @@ function createItemMovieSeriesCard(item, isUpcoming) {
     var year = document.createElement("p");
     year.classList.add("small-one");
     if ((item.release_date || item.first_air_date).split("-")[0] !== "") {
-        year.textContent = (item.release_date || item.first_air_date).split("-")[0];
+        year.textContent = (item.release_date || item.first_air_date).split(
+            "-"
+        )[0];
     } else {
         year.textContent = "Prod";
     }
@@ -381,7 +385,11 @@ function createItemMovieSeriesCard(item, isUpcoming) {
 
         var numberOfdaysSpan = document.createElement("span");
 
-        if (item.release_date === "" || item.release_date === null || item.release_date === undefined) {
+        if (
+            item.release_date === "" ||
+            item.release_date === null ||
+            item.release_date === undefined
+        ) {
             numberOfdaysSpan.textContent = "Production";
             daysTextParagraph.appendChild(numberOfdaysSpan);
         } else {

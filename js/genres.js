@@ -35,30 +35,21 @@ const btnNext = document.querySelectorAll(".btn-next");
 btnNext.forEach((button) => {
     button.addEventListener("click", async function () {
         // Array to store selected services
-        const selectedServices = [];
+        const selected = [];
         checkboxes.forEach((checkbox) => {
             if (checkbox.classList.contains("checked")) {
                 // Getting the service name associated with the checkbox
                 const serviceName = checkbox
                     .closest(".genres-service-container")
                     .querySelector(".body-text").textContent;
-                selectedServices.push(serviceName);
+                selected.push(serviceName);
             }
         });
 
-        // Checking the user session
-        const user = await checkSession();
-        let documentId = user.uid;
-
-        // Updating the user info in the Firebase database
-        await updateInfoDb(`users/${documentId}`, {
-            interests: {
-                genres: selectedServices,
-            },
-        });
+        await saveGenres(selected);
 
         // Logging selected services to console
-        console.log(selectedServices);
+        console.log(selected);
 
         goToNextPage();
     });
@@ -73,6 +64,16 @@ btnSkip.forEach((button) => {
         goToNextPage();
     });
 });
+
+async function saveGenres(selectedGenres) {
+    let user = JSON.parse(localStorage.getItem("user")) || {};
+    let interests = {
+        genres: selectedGenres
+    };
+
+    user.interests = interests;
+    localStorage.setItem("user", JSON.stringify(user));
+}
 
 function goToNextPage() {
     window.location.replace("actors.html");

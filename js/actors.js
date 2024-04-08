@@ -254,19 +254,7 @@ const btnNext = document.querySelectorAll(".btn-next");
 // Adding an event listener to the "Next" button
 btnNext.forEach((button) => {
     button.addEventListener("click", async function () {
-        // Checking user session
-        const user = await checkSession();
-        let documentId = user.uid;
-
-        // Updating user information in Firebase database
-        await updateMapInDb(
-            `users/${documentId}`,
-            "interests.actors",
-            selectedActors
-        );
-
-        // Logging selected actors to console
-        console.log(selectedActors);
+        await saveActors(selectedActors);
 
         // Going to the next page
         goToNextPage();
@@ -282,6 +270,13 @@ btnSkip.forEach((button) => {
         goToNextPage();
     });
 });
+
+async function saveActors(selected) {
+    let user = JSON.parse(localStorage.getItem("user")) || {};
+
+    user.interests.actors = selected;
+    localStorage.setItem("user", JSON.stringify(user));
+}
 
 function goToNextPage() {
     window.location.replace("director.html");

@@ -5,10 +5,9 @@ import { urlInfo,
     initializeCarousel,
     options,
     networkInfo,
+    userDoc,
 } from './common.js';
-import { checkSession } from "./auth.js";
 import {
-    getInfoDb,
     saveMovieInDb,
     updateInfoDb,
     deleteInfoDb,
@@ -31,6 +30,7 @@ const btnBack = document.querySelector(".btn-go-back");
 btnBack.addEventListener("click", history_back);
 
 function history_back() {
+    unsub();
     window.history.back();
 }
 
@@ -147,14 +147,10 @@ function successCB_release(data) {
 }
 
 // SECTION BUTTONS (Watchlist, Completed)
-const user = await checkSession();;
-let documentId = user.uid;
-
-const userDoc = await getInfoDb(`users/${documentId}`);
 document.getElementById("userName").innerHTML = userDoc.name;
 document.getElementById("userPicture").src = userDoc.profile_photo || "../resources/imgs/profile/profile2.png";
 
-const watchlistPathInFirebase = `users/${documentId}/watchlist`;
+const watchlistPathInFirebase = `users/${userDoc.id}/watchlist`;
 
 const btWatchlist = document.getElementById("js-add-watchlist");
 const btCompleted = document.getElementById("js-completed");

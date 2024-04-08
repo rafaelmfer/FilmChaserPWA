@@ -3,7 +3,7 @@ import {
     loginWithFacebook,
     createAccountEmailAndPassword,
 } from "./auth.js";
-import { docExists, saveInfoDb } from "./firestore.js";
+import { docExists, saveInfoDb, getInfoDb } from "./firestore.js";
 
 let result;
 
@@ -12,7 +12,9 @@ async function googleLogIn() {
         result = await loginWithGoogle();
 
         if (result.user.uid === "CAzA3gdJrwddCWoLoyQSW3gnaRt1") {
-            console.log("You are logged in as the test user. Demo mode is enabled.");
+            console.log(
+                "You are logged in as the test user. Demo mode is enabled."
+            );
             goToCreateUsername();
         } else {
             let location = `users/${result.user.uid}`;
@@ -23,8 +25,11 @@ async function googleLogIn() {
     }
 }
 
-function success() {
+async function success() {
     console.log("User already exist on Database");
+    const userDoc = await getInfoDb(`users/${result.user.uid}`);
+
+    localStorage.setItem("user", JSON.stringify(userDoc));
     goToHome();
 }
 
@@ -32,10 +37,7 @@ async function error() {
     console.log("Create User");
     console.log(result);
 
-    let location = `users`;
-    await saveInfoDb(location, result.user.uid, {
-        email: result.user.email,
-    });
+    await saveUserIdAndEmail(result.user.uid, result.user.email);
     goToCreateUsername();
 }
 
@@ -60,11 +62,7 @@ async function signUp() {
         if (password === password2) {
             let result = await createAccountEmailAndPassword(email, password);
 
-            let location = `users`;
-
-            await saveInfoDb(location, result.user.uid, {
-                email: result.user.email,
-            });
+            await saveUserIdAndEmail(result.user.uid, result.user.email);
             goToCreateUsername();
         } else {
             document.getElementById("Message").style.color = "Red";
@@ -74,6 +72,14 @@ async function signUp() {
     } catch (error) {
         console.log(error);
     }
+}
+
+async function saveUserIdAndEmail(uid, userEmail) {
+    let user = {
+        id: uid,
+        email: userEmail,
+    };
+    localStorage.setItem("user", JSON.stringify(user));
 }
 
 function goToHome() {

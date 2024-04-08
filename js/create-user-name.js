@@ -3,21 +3,23 @@
 import { checkSession } from "./auth.js";
 import { updateInfoDb } from "./firestore.js";
 
-const username = document.getElementById("username");
+const usernameInput = document.getElementById("username");
 
-async function saveUsername() {
-    const user = await checkSession();
-    let userId = user.uid;
+async function saveUsernameAndGoToNextPage() {
+    await saveUserName(usernameInput.value);
 
-    let location = `users/${userId}`;
-    await updateInfoDb(location, {
-        name: username.value,
-    });
     window.location.replace("set-profile-pic.html");
 }
 
+async function saveUserName(username) {
+    let user = JSON.parse(localStorage.getItem("user")) || {};
+
+    user.name = username;
+    localStorage.setItem("user", JSON.stringify(user));
+}
+
 const nextBtn = document.querySelector("#btn-next");
-nextBtn.addEventListener("click", saveUsername);
+nextBtn.addEventListener("click", saveUsernameAndGoToNextPage);
 
 const nextDesktopBtn = document.querySelector("#btn-next-desktop");
-nextDesktopBtn.addEventListener("click", saveUsername);
+nextDesktopBtn.addEventListener("click", saveUsernameAndGoToNextPage);
