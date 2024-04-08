@@ -75,10 +75,10 @@ async function loginWithApple() {
         });
 }
 
-async function logout() {
+async function logout(callbackSuccess) {
     return signOut(auth)
         .then(() => {
-            // Sign-out successful.
+            callbackSuccess();
         })
         .catch((error) => {
             console.error(error);

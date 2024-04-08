@@ -56,7 +56,7 @@
     .component-nav-mobile {
         display: none;
     }
-    
+
     .component-nav-desktop {
         display: block;
         position: fixed;
@@ -216,4 +216,44 @@
         a {
         color: var(--text-color-one);
     }
+
+    .dropdown-content {
+        width: 150px !important;
+        
+        top: unset !important;
+        bottom: 32px;
+        left: 215px;
+
+        text-align: left !important;
+    }
+}
+
+.dropdown-content {
+    display: none;
+
+    width: 130px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--divider-color-one);
+
+    position: fixed;
+    position: fixed;
+    top: 64px;
+    right: 16px;
+
+    background-color: var(--primary-color-90alpha);
+
+    text-align: end;
+
+    z-index: 9999;
+
+    cursor: pointer;
+}
+
+.dropdown-content:hover {
+    background-color: var(--background-selected);
+}
+
+.dropdown-content.active {
+    display: block;
 }
