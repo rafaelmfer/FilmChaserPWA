@@ -7,9 +7,11 @@ import {
 } from "./auth.js";
 import { docExists, saveInfoDb, updateInfoDb, getInfoDb } from "./firestore.js";
 
+let result;
+
 async function googleLogIn() {
     try {
-        let result = await loginWithGoogle();
+        result = await loginWithGoogle();
 
         let location = `users/${result.user.uid}`;
         docExists(location, success, errorSocial);
@@ -23,7 +25,7 @@ async function emailAndPasswordLogIn() {
         const email = document.getElementById("email").value;
         const password = document.getElementById("psswd").value;
 
-        let result = await loginWithEmailAndPassword(email, password);
+        result = await loginWithEmailAndPassword(email, password);
 
         let location = `users/${result.user.uid}`;
         docExists(location, success, error);
@@ -37,8 +39,10 @@ async function success() {
 
     const userDoc = await getInfoDb(`users/${result.user.uid}`);
     localStorage.setItem("user", JSON.stringify(userDoc));
-    
-    window.location.replace("home.html");
+
+    setTimeout(() => {
+        window.location.replace("home.html");
+    }, 1000);
 }
 
 async function error() {

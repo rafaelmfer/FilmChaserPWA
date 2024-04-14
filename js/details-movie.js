@@ -30,7 +30,6 @@ const btnBack = document.querySelector(".btn-go-back");
 btnBack.addEventListener("click", history_back);
 
 function history_back() {
-    unsub();
     window.history.back();
 }
 

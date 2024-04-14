@@ -11,7 +11,7 @@ async function googleLogIn() {
     try {
         result = await loginWithGoogle();
 
-        if (result.user.uid === "CAzA3gdJrwddCWoLoyQSW3gnaRt1") {
+        if (result.user.email === "capybara00seven@gmail.com") {
             console.log(
                 "You are logged in as the test user. Demo mode is enabled."
             );

@@ -53,7 +53,6 @@ function history_back() {
             setTimeout(navigateBack, 100); 
         }
     }
-    unsub();
     navigateBack();
 }
 

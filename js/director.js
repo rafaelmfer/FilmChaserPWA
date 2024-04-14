@@ -1,6 +1,6 @@
 "use strict";
 
-import { saveInfoDb } from "../js/firestore.js";
+import { saveInfoDb, updateInfoDb } from "../js/firestore.js";
 import { networkInfo } from "./common.js";
 import { theMovieDb } from "../z_ext_libs/themoviedb/themoviedb.js";
 
@@ -277,18 +277,35 @@ async function saveDirectors(selected) {
     localStorage.setItem("user", JSON.stringify(user));
 
     let location = `users`;
-    await saveInfoDb(location, user.id, {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        profile_photo: user.profile_photo,
-        streamingServices: user.streamingServices,
-        interests: {
-            genres: user.interests.genres,
-            actors: user.interests.actors,
-            directors: selected
-        }
-    });
+
+    if (user.email === "capybara00seven@gmail.com") {
+        await updateInfoDb(location, user.id, {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            profile_photo: user.profile_photo,
+            streamingServices: user.streamingServices,
+            interests: {
+                genres: user.interests.genres,
+                actors: user.interests.actors,
+                directors: selected
+            }
+        });
+    } else {
+        await saveInfoDb(location, user.id, {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            profile_photo: user.profile_photo,
+            streamingServices: user.streamingServices,
+            interests: {
+                genres: user.interests.genres,
+                actors: user.interests.actors,
+                directors: selected
+            }
+        });
+    }
+    
 }
 
 function goToNextPage() {
