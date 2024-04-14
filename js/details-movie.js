@@ -407,7 +407,7 @@ function createCarouselItem(film) {
         } else if (film.profile_path != undefined) {
             img.src = theMovieDb.common.images_uri + "w154" + film.profile_path;
         } else if (film.profile_path == undefined ) {
-            img.src = "../resources/imgs/Placeholder/Placeholder_actor(1).png"
+            img.src = "../resources/imgs/Placeholder/placeholder_actor-big.png"
         }
 
         img.alt = film.name || film.title;
